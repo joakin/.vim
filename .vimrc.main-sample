@@ -1,7 +1,2 @@
 " set nocompatible
-
-fun! MySys()
-  return "windows"
-endfun
-
-source $VIM/vimconfig/_vimrc
+source $VIM/vimconfig/.vimrc

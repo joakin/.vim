@@ -1,16 +1,24 @@
 
+fun! IsUnix()
+    if has('win32') || has('win64')
+        return 0
+    else
+        return 1
+    endif
+endfun
+
 set nocompatible
 set encoding=utf-8
 
 filetype off                   " required for vundle
 
-if has('win32') || has('win64')
-    set rtp+=~/vimfiles/bundle/vundle/
-    call vundle#rc('$HOME/vimfiles/bundle/')
-else
+if IsUnix()
     " Usual quickstart instructions
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
+else
+    set rtp+=~/vimfiles/bundle/vundle/
+    call vundle#rc('$HOME/vimfiles/bundle/')
 endif
 
 " let Vundle manage Vundle
@@ -113,7 +121,7 @@ syntax enable "Enable syntax hl
 
 set ofu=syntaxcomplete#Complete
 
-if MySys() == "windows"
+if !IsUnix()
     set bs=2
 endif
 
@@ -129,16 +137,14 @@ let mapleader=","
 let g:mapleader = ","
 
 " Set font according to system
-if MySys() == "mac"
+if IsUnix()
   set gfn=PragmataPro:h10
   " set gfn=Akkurat-Mono:h15
   set linespace=4
   " set gfn=M+\ 1m\ light:h24
-elseif MySys() == "windows"
+else
   set gfn=Monoxil_Regular:h13
   " set gfn=Dejavu_Sans_Mono:h10
-"elseif MySys() == "linux"
-"  set gfn=Monospace
 endif
 
 if has("gui_running")
