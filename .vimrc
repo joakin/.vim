@@ -140,7 +140,7 @@ let g:mapleader = ","
 
 " Set font according to system
 if IsUnix()
-  set gfn=PragmataPro:h10
+  set gfn=Monoxil:h14
   " set gfn=Akkurat-Mono:h15
   set linespace=4
   " set gfn=M+\ 1m\ light:h24
@@ -158,6 +158,7 @@ if has("gui_running")
   colorscheme lucius
 
 else
+  set t_Co=256
   colorscheme lucius
 endif
 
