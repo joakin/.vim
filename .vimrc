@@ -53,7 +53,7 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'mattn/zencoding-vim'
 
 " Syntax
-Bundle 'tpope/vim-markdown'
+Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'itspriddle/vim-jquery'
