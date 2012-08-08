@@ -45,6 +45,8 @@ Bundle 'tpope/vim-speeddating'
 " JS
 Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
+" CoffeeScript
+Bundle 'kchmck/vim-coffee-script'
 " Clojure
 Bundle 'vim-scripts/VimClojure'
 " HTML
@@ -331,6 +333,11 @@ if has('autocmd')
     augroup xml
         au!
         au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    augroup END
+
+    augroup coffeescript
+        au!
+        au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     augroup END
 
 endif
