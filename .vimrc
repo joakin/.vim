@@ -365,4 +365,5 @@ let vimclojure#DynamicHighlighting = 1
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {} 
 let g:snipMate.scope_aliases['less'] = 'css'
+let g:snipMate.scope_aliases['php'] = 'php,html'
 
