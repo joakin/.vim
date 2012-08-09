@@ -45,13 +45,15 @@ Bundle 'tpope/vim-speeddating'
 " JS
 Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
+" CoffeeScript
+Bundle 'kchmck/vim-coffee-script'
 " Clojure
 Bundle 'vim-scripts/VimClojure'
 " HTML
 Bundle 'mattn/zencoding-vim'
 
 " Syntax
-Bundle 'tpope/vim-markdown'
+Bundle 'vim-pandoc/vim-pandoc'
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'itspriddle/vim-jquery'
@@ -138,7 +140,7 @@ let g:mapleader = ","
 
 " Set font according to system
 if IsUnix()
-  set gfn=PragmataPro:h10
+  set gfn=Monoxil:h14
   " set gfn=Akkurat-Mono:h15
   set linespace=4
   " set gfn=M+\ 1m\ light:h24
@@ -156,6 +158,7 @@ if has("gui_running")
   colorscheme lucius
 
 else
+  set t_Co=256
   colorscheme lucius
 endif
 
@@ -331,6 +334,11 @@ if has('autocmd')
     augroup xml
         au!
         au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    augroup END
+
+    augroup coffeescript
+        au!
+        au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     augroup END
 
 endif
