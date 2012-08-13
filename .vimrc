@@ -53,7 +53,11 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'mattn/zencoding-vim'
 
 " Syntax
-Bundle 'vim-pandoc/vim-pandoc'
+if IsUnix()
+    Bundle 'vim-pandoc/vim-pandoc'
+else
+    Bundle 'tpope/vim-markdown'
+endif
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'itspriddle/vim-jquery'
