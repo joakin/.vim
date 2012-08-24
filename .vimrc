@@ -151,8 +151,9 @@ if IsUnix()
   set linespace=4
   " set gfn=M+\ 1m\ light:h24
 else
-  set gfn=Monoxil_Regular:h13
-  " set gfn=Dejavu_Sans_Mono:h10
+  " set gfn=Monoxil_Regular:h10
+  set gfn=Aurulent_Sans_Mono:h9
+  " set gfn=Dejavu_Sans_Mono:h9
 endif
 
 if has("gui_running")
