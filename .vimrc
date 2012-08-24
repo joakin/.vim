@@ -134,6 +134,8 @@ endif
 set number
 set rnu
 
+set scrolloff=3
+
 set laststatus=2
 
 set cursorline
@@ -200,14 +202,6 @@ map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
 
-"Tabs
-map <leader>tn :tabnew<cr>
-map <leader>tj :tabprevious<cr>
-map <leader>tk :tabnext<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-
 " Move lines of code with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
 nnoremap <A-k> :m-2<CR>==
@@ -249,10 +243,19 @@ set listchars=tab:▸\ ,eol:¬
 " Toggle spell checking
 nmap <leader>ss :set spell!<CR>
 
+
 " Common editing stuff
 nmap <leader>ea ggVG
-vmap <leader>ey "+y
+nmap <leader>ey "+yy
+nmap <leader>ed "+dd
 nmap <leader>ep "+p
+nmap <leader>eP "+P
+
+vmap <leader>ey "+y
+vmap <leader>ed "+d
+vmap <leader>ey "+y
+vmap <leader>ep "+p
+vmap <leader>eP "+P
 
 " Plugin mappings
 
