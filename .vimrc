@@ -143,6 +143,8 @@ set cursorcolumn
 
 let mapleader=","
 let g:mapleader = ","
+" Make \ behave as default ,
+nnoremap \ ,
 
 " Set font according to system
 if IsUnix()
@@ -152,7 +154,7 @@ if IsUnix()
   " set gfn=M+\ 1m\ light:h24
 else
   " set gfn=Monoxil_Regular:h10
-  set gfn=Aurulent_Sans_Mono:h11
+  set gfn=Aurulent_Sans_Mono:h10
   " set gfn=Dejavu_Sans_Mono:h9
 endif
 
@@ -196,6 +198,9 @@ set statusline +=%5*\ %P\       " percentage of file
 
 " Fast saving
 nmap <leader>w :w<cr>
+
+" Easier omnicompletion
+imap <C-space> <C-X><C-O>
 
 " Move between splits
 map <C-J> <C-W>j
