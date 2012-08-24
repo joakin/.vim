@@ -246,17 +246,16 @@ nmap <leader>ss :set spell!<CR>
 
 
 " Common editing stuff
-nmap <leader>ea ggVG
-nmap <leader>ey "+yy
-nmap <leader>ed "+dd
-nmap <leader>ep "+p
-nmap <leader>eP "+P
+nmap <leader>a ggVG
+nmap <leader>y "+y
+vmap <leader>y "+y
+nmap <leader>d "+d
+vmap <leader>d "+d
+nmap <leader>p "+p
+vmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>P "+P
 
-vmap <leader>ey "+y
-vmap <leader>ed "+d
-vmap <leader>ey "+y
-vmap <leader>ep "+p
-vmap <leader>eP "+P
 
 " Plugin mappings
 
