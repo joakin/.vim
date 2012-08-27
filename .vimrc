@@ -53,7 +53,11 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'mattn/zencoding-vim'
 
 " Syntax
-Bundle 'vim-pandoc/vim-pandoc'
+if IsUnix()
+    Bundle 'vim-pandoc/vim-pandoc'
+else
+    Bundle 'tpope/vim-markdown'
+endif
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'itspriddle/vim-jquery'
@@ -130,6 +134,8 @@ endif
 set number
 set rnu
 
+set scrolloff=3
+
 set laststatus=2
 
 set cursorline
@@ -137,6 +143,8 @@ set cursorcolumn
 
 let mapleader=","
 let g:mapleader = ","
+" Make \ behave as default ,
+nnoremap \ ,
 
 " Set font according to system
 if IsUnix()
@@ -145,8 +153,9 @@ if IsUnix()
   set linespace=4
   " set gfn=M+\ 1m\ light:h24
 else
-  set gfn=Monoxil_Regular:h13
-  " set gfn=Dejavu_Sans_Mono:h10
+  " set gfn=Monoxil_Regular:h10
+  set gfn=Aurulent_Sans_Mono:h11
+  " set gfn=Dejavu_Sans_Mono:h9
 endif
 
 if has("gui_running")
@@ -190,19 +199,14 @@ set statusline +=%5*\ %P\       " percentage of file
 " Fast saving
 nmap <leader>w :w<cr>
 
+" Easier omnicompletion
+imap <C-space> <C-X><C-O>
+
 " Move between splits
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-H> <C-W>h
 map <C-L> <C-W>l
-
-"Tabs
-map <leader>tn :tabnew<cr>
-map <leader>tj :tabprevious<cr>
-map <leader>tk :tabnext<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
 
 " Move lines of code with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
@@ -245,10 +249,18 @@ set listchars=tab:▸\ ,eol:¬
 " Toggle spell checking
 nmap <leader>ss :set spell!<CR>
 
+
 " Common editing stuff
-nmap <leader>ea ggVG
-vmap <leader>ey "+y
-nmap <leader>ep "+p
+nmap <leader>a ggVG
+nmap <leader>y "+y
+vmap <leader>y "+y
+nmap <leader>d "+d
+vmap <leader>d "+d
+nmap <leader>p "+p
+vmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>P "+P
+
 
 " Plugin mappings
 
@@ -380,6 +392,7 @@ let vimclojure#DynamicHighlighting = 1
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {} 
 let g:snipMate.scope_aliases['less'] = 'css'
+let g:snipMate.scope_aliases['php'] = 'php,html'
 
 if IsUnix()
     " Pandoc setting
