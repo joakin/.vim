@@ -140,7 +140,7 @@ let g:mapleader = ","
 
 " Set font according to system
 if IsUnix()
-  set gfn=Monoxil:h14
+  set gfn=DejaVu\ Sans\ Mono:h15
   " set gfn=Akkurat-Mono:h15
   set linespace=4
   " set gfn=M+\ 1m\ light:h24
@@ -341,6 +341,13 @@ if has('autocmd')
         au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     augroup END
 
+    if IsUnix()
+        augroup txt
+            au!
+            au BufNewFile,BufRead *.txt set filetype=pandoc
+        augroup END
+    endif
+
 endif
 
 " Plugin settings
@@ -373,4 +380,10 @@ let vimclojure#DynamicHighlighting = 1
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {} 
 let g:snipMate.scope_aliases['less'] = 'css'
+
+if IsUnix()
+    " Pandoc setting
+    " Use hard wraps
+    let g:pandoc_use_hard_wraps = 1
+endif
 
