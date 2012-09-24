@@ -266,7 +266,7 @@ vmap <leader>P "+P
 
 " CtrlP
 nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>f :CtrlP<CR>
+" nmap <leader>f :CtrlP<CR>
 
 " Tagbar
 nnoremap <silent> <F2> :TagbarToggle<CR>
@@ -367,6 +367,7 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 	\ 'link': '',
 	\ }
+nmap <leader>f <c-p><c-\>
 
 " Indent guides
 let g:indent_guides_start_level = 2
