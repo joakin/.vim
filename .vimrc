@@ -154,7 +154,7 @@ if IsUnix()
   " set gfn=M+\ 1m\ light:h24
 else
   " set gfn=Monoxil_Regular:h10
-  set gfn=Aurulent_Sans_Mono:h11
+  set gfn=Aurulent_Sans_Mono:h10
   " set gfn=Dejavu_Sans_Mono:h9
 endif
 
