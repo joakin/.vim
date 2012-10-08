@@ -1,11 +1,12 @@
 
 " Utility functions ----------------------- {{{
+
+let g:isUnix = 1
+if has('win32') || has('win64')
+    let g:isUnix = 0
+endif
 fun! IsUnix()
-    if has('win32') || has('win64')
-        return 0
-    else
-        return 1
-    endif
+    return g:isUnix
 endfun
 " }}}
 
