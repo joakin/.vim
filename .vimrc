@@ -287,6 +287,13 @@ endif
 " GENERAL MAPPINGS
 " ================
 
+" vimrc editing
+if IsUnix()
+    nnoremap <leader>ev :tabe $MYVIMRC<cr>
+else
+    nnoremap <leader>ev :tabe ~\vimfiles\.vimrc<cr>
+endif
+
 " Fast saving
 nnoremap <leader>w :w<cr>
 
