@@ -14,10 +14,10 @@ filetype off                   " required for vundle
 
 if IsUnix()
     " Usual quickstart instructions
-    set rtp+=~/.vim/bundle/vundle/
+    set runtimepath+=~/.vim/bundle/vundle/
     call vundle#rc()
 else
-    set rtp+=~/vimfiles/bundle/vundle/
+    set runtimepath+=~/vimfiles/bundle/vundle/
     call vundle#rc('$HOME/vimfiles/bundle/')
 endif
 
@@ -113,7 +113,7 @@ set incsearch     " show search matches as you type
 
 set magic "Set magic on, for regular expressions (default?)
 
-set dir=~/.vimswap//
+set directory=~/.vimswap//
 set undodir=~/.vimundo//
 
 " Set to auto read when a file is changed from the outside
@@ -127,14 +127,14 @@ set wildmenu
 
 syntax enable "Enable syntax hl
 
-set ofu=syntaxcomplete#Complete
+set omnifunc=syntaxcomplete#Complete
 
 if !IsUnix()
-    set bs=2
+    set backspace=2
 endif
 
 set number
-set rnu
+set relativenumber
 
 set scrolloff=3
 
@@ -152,15 +152,15 @@ let g:maplocalleader= "\\"
 
 " Set font according to system
 if IsUnix()
-  set gfn=DejaVu\ Sans\ Mono:h15
-  " set gfn=Akkurat-Mono:h15
+  set guifont=DejaVu\ Sans\ Mono:h15
+  " set guifont=Akkurat-Mono:h15
   set linespace=4
-  " set gfn=M+\ 1m\ light:h24
+  " set guifont=M+\ 1m\ light:h24
 else
-  " set gfn=Monoxil_Regular:h10
-  " set gfn=Aurulent_Sans_Mono:h10
-  set gfn=Source_Code_Pro_Light:h16
-  " set gfn=Dejavu_Sans_Mono:h9
+  " set guifont=Monoxil_Regular:h10
+  " set guifont=Aurulent_Sans_Mono:h10
+  set guifont=Source_Code_Pro_Light:h16
+  " set guifont=Dejavu_Sans_Mono:h9
 endif
 
 if has("gui_running")
@@ -179,8 +179,8 @@ endif
 "set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 "hi clear StatusLine
 "hi clear StatusLineNC
-"hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=66
-"hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=8 ctermbg=232
+hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=66
+hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=8 ctermbg=232
 
 "hi User1 guifg=#005F00 guibg=#B5E61D
 "hi User1 guifg=#ffffff guibg=#0087AF
@@ -195,9 +195,9 @@ set statusline +=\ \ %<%f\ \ %* " full path
 set statusline +=%4*%m%*        " modified flag
 set statusline +=%3*\ %y\ %*    " file type
 set statusline +=%3*%=%*        " align right
+set statusline +=%5*%4c\ %*     " column number
 set statusline +=%2*%5l%*       " current line
 set statusline +=%2*/%L\ \ %*   " total lines
-" set statusline +=%5*%4c\ %*   " column number
 set statusline +=%5*\ %P\       " percentage of file
 
 
@@ -327,9 +327,9 @@ nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 " Toggle line number mode
 function! g:ToggleNuMode()
     if(&rnu == 1)
-        set nu
+        set number
     else
-        set rnu
+        set relativenumber
     endif
 endfunc
 nnoremap <leader>sl :call g:ToggleNuMode()<cr>
