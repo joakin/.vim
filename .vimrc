@@ -146,7 +146,7 @@ set cursorcolumn
 let mapleader=","
 let g:mapleader = ","
 " Make \ behave as default ,
-nnoremap \ ,
+" nnoremap \ ,
 
 " Set font according to system
 if IsUnix()
@@ -199,16 +199,16 @@ set statusline +=%5*\ %P\       " percentage of file
 
 
 " Fast saving
-nmap <leader>w :w<cr>
+nnoremap <leader>w :w<cr>
 
 " Easier omnicompletion
-imap <C-space> <C-X><C-O>
+inoremap <C-space> <C-X><C-O>
 
 " Move between splits
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
 
 " Move lines of code with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
@@ -244,31 +244,31 @@ nnoremap <leader>sl :call g:ToggleNuMode()<cr>
 nnoremap <leader>sb :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 " Toggle invisibles
-nmap <leader>si :set list!<CR>
+nnoremap <leader>si :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
 " Toggle spell checking
-nmap <leader>ss :set spell!<CR>
+nnoremap <leader>ss :set spell!<CR>
 
 
 " Common editing stuff
-nmap <leader>a ggVG
-nmap <leader>y "+y
-vmap <leader>y "+y
-nmap <leader>d "+d
-vmap <leader>d "+d
-nmap <leader>p "+p
-vmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>P "+P
+nnoremap <leader>a ggVG
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>d "+d
+vnoremap <leader>d "+d
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
 
 
 " Plugin mappings
 
 " CtrlP
-nmap <leader>b :CtrlPBuffer<CR>
-" nmap <leader>f :CtrlP<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>f :CtrlP<CR>
 
 " Tagbar
 nnoremap <silent> <F2> :TagbarToggle<CR>
@@ -376,7 +376,7 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 	\ 'link': '',
 	\ }
-nmap <leader>f <c-p><c-\>
+nnoremap <leader>f <c-p><c-\>
 
 " Indent guides
 let g:indent_guides_start_level = 2
