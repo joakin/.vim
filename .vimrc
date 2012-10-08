@@ -349,7 +349,7 @@ nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
 function! g:ToggleNuMode()
-    if(&rnu == 1)
+    if(&rnu ==? 1)
         set number
     else
         set relativenumber
@@ -358,7 +358,7 @@ endfunc
 nnoremap <leader>sl :call g:ToggleNuMode()<cr>
 
 " Toggle background color
-nnoremap <leader>sb :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
 
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
