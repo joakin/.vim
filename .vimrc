@@ -1,4 +1,5 @@
 
+" Utility functions ----------------------- {{{
 fun! IsUnix()
     if has('win32') || has('win64')
         return 0
@@ -6,10 +7,12 @@ fun! IsUnix()
         return 1
     endif
 endfun
+" }}}
 
 set nocompatible
 set encoding=utf-8
 
+" Vundle -------------- {{{
 filetype off                   " required for vundle
 
 if IsUnix()
@@ -78,6 +81,9 @@ Bundle 'tomasr/molokai'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'vim-scripts/Lucius'
 
+" }}}
+
+" Vim general settings ------------ {{{
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -150,6 +156,10 @@ let g:maplocalleader= "\\"
 " Make \ behave as default ,
 " nnoremap \ ,
 
+" }}}
+
+" Font and colorscheme -------------------- {{{
+
 " Set font according to system
 if IsUnix()
   " set guifont=DejaVu\ Sans\ Mono:h17
@@ -201,8 +211,9 @@ set statusline +=%2*%5l%*       " current line
 set statusline +=%2*/%L\ \ %*   " total lines
 set statusline +=%5*\ %P\       " percentage of file
 
+" }}}
 
-" Autocommands
+" Autocommands --------- {{{
 if has('autocmd')
     " settings immediately take effect
     augroup instantsettings
@@ -228,6 +239,11 @@ if has('autocmd')
                     \ if line("'\"") > 0 && line ("'\"") <= line("$")   |
                     \   exe "normal! g'\""                              |
                     \ endif
+    augroup END
+
+    augroup viml
+        au!
+        au FileType vim setlocal foldmethod=marker
     augroup END
 
     augroup php
@@ -284,9 +300,9 @@ if has('autocmd')
     endif
 
 endif
+" }}}
 
-" GENERAL MAPPINGS
-" ================
+" Vim mappings -------------------- {{{
 
 " vimrc editing
 if IsUnix()
@@ -382,9 +398,9 @@ nnoremap <leader>qp :cprev<cr>
 " onoremap p i(
 " onoremap in( :<c-u>normal! f(vi(<cr>
 
+" }}}
 
-" PLUGIN MAPPINGS
-" ================
+" Plugin mappings -------------------- {{{
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -439,9 +455,10 @@ if IsUnix()
     let g:pandoc_use_hard_wraps = 1
 endif
 
+" }}}
 
-" ABREVIATIONS
-" ============
+" Abbreviations -------------------- {{{
+
 iabbrev @@    joaquin@chimeces.com
 iabbrev wweb  http://chimeces.com
 iabbrev ssig  <cr>Joaquin Oltra<cr>joaquin@chimeces.com<cr>
@@ -453,4 +470,6 @@ iabbrev alice4 In another moment down went Alice after it, never once considerin
 iabbrev alice5 Either the well was very deep, or she fell very slowly, for she had plenty of time as she went down to look about her and to wonder what was going to happen next. First, she tried to look down and make out what she was coming to, but it was too dark to see anything; then she looked at the sides of the well, and noticed that they were filled with cupboards and book-shelves; here and there she saw maps and pictures hung upon pegs. She took down a jar from one of the shelves as she passed; it was labelled `ORANGE MARMALADE', but to her great disappointment it was empty: she did not like to drop the jar for fear of killing somebody, so managed to put it into one of the cupboards as she fell past it.<cr>
 iabbrev alice6 <cr>There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. `Very uncomfortable for the Dormouse,' thought Alice; `only, as it's asleep, I suppose it doesn't mind.'<cr><cr>The table was a large one, but the three were all crowded together at one corner of it: `No room! No room!' they cried out when they saw Alice coming. `There's plenty of room!' said Alice indignantly, and she sat down in a large arm-chair at one end of the table.<cr>
 iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking it every now and then, and holding it to his ear.<cr><cr>Alice considered a little, and then said `The fourth.'<cr><cr>`Two days wrong!' sighed the Hatter. `I told you butter wouldn't suit the works!' he added looking angrily at the March Hare.<cr><cr>`It was the best butter,' the March Hare meekly replied.<cr><cr>`Yes, but some crumbs must have got in as well,' the Hatter grumbled: `you shouldn't have put it in with the bread-knife.'<cr><cr>The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, `It was the best butter, you know.'<cr>
+
+" }}}
 
