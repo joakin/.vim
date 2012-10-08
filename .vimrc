@@ -187,18 +187,22 @@ else
   colorscheme lucius
 endif
 
+" }}}
+
+" Statusline -------------- {{{
+
 "set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 "hi clear StatusLine
 "hi clear StatusLineNC
 hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=66
 hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=8 ctermbg=232
 
-"hi User1 guifg=#005F00 guibg=#B5E61D
-"hi User1 guifg=#ffffff guibg=#0087AF
-"hi User2 guifg=#ffffff guibg=#585858
-"hi User3 guifg=#666666 guibg=#000000
-"hi User4 guifg=#FA8072 guibg=#DC143C
-"hi User5 guifg=#333333 guibg=#dddddd
+hi User1 guifg=#005F00 guibg=#B5E61D
+hi User1 guifg=#ffffff guibg=#0087AF
+hi User2 guifg=#ffffff guibg=#585858
+hi User3 guifg=#666666 guibg=#000000
+hi User4 guifg=#FA8072 guibg=#DC143C
+hi User5 guifg=#333333 guibg=#dddddd
 set statusline=
 set statusline +=%3*\ [%n]\ %*  " buffer number
 " set statusline +=%5*%{&ff}%*  " file format
