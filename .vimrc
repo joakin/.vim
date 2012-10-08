@@ -152,10 +152,11 @@ let g:maplocalleader= "\\"
 
 " Set font according to system
 if IsUnix()
-  set guifont=DejaVu\ Sans\ Mono:h15
+  " set guifont=DejaVu\ Sans\ Mono:h17
   " set guifont=Akkurat-Mono:h15
-  set linespace=4
-  " set guifont=M+\ 1m\ light:h24
+  " set linespace=4
+  " set guifont=M+\ 1m\ light:h20
+  set guifont=Source\ Code\ Pro\ Light:h19
 else
   " set guifont=Monoxil_Regular:h10
   " set guifont=Aurulent_Sans_Mono:h10
@@ -210,6 +211,8 @@ if has('autocmd')
 
         if !IsUnix()
             au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
+        else
+            au BufWritePost /Users/jkn/Develop/projects/conf/.vim/.vimrc :source $MYVIMRC
         endif
     augroup END
 
