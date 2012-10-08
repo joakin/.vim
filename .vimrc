@@ -31,7 +31,6 @@ Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'majutsushi/tagbar'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'tpope/vim-surround'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'vim-scripts/Gundo'
 " Bundle 'scrooloose/syntastic'
@@ -39,7 +38,11 @@ Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/nerdtree'
 Bundle 'matchit.zip'
 Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-commentary'
 
 " Programming plugins
 " JS
@@ -68,7 +71,6 @@ Bundle 'tpope/vim-fugitive'
 
 " Color schemes
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
 Bundle 'cschlueter/vim-wombat'
 Bundle 'shawncplus/skittles_berry'
 Bundle 'phd'
