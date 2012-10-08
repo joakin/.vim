@@ -32,7 +32,7 @@ Bundle "garbas/vim-snipmate"
 Bundle 'majutsushi/tagbar'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'vim-scripts/Gundo'
+" Bundle 'vim-scripts/Gundo'
 " Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
 Bundle 'scrooloose/nerdtree'
@@ -145,6 +145,8 @@ set cursorcolumn
 
 let mapleader=","
 let g:mapleader = ","
+let maplocalleader= "\\"
+let g:maplocalleader= "\\"
 " Make \ behave as default ,
 " nnoremap \ ,
 
@@ -198,111 +200,6 @@ set statusline +=%2*/%L\ \ %*   " total lines
 " set statusline +=%5*%4c\ %*   " column number
 set statusline +=%5*\ %P\       " percentage of file
 
-
-" Fast saving
-nnoremap <leader>w :w<cr>
-
-" Easier omnicompletion
-inoremap <C-space> <C-X><C-O>
-
-" Move between splits
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-
-" Move lines of code with Alt+[hjkl] in all modes
-nnoremap <A-j> :m+<CR>==
-nnoremap <A-k> :m-2<CR>==
-nnoremap <A-h> <<
-nnoremap <A-l> >>
-inoremap <A-j> <Esc>:m+<CR>==gi
-inoremap <A-k> <Esc>:m-2<CR>==gi
-inoremap <A-h> <Esc><<`]a
-inoremap <A-l> <Esc>>>`]a
-vnoremap <A-j> :m'>+<CR>gv=gv
-vnoremap <A-k> :m-2<CR>gv=gv
-vnoremap <A-h> <gv
-vnoremap <A-l> >gv
-
-" Remap leader+/ to clear search highlights
-nnoremap <leader>/ :set hlsearch!<CR>
-
-" Map to set local path to file current path
-nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
-
-" Toggle line number mode
-function! g:ToggleNuMode()
-    if(&rnu == 1)
-        set nu
-    else
-        set rnu
-    endif
-endfunc
-nnoremap <leader>sl :call g:ToggleNuMode()<cr>
-
-" Toggle background color
-nnoremap <leader>sb :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-
-" Toggle invisibles
-nnoremap <leader>si :set list!<CR>
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
-
-" Toggle spell checking
-nnoremap <leader>ss :set spell!<CR>
-
-
-" Common editing stuff
-nnoremap <leader>a ggVG
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>d "+d
-vnoremap <leader>d "+d
-nnoremap <leader>p "+p
-vnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>P "+P
-
-
-" Plugin mappings
-
-" CtrlP
-nnoremap <leader>b :CtrlPBuffer<CR>
-" nnoremap <leader>f :CtrlP<CR>
-
-" Tagbar
-nnoremap <silent> <F2> :TagbarToggle<CR>
-
-" Gundo
-" nnoremap <leader>u :GundoToggle<CR>
-
-" NERDTree
-noremap <F1> :NERDTreeToggle<CR>
-noremap <leader>n :NERDTreeToggle<CR>
-
-" Tabularize stuff
-noremap <leader>et: :Tabularize colon<cr>
-noremap <leader>et<space> :Tabularize spaces<cr>
-noremap <leader>et= :Tabularize assignment<cr>
-noremap <leader>etcss :Tabularize inline_css<cr>
-
-" Quick fix window mappings
-let g:quickfix_is_open = 0
-function! QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen 20
-        let g:quickfix_is_open = 1
-    endif
-endfunction
-nnoremap <leader>qq :call QuickfixToggle()<cr>
-nnoremap <leader>qn :cnext<cr>
-nnoremap <leader>qp :cprev<cr>
 
 " Autocommands
 if has('autocmd')
@@ -387,7 +284,95 @@ if has('autocmd')
 
 endif
 
-" Plugin settings
+" GENERAL MAPPINGS
+" ================
+
+" Fast saving
+nnoremap <leader>w :w<cr>
+
+" Easier omnicompletion
+inoremap <C-space> <C-X><C-O>
+
+" Move between splits
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
+
+" Move lines of code with Alt+[hjkl] in all modes
+nnoremap <A-j> :m+<CR>==
+nnoremap <A-k> :m-2<CR>==
+nnoremap <A-h> <<
+nnoremap <A-l> >>
+inoremap <A-j> <Esc>:m+<CR>==gi
+inoremap <A-k> <Esc>:m-2<CR>==gi
+inoremap <A-h> <Esc><<`]a
+inoremap <A-l> <Esc>>>`]a
+vnoremap <A-j> :m'>+<CR>gv=gv
+vnoremap <A-k> :m-2<CR>gv=gv
+vnoremap <A-h> <gv
+vnoremap <A-l> >gv
+
+" Remap leader+/ to clear search highlights
+nnoremap <leader>/ :set hlsearch!<CR>
+
+" Map to set local path to file current path
+nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+
+" Toggle line number mode
+function! g:ToggleNuMode()
+    if(&rnu == 1)
+        set nu
+    else
+        set rnu
+    endif
+endfunc
+nnoremap <leader>sl :call g:ToggleNuMode()<cr>
+
+" Toggle background color
+nnoremap <leader>sb :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
+" Toggle invisibles
+nnoremap <leader>si :set list!<CR>
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Toggle spell checking
+nnoremap <leader>ss :set spell!<CR>
+
+
+" Common editing stuff
+nnoremap <leader>a ggVG
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>d "+d
+vnoremap <leader>d "+d
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>P "+P
+
+" Quick fix window mappings
+let g:quickfix_is_open = 0
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen 20
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+nnoremap <leader>qq :call QuickfixToggle()<cr>
+nnoremap <leader>qn :cnext<cr>
+nnoremap <leader>qp :cprev<cr>
+
+
+
+" PLUGIN MAPPINGS
+" ================
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -399,7 +384,22 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 	\ 'link': '',
 	\ }
+nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>f <c-p><c-\>
+" nnoremap <leader>f :CtrlP<CR>
+
+" Tagbar
+nnoremap <silent> <F2> :TagbarToggle<CR>
+
+" NERDTree
+noremap <F1> :NERDTreeToggle<CR>
+noremap <leader>n :NERDTreeToggle<CR>
+
+" Tabularize stuff
+noremap <leader>et: :Tabularize colon<cr>
+noremap <leader>et<space> :Tabularize spaces<cr>
+noremap <leader>et= :Tabularize assignment<cr>
+noremap <leader>etcss :Tabularize inline_css<cr>
 
 " Indent guides
 let g:indent_guides_start_level = 2
@@ -420,6 +420,7 @@ let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['less'] = 'css'
 let g:snipMate.scope_aliases['php'] = 'php,html'
 
+" Pandoc
 if IsUnix()
     " Pandoc setting
     " Use hard wraps
@@ -429,8 +430,5 @@ endif
 " Commentary strings
 autocmd FileType apache set commentstring=#\ %s
 
-" Learn vimscript the hard way
-" Chapter 01
-" echo ">^.^<"
 
 
