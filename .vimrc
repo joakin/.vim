@@ -156,7 +156,8 @@ if IsUnix()
   " set gfn=M+\ 1m\ light:h24
 else
   " set gfn=Monoxil_Regular:h10
-  set gfn=Aurulent_Sans_Mono:h10
+  " set gfn=Aurulent_Sans_Mono:h10
+  set gfn=Source_Code_Pro_Light:h16
   " set gfn=Dejavu_Sans_Mono:h9
 endif
 
@@ -286,13 +287,35 @@ noremap <leader>et<space> :Tabularize spaces<cr>
 noremap <leader>et= :Tabularize assignment<cr>
 noremap <leader>etcss :Tabularize inline_css<cr>
 
+" Quick fix window mappings
+let g:quickfix_is_open = 0
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen 20
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+nnoremap <leader>qq :call QuickfixToggle()<cr>
+nnoremap <leader>qn :cnext<cr>
+nnoremap <leader>qp :cprev<cr>
+
 " Autocommands
 if has('autocmd')
     " settings immediately take effect
     augroup instantsettings
         au!
         au BufWritePost $MYVIMRC :source $MYVIMRC
-        au BufLeave $MYVIMRC :source $MYVIMRC
+        au BufLeave     $MYVIMRC :source $MYVIMRC
+
+        if !IsUnix()
+            au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
+            au BufLeave     ~/vimfiles/.vimrc :source $MYVIMRC
+        endif
     augroup END
 
     augroup writeonfocus
@@ -402,4 +425,12 @@ if IsUnix()
     " Use hard wraps
     let g:pandoc_use_hard_wraps = 1
 endif
+
+" Commentary strings
+autocmd FileType apache set commentstring=#\ %s
+
+" Learn vimscript the hard way
+" Chapter 01
+" echo ">^.^<"
+
 
