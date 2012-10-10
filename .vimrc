@@ -101,11 +101,14 @@ set expandtab
 " Create undo files with history
 set undofile
 
+set ttyfast
+
 " Wrap text when 80 cols
-set nowrap
+" set nowrap
+set wrap
 set textwidth=79
-set formatoptions=qrn1
 set colorcolumn=80
+set formatoptions=tcroqn21
 
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
@@ -115,8 +118,11 @@ set smarttab      " insert tabs on the start of a line according to
 
 set ignorecase    " Not case sensitive search
 set smartcase     " Unless the search contains caps letters
-" set hlsearch      " highlight search terms
+set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+set gdefault      " Default g flag on substitutions
+set showmatch     " Jump to bracket/parens briefly. Does not interrupt editing
+set matchtime=1   " Time of the jump of showmatch
 
 set magic "Set magic on, for regular expressions (default?)
 
@@ -131,14 +137,13 @@ set splitbelow
 set splitright
 
 set wildmenu
+set wildmode=list:longest
 
 syntax enable "Enable syntax hl
 
 set omnifunc=syntaxcomplete#Complete
 
-if !IsUnix()
-    set backspace=2
-endif
+set backspace=indent,eol,start
 
 set number
 set relativenumber
@@ -171,7 +176,7 @@ if IsUnix()
 else
   " set guifont=Monoxil_Regular:h10
   " set guifont=Aurulent_Sans_Mono:h10
-  set guifont=Source_Code_Pro_Light:h16
+  set guifont=Source_Code_Pro_Light:h13
   " set guifont=Dejavu_Sans_Mono:h9
 endif
 
@@ -297,12 +302,10 @@ if has('autocmd')
         au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     augroup END
 
-    if IsUnix()
-        augroup txt
-            au!
-            au BufNewFile,BufRead *.txt set filetype=pandoc
-        augroup END
-    endif
+    augroup txt
+        au!
+        au FileType txt set formatoptions+=a
+    augroup END
 
 endif
 " }}}
@@ -364,7 +367,7 @@ nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▶\ ,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
