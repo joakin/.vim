@@ -81,7 +81,8 @@ Bundle 'shawncplus/skittles_berry'
 Bundle 'phd'
 Bundle 'tomasr/molokai'
 Bundle 'endel/vim-github-colorscheme'
-Bundle 'vim-scripts/Lucius'
+Bundle 'jonathanfilip/vim-lucius'
+Bundle 'wgibbs/vim-irblack'
 
 " }}}
 
@@ -176,8 +177,8 @@ if IsUnix()
   set guifont=Source\ Code\ Pro\ Light:h19
 else
   " set guifont=Monoxil_Regular:h10
-  " set guifont=Aurulent_Sans_Mono:h10
-  set guifont=Source_Code_Pro_Light:h13
+  set guifont=Aurulent_Sans_Mono:h11
+  " set guifont=Source_Code_Pro:h12
   " set guifont=Dejavu_Sans_Mono:h9
 endif
 
@@ -188,10 +189,23 @@ if has("gui_running")
   "set background=dark
   "colorscheme solarized
   colorscheme lucius
+  LuciusBlackLowContrast
+
+" LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+" LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+" LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+" LuciusBlack: http://i.imgur.com/iD4ri.png
+" LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+" LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+" LuciusLight (light default): http://i.imgur.com/soYD8.png
+" LuciusLightLowContrast: http://i.imgur.com/95I86.png
+" LuciusWhite: http://i.imgur.com/wDzkz.png
+" LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
 
 else
   set t_Co=256
   colorscheme lucius
+  LuciusBlackLowContrast
 endif
 
 " }}}
