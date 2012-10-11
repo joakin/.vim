@@ -48,6 +48,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 " Bundle 'tpope/vim-commentary'
 Bundle 'vim-scripts/YankRing.vim'
+Bundle 'vim-scripts/scratch.vim'
 
 " Programming plugins
 " JS
@@ -168,19 +169,23 @@ let g:maplocalleader= "\\"
 
 " Font and colorscheme -------------------- {{{
 
-" Set font according to system
-if IsUnix()
-  " set guifont=DejaVu\ Sans\ Mono:h17
-  " set guifont=Akkurat-Mono:h15
-  " set linespace=4
-  " set guifont=M+\ 1m\ light:h20
-  set guifont=Source\ Code\ Pro\ Light:h19
-else
-  " set guifont=Monoxil_Regular:h10
-  set guifont=Aurulent_Sans_Mono:h11
-  " set guifont=Source_Code_Pro:h12
-  " set guifont=Dejavu_Sans_Mono:h9
-endif
+fun! SetFont()
+    " Set font according to system
+    if IsUnix()
+        " set guifont=DejaVu\ Sans\ Mono:h17
+        " set guifont=Akkurat-Mono:h15
+        " set linespace=4
+        " set guifont=M+\ 1m\ light:h20
+        set guifont=Source\ Code\ Pro\ Light:h19
+    else
+        " set guifont=Monoxil_Regular:h10
+        set guifont=Aurulent_Sans_Mono:h11
+        " set guifont=Source_Code_Pro:h12
+        " set guifont=Dejavu_Sans_Mono:h9
+    endif
+endfun
+call SetFont()
+command! SetDefaultFont call SetFont()
 
 if has("gui_running")
   set guioptions-=T
@@ -325,6 +330,69 @@ if has('autocmd')
 endif
 " }}}
 
+" Utilities ---------------------------- {{{
+
+" Font size changing ------------------- {{{
+
+let s:fontIncrements = '1'
+function! AdjustFontSize(amount)
+  if has("gui_running")
+
+    let &guifont = substitute(
+     \ &guifont,
+     \ ':h\zs\d\+',
+     \ '\=eval(submatch(0)'.a:amount.')',
+     \ '')
+
+  else
+    echoerr "You need to run gui version of Vim to use this function."
+  endif
+endfunction
+
+function! LargerFont()
+  call AdjustFontSize('+'.s:fontIncrements)
+endfunction
+command! LargerFont call LargerFont()
+
+function! SmallerFont()
+  call AdjustFontSize('-'.s:fontIncrements)
+endfunction
+command! SmallerFont call SmallerFont()
+
+" }}}
+
+" Toggle line number type --------------------------- {{{
+
+function! g:ToggleNuMode()
+    if(&rnu ==? 1)
+        set number
+    else
+        set relativenumber
+    endif
+endfunc
+
+" }}}
+
+" Quickfix toggle ------------------------------------------------ {{{
+
+let g:quickfix_is_open = 0
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+        execute g:quickfix_return_to_window . "wincmd w"
+    else
+        let g:quickfix_return_to_window = winnr()
+        copen 20
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+command! QuickfixToggle call QuickfixToggle()
+
+" }}}
+
+" }}}
+
 " Vim mappings -------------------- {{{
 
 " vimrc editing
@@ -367,13 +435,6 @@ nnoremap <leader>/ :set hlsearch!<CR>
 nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-function! g:ToggleNuMode()
-    if(&rnu ==? 1)
-        set number
-    else
-        set relativenumber
-    endif
-endfunc
 nnoremap <leader>sl :call g:ToggleNuMode()<cr>
 
 " Toggle background color
@@ -387,6 +448,9 @@ set listchars=tab:▶\ ,eol:¬
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
 
+nnoremap <A-=> :LargerFont<CR>
+nnoremap <A--> :SmallerFont<CR>
+nnoremap <A-0> :SetDefaultFont<CR>
 
 " Common editing stuff
 nnoremap <leader>a ggVG
@@ -399,20 +463,9 @@ vnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
 
+
 " Quick fix window mappings
-let g:quickfix_is_open = 0
-function! QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen 20
-        let g:quickfix_is_open = 1
-    endif
-endfunction
-nnoremap <leader>qq :call QuickfixToggle()<cr>
+nnoremap <leader>qq :QuickfixToggle<cr>
 nnoremap <leader>qn :cnext<cr>
 nnoremap <leader>qp :cprev<cr>
 
@@ -423,7 +476,7 @@ nnoremap <leader>qp :cprev<cr>
 
 " }}}
 
-" Plugin mappings -------------------- {{{
+" Plugin settings & mappings -------------------- {{{
 
 " CtrlP
 let g:ctrlp_map = '<leader>f'
@@ -447,10 +500,11 @@ noremap <F1> :NERDTreeToggle<CR>
 noremap <leader>n :NERDTreeToggle<CR>
 
 " Tabularize stuff
-noremap <leader>et: :Tabularize colon<cr>
-noremap <leader>et<space> :Tabularize spaces<cr>
-noremap <leader>et= :Tabularize assignment<cr>
-noremap <leader>etcss :Tabularize inline_css<cr>
+noremap <leader>tt :Tabularize /
+noremap <leader>t: :Tabularize colon<cr>
+noremap <leader>t<space> :Tabularize spaces<cr>
+noremap <leader>t= :Tabularize assignment<cr>
+noremap <leader>tcss :Tabularize inline_css<cr>
 
 " Indent guides
 let g:indent_guides_start_level = 2
@@ -477,6 +531,9 @@ if IsUnix()
     " Use hard wraps
     let g:pandoc_use_hard_wraps = 1
 endif
+
+" Scratch
+nnoremap <leader>et :tabe<cr>:Scratch<cr>
 
 " }}}
 
