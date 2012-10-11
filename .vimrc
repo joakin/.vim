@@ -47,6 +47,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 " Bundle 'tpope/vim-commentary'
+Bundle 'vim-scripts/YankRing.vim'
 
 " Programming plugins
 " JS
@@ -411,7 +412,7 @@ nnoremap <leader>qp :cprev<cr>
 " Plugin mappings -------------------- {{{
 
 " CtrlP
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
@@ -421,7 +422,7 @@ let g:ctrlp_custom_ignore = {
 	\ 'link': '',
 	\ }
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>f <c-p><c-\>
+" nnoremap <leader>f <c-p><c-\>
 " nnoremap <leader>f :CtrlP<CR>
 
 " Tagbar
