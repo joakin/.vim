@@ -327,6 +327,10 @@ if has('autocmd')
         au FileType txt set formatoptions+=a
     augroup END
 
+    augroup html
+        au!
+        au FileType html set nowrap
+    augroup END
 endif
 " }}}
 
