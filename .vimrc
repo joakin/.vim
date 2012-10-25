@@ -525,18 +525,18 @@ nnoremap <leader>/ :set hlsearch!<CR>
 nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap <leader>sl :call g:ToggleNuMode()<cr>
+nnoremap <leader>el :call g:ToggleNuMode()<cr>
 
 " Toggle background color
-nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
+nnoremap <leader>eb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
 
 " Toggle invisibles
-nnoremap <leader>si :set list!<CR>
+nnoremap <leader>ei :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▶\ ,eol:¬
 
 " Toggle spell checking
-nnoremap <leader>ss :set spell!<CR>
+nnoremap <leader>es :set spell!<CR>
 
 nnoremap <A-=> :LargerFont<CR>
 nnoremap <A--> :SmallerFont<CR>
