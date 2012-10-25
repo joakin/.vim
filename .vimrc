@@ -397,6 +397,66 @@ command! QuickfixToggle call QuickfixToggle()
 
 " }}}
 
+" Moving through indent levels --------- {{{
+"
+" Jump to the next or previous line that has the same level or a different
+" level of indentation than the current line.
+"
+" exclusive (bool): true: Motion is exclusive
+"                   false: Motion is inclusive
+" fwd (bool): true: Go to next line
+"             false: Go to previous line
+" difflevel (bool): true: Go to line with different indentation level
+"                   false: Go to line with the same indentation level
+" skipblanks (bool): true: Skip blank lines
+"                    false: Don't skip blank lines
+function! NextIndent(exclusive, fwd, difflevel, skipblanks)
+  let line = line('.')
+  let column = col('.')
+  let lastline = line('$')
+  let indent = indent(line)
+  let stepvalue = a:fwd ? 1 : -1
+  while (line > 0 && line <= lastline)
+    let line = line + stepvalue
+    if (   ( a:difflevel == 0  && indent(line) == indent) ||
+         \ ( a:difflevel == 1  && indent(line) > indent)  ||
+         \ ( a:difflevel == -1 && indent(line) < indent))
+      if (! a:skipblanks || strlen(getline(line)) > 0)
+        if (a:exclusive)
+          let line = line - stepvalue
+        endif
+        exe line
+        exe "normal " column . "|"
+        return
+      endif
+    else
+      if ( a:difflevel == 1  && indent(line) < indent )
+          return
+      endif
+    endif
+  endwhile
+endfunction
+
+" Moving back and forth between lines of same or lower indentation.
+nnoremap <silent> <s-space> :call      NextIndent(0, 0, 0,  1)<CR>_
+nnoremap <silent> <space>   :call      NextIndent(0, 1, 0,  1)<CR>_
+nnoremap <silent> <s-tab>   :call      NextIndent(0, 0, -1, 1)<CR>_
+nnoremap <silent> <tab>     :call      NextIndent(0, 1, 1,  1)<CR>_
+nnoremap <silent> <s-cr>    :call      NextIndent(0, 0, 1,  1)<CR>_
+nnoremap <silent> <cr>      :call      NextIndent(0, 1, -1, 1)<CR>_
+vnoremap <silent> <s-space> <Esc>:call NextIndent(0, 0, 0,  1)<CR>m'gv''
+vnoremap <silent> <space>   <Esc>:call NextIndent(0, 1, 0,  1)<CR>m'gv''
+vnoremap <silent> <s-tab>   <Esc>:call NextIndent(0, 0, -1, 1)<CR>m'gv''
+vnoremap <silent> <tab>     <Esc>:call NextIndent(0, 1, 1,  1)<CR>m'gv''
+vnoremap <silent> <s-cr>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
+vnoremap <silent> <cr>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
+" Comment these since I have IndentObject plugin installed
+" onoremap <silent> <s-space> :call      NextIndent(0, 0, 0, 1)<CR>
+" onoremap <silent> <space>   :call      NextIndent(0, 1, 0, 1)<CR>
+" onoremap <silent> <s-tab>   :call      NextIndent(1, 0, 1, 1)<CR>
+" onoremap <silent> <tab>     :call      NextIndent(1, 1, 1, 1)<CR>
+" }}}
+
 " }}}
 
 " Vim mappings -------------------- {{{
