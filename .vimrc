@@ -406,8 +406,9 @@ else
     nnoremap <leader>ev :tabe ~\vimfiles\.vimrc<cr>
 endif
 
-" Fast saving
+" Fast saving & quitting
 nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
 
 " Easier omnicompletion
 inoremap <C-space> <C-X><C-O>
@@ -469,9 +470,9 @@ vnoremap <leader>P "+P
 
 
 " Quick fix window mappings
-nnoremap <leader>qq :QuickfixToggle<cr>
-nnoremap <leader>qn :cnext<cr>
-nnoremap <leader>qp :cprev<cr>
+nnoremap <leader>zq :QuickfixToggle<cr>
+nnoremap <leader>zn :cnext<cr>
+nnoremap <leader>zp :cprev<cr>
 
 " Operator-pending mappings
 " Samples from learnvimscriptthehardway for future reference
