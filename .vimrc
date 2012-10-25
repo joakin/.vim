@@ -379,24 +379,6 @@ endfunc
 
 " }}}
 
-" Quickfix toggle ------------------------------------------------ {{{
-
-let g:quickfix_is_open = 0
-function! QuickfixToggle()
-    if g:quickfix_is_open
-        cclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        copen 20
-        let g:quickfix_is_open = 1
-    endif
-endfunction
-command! QuickfixToggle call QuickfixToggle()
-
-" }}}
-
 " Moving through indent levels --------- {{{
 "
 " Jump to the next or previous line that has the same level or a different
@@ -555,9 +537,7 @@ vnoremap <leader>P "+P
 
 
 " Quick fix window mappings
-nnoremap <leader>zq :QuickfixToggle<cr>
-nnoremap <leader>zn :cnext<cr>
-nnoremap <leader>zp :cprev<cr>
+nnoremap <leader>eq :copen<cr>
 
 " Operator-pending mappings
 " Samples from learnvimscriptthehardway for future reference
