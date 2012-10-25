@@ -496,6 +496,14 @@ noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 
+" Manipulate windows
+nnoremap <leader>sf <C-W>_:vertical resize<cr> 
+nnoremap <leader>se <C-W>= 
+nnoremap <leader>sj <C-W>10-
+nnoremap <leader>sk <C-W>10+
+nnoremap <leader>sl <C-W>20>
+noremap <leader>sh <C-W>20<
+
 " Move lines of code with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
 nnoremap <A-k> :m-2<CR>==
