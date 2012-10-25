@@ -46,8 +46,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
-" Bundle 'tpope/vim-commentary'
-Bundle 'vim-scripts/YankRing.vim'
+Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
 
 " Programming plugins
