@@ -106,8 +106,8 @@ set undofile
 set ttyfast
 
 " Wrap text when 80 cols
-" set nowrap
-set wrap
+set nowrap
+" set wrap
 set textwidth=79
 set colorcolumn=80
 set formatoptions=tcroqn21
@@ -326,9 +326,10 @@ if has('autocmd')
         au FileType txt set formatoptions+=a
     augroup END
 
-    augroup html
+    augroup dont_wrap_us
         au!
-        au FileType html set nowrap
+        au FileType html,php set nowrap
+        au FileType html,php set formatoptions=croqn21
     augroup END
 endif
 " }}}
@@ -408,6 +409,7 @@ endif
 " Fast saving & quitting
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+nnoremap <leader>sq :Bclose<cr>
 
 " Easier omnicompletion
 inoremap <C-space> <C-X><C-O>
