@@ -457,6 +457,20 @@ vnoremap <silent> <cr>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
 " onoremap <silent> <tab>     :call      NextIndent(1, 1, 1, 1)<CR>
 " }}}
 
+" Quickfix results to args --------------------------- {{{
+
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(values(buffer_numbers))
+endfunction
+command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
+
+" }}}
+
 " }}}
 
 " Vim mappings -------------------- {{{
