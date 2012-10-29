@@ -112,6 +112,9 @@ set textwidth=79
 set colorcolumn=80
 set formatoptions=tcroqn21
 
+" Make vim think that dash is part of words. i want 'this-stuff' to be a word
+set iskeyword+=-
+
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
 
