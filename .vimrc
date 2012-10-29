@@ -286,6 +286,7 @@ if has('autocmd')
         au!
         " Syntax for JST
         au BufNewFile,BufRead *.jst set syntax=jst
+        au BufNewFile,BufRead *.tpl set syntax=jst
     augroup END
 
     augroup clojurescript
