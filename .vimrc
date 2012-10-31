@@ -282,7 +282,7 @@ if has('autocmd')
 
     augroup php
         au!
-        au FileType php  set shiftwidth=4
+        au FileType php setlocal shiftwidth=4
     augroup END
 
     augroup jst
@@ -324,18 +324,18 @@ if has('autocmd')
 
     augroup coffeescript
         au!
-        au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
+        au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
     augroup END
 
     augroup txt
         au!
-        au FileType txt set formatoptions+=a
+        au FileType txt setlocal formatoptions+=a
     augroup END
 
     augroup dont_wrap_us
         au!
-        au FileType html,php set nowrap
-        au FileType html,php set formatoptions=croqn21
+        au FileType html,php setlocal nowrap
+        au FileType html,php setlocal formatoptions-=croqn21
     augroup END
 endif
 " }}}
