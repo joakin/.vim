@@ -157,8 +157,8 @@ set scrolloff=3
 
 set laststatus=2
 
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 let mapleader=","
 let g:mapleader = ","
@@ -181,10 +181,10 @@ fun! SetFont()
         set guifont=Source\ Code\ Pro\ Light:h19
     else
         " set guifont=Monoxil_Regular:h10
-        set guifont=Aurulent_Sans_Mono:h10
+        " set guifont=Aurulent_Sans_Mono:h10
         " set guifont=Inconsolata-g:h13
         " set guifont=Source_Code_Pro:h10
-        " set guifont=Source_Code_Pro_Light:h11
+        set guifont=Source_Code_Pro_Light:h17
         " set guifont=Dejavu_Sans_Mono:h9
     endif
 endfun
