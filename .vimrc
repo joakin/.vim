@@ -48,11 +48,11 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
+Bundle 'kana/vim-smartinput'
 
 " Programming plugins
 " JS
 Bundle 'pangloss/vim-javascript'
-Bundle 'briancollins/vim-jst'
 " CoffeeScript
 Bundle 'kchmck/vim-coffee-script'
 " Clojure
@@ -68,8 +68,11 @@ else
 endif
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
+Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'briancollins/vim-jst'
 
 " External tools
 Bundle 'tpope/vim-fugitive'
@@ -183,8 +186,9 @@ fun! SetFont()
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
         " set guifont=Inconsolata-g:h13
-        " set guifont=Source_Code_Pro:h10
-        set guifont=Source_Code_Pro_Light:h17
+        set guifont=Source_Code_Pro:h11
+        " set guifont=Source_Code_Pro_Light:h17
+        " set guifont=Droid_Sans_Mono:h13
         " set guifont=Dejavu_Sans_Mono:h9
     endif
 endfun
@@ -288,8 +292,8 @@ if has('autocmd')
     augroup jst
         au!
         " Syntax for JST
-        au BufNewFile,BufRead *.jst set syntax=jst
-        au BufNewFile,BufRead *.tpl set syntax=jst
+        au BufNewFile,BufRead *.jst set syntax=jst filetype=jst
+        au BufNewFile,BufRead *.tpl set syntax=jst filetype=jst
     augroup END
 
     augroup clojurescript
@@ -322,10 +326,10 @@ if has('autocmd')
         au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     augroup END
 
-    augroup coffeescript
-        au!
-        au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
-    augroup END
+    " augroup coffeescript
+    "     au!
+    "     au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
+    " augroup END
 
     augroup txt
         au!
