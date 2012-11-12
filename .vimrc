@@ -49,6 +49,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
 Bundle 'kana/vim-smartinput'
+Bundle 'mileszs/ack.vim'
 
 " Programming plugins
 " JS
@@ -408,20 +409,20 @@ function! NextIndent(exclusive, fwd, difflevel, skipblanks)
   let stepvalue = a:fwd ? 1 : -1
   while (line > 0 && line <= lastline)
     let line = line + stepvalue
-    if (   ( a:difflevel == 0  && indent(line) == indent) ||
-         \ ( a:difflevel == 1  && indent(line) > indent)  ||
-         \ ( a:difflevel == -1 && indent(line) < indent))
-      if (! a:skipblanks || strlen(getline(line)) > 0)
-        if (a:exclusive)
-          let line = line - stepvalue
-        endif
-        exe line
-        exe "normal " column . "|"
-        return
-      endif
-    else
-      if ( a:difflevel == 1  && indent(line) < indent )
+    if (! a:skipblanks || strlen(getline(line)) > 0)
+      if (   ( a:difflevel == 0  && indent(line) == indent) ||
+           \ ( a:difflevel == 1  && indent(line) > indent)  ||
+           \ ( a:difflevel == -1 && indent(line) < indent))
+          if (a:exclusive)
+            let line = line - stepvalue
+          endif
+          exe line
+          exe "normal " column . "|"
           return
+      else
+        if ( a:difflevel == 1  && indent(line) < indent )
+            return
+        endif
       endif
     endif
   endwhile
