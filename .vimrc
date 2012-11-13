@@ -187,7 +187,7 @@ fun! SetFont()
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
         " set guifont=Inconsolata-g:h13
-        set guifont=Source_Code_Pro:h11
+        set guifont=Source_Code_Pro:h9
         " set guifont=Source_Code_Pro_Light:h17
         " set guifont=Droid_Sans_Mono:h13
         " set guifont=Dejavu_Sans_Mono:h9
@@ -459,6 +459,13 @@ function! QuickfixFilenames()
   return join(values(buffer_numbers))
 endfunction
 command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
+
+" }}}
+
+" Ack commands abbr -------------------- {{{
+
+command! TODO execute "Ack TODO"
+command! FIX execute "Ack \"FIX|XXX|HACK\""
 
 " }}}
 
