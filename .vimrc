@@ -99,9 +99,9 @@ filetype indent on
 set guioptions=c
 
 " Tab size
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
 set expandtab
 
 " Create undo files with history
@@ -462,13 +462,6 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " }}}
 
-" Ack commands abbr -------------------- {{{
-
-command! TODO execute "Ack TODO"
-command! FIX execute "Ack \"FIX|XXX|HACK\""
-
-" }}}
-
 " }}}
 
 " Vim mappings -------------------- {{{
@@ -516,8 +509,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-h> <gv
 vnoremap <A-l> >gv
 
-" Remap leader+/ to clear search highlights
-nnoremap <leader>/ :set hlsearch!<CR>
+nnoremap <leader><space> :set hlsearch!<CR>
 
 " Map to set local path to file current path
 nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
@@ -621,6 +613,16 @@ endif
 " Scratch
 nnoremap <leader>et :tabe<cr>:Scratch<cr>
 
+" Ack commands abbr -------------------- {{{
+
+nnoremap <leader>/ :Ack 
+command! TODO execute "Ack TODO"
+command! FIX execute "Ack \"FIX|XXX|HACK\""
+
+" }}}
+
+
+
 " }}}
 
 " Abbreviations -------------------- {{{
@@ -636,6 +638,22 @@ iabbrev alice4 In another moment down went Alice after it, never once considerin
 iabbrev alice5 Either the well was very deep, or she fell very slowly, for she had plenty of time as she went down to look about her and to wonder what was going to happen next. First, she tried to look down and make out what she was coming to, but it was too dark to see anything; then she looked at the sides of the well, and noticed that they were filled with cupboards and book-shelves; here and there she saw maps and pictures hung upon pegs. She took down a jar from one of the shelves as she passed; it was labelled `ORANGE MARMALADE', but to her great disappointment it was empty: she did not like to drop the jar for fear of killing somebody, so managed to put it into one of the cupboards as she fell past it.<cr>
 iabbrev alice6 <cr>There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. `Very uncomfortable for the Dormouse,' thought Alice; `only, as it's asleep, I suppose it doesn't mind.'<cr><cr>The table was a large one, but the three were all crowded together at one corner of it: `No room! No room!' they cried out when they saw Alice coming. `There's plenty of room!' said Alice indignantly, and she sat down in a large arm-chair at one end of the table.<cr>
 iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking it every now and then, and holding it to his ear.<cr><cr>Alice considered a little, and then said `The fourth.'<cr><cr>`Two days wrong!' sighed the Hatter. `I told you butter wouldn't suit the works!' he added looking angrily at the March Hare.<cr><cr>`It was the best butter,' the March Hare meekly replied.<cr><cr>`Yes, but some crumbs must have got in as well,' the Hatter grumbled: `you shouldn't have put it in with the bread-knife.'<cr><cr>The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, `It was the best butter, you know.'<cr>
+
+" }}}
+
+
+" Per project settings ------------------------- {{{
+
+if has('autocmd')
+
+    augroup esearchFE_settings
+        au!
+        if !IsUnix()
+            au BufNewFile,BufRead d:/devel/projects/eSearchFE/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+        endif
+    augroup END
+
+endif
 
 " }}}
 
