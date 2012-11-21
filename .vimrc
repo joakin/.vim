@@ -434,19 +434,21 @@ nnoremap <silent> <s-space> :call      NextIndent(0, 0, 0,  1)<CR>_
 nnoremap <silent> <space>   :call      NextIndent(0, 1, 0,  1)<CR>_
 nnoremap <silent> <s-tab>   :call      NextIndent(0, 0, -1, 1)<CR>_
 nnoremap <silent> <tab>     :call      NextIndent(0, 1, 1,  1)<CR>_
-nnoremap <silent> <s-BS>    :call      NextIndent(0, 0, 1,  1)<CR>_
-nnoremap <silent> <BS>      :call      NextIndent(0, 1, -1, 1)<CR>_
+nnoremap <silent> <s-CR>    :call      NextIndent(0, 0, 1,  1)<CR>_
+nnoremap <silent> <CR>      :call      NextIndent(0, 1, -1, 1)<CR>_
 vnoremap <silent> <s-space> <Esc>:call NextIndent(0, 0, 0,  1)<CR>m'gv''
 vnoremap <silent> <space>   <Esc>:call NextIndent(0, 1, 0,  1)<CR>m'gv''
 vnoremap <silent> <s-tab>   <Esc>:call NextIndent(0, 0, -1, 1)<CR>m'gv''
 vnoremap <silent> <tab>     <Esc>:call NextIndent(0, 1, 1,  1)<CR>m'gv''
-vnoremap <silent> <s-BS>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
-vnoremap <silent> <BS>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
+vnoremap <silent> <s-CR>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
+vnoremap <silent> <CR>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
 " Comment these since I have IndentObject plugin installed
-" onoremap <silent> <s-space> :call      NextIndent(0, 0, 0, 1)<CR>
-" onoremap <silent> <space>   :call      NextIndent(0, 1, 0, 1)<CR>
-" onoremap <silent> <s-tab>   :call      NextIndent(1, 0, 1, 1)<CR>
-" onoremap <silent> <tab>     :call      NextIndent(1, 1, 1, 1)<CR>
+onoremap <silent> <s-space> _:call      NextIndent(0, 0, 0, 1)<CR>_
+onoremap <silent> <space>   $:call      NextIndent(0, 1, 0, 1)<CR>$
+onoremap <silent> <s-tab>   _:call      NextIndent(1, 0, 1, 1)<CR>_
+onoremap <silent> <tab>     $:call      NextIndent(1, 1, 1, 1)<CR>$
+onoremap <silent> <s-CR>    _:call      NextIndent(0, 0, 1,  1)<CR>_
+onoremap <silent> <CR>      $:call      NextIndent(0, 1, -1, 1)<CR>$
 " }}}
 
 " Quickfix results to args      {{{
