@@ -462,6 +462,31 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " }}}
 
+" Scroll fn {{{
+
+function! SmoothScroll(up)
+    if a:up
+        let scrollaction="2"
+    else
+        let scrollaction="2"
+    endif
+    exec "norm " . scrollaction
+    redraw
+    let counter=1
+    while counter<&scroll/2
+        let counter+=1
+        sleep 1m
+        redraw
+        exec "norm " . scrollaction
+    endwhile
+endfunction
+nnoremap <C-U> :call SmoothScroll(1)<Enter>
+nnoremap <C-D> :call SmoothScroll(0)<Enter>
+inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
+inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
+
+" }}}
+
 " }}}
 
 " Vim mappings -------------------- {{{
