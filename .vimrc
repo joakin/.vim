@@ -534,7 +534,7 @@ vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-h> <gv
 vnoremap <A-l> >gv
 
-nnoremap <leader><space> :set hlsearch!<CR>
+nnoremap <leader>/ :set hlsearch!<CR>
 
 " Map to set local path to file current path
 nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
@@ -640,7 +640,7 @@ nnoremap <leader>et :tabe<cr>:Scratch<cr>
 
 " Ack commands abbr -------------------- {{{
 
-nnoremap <leader>/ :Ack 
+nnoremap <leader><space> :Ack 
 command! TODO execute "Ack TODO"
 command! FIX execute "Ack \"FIX|XXX|HACK\""
 
