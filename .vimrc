@@ -1,5 +1,5 @@
 
-" Utility functions ----------------------- {{{
+" Utility functions             {{{
 
 let g:isUnix = 1
 if has('win32') || has('win64')
@@ -13,7 +13,7 @@ endfun
 set nocompatible
 set encoding=utf-8
 
-" Vundle -------------- {{{
+" Vundle                        {{{
 filetype off                   " required for vundle
 
 if IsUnix()
@@ -50,6 +50,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
 Bundle 'kana/vim-smartinput'
 Bundle 'mileszs/ack.vim'
+Bundle 'tomtom/tcomment_vim'
 
 " Programming plugins
 " JS
@@ -90,7 +91,7 @@ Bundle 'wgibbs/vim-irblack'
 
 " }}}
 
-" Vim general settings ------------ {{{
+" Vim general settings          {{{
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -173,7 +174,7 @@ let g:maplocalleader= "\\"
 
 " }}}
 
-" Font and colorscheme -------------------- {{{
+" Font and colorscheme          {{{
 
 fun! SetFont()
     " Set font according to system
@@ -224,7 +225,7 @@ endif
 
 " }}}
 
-" Statusline -------------- {{{
+" Statusline                    {{{
 
 "set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 "hi clear StatusLine
@@ -252,7 +253,7 @@ set statusline +=%5*\ %P\       " percentage of file
 
 " }}}
 
-" Autocommands --------- {{{
+" Autocommands                  {{{
 if has('autocmd')
     " settings immediately take effect
     augroup instantsettings
@@ -345,9 +346,9 @@ if has('autocmd')
 endif
 " }}}
 
-" Utilities ---------------------------- {{{
+" Utilities                     {{{
 
-" Font size changing ------------------- {{{
+" Font size changing            {{{
 
 let s:fontIncrements = '1'
 function! AdjustFontSize(amount)
@@ -376,7 +377,7 @@ command! SmallerFont call SmallerFont()
 
 " }}}
 
-" Toggle line number type --------------------------- {{{
+" Toggle line number type       {{{
 
 function! g:ToggleNuMode()
     if(&rnu ==? 1)
@@ -388,7 +389,7 @@ endfunc
 
 " }}}
 
-" Moving through indent levels --------- {{{
+" Moving through indent levels  {{{
 "
 " Jump to the next or previous line that has the same level or a different
 " level of indentation than the current line.
@@ -433,14 +434,14 @@ nnoremap <silent> <s-space> :call      NextIndent(0, 0, 0,  1)<CR>_
 nnoremap <silent> <space>   :call      NextIndent(0, 1, 0,  1)<CR>_
 nnoremap <silent> <s-tab>   :call      NextIndent(0, 0, -1, 1)<CR>_
 nnoremap <silent> <tab>     :call      NextIndent(0, 1, 1,  1)<CR>_
-nnoremap <silent> <s-cr>    :call      NextIndent(0, 0, 1,  1)<CR>_
-nnoremap <silent> <cr>      :call      NextIndent(0, 1, -1, 1)<CR>_
+nnoremap <silent> <s-BS>    :call      NextIndent(0, 0, 1,  1)<CR>_
+nnoremap <silent> <BS>      :call      NextIndent(0, 1, -1, 1)<CR>_
 vnoremap <silent> <s-space> <Esc>:call NextIndent(0, 0, 0,  1)<CR>m'gv''
 vnoremap <silent> <space>   <Esc>:call NextIndent(0, 1, 0,  1)<CR>m'gv''
 vnoremap <silent> <s-tab>   <Esc>:call NextIndent(0, 0, -1, 1)<CR>m'gv''
 vnoremap <silent> <tab>     <Esc>:call NextIndent(0, 1, 1,  1)<CR>m'gv''
-vnoremap <silent> <s-cr>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
-vnoremap <silent> <cr>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
+vnoremap <silent> <s-BS>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
+vnoremap <silent> <BS>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
 " Comment these since I have IndentObject plugin installed
 " onoremap <silent> <s-space> :call      NextIndent(0, 0, 0, 1)<CR>
 " onoremap <silent> <space>   :call      NextIndent(0, 1, 0, 1)<CR>
@@ -448,7 +449,7 @@ vnoremap <silent> <cr>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
 " onoremap <silent> <tab>     :call      NextIndent(1, 1, 1, 1)<CR>
 " }}}
 
-" Quickfix results to args --------------------------- {{{
+" Quickfix results to args      {{{
 
 function! QuickfixFilenames()
   " Building a hash ensures we get each buffer only once
@@ -462,7 +463,7 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " }}}
 
-" Scroll fn {{{
+" Scroll fn                     {{{
 
 function! SmoothScroll(up)
     if a:up
@@ -480,16 +481,18 @@ function! SmoothScroll(up)
         exec "norm " . scrollaction
     endwhile
 endfunction
-nnoremap <C-U> :call SmoothScroll(1)<Enter>
-nnoremap <C-D> :call SmoothScroll(0)<Enter>
-inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
-inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
+nnoremap <C-U> :call SmoothScroll(1)<Enter>M
+nnoremap <C-D> :call SmoothScroll(0)<Enter>M
+inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>Mi
+inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>Mi
 
 " }}}
 
+                                                        "{{{1 }}}1
+
 " }}}
 
-" Vim mappings -------------------- {{{
+" Vim mappings                  {{{
 
 " vimrc editing
 if IsUnix()
@@ -579,7 +582,7 @@ nnoremap <leader>eq :copen<cr>
 
 " }}}
 
-" Plugin settings & mappings -------------------- {{{
+" Plugin settings & mappings    {{{
 
 " CtrlP
 let g:ctrlp_map = '<leader>f'
@@ -638,7 +641,7 @@ endif
 " Scratch
 nnoremap <leader>et :tabe<cr>:Scratch<cr>
 
-" Ack commands abbr -------------------- {{{
+" Ack commands abbr             {{{
 
 nnoremap <leader><space> :Ack 
 command! TODO execute "Ack TODO"
@@ -646,11 +649,13 @@ command! FIX execute "Ack \"FIX|XXX|HACK\""
 
 " }}}
 
-
+" EasyMotion                    {{{
+let g:EasyMotion_leader_key = '<CR>'
+" }}}
 
 " }}}
 
-" Abbreviations -------------------- {{{
+" Abbreviations                 {{{
 
 iabbrev @@    joaquin@chimeces.com
 iabbrev wweb  http://chimeces.com
@@ -667,7 +672,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 " }}}
 
 
-" Per project settings ------------------------- {{{
+" Per project settings          {{{
 
 if has('autocmd')
 
