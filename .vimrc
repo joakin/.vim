@@ -677,6 +677,12 @@ if has('autocmd')
             au BufNewFile,BufRead d:/devel/projects/eSearchFE/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
         endif
     augroup END
+    augroup website_framework_settings
+        au!
+        if !IsUnix()
+            au BufNewFile,BufRead d:/devel/projects/WebsiteFramework/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+        endif
+    augroup END
 
 endif
 
