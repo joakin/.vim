@@ -187,8 +187,9 @@ fun! SetFont()
     else
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
-        " set guifont=Inconsolata-g:h13
-        set guifont=Source_Code_Pro:h9
+        " set guifont=Inconsolata-g:h12
+        set guifont=Monaco:h10
+        " set guifont=Source_Code_Pro:h9
         " set guifont=Source_Code_Pro_Light:h17
         " set guifont=Droid_Sans_Mono:h13
         " set guifont=Dejavu_Sans_Mono:h9
@@ -490,7 +491,6 @@ inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>Mi
 
 " }}}
 
-                                                        "{{{1 }}}1
 
 " }}}
 
