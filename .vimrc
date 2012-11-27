@@ -54,7 +54,8 @@ Bundle 'tomtom/tcomment_vim'
 
 " Programming plugins
 " JS
-Bundle 'pangloss/vim-javascript'
+" Bundle 'pangloss/vim-javascript'
+Bundle 'drslump/vim-syntax-js'
 " CoffeeScript
 Bundle 'kchmck/vim-coffee-script'
 " Clojure
@@ -188,8 +189,8 @@ fun! SetFont()
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
         " set guifont=Inconsolata-g:h12
-        set guifont=Monaco:h10
-        " set guifont=Source_Code_Pro:h9
+        " set guifont=Monaco:h10
+        " set guifont=Source_Code_Pro:h10
         " set guifont=Source_Code_Pro_Light:h17
         " set guifont=Droid_Sans_Mono:h13
         " set guifont=Dejavu_Sans_Mono:h9
@@ -223,6 +224,8 @@ else
   colorscheme lucius
   LuciusBlackLowContrast
 endif
+
+hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 " }}}
 
@@ -316,7 +319,7 @@ if has('autocmd')
 
     augroup javascript
         au!
-        au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS conceallevel=2 concealcursor=nc
     augroup END
 
     augroup python
@@ -673,6 +676,16 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 
 " }}}
 
+" Language settings             {{{
+
+" JS                            {{{
+
+" Options: function, semicolon, comma, return, this, proto, solarized, debug
+let g:syntax_js=['function', 'this', 'proto']
+
+" }}}
+
+" }}}
 
 " Per project settings          {{{
 
