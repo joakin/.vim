@@ -62,6 +62,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'vim-scripts/VimClojure'
 " HTML
 Bundle 'mattn/zencoding-vim'
+" Livescript
+Bundle 'gkz/vim-ls'
 
 " Syntax
 if IsUnix()
@@ -186,6 +188,8 @@ fun! SetFont()
         set guifont=M+\ 1m\ light:h16
         " set guifont=Source\ Code\ Pro\ Light:h19
     else
+
+        set guifont=Anka/Coder_Condensed:h12
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
         " set guifont=Inconsolata-g:h12
@@ -319,7 +323,9 @@ if has('autocmd')
 
     augroup javascript
         au!
-        au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS conceallevel=2 concealcursor=nc
+        au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        au FileType javascript setlocal conceallevel=2 concealcursor=nc
+        au FileType javascript setlocal foldmethod=syntax
     augroup END
 
     augroup python
@@ -680,7 +686,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 
 " JS                            {{{
 
-" Options: function, semicolon, comma, return, this, proto, solarized, debug
+" Options: 'function', 'semicolon', 'comma', 'return', 'this', 'proto'
 let g:syntax_js=['function', 'this', 'proto']
 
 " }}}
