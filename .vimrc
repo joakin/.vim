@@ -14,7 +14,9 @@ set nocompatible
 set encoding=utf-8
 
 " Vundle                        {{{
-filetype off                   " required for vundle
+"
+" Vundle init                   {{{
+filetype off   " required for vundle
 
 if IsUnix()
     " Usual quickstart instructions
@@ -28,7 +30,9 @@ endif
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-" Vim improvements
+" }}}
+
+" Vim improvements {{{
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
@@ -51,8 +55,11 @@ Bundle 'vim-scripts/scratch.vim'
 Bundle 'kana/vim-smartinput'
 Bundle 'mileszs/ack.vim'
 Bundle 'tomtom/tcomment_vim'
+Bundle 'paradigm/vim-multicursor'
+" Bundle 'paradigm/SkyBison'
+" }}}
 
-" Programming plugins
+" Programming plugins               {{{
 " JS
 " Bundle 'pangloss/vim-javascript'
 Bundle 'drslump/vim-syntax-js'
@@ -64,8 +71,9 @@ Bundle 'vim-scripts/VimClojure'
 Bundle 'mattn/zencoding-vim'
 " Livescript
 Bundle 'gkz/vim-ls'
+" }}}
 
-" Syntax
+" Syntax                          {{{
 if IsUnix()
     Bundle 'vim-pandoc/vim-pandoc'
 else
@@ -78,11 +86,13 @@ Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
+" }}}
 
-" External tools
+" External tools                {{{
 Bundle 'tpope/vim-fugitive'
+" }}}
 
-" Color schemes
+" Color schemes                 {{{
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'cschlueter/vim-wombat'
 Bundle 'shawncplus/skittles_berry'
@@ -91,10 +101,12 @@ Bundle 'tomasr/molokai'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'wgibbs/vim-irblack'
+" }}}
 
 " }}}
 
 " Vim general settings          {{{
+
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
@@ -129,6 +141,9 @@ set copyindent    " copy the previous indentation on autoindenting
 set smarttab      " insert tabs on the start of a line according to
                   "    shiftwidth, not tabstop
 
+" Allow modified/unsaved buffers in the background.
+set hidden
+
 set ignorecase    " Not case sensitive search
 set smartcase     " Unless the search contains caps letters
 set hlsearch      " highlight search terms
@@ -141,9 +156,18 @@ set magic "Set magic on, for regular expressions (default?)
 
 set directory=~/.vimswap//
 set undodir=~/.vimundo//
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+set autowrite
 
 " Set split directions to something normal
 set splitbelow
@@ -152,9 +176,23 @@ set splitright
 set wildmenu
 set wildmode=list:longest
 
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+
+" Clojure/Leiningen
+set wildignore+=classes
+set wildignore+=lib
+
 syntax enable "Enable syntax hl
 
 set omnifunc=syntaxcomplete#Complete
+
+set completeopt=menu,longest,preview
 
 set backspace=indent,eol,start
 
@@ -164,6 +202,15 @@ set relativenumber
 set scrolloff=3
 
 set laststatus=2
+
+" Disable modeline
+set nomodeline
+
+" If run in a terminal, set the terminal title.
+set title
+
+" Don't try to highlight lines longer than 800 characters.
+set synmaxcol=800
 
 " set cursorline
 " set cursorcolumn
@@ -177,6 +224,16 @@ let g:maplocalleader= "\\"
 
 " }}}
 
+" Vim OS specific settings              {{{
+
+if IsUnix()
+else
+  set shell=D:\devel\bin\Git\bin\sh.exe
+  set shellcmdflag=--login\ -c
+  set shellxquote=\"
+endif
+" }}}
+
 " Font and colorscheme          {{{
 
 fun! SetFont()
@@ -188,8 +245,10 @@ fun! SetFont()
         set guifont=M+\ 1m\ light:h16
         " set guifont=Source\ Code\ Pro\ Light:h19
     else
-
-        set guifont=Anka/Coder_Condensed:h12
+        set linespace=2
+        set guifont=PragmataPro:h12
+        " set guifont=Anka/Coder_Narrow:h14
+        " set guifont=Anka/Coder_Condensed:h14
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
         " set guifont=Inconsolata-g:h12
@@ -211,6 +270,7 @@ if has("gui_running")
   "colorscheme solarized
   colorscheme lucius
   LuciusBlackLowContrast
+  " LuciusLightHighContrast
 
 " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
 " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
@@ -278,15 +338,21 @@ if has('autocmd')
     augroup writeonfocus
         au!
         " Autosave when focus is lost
-        au FocusLost * :wa
+        au FocusLost * :silent! wall
     augroup END
 
     augroup rememberlastcursorpos
         au!
         au BufReadPost *
-                    \ if line("'\"") > 0 && line ("'\"") <= line("$")   |
-                    \   exe "normal! g'\""                              |
+                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                    \   exe "normal! g`\"zvzz"                        |
                     \ endif
+    augroup END
+
+    augroup cline
+        au!
+        au WinLeave,InsertEnter * set nocursorline
+        au WinEnter,InsertLeave * set cursorline
     augroup END
 
     augroup viml
@@ -389,11 +455,19 @@ command! SmallerFont call SmallerFont()
 
 " Toggle line number type       {{{
 
-function! g:ToggleNuMode()
+function! g:ToggleNuMode(globally)
     if(&rnu ==? 1)
+      if(a:globally)
         set number
+      else
+        setlocal number
+      endif
     else
+      if(a:globally)
         set relativenumber
+      else
+        setlocal relativenumber
+      endif
     endif
 endfunc
 
@@ -440,25 +514,25 @@ function! NextIndent(exclusive, fwd, difflevel, skipblanks)
 endfunction
 
 " Moving back and forth between lines of same or lower indentation.
-nnoremap <silent> <s-space> :call      NextIndent(0, 0, 0,  1)<CR>_
-nnoremap <silent> <space>   :call      NextIndent(0, 1, 0,  1)<CR>_
-nnoremap <silent> <s-tab>   :call      NextIndent(0, 0, -1, 1)<CR>_
-nnoremap <silent> <tab>     :call      NextIndent(0, 1, 1,  1)<CR>_
-nnoremap <silent> <s-CR>    :call      NextIndent(0, 0, 1,  1)<CR>_
-nnoremap <silent> <CR>      :call      NextIndent(0, 1, -1, 1)<CR>_
-vnoremap <silent> <s-space> <Esc>:call NextIndent(0, 0, 0,  1)<CR>m'gv''
-vnoremap <silent> <space>   <Esc>:call NextIndent(0, 1, 0,  1)<CR>m'gv''
-vnoremap <silent> <s-tab>   <Esc>:call NextIndent(0, 0, -1, 1)<CR>m'gv''
-vnoremap <silent> <tab>     <Esc>:call NextIndent(0, 1, 1,  1)<CR>m'gv''
-vnoremap <silent> <s-CR>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
-vnoremap <silent> <CR>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
-" Comment these since I have IndentObject plugin installed
-onoremap <silent> <s-space> _:call      NextIndent(0, 0, 0, 1)<CR>_
-onoremap <silent> <space>   $:call      NextIndent(0, 1, 0, 1)<CR>$
-onoremap <silent> <s-tab>   _:call      NextIndent(1, 0, 1, 1)<CR>_
-onoremap <silent> <tab>     $:call      NextIndent(1, 1, 1, 1)<CR>$
-onoremap <silent> <s-CR>    _:call      NextIndent(0, 0, 1,  1)<CR>_
-onoremap <silent> <CR>      $:call      NextIndent(0, 1, -1, 1)<CR>$
+" TODO: change this mappings
+" nnoremap <silent> <s-space> :call      NextIndent(0, 0, 0,  1)<CR>_
+" nnoremap <silent> <space>   :call      NextIndent(0, 1, 0,  1)<CR>_
+" nnoremap <silent> <s-tab>   :call      NextIndent(0, 0, -1, 1)<CR>_
+" nnoremap <silent> <tab>     :call      NextIndent(0, 1, 1,  1)<CR>_
+" nnoremap <silent> <s-CR>    :call      NextIndent(0, 0, 1,  1)<CR>_
+" nnoremap <silent> <CR>      :call      NextIndent(0, 1, -1, 1)<CR>_
+" vnoremap <silent> <s-space> <Esc>:call NextIndent(0, 0, 0,  1)<CR>m'gv''
+" vnoremap <silent> <space>   <Esc>:call NextIndent(0, 1, 0,  1)<CR>m'gv''
+" vnoremap <silent> <s-tab>   <Esc>:call NextIndent(0, 0, -1, 1)<CR>m'gv''
+" vnoremap <silent> <tab>     <Esc>:call NextIndent(0, 1, 1,  1)<CR>m'gv''
+" vnoremap <silent> <s-CR>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
+" vnoremap <silent> <CR>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
+" onoremap <silent> <s-space> _:call      NextIndent(0, 0, 0, 1)<CR>_
+" onoremap <silent> <space>   $:call      NextIndent(0, 1, 0, 1)<CR>$
+" onoremap <silent> <s-tab>   _:call      NextIndent(1, 0, 1, 1)<CR>_
+" onoremap <silent> <tab>     $:call      NextIndent(1, 1, 1, 1)<CR>$
+" onoremap <silent> <s-CR>    _:call      NextIndent(0, 0, 1,  1)<CR>_
+" onoremap <silent> <CR>      $:call      NextIndent(0, 1, -1, 1)<CR>$
 " }}}
 
 " Quickfix results to args      {{{
@@ -477,29 +551,51 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " Scroll fn                     {{{
 
-function! SmoothScroll(up)
-    if a:up
-        let scrollaction="2"
-    else
-        let scrollaction="2"
-    endif
-    exec "norm " . scrollaction
-    redraw
-    let counter=1
-    while counter<&scroll/2
-        let counter+=1
-        sleep 1m
-        redraw
-        exec "norm " . scrollaction
-    endwhile
-endfunction
-nnoremap <C-U> :call SmoothScroll(1)<Enter>M
-nnoremap <C-D> :call SmoothScroll(0)<Enter>M
-inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>Mi
-inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>Mi
+" function! SmoothScroll(up)
+"     if a:up
+"         let scrollaction="2"
+"     else
+"         let scrollaction="2"
+"     endif
+"     exec "norm " . scrollaction
+"     redraw
+"     let counter=1
+"     while counter<&scroll/2
+"         let counter+=1
+"         sleep 1m
+"         redraw
+"         exec "norm " . scrollaction
+"     endwhile
+" endfunction
+" nnoremap <C-U> :call SmoothScroll(1)<Enter>M
+" nnoremap <C-D> :call SmoothScroll(0)<Enter>M
+" inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>Mi
+" inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>Mi
 
 " }}}
 
+" Custom text objects (mappings)          {{{
+
+" Create new text objects for pairs of identical characters
+
+for char in ['$',',','.','/','-','=']
+	exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
+	exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+	exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
+	exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
+endfor
+" Create a text object for folding regions
+xnoremap if :<C-U>silent!normal![zjV]zk<CR>
+onoremap if :normal Vif<CR>
+xnoremap af :<C-U>silent!normal![zV]z<CR>
+onoremap af :normal Vaf<CR>
+" Create a text object for the entire buffer
+xnoremap i<cr> :<c-u>silent!normal!ggVG<cr>
+onoremap i<cr> :normal Vi<c-v><cr><cr>
+xnoremap a<cr> :<c-u>silent!normal!ggVG<cr>
+onoremap a<cr> :normal Vi<c-v><cr><cr>
+
+" }}}
 
 " }}}
 
@@ -515,7 +611,6 @@ endif
 " Fast saving & quitting
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
-nnoremap <leader>sq :Bclose<cr>
 
 " Easier omnicompletion
 inoremap <C-space> <C-X><C-O>
@@ -527,12 +622,12 @@ noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
 
 " Manipulate windows
-nnoremap <leader>sf <C-W>_:vertical resize<cr> 
-nnoremap <leader>se <C-W>= 
-nnoremap <leader>sj <C-W>10+
-nnoremap <leader>sk <C-W>10-
-nnoremap <leader>sl <C-W>20>
-noremap <leader>sh <C-W>20<
+nnoremap <C-W><C-F> <C-W>_:vertical resize<cr> 
+nnoremap <C-W><C-E> <C-W>= 
+nnoremap <C-W><C-J> <C-W>10+
+nnoremap <C-W><C-K> <C-W>10-
+nnoremap <C-W><C-H> <C-W>20>
+nnoremap <C-W><C-L> <C-W>20<
 
 " Move lines of code with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
@@ -551,18 +646,21 @@ vnoremap <A-l> >gv
 nnoremap <leader>/ :set hlsearch!<CR>
 
 " Map to set local path to file current path
-nnoremap <leader>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <leader>ep :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap <leader>el :call g:ToggleNuMode()<cr>
+nnoremap <leader>el :call g:ToggleNuMode(0)<cr>
+nnoremap <leader>eL :call g:ToggleNuMode(1)<cr>
+" Toggle line numbers mode
+nnoremap <leader>en :setlocal number!<cr>
+nnoremap <leader>eN :set number!<cr>
 
 " Toggle background color
 nnoremap <leader>eb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
 
 " Toggle invisibles
 nnoremap <leader>ei :set list!<CR>
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▶\ ,eol:¬
+set listchars=tab:→\ ,trail:⌴,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>es :set spell!<CR>
@@ -593,9 +691,14 @@ nnoremap <leader>eq :copen<cr>
 
 " }}}
 
+" Highlight Group(s)
+nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " Plugin settings & mappings    {{{
 
-" CtrlP
+" CtrlP                         {{{
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
@@ -608,49 +711,58 @@ let g:ctrlp_custom_ignore = {
 nnoremap <leader>b :CtrlPBuffer<CR>
 " nnoremap <leader>f <c-p><c-\>
 " nnoremap <leader>f :CtrlP<CR>
+" }}}
 
-" Tagbar
+" Tagbar                         {{{
 nnoremap <silent> <F2> :TagbarToggle<CR>
+" }}}
 
-" NERDTree
+" NERDTree                         {{{
 noremap <F1> :NERDTreeToggle<CR>
 noremap <leader>n :NERDTreeToggle<CR>
+" }}}
 
-" Tabularize stuff
+" Tabularize stuff                         {{{
 noremap <leader>tt :Tabularize /
 noremap <leader>t: :Tabularize colon<cr>
 noremap <leader>t<space> :Tabularize spaces<cr>
 noremap <leader>t= :Tabularize assignment<cr>
 noremap <leader>tcss :Tabularize inline_css<cr>
+" }}}
 
-" Indent guides
+" Indent guides                         {{{
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 2
 let g:indent_guides_enable_on_vim_startup = 1
+" }}}
 
-" VimClojure
+" VimClojure                         {{{
 " Highlight clojure functions
 let vimclojure#HighlightBuiltins = 1
 " Enable rainbow parenthesis
 let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
+" }}}
 
-" Snipmate stuff
+" Snipmate stuff                         {{{
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {} 
 let g:snipMate.scope_aliases['less'] = 'css'
 let g:snipMate.scope_aliases['php'] = 'php,html'
+" }}}
 
-" Pandoc
+" Pandoc                         {{{
 if IsUnix()
     " Pandoc setting
     " Use hard wraps
     let g:pandoc_use_hard_wraps = 1
 endif
+" }}}
 
-" Scratch
+" Scratch                         {{{
 nnoremap <leader>et :tabe<cr>:Scratch<cr>
+" }}}
 
 " Ack commands abbr             {{{
 
@@ -661,7 +773,21 @@ command! FIX execute "Ack \"FIX|XXX|HACK\""
 " }}}
 
 " EasyMotion                    {{{
-let g:EasyMotion_leader_key = '<CR>'
+" let g:EasyMotion_leader_key = '<CR>'
+" }}}
+
+" Multicursor                   {{{
+nnoremap <leader>cc    :<c-u>call MultiCursorPlaceCursor()<cr>
+xnoremap <leader>cc    :<c-u>call MultiCursorVisual()<cr>
+nnoremap <leader>c<cr> :<c-u>call MultiCursorManual()<cr>
+nnoremap <leader>cd    :<c-u>call MultiCursorRemoveCursors()<cr>
+nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
+let g:multicursor_quit = "<leader>cq"
+" }}}
+
+" Skybison                               {{{
+" nnoremap : :<c-u>call SkyBison('')<cr>
+" let g:skybison_fuzz = 2
 " }}}
 
 " }}}
@@ -713,4 +839,5 @@ if has('autocmd')
 endif
 
 " }}}
+
 
