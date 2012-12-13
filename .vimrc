@@ -32,7 +32,7 @@ Bundle 'gmarik/vundle'
 
 " }}}
 
-" Vim improvements {{{
+" Vim improvements              {{{
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
@@ -59,7 +59,7 @@ Bundle 'paradigm/vim-multicursor'
 " Bundle 'paradigm/SkyBison'
 " }}}
 
-" Programming plugins               {{{
+" Programming plugins           {{{
 " JS
 " Bundle 'pangloss/vim-javascript'
 Bundle 'drslump/vim-syntax-js'
@@ -73,7 +73,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'gkz/vim-ls'
 " }}}
 
-" Syntax                          {{{
+" Syntax                        {{{
 if IsUnix()
     Bundle 'vim-pandoc/vim-pandoc'
 else
@@ -110,9 +110,6 @@ Bundle 'wgibbs/vim-irblack'
 " Enable filetype plugin
 filetype plugin on
 filetype indent on
-
-" Gui options
-set guioptions=c
 
 " Tab size
 set softtabstop=2
@@ -222,9 +219,18 @@ let g:maplocalleader= "\\"
 " Make \ behave as default ,
 " nnoremap \ ,
 
+" Allow cursor to move offline when visualblock editing
+set virtualedit+=block
+
+
+" Different cursors for different modes.
+set guicursor=n-c:block-Cursor-blinkon0
+set guicursor+=v:block-vCursor-blinkon0
+set guicursor+=i-ci:ver20-iCursor
+
 " }}}
 
-" Vim OS specific settings              {{{
+" Vim OS specific settings      {{{
 
 if IsUnix()
 else
@@ -245,8 +251,12 @@ fun! SetFont()
         set guifont=M+\ 1m\ light:h16
         " set guifont=Source\ Code\ Pro\ Light:h19
     else
-        set linespace=2
-        set guifont=PragmataPro:h12
+
+
+        set guifont=Menlo_for_Powerline:h11
+        " set guifont=Mensch_for_Powerline:h11
+        " set linespace=2
+        " set guifont=PragmataPro:h12
         " set guifont=Anka/Coder_Narrow:h14
         " set guifont=Anka/Coder_Condensed:h14
         " set guifont=Monoxil_Regular:h10
@@ -263,6 +273,10 @@ call SetFont()
 command! SetDefaultFont call SetFont()
 
 if has("gui_running")
+
+  " Gui options
+  set guioptions=c
+
   set guioptions-=T
   set t_Co=256
 
@@ -574,7 +588,7 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " }}}
 
-" Custom text objects (mappings)          {{{
+" Custom text objects           {{{
 
 " Create new text objects for pairs of identical characters
 
@@ -596,6 +610,172 @@ xnoremap a<cr> :<c-u>silent!normal!ggVG<cr>
 onoremap a<cr> :normal Vi<c-v><cr><cr>
 
 " }}}
+
+" Pulse Line                    {{{
+
+function! s:Pulse() " {{{
+    let current_window = winnr()
+    windo set nocursorline
+    execute current_window . 'wincmd w'
+    setlocal cursorline
+
+    redir => old_hi
+        silent execute 'hi CursorLine'
+    redir END
+    let old_hi = split(old_hi, '\n')[0]
+    let old_hi = substitute(old_hi, 'xxx', '', '')
+
+    let steps = 9
+    let width = 1
+    let start = width
+    let end = steps * width
+    let color = 233
+
+    for i in range(start, end, width)
+        execute "hi CursorLine ctermbg=" . (color + i)
+        redraw
+        sleep 6m
+    endfor
+    for i in range(end, start, -1 * width)
+        execute "hi CursorLine ctermbg=" . (color + i)
+        redraw
+        sleep 6m
+    endfor
+
+    execute 'hi ' . old_hi
+endfunction " }}}
+command! -nargs=0 Pulse call s:Pulse()
+"}}}
+
+" FoldText                      {{{
+function! MyFoldText()
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction
+set foldtext=MyFoldText()
+" }}}
+
+" V Search function */#         {{{
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+" }}}
+
+" Next and Last text objects    {{{
+"
+" Motion for "next/last object".  "Last" here means "previous", not "final".
+" Unfortunately the "p" motion was already taken for paragraphs.
+"
+" Next acts on the next object of the given type in the current line, last acts
+" on the previous object of the given type in the current line.
+"
+" Currently only works for (, [, {, b, r, B, ', and ".
+"
+" Some examples (C marks cursor positions, V means visually selected):
+"
+" din'  -> delete in next single quotes                foo = bar('spam')
+"                                                      C
+"                                                      foo = bar('')
+"                                                                C
+"
+" canb  -> change around next parens                   foo = bar('spam')
+"                                                      C
+"                                                      foo = bar
+"                                                               C
+"
+" vil"  -> select inside last double quotes            print "hello ", name
+"                                                                        C
+"                                                      print "hello ", name
+"                                                             VVVVVV
+
+onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+
+onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+
+function! s:NextTextObject(motion, dir)
+  let c = nr2char(getchar())
+
+  if c ==# "b"
+      let c = "("
+  elseif c ==# "B"
+      let c = "{"
+  elseif c ==# "r"
+      let c = "["
+  endif
+
+  exe "normal! ".a:dir.c."v".a:motion.c
+endfunction
+
+" }}}
+
+" Highlight Word {{{
+"
+" This mini-plugin provides a few mappings for highlighting words temporarily.
+"
+" Sometimes you're looking at a hairy piece of code and would like a certain
+" word or two to stand out temporarily.  You can search for it, but that only
+" gives you one color of highlighting.  Now you can use <leader>N where N is
+" a number from 1-6 to highlight the current word in a specific color.
+
+function! HiInterestingWord(n)
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+endfunction
+
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" }}}
+
 
 " }}}
 
@@ -660,7 +840,7 @@ nnoremap <leader>eb :let &background = ( &background ==? "dark"? "light" : "dark
 
 " Toggle invisibles
 nnoremap <leader>ei :set list!<CR>
-set listchars=tab:→\ ,trail:⌴,extends:…,precedes:…,nbsp:&,eol:¬
+set listchars=tab:→\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>es :set spell!<CR>
@@ -689,12 +869,81 @@ nnoremap <leader>eq :copen<cr>
 " onoremap p i(
 " onoremap in( :<c-u>normal! f(vi(<cr>
 
-" }}}
-
 " Highlight Group(s)
 nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
                         \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+" Panic Button
+nnoremap <f9> mzggg?G`z
+
+" Formatting
+nnoremap Q gqip
+vnoremap Q gq
+
+" Sudo to write
+cnoremap w!! w !sudo tee % >/dev/null
+
+map <tab> %
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Same when jumping around
+nnoremap g; g;zz
+nnoremap g, g,zz
+nnoremap <c-o> <c-o>zz
+nnoremap <c-i> <c-i>zz
+
+" Easier to type
+noremap H ^
+noremap L $
+vnoremap L g_
+" Mantain 
+noremap gH H
+noremap gL L
+
+" gi already moves to "last place you exited insert mode", so we'll map gI to
+" something similar: move to last change
+nnoremap gI `.
+
+" Toggle "keep current line in the center of the screen" mode
+nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
+
+" Visual Mode */# from Scrooloose
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" List navigation
+nnoremap <left>  :cprev<cr>zvzz
+nnoremap <right> :cnext<cr>zvzz
+nnoremap <up>    :lprev<cr>zvzz
+nnoremap <down>  :lnext<cr>zvzz
+
+set foldlevelstart=0
+
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
+
+" Make zO recursively open whatever top level fold we're in, no matter where the
+" cursor happens to be.
+nnoremap zO zCzO
+
+" "Focus" the current line.  Basically:
+"
+" 1. Close all folds.
+" 2. Open just the folds containing the current line.
+" 3. Move the line to a little bit (15 lines) above the center of the screen.
+" 4. Pulse the cursor line.  My eyes are bad.
+"
+" This mapping wipes out the z mark, which I never use.
+"
+" I use :sus for the rare times I want to actually background Vim.
+nnoremap <c-z> mzzMzvzz5<c-e>`z:Pulse<cr>
+
+
+" }}}
 
 " Plugin settings & mappings    {{{
 
