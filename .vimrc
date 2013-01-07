@@ -181,9 +181,10 @@ fun! SetFont()
     if IsUnix()
         " set guifont=DejaVu\ Sans\ Mono:h17
         " set guifont=Akkurat-Mono:h15
-        " set linespace=4
-        set guifont=M+\ 1m\ light:h16
+        set linespace=4
+        " set guifont=M+\ 1m\ light:h16
         " set guifont=Source\ Code\ Pro\ Light:h19
+        set guifont=Monoxil\ Regular:h18
     else
         " set guifont=Monoxil_Regular:h10
         " set guifont=Aurulent_Sans_Mono:h10
