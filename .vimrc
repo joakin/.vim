@@ -29,7 +29,6 @@ endif
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-
 " }}}
 
 " Vim improvements              {{{
@@ -43,7 +42,6 @@ Bundle 'michaeljsmith/vim-indent-object'
 " Bundle 'vim-scripts/Gundo'
 " Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
-Bundle 'scrooloose/nerdtree'
 Bundle 'matchit.zip'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-repeat'
@@ -101,6 +99,10 @@ Bundle 'tomasr/molokai'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'wgibbs/vim-irblack'
+" }}}
+
+" Notes and data                {{{
+Bundle 'aaronbieber/quicktask'
 " }}}
 
 " }}}
@@ -224,9 +226,9 @@ set virtualedit+=block
 
 
 " Different cursors for different modes.
-set guicursor+=n-c:block-Cursor-blinkon0
-set guicursor+=v:block-vCursor-blinkon0
-set guicursor+=i-ci:ver20-iCursor
+" set guicursor+=n-c:block-Cursor-blinkon0
+" set guicursor+=v:block-vCursor-blinkon0
+" set guicursor+=i-ci:ver20-iCursor
 
 " }}}
 
@@ -234,9 +236,10 @@ set guicursor+=i-ci:ver20-iCursor
 
 if IsUnix()
 else
-  set shell=D:\devel\bin\Git\bin\sh.exe
-  set shellcmdflag=--login\ -c
-  set shellxquote=\"
+  " set shell=D:\devel\bin\Git\bin\sh.exe
+  " set shellcmdflag=--login\ -c
+  " set shellxquote=\"
+  " set shellslash
 endif
 " }}}
 
@@ -253,7 +256,7 @@ fun! SetFont()
     else
 
 
-        set guifont=Menlo_for_Powerline:h11
+        set guifont=Menlo_for_Powerline:h10
         " set guifont=Mensch_for_Powerline:h11
         " set linespace=2
         " set guifont=PragmataPro:h12
@@ -338,7 +341,7 @@ set statusline +=%5*\ %P\       " percentage of file
 " Autocommands                  {{{
 if has('autocmd')
     " settings immediately take effect
-    augroup instantsettings
+    augroup instantsettings "   {{{
         au!
         au BufWritePost $MYVIMRC :source $MYVIMRC
 
@@ -347,92 +350,98 @@ if has('autocmd')
         else
             au BufWritePost /Users/jkn/Develop/projects/conf/.vim/.vimrc :source $MYVIMRC
         endif
-    augroup END
+    augroup END "   }}}
 
-    augroup writeonfocus
+    augroup writeonfocus "   {{{
         au!
         " Autosave when focus is lost
         au FocusLost * :silent! wall
-    augroup END
+    augroup END "   }}}
 
-    augroup rememberlastcursorpos
+    augroup rememberlastcursorpos "   {{{
         au!
         au BufReadPost *
                     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
                     \   exe "normal! g`\"zvzz"                        |
                     \ endif
-    augroup END
+    augroup END "   }}}
 
-    augroup cline
+    augroup cline "   {{{
         au!
         au WinLeave,InsertEnter * set nocursorline
         au WinEnter,InsertLeave * set cursorline
-    augroup END
+    augroup END "   }}}
 
-    augroup viml
+    augroup viml "   {{{
         au!
         au FileType vim setlocal foldmethod=marker
-    augroup END
+    augroup END "   }}}
 
-    augroup php
+    augroup php "   {{{
         au!
         au FileType php setlocal shiftwidth=4
-    augroup END
+    augroup END "   }}}
 
-    augroup jst
+    augroup jst "   {{{
         au!
         " Syntax for JST
         au BufNewFile,BufRead *.jst set syntax=jst filetype=jst
         au BufNewFile,BufRead *.tpl set syntax=jst filetype=jst
-    augroup END
+    augroup END "   }}}
 
-    augroup clojurescript
+    augroup clojurescript "   {{{
         au!
         au BufRead,BufNewFile *.cljs setlocal filetype=clojure
-    augroup END
+    augroup END "   }}}
 
-    augroup css
+    augroup css "   {{{
         au!
         au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    augroup END
+    augroup END "   }}}
 
-    augroup html_markdown
+    augroup html_markdown "   {{{
         au!
         au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    augroup END
+    augroup END "   }}}
 
-    augroup javascript
+    augroup javascript "   {{{
         au!
         au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         au FileType javascript setlocal conceallevel=2 concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
-    augroup END
+    augroup END "   }}}
 
-    augroup python
+    augroup python "   {{{
         au!
         au FileType python setlocal omnifunc=pythoncomplete#Complete
-    augroup END
+    augroup END "   }}}
 
-    augroup xml
+    augroup xml "   {{{
         au!
         au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    augroup END
+    augroup END "   }}}
 
-    " augroup coffeescript
+    " augroup coffeescript "   {{{
     "     au!
     "     au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
-    " augroup END
+    " augroup END "   }}}
 
-    augroup txt
+    augroup txt "   {{{
         au!
         au FileType txt setlocal formatoptions+=a
-    augroup END
+    augroup END "   }}}
 
-    augroup dont_wrap_us
+    augroup dont_wrap_us "   {{{
         au!
         au FileType html,php setlocal nowrap
         au FileType html,php setlocal formatoptions-=croqn21
-    augroup END
+    augroup END "   }}}
+
+    augroup quicktask "      {{{
+        au!
+        au BufNewFile,BufRead *.quicktask setlocal filetype=quicktask
+        au BufNewFile,BufRead *.qtask setlocal filetype=quicktask
+    augroup END "   }}}
 endif
 " }}}
 
@@ -781,35 +790,50 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 " Vim mappings                  {{{
 
-" vimrc editing
+" Settings editing              {{{
 if IsUnix()
-    nnoremap <leader>ev :tabe $MYVIMRC<cr>
+    nnoremap <leader>ev :e $MYVIMRC<cr>
+    nnoremap <leader>et :echo "SET THE PATH OF THE DROPBOX TASKS SOMEHOW"<cr>
 else
-    nnoremap <leader>ev :tabe ~\vimfiles\.vimrc<cr>
+    nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
+    nnoremap <leader>et :tabe D:\devel\Dropbox\data\tasks\tasks.qtask<cr>
 endif
+" }}}
 
-" Fast saving & quitting
+" I will regret this           {{{
+" noremap ; :
+" noremap : ;
+noremap ]f ;
+noremap [f ,
+" }}}
+
+" Fast saving & quitting      {{{
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
+" }}}
 
-" Easier omnicompletion
+" Easier omnicompletion       {{{
 inoremap <C-space> <C-X><C-O>
+" }}}
 
-" Move between splits
+" Move between splits         {{{
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-H> <C-W>h
 noremap <C-L> <C-W>l
+" }}}
 
-" Manipulate windows
+" Manipulate windows          {{{
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr> 
 nnoremap <C-W><C-E> <C-W>= 
 nnoremap <C-W><C-J> <C-W>10+
 nnoremap <C-W><C-K> <C-W>10-
-nnoremap <C-W><C-H> <C-W>20>
-nnoremap <C-W><C-L> <C-W>20<
+nnoremap <C-W><C-H> <C-W>20<
+nnoremap <C-W><C-L> <C-W>20>
+" }}}
 
-" Move lines of code with Alt+[hjkl] in all modes
+" Move lines of code          {{{
+" with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
 nnoremap <A-k> :m-2<CR>==
 nnoremap <A-h> <<
@@ -822,34 +846,41 @@ vnoremap <A-j> :m'>+<CR>gv=gv
 vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-h> <gv
 vnoremap <A-l> >gv
+" }}}
+
+" Toggling settings           {{{
 
 nnoremap <leader>/ :set hlsearch!<CR>
 
 " Map to set local path to file current path
-nnoremap <leader>ep :lcd %:p:h<CR>:pwd<CR>
+nnoremap <leader>sp :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap <leader>el :call g:ToggleNuMode(0)<cr>
-nnoremap <leader>eL :call g:ToggleNuMode(1)<cr>
+nnoremap <leader>sl :call g:ToggleNuMode(0)<cr>
+nnoremap <leader>sL :call g:ToggleNuMode(1)<cr>
 " Toggle line numbers mode
-nnoremap <leader>en :setlocal number!<cr>
-nnoremap <leader>eN :set number!<cr>
+nnoremap <leader>sn :setlocal number!<cr>
+nnoremap <leader>sN :set number!<cr>
 
 " Toggle background color
-nnoremap <leader>eb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
+nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
 
 " Toggle invisibles
-nnoremap <leader>ei :set list!<CR>
+nnoremap <leader>si :set list!<CR>
 set listchars=tab:→\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
-nnoremap <leader>es :set spell!<CR>
+nnoremap <leader>ss :set spell!<CR>
 
+" }}}
+
+" Font size maps              {{{
 nnoremap <A-=> :LargerFont<CR>
 nnoremap <A--> :SmallerFont<CR>
 nnoremap <A-0> :SetDefaultFont<CR>
+" }}}
 
-" Common editing stuff
+" Common editing stuff        {{{
 nnoremap <leader>a ggVG
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
@@ -859,33 +890,33 @@ nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
+" }}}
 
 
-" Quick fix window mappings
+" Quick fix window mappings   {{{
 nnoremap <leader>eq :copen<cr>
+" }}}
 
-" Operator-pending mappings
-" Samples from learnvimscriptthehardway for future reference
-" onoremap p i(
-" onoremap in( :<c-u>normal! f(vi(<cr>
-
-" Highlight Group(s)
+" Highlight Group(s)          {{{
 nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
                         \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }}}
 
-" Panic Button
+" Panic Button                 {{{
 nnoremap <f9> mzggg?G`z
+" }}}
 
-" Formatting
+" Formatting                   {{{
 nnoremap Q gqip
 vnoremap Q gq
+" }}}
 
-" Sudo to write
+" Sudo to write                {{{
 cnoremap w!! w !sudo tee % >/dev/null
+" }}}
 
-map <tab> %
-
+" Center screen when moving     {{{
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
@@ -894,7 +925,9 @@ nnoremap g; g;zz
 nnoremap g, g,zz
 nnoremap <c-o> <c-o>zz
 nnoremap <c-i> <c-i>zz
+" }}}
 
+" Line-wise movements          {{{
 " Easier to type
 noremap H ^
 noremap L $
@@ -902,23 +935,31 @@ vnoremap L g_
 " Mantain 
 noremap gH H
 noremap gL L
+" }}}
 
+" gI                           {{{
 " gi already moves to "last place you exited insert mode", so we'll map gI to
 " something similar: move to last change
 nnoremap gI `.
+" }}}
 
-" Toggle "keep current line in the center of the screen" mode
+" Toggle "keep current line in the center of the screen" mode {{{
 nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
+" }}}
 
-" Visual Mode */# from Scrooloose
+" Visual Mode */# from Scrooloose {{{
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+" }}}
 
-" List navigation
+" List navigation               {{{
 nnoremap <left>  :cprev<cr>zvzz
 nnoremap <right> :cnext<cr>zvzz
 nnoremap <up>    :lprev<cr>zvzz
 nnoremap <down>  :lnext<cr>zvzz
+" }}}
+
+" Folds                         {{{
 
 set foldlevelstart=0
 
@@ -930,7 +971,9 @@ vnoremap <Space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
-" "Focus" the current line.  Basically:
+" }}}
+
+" "Focus" the current line       {{{
 "
 " 1. Close all folds.
 " 2. Open just the folds containing the current line.
@@ -940,7 +983,15 @@ nnoremap zO zCzO
 " This mapping wipes out the z mark, which I never use.
 "
 " I use :sus for the rare times I want to actually background Vim.
-nnoremap <c-z> mzzMzvzz5<c-e>`z:Pulse<cr>
+nnoremap <c-cr> mzzMzvzz5<c-e>`z:Pulse<cr>
+" }}}
+
+" netrw                       {{{
+let g:netrw_liststyle = 1
+noremap <F1> :e.<CR>
+noremap <leader>n :e.<CR>
+noremap <leader>N :e %:h<CR>
+" }}}
 
 
 " }}}
@@ -964,11 +1015,6 @@ nnoremap <leader>b :CtrlPBuffer<CR>
 
 " Tagbar                         {{{
 nnoremap <silent> <F2> :TagbarToggle<CR>
-" }}}
-
-" NERDTree                         {{{
-noremap <F1> :NERDTreeToggle<CR>
-noremap <leader>n :NERDTreeToggle<CR>
 " }}}
 
 " Tabularize stuff                         {{{
@@ -1010,7 +1056,7 @@ endif
 " }}}
 
 " Scratch                         {{{
-nnoremap <leader>et :tabe<cr>:Scratch<cr>
+nnoremap <leader>es :tabe<cr>:Scratch<cr>
 " }}}
 
 " Ack commands abbr             {{{
@@ -1072,16 +1118,22 @@ let g:syntax_js=['function', 'this', 'proto']
 
 if has('autocmd')
 
-    augroup esearchFE_settings
+    " augroup esearchFE_settings
+    "     au!
+    "     if !IsUnix()
+    "         au BufNewFile,BufRead d:/devel/projects/eSearchFE/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+    "     endif
+    " augroup END
+    " augroup website_framework_settings
+    "     au!
+    "     if !IsUnix()
+    "         au BufNewFile,BufRead d:/devel/projects/WebsiteFramework/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+    "     endif
+    " augroup END
+    augroup fsp_settings
         au!
         if !IsUnix()
-            au BufNewFile,BufRead d:/devel/projects/eSearchFE/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
-        endif
-    augroup END
-    augroup website_framework_settings
-        au!
-        if !IsUnix()
-            au BufNewFile,BufRead d:/devel/projects/WebsiteFramework/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+            au BufNewFile,BufRead d:/devel/projects/fsp setlocal softtabstop=4 shiftwidth=4 tabstop=4
         endif
     augroup END
 
