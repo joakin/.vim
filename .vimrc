@@ -253,10 +253,8 @@ fun! SetFont()
         set linespace=4
         " set guifont=M+\ 1m\ light:h16
         " set guifont=Source\ Code\ Pro\ Light:h19
-        set guifont=Monoxil\ Regular:h18
+        set guifont=Menlo:h19
     else
-
-
         set guifont=Menlo_for_Powerline:h10
         " set guifont=Mensch_for_Powerline:h11
         " set linespace=2
@@ -794,10 +792,10 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " Settings editing              {{{
 if IsUnix()
     nnoremap <leader>ev :e $MYVIMRC<cr>
-    nnoremap <leader>et :echo "SET THE PATH OF THE DROPBOX TASKS SOMEHOW"<cr>
+    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.qtask<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-    nnoremap <leader>et :tabe D:\devel\Dropbox\data\tasks\tasks.qtask<cr>
+    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.qtask<cr>
 endif
 " }}}
 
