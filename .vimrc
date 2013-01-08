@@ -799,13 +799,6 @@ else
 endif
 " }}}
 
-" I will regret this           {{{
-" noremap ; :
-" noremap : ;
-noremap ]f ;
-noremap [f ,
-" }}}
-
 " Fast saving & quitting      {{{
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
