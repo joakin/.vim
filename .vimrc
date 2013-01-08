@@ -88,6 +88,7 @@ Bundle 'briancollins/vim-jst'
 
 " External tools                {{{
 Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/syntastic'
 " }}}
 
 " Color schemes                 {{{
