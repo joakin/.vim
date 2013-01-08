@@ -792,10 +792,12 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " Settings editing              {{{
 if IsUnix()
     nnoremap <leader>ev :e $MYVIMRC<cr>
-    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.qtask<cr>
+    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.qtask<cr>:lcd %:h<cr>
+    nnoremap <leader>ew :e ~/Dropbox/data/wiki/<cr>:lcd %:h<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.qtask<cr>
+    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.qtask<cr>:lcd %:h<cr>
+    nnoremap <leader>ew :e D:\devel\Dropbox\data\wiki\<cr>:lcd %:h<cr>
 endif
 " }}}
 
@@ -885,8 +887,9 @@ vnoremap <leader>P "+P
 " }}}
 
 
-" Quick fix window mappings   {{{
+" Quick fix and location window mappings   {{{
 nnoremap <leader>eq :copen<cr>
+nnoremap <leader>el :copen<cr>
 " }}}
 
 " Highlight Group(s)          {{{
@@ -1069,7 +1072,7 @@ xnoremap <leader>cc    :<c-u>call MultiCursorVisual()<cr>
 nnoremap <leader>c<cr> :<c-u>call MultiCursorManual()<cr>
 nnoremap <leader>cd    :<c-u>call MultiCursorRemoveCursors()<cr>
 nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
-let g:multicursor_quit = "<leader>cq"
+let g:multicursor_quit = "<c-c>"
 " }}}
 
 " Skybison                               {{{
