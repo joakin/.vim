@@ -218,8 +218,8 @@ let mapleader=","
 let g:mapleader = ","
 let maplocalleader= "\\"
 let g:maplocalleader= "\\"
-" Make \ behave as default ,
-" nnoremap \ ,
+" Make ,, behave as default ,
+nnoremap ,, ,
 
 " Allow cursor to move offline when visualblock editing
 set virtualedit+=block
