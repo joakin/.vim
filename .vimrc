@@ -225,9 +225,6 @@ let g:maplocalleader= "\\"
 " Make ,, behave as default ,
 nnoremap ,, ,
 
-" Allow cursor to move offline when visualblock editing
-set virtualedit+=block
-
 
 " Different cursors for different modes.
 " set guicursor+=n-c:block-Cursor-blinkon0
