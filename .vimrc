@@ -215,6 +215,9 @@ set synmaxcol=800
 " set cursorline
 " set cursorcolumn
 
+" Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
+set nrformats-=octal
+
 let mapleader=","
 let g:mapleader = ","
 let maplocalleader= "\\"
