@@ -256,7 +256,7 @@ fun! SetFont()
         " set guifont=Source\ Code\ Pro\ Light:h19
         set guifont=Menlo:h19
     else
-        set guifont=Menlo_for_Powerline:h10
+        set guifont=Menlo_for_Powerline:h13
         " set guifont=Mensch_for_Powerline:h11
         " set linespace=2
         " set guifont=PragmataPro:h12
@@ -386,7 +386,6 @@ if has('autocmd')
         au!
         " Syntax for JST
         au BufNewFile,BufRead *.jst set syntax=jst filetype=jst
-        au BufNewFile,BufRead *.tpl set syntax=jst filetype=jst
     augroup END "   }}}
 
     augroup clojurescript "   {{{
@@ -490,6 +489,26 @@ function! g:ToggleNuMode(globally)
         set relativenumber
       else
         setlocal relativenumber
+      endif
+    endif
+endfunc
+
+" }}}
+
+" Toggle conceal level       {{{
+
+function! g:ToggleConceal(globally)
+    if(&conceallevel)
+      if(a:globally)
+        set conceallevel=0
+      else
+        setlocal conceallevel=0
+      endif
+    else
+      if(a:globally)
+        set conceallevel=2
+      else
+        setlocal conceallevel=2
       endif
     endif
 endfunc
@@ -867,6 +886,10 @@ set listchars=tab:→\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
 
+" Toggle conceal
+nnoremap <leader>sc :call g:ToggleConceal(0)<cr>
+nnoremap <leader>sC :call g:ToggleConceal(1)<cr>
+
 " }}}
 
 " Font size maps              {{{
@@ -890,7 +913,7 @@ vnoremap <leader>P "+P
 
 " Quick fix and location window mappings   {{{
 nnoremap <leader>eq :copen<cr>
-nnoremap <leader>el :copen<cr>
+nnoremap <leader>el :lopen<cr>
 " }}}
 
 " Highlight Group(s)          {{{
@@ -1104,7 +1127,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 " JS                            {{{
 
 " Options: 'function', 'semicolon', 'comma', 'return', 'this', 'proto'
-let g:syntax_js=['function', 'this', 'proto']
+let g:syntax_js=['function', 'semicolon', 'this', 'proto', 'return']
 
 " }}}
 
