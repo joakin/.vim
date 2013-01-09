@@ -72,11 +72,11 @@ Bundle 'gkz/vim-ls'
 " }}}
 
 " Syntax                        {{{
-if IsUnix()
-    Bundle 'vim-pandoc/vim-pandoc'
-else
+" if IsUnix()
+"     Bundle 'vim-pandoc/vim-pandoc'
+" else
     Bundle 'tpope/vim-markdown'
-endif
+" endif
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
@@ -1067,11 +1067,11 @@ let g:snipMate.scope_aliases['php'] = 'php,html'
 " }}}
 
 " Pandoc                         {{{
-if IsUnix()
-    " Pandoc setting
-    " Use hard wraps
-    let g:pandoc_use_hard_wraps = 1
-endif
+" if IsUnix()
+"     " Pandoc setting
+"     " Use hard wraps
+"     let g:pandoc_use_hard_wraps = 1
+" endif
 " }}}
 
 " Scratch                         {{{
