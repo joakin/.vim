@@ -838,8 +838,8 @@ noremap <C-L> <C-W>l
 " }}}
 
 " Manipulate windows          {{{
-nnoremap <C-W><C-F> <C-W>_:vertical resize<cr> 
-nnoremap <C-W><C-E> <C-W>= 
+nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
+nnoremap <C-W><C-E> <C-W>=
 nnoremap <C-W><C-J> <C-W>10+
 nnoremap <C-W><C-K> <C-W>10-
 nnoremap <C-W><C-H> <C-W>20<
@@ -951,7 +951,7 @@ nnoremap <c-i> <c-i>zz
 noremap H ^
 noremap L $
 vnoremap L g_
-" Mantain 
+" Mantain
 noremap gH H
 noremap gL L
 " }}}
@@ -1061,7 +1061,7 @@ let vimclojure#DynamicHighlighting = 1
 
 " Snipmate stuff                         {{{
 let g:snipMate = {}
-let g:snipMate.scope_aliases = {} 
+let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['less'] = 'css'
 let g:snipMate.scope_aliases['php'] = 'php,html'
 " }}}
@@ -1082,7 +1082,7 @@ nnoremap <leader>es :tabe<cr>:Scratch<cr>
 
 nnoremap <leader><space> :Ack 
 command! TODO execute "Ack TODO"
-command! FIX execute "Ack \"FIX|XXX|HACK\""
+command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 
 " }}}
 
