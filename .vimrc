@@ -156,6 +156,8 @@ set matchtime=1   " Time of the jump of showmatch
 
 set magic "Set magic on, for regular expressions (default?)
 
+set list
+
 set directory=~/.vimswap//
 set undodir=~/.vimundo//
 " Make those folders automatically if they don't already exist.
@@ -257,7 +259,7 @@ fun! SetFont()
         " set guifont=Source\ Code\ Pro\ Light:h19
         set guifont=Menlo:h19
     else
-        set guifont=Menlo_for_Powerline:h13
+        set guifont=Menlo_for_Powerline:h12
         " set guifont=Mensch_for_Powerline:h11
         " set linespace=2
         " set guifont=PragmataPro:h12
@@ -655,9 +657,9 @@ xnoremap af :<C-U>silent!normal![zV]z<CR>
 onoremap af :normal Vaf<CR>
 " Create a text object for the entire buffer
 xnoremap ie :<c-u>silent!normal!ggVG<cr>
-onoremap ie :normal Vi<c-v><cr><cr>
+onoremap ie :normal Vie<cr>
 xnoremap ae :<c-u>silent!normal!ggVG<cr>
-onoremap ae :normal Vi<c-v><cr><cr>
+onoremap ae :normal Vie<cr>
 
 " }}}
 
@@ -850,8 +852,8 @@ endif
 " }}}
 
 " Fast saving & quitting      {{{
-nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
+nnoremap <space>w :w<cr>
+nnoremap <space>q :q<cr>
 " }}}
 
 " Easier omnicompletion       {{{
@@ -865,6 +867,10 @@ nnoremap <C-W><Down>  <C-W>10+
 nnoremap <C-W><Up>    <C-W>10-
 nnoremap <C-W><Left>  <C-W>20<
 nnoremap <C-W><Right> <C-W>20>
+
+nnoremap <leader>wt :tabe<cr>
+nnoremap <leader>ws :sp<cr>:enew<cr>
+nnoremap <leader>wv :vsp<cr>:enew<cr>
 " }}}
 
 " Move lines of code          {{{
@@ -1194,7 +1200,7 @@ if has('autocmd')
     augroup fsp_settings
         au!
         if !IsUnix()
-            au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+            " au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
         endif
     augroup END
 
