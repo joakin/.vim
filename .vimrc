@@ -1178,7 +1178,7 @@ if has('autocmd')
     augroup fsp_settings
         au!
         if !IsUnix()
-            au BufNewFile,BufRead d:/devel/projects/fsp setlocal softtabstop=4 shiftwidth=4 tabstop=4
+            au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
         endif
     augroup END
 
