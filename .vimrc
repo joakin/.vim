@@ -1090,7 +1090,7 @@ let g:snipMate.scope_aliases['php'] = 'php,html'
 " }}}
 
 " Scratch                         {{{
-nnoremap <leader>es :tabe<cr>:Scratch<cr>
+nnoremap <leader>es :Scratch<cr>
 " }}}
 
 " Ack commands abbr             {{{
