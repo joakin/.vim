@@ -1020,6 +1020,13 @@ noremap <leader>n :e.<CR>
 noremap <leader>N :e %:h<CR>
 " }}}
 
+" Command line maps             {{{
+
+cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+cnoremap <c-n> <down>
+cnoremap <c-p> <up>
+
+" }}}
 
 " }}}
 
