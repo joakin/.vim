@@ -642,7 +642,7 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " Create new text objects for pairs of identical characters
 
-for char in ['$',',','.','/','-','=']
+for char in ['$',',','.','/','-','_','=','+','%']
 	exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
 	exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
 	exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
@@ -654,10 +654,10 @@ onoremap if :normal Vif<CR>
 xnoremap af :<C-U>silent!normal![zV]z<CR>
 onoremap af :normal Vaf<CR>
 " Create a text object for the entire buffer
-xnoremap i<cr> :<c-u>silent!normal!ggVG<cr>
-onoremap i<cr> :normal Vi<c-v><cr><cr>
-xnoremap a<cr> :<c-u>silent!normal!ggVG<cr>
-onoremap a<cr> :normal Vi<c-v><cr><cr>
+xnoremap ie :<c-u>silent!normal!ggVG<cr>
+onoremap ie :normal Vi<c-v><cr><cr>
+xnoremap ae :<c-u>silent!normal!ggVG<cr>
+onoremap ae :normal Vi<c-v><cr><cr>
 
 " }}}
 
