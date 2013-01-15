@@ -920,7 +920,6 @@ nnoremap <A-0> :SetDefaultFont<CR>
 " }}}
 
 " Common editing stuff        {{{
-nnoremap <leader>a ggVG
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>d "+d
