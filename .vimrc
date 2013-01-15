@@ -52,7 +52,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
 Bundle 'kana/vim-smartinput'
 " Bundle 'kana/vim-textobj-indent'
-Bundle 'kana/vim-arpeggio'
+" Bundle 'kana/vim-arpeggio'
 Bundle 'mileszs/ack.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'paradigm/vim-multicursor'
@@ -1149,6 +1149,14 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 " }}}
 
 " Language settings             {{{
+
+" For reference
+" Places where :find and gf look for files
+"   set path+=c:\\asd
+"   set path+=./asd
+"
+" and suffixes autocomplete on that files
+"   set suffixesadd=.java
 
 " JS                            {{{
 
