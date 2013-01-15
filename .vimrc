@@ -227,7 +227,6 @@ let g:maplocalleader= "\\"
 " Make ,, behave as default ,
 nnoremap ,, ,
 
-
 " Different cursors for different modes.
 " set guicursor+=n-c:block-Cursor-blinkon0
 " set guicursor+=v:block-vCursor-blinkon0
@@ -528,55 +527,76 @@ endfunc
 "             false: Go to previous line
 " difflevel (bool): true: Go to line with different indentation level
 "                   false: Go to line with the same indentation level
-" skipblanks (bool): true: Skip blank lines
-"                    false: Don't skip blank lines
-function! NextIndent(exclusive, fwd, difflevel, skipblanks)
+function! NextIndent(exclusive, fwd, difflevel)
   let line = line('.')
   let column = col('.')
   let lastline = line('$')
   let indent = indent(line)
   let stepvalue = a:fwd ? 1 : -1
+  let difflevel0mode = 0
+  if (indent(line+stepvalue) == indent)
+    let difflevel0mode = 1
+  endif
   while (line > 0 && line <= lastline)
     let line = line + stepvalue
-    if (! a:skipblanks || strlen(getline(line)) > 0)
-      if (   ( a:difflevel == 0  && indent(line) == indent) ||
-           \ ( a:difflevel == 1  && indent(line) > indent)  ||
-           \ ( a:difflevel == -1 && indent(line) < indent))
-          if (a:exclusive)
-            let line = line - stepvalue
-          endif
-          exe line
-          exe "normal " column . "|"
-          return
-      else
-        if ( a:difflevel == 1  && indent(line) < indent )
-            return
+    let currentindent = indent(line)
+
+    let islevel0mode0 = a:difflevel == 0 && difflevel0mode == 0
+    let islevel0mode1 = a:difflevel == 0 && difflevel0mode == 1
+
+    let isempty = strlen(getline(line)) <= 0
+
+    let fin0 = ( islevel0mode0 && currentindent == indent ) ||
+             \ ( islevel0mode1 && currentindent != indent )
+    let fin1 = ( !isempty && a:difflevel == 1  && currentindent >  indent )
+    let fin2 = ( !isempty && a:difflevel == -1 && currentindent <  indent )
+
+    let fin = fin0 || fin1 || fin2
+
+    " if (   ( diffindentfound == 1 && a:difflevel == 0 &&
+    "      \     ( currentindent == indent &&
+    "      \       currentindent == indent) ) ||
+    "      \ ( diffindentfound == 0 && a:difflevel == 0 &&
+    "      \     ( (indent(line-stepvalue) == indent &&
+    "      \       currentindent != indent) ||
+    "      \       (indent(line-stepvalue) != indent &&
+    "      \        currentindent == indent)) ) ||
+    if ( fin )
+        if (a:exclusive || islevel0mode1)
+          let line = line - stepvalue
         endif
+        exe line
+        exe "normal " column . "|"
+        return
+    else
+      if ( a:difflevel == 1  && !isempty && currentindent < indent )
+          return
       endif
     endif
   endwhile
 endfunction
 
 " Moving back and forth between lines of same or lower indentation.
-" TODO: change this mappings
-" nnoremap <silent> <s-space> :call      NextIndent(0, 0, 0,  1)<CR>_
-" nnoremap <silent> <space>   :call      NextIndent(0, 1, 0,  1)<CR>_
-" nnoremap <silent> <s-tab>   :call      NextIndent(0, 0, -1, 1)<CR>_
-" nnoremap <silent> <tab>     :call      NextIndent(0, 1, 1,  1)<CR>_
-" nnoremap <silent> <s-CR>    :call      NextIndent(0, 0, 1,  1)<CR>_
-" nnoremap <silent> <CR>      :call      NextIndent(0, 1, -1, 1)<CR>_
-" vnoremap <silent> <s-space> <Esc>:call NextIndent(0, 0, 0,  1)<CR>m'gv''
-" vnoremap <silent> <space>   <Esc>:call NextIndent(0, 1, 0,  1)<CR>m'gv''
-" vnoremap <silent> <s-tab>   <Esc>:call NextIndent(0, 0, -1, 1)<CR>m'gv''
-" vnoremap <silent> <tab>     <Esc>:call NextIndent(0, 1, 1,  1)<CR>m'gv''
-" vnoremap <silent> <s-CR>    <Esc>:call NextIndent(0, 0, 1,  1)<CR>m'gv''
-" vnoremap <silent> <CR>      <Esc>:call NextIndent(0, 1, -1, 1)<CR>m'gv''
-" onoremap <silent> <s-space> _:call      NextIndent(0, 0, 0, 1)<CR>_
-" onoremap <silent> <space>   $:call      NextIndent(0, 1, 0, 1)<CR>$
-" onoremap <silent> <s-tab>   _:call      NextIndent(1, 0, 1, 1)<CR>_
-" onoremap <silent> <tab>     $:call      NextIndent(1, 1, 1, 1)<CR>$
-" onoremap <silent> <s-CR>    _:call      NextIndent(0, 0, 1,  1)<CR>_
-" onoremap <silent> <CR>      $:call      NextIndent(0, 1, -1, 1)<CR>$
+
+nnoremap  <silent> <c-k> :call      NextIndent(0, 0, 0 )<CR>_
+nnoremap  <silent> <c-j> :call      NextIndent(0, 1, 0 )<CR>_
+nnoremap  <silent> <c-h> :call      NextIndent(0, 0, -1)<CR>_
+nnoremap  <silent> <c-l> :call      NextIndent(0, 1, 1 )<CR>_
+"nnoremap <silent> <c-L> :call      NextIndent(0, 0, 1 )<CR>_
+"nnoremap <silent> <c-H> :call      NextIndent(0, 1, -1)<CR>_
+vnoremap  <silent> <c-k> <Esc>:call NextIndent(0, 0, 0 )<CR>m'gv''
+vnoremap  <silent> <c-j> <Esc>:call NextIndent(0, 1, 0 )<CR>m'gv''
+vnoremap  <silent> <c-h> <Esc>:call NextIndent(0, 0, -1)<CR>m'gv''
+vnoremap  <silent> <c-l> <Esc>:call NextIndent(0, 1, 1 )<CR>m'gv''
+"vnoremap <silent> <c-L> <Esc>:call NextIndent(0, 0, 1 )<CR>m'gv''
+"vnoremap <silent> <c-H> <Esc>:call NextIndent(0, 1, -1)<CR>m'gv''
+onoremap  <silent> <c-k> _:call     NextIndent(0, 0, 0 )<CR>_
+onoremap  <silent> <c-j> $:call     NextIndent(0, 1, 0 )<CR>$
+onoremap  <silent> <c-h> _:call     NextIndent(1, 0, 1 )<CR>_
+onoremap  <silent> <c-l> $:call     NextIndent(1, 1, 1 )<CR>$
+"onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
+"onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
+
 " }}}
 
 " Quickfix results to args      {{{
@@ -838,20 +858,13 @@ nnoremap <leader>q :q<cr>
 inoremap <C-space> <C-X><C-O>
 " }}}
 
-" Move between splits         {{{
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>l
-" }}}
-
 " Manipulate windows          {{{
-nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
-nnoremap <C-W><C-E> <C-W>=
-nnoremap <C-W><C-J> <C-W>10+
-nnoremap <C-W><C-K> <C-W>10-
-nnoremap <C-W><C-H> <C-W>20<
-nnoremap <C-W><C-L> <C-W>20>
+nnoremap <C-W><C-F>   <C-W>_:vertical resize<cr>
+nnoremap <C-W><C-E>   <C-W>=
+nnoremap <C-W><Down>  <C-W>10+
+nnoremap <C-W><Up>    <C-W>10-
+nnoremap <C-W><Left>  <C-W>20<
+nnoremap <C-W><Right> <C-W>20>
 " }}}
 
 " Move lines of code          {{{
@@ -991,8 +1004,7 @@ nnoremap <down>  :lnext<cr>zvzz
 set foldlevelstart=0
 
 " Space to toggle folds.
-nnoremap <Space> za
-vnoremap <Space> za
+nnoremap - za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
