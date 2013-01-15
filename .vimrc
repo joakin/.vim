@@ -56,7 +56,7 @@ Bundle 'kana/vim-smartinput'
 Bundle 'mileszs/ack.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'paradigm/vim-multicursor'
-" Bundle 'paradigm/SkyBison'
+Bundle 'paradigm/SkyBison'
 " }}}
 
 " Programming plugins           {{{
@@ -1117,17 +1117,25 @@ command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 " }}}
 
 " Multicursor                   {{{
+
 nnoremap <leader>cc    :<c-u>call MultiCursorPlaceCursor()<cr>
 xnoremap <leader>cc    :<c-u>call MultiCursorVisual()<cr>
 nnoremap <leader>c<cr> :<c-u>call MultiCursorManual()<cr>
 nnoremap <leader>cd    :<c-u>call MultiCursorRemoveCursors()<cr>
 nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
 let g:multicursor_quit = "<c-c>"
+
 " }}}
 
 " Skybison                               {{{
-" nnoremap : :<c-u>call SkyBison('')<cr>
-" let g:skybison_fuzz = 2
+
+let g:skybison_fuzz = 2
+nnoremap <space>;  :<c-u>call SkyBison("")<cr>
+nnoremap <space>b 2:<c-u>call SkyBison("b ")<cr>
+nnoremap <space>e  :<c-u>call SkyBison("e ")<cr>
+nnoremap <space>h 2:<c-u>call SkyBison("h ")<cr>
+cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
+
 " }}}
 
 " }}}
