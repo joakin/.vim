@@ -1050,7 +1050,8 @@ cnoremap <c-p> <up>
 " Plugin settings & mappings    {{{
 
 " CtrlP                         {{{
-let g:ctrlp_map = '<leader>f'
+
+let g:ctrlp_map = '<space>e'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
@@ -1059,9 +1060,11 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 	\ 'link': '',
 	\ }
-nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <space>b :CtrlPBuffer<CR>
+nnoremap <space>t :CtrlPTag<CR>
+nnoremap <space>c :CtrlP<c-d>
 " nnoremap <leader>f <c-p><c-\>
-" nnoremap <leader>f :CtrlP<CR>
+
 " }}}
 
 " Tagbar                         {{{
@@ -1137,9 +1140,9 @@ let g:multicursor_quit = "<c-c>"
 
 let g:skybison_fuzz = 2
 nnoremap <space>;  :<c-u>call SkyBison("")<cr>
-nnoremap <space>b 2:<c-u>call SkyBison("b ")<cr>
-nnoremap <space>e  :<c-u>call SkyBison("e ")<cr>
-nnoremap <space>h 2:<c-u>call SkyBison("h ")<cr>
+" nnoremap <space>b 2:<c-u>call SkyBison("b ")<cr>
+" nnoremap <space>e  :<c-u>call SkyBison("e ")<cr>
+" nnoremap <space>h 2:<c-u>call SkyBison("h ")<cr>
 cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 
 " }}}
