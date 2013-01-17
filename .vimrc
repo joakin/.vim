@@ -200,8 +200,8 @@ set completeopt=menu,longest,preview
 
 set backspace=indent,eol,start
 
-set number
-set relativenumber
+" set number
+" set relativenumber
 
 set scrolloff=3
 
