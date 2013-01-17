@@ -259,7 +259,7 @@ fun! SetFont()
         " set guifont=Source\ Code\ Pro\ Light:h19
         set guifont=Menlo:h19
     else
-        set guifont=Menlo_for_Powerline:h12
+        set guifont=Menlo_for_Powerline:h11
         " set guifont=Mensch_for_Powerline:h11
         " set linespace=2
         " set guifont=PragmataPro:h12
@@ -536,8 +536,11 @@ function! NextIndent(exclusive, fwd, difflevel)
   let indent = indent(line)
   let stepvalue = a:fwd ? 1 : -1
   let difflevel0mode = 0
-  if (indent(line+stepvalue) == indent)
+  if (indent(line+stepvalue) == indent && strlen(getline(line+stepvalue)))
     let difflevel0mode = 1
+  endif
+  if (a:difflevel == -1 && indent == 0)
+    return
   endif
   while (line > 0 && line <= lastline)
     let line = line + stepvalue
@@ -548,10 +551,11 @@ function! NextIndent(exclusive, fwd, difflevel)
 
     let isempty = strlen(getline(line)) <= 0
 
-    let fin0 = ( islevel0mode0 && currentindent == indent ) ||
-             \ ( islevel0mode1 && currentindent != indent )
-    let fin1 = ( !isempty && a:difflevel == 1  && currentindent >  indent )
-    let fin2 = ( !isempty && a:difflevel == -1 && currentindent <  indent )
+    let fin0 = ( islevel0mode0 && currentindent == indent && !isempty ) ||
+             \ ( islevel0mode1 && currentindent != indent ) ||
+             \ ( islevel0mode1 && currentindent == indent && isempty )
+    let fin1 = ( !isempty && a:difflevel == 1  && currentindent > indent )
+    let fin2 = ( !isempty && a:difflevel == -1 && currentindent < indent )
 
     let fin = fin0 || fin1 || fin2
 
@@ -592,10 +596,10 @@ vnoremap  <silent> <c-h> <Esc>:call NextIndent(0, 0, -1)<CR>m'gv''
 vnoremap  <silent> <c-l> <Esc>:call NextIndent(0, 1, 1 )<CR>m'gv''
 "vnoremap <silent> <c-L> <Esc>:call NextIndent(0, 0, 1 )<CR>m'gv''
 "vnoremap <silent> <c-H> <Esc>:call NextIndent(0, 1, -1)<CR>m'gv''
-onoremap  <silent> <c-k> _:call     NextIndent(0, 0, 0 )<CR>_
-onoremap  <silent> <c-j> $:call     NextIndent(0, 1, 0 )<CR>$
-onoremap  <silent> <c-h> _:call     NextIndent(1, 0, 1 )<CR>_
-onoremap  <silent> <c-l> $:call     NextIndent(1, 1, 1 )<CR>$
+"onoremap <silent> <c-k> _:call     NextIndent(0, 0, 0 )<CR>_
+"onoremap <silent> <c-j> $:call     NextIndent(0, 1, 0 )<CR>$
+"onoremap <silent> <c-h> _:call     NextIndent(1, 0, 1 )<CR>_
+"onoremap <silent> <c-l> $:call     NextIndent(1, 1, 1 )<CR>$
 "onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
 "onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
 
@@ -1009,7 +1013,7 @@ nnoremap <down>  :lnext<cr>zvzz
 set foldlevelstart=0
 
 " Space to toggle folds.
-nnoremap - za
+nnoremap <tab> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
