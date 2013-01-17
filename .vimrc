@@ -148,7 +148,7 @@ set hidden
 
 set ignorecase    " Not case sensitive search
 set smartcase     " Unless the search contains caps letters
-set hlsearch      " highlight search terms
+" set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 set gdefault      " Default g flag on substitutions
 set showmatch     " Jump to bracket/parens briefly. Does not interrupt editing
@@ -222,8 +222,8 @@ set synmaxcol=800
 " Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
 set nrformats-=octal
 
-let mapleader=","
-let g:mapleader = ","
+let mapleader=" "
+let g:mapleader = " "
 let maplocalleader= "\\"
 let g:maplocalleader= "\\"
 " Make ,, behave as default ,
@@ -527,8 +527,10 @@ endfunc
 "                   false: Motion is inclusive
 " fwd (bool): true: Go to next line
 "             false: Go to previous line
-" difflevel (bool): true: Go to line with different indentation level
-"                   false: Go to line with the same indentation level
+" difflevel (bool): -1 : Go to line with less indentation level
+"                    0 : Go to line with the same indentation level
+"                    1 : Go to line with more indentation level
+"
 function! NextIndent(exclusive, fwd, difflevel)
   let line = line('.')
   let column = col('.')
@@ -856,8 +858,8 @@ endif
 " }}}
 
 " Fast saving & quitting      {{{
-nnoremap <space>w :w<cr>
-nnoremap <space>q :q<cr>
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
 " }}}
 
 " Easier omnicompletion       {{{
@@ -872,9 +874,9 @@ nnoremap <C-W><Up>    <C-W>10-
 nnoremap <C-W><Left>  <C-W>20<
 nnoremap <C-W><Right> <C-W>20>
 
-nnoremap <leader>wt :tabe<cr>
-nnoremap <leader>ws :sp<cr>:enew<cr>
-nnoremap <leader>wv :vsp<cr>:enew<cr>
+nnoremap <leader>ot :tabe<cr>
+nnoremap <leader>os :sp<cr>:enew<cr>
+nnoremap <leader>ov :vsp<cr>:enew<cr>
 " }}}
 
 " Move lines of code          {{{
@@ -895,7 +897,7 @@ vnoremap <A-l> >gv
 
 " Toggling settings           {{{
 
-nnoremap <leader>/ :set hlsearch!<CR>
+nnoremap <leader>s/ :set hlsearch!<CR>
 
 " Map to set local path to file current path
 nnoremap <leader>sp :lcd %:p:h<CR>:pwd<CR>
@@ -1055,7 +1057,7 @@ cnoremap <c-p> <up>
 
 " CtrlP                         {{{
 
-let g:ctrlp_map = '<space>e'
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
@@ -1064,10 +1066,8 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 	\ 'link': '',
 	\ }
-nnoremap <space>b :CtrlPBuffer<CR>
-nnoremap <space>t :CtrlPTag<CR>
-nnoremap <space>c :CtrlP<c-d>
-" nnoremap <leader>f <c-p><c-\>
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>t :CtrlPTag<CR>
 
 " }}}
 
@@ -1076,11 +1076,14 @@ nnoremap <silent> <F2> :TagbarToggle<CR>
 " }}}
 
 " Tabularize stuff                         {{{
-noremap <leader>tt :Tabularize /
-noremap <leader>t: :Tabularize colon<cr>
-noremap <leader>t<space> :Tabularize spaces<cr>
-noremap <leader>t= :Tabularize assignment<cr>
-noremap <leader>tcss :Tabularize inline_css<cr>
+
+noremap <leader>at       :Tabularize /
+noremap <leader>aa       :Tabularize /
+noremap <leader>a:       :Tabularize colon<cr>
+noremap <leader>a<space> :Tabularize spaces<cr>
+noremap <leader>a=       :Tabularize assignment<cr>
+noremap <leader>acss     :Tabularize inline_css<cr>
+
 " }}}
 
 " Indent guides                         {{{
@@ -1119,7 +1122,7 @@ nnoremap <leader>es :Scratch<cr>
 
 " Ack commands abbr             {{{
 
-nnoremap <leader><space> :Ack 
+nnoremap <leader>/ :Ack 
 command! TODO execute "Ack TODO"
 command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 
@@ -1143,10 +1146,10 @@ let g:multicursor_quit = "<c-c>"
 " Skybison                               {{{
 
 let g:skybison_fuzz = 2
-nnoremap <space>;  :<c-u>call SkyBison("")<cr>
-" nnoremap <space>b 2:<c-u>call SkyBison("b ")<cr>
-" nnoremap <space>e  :<c-u>call SkyBison("e ")<cr>
-" nnoremap <space>h 2:<c-u>call SkyBison("h ")<cr>
+nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
+" nnoremap <leader>b 2:<c-u>call SkyBison("b ")<cr>
+" nnoremap <leader>e  :<c-u>call SkyBison("e ")<cr>
+" nnoremap <leader>h 2:<c-u>call SkyBison("h ")<cr>
 cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 
 " }}}
