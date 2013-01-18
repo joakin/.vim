@@ -226,8 +226,6 @@ let mapleader=" "
 let g:mapleader = " "
 let maplocalleader= "\\"
 let g:maplocalleader= "\\"
-" Make ,, behave as default ,
-nnoremap ,, ,
 
 " Different cursors for different modes.
 " set guicursor+=n-c:block-Cursor-blinkon0
@@ -385,10 +383,10 @@ if has('autocmd')
         au FileType php setlocal shiftwidth=4
     augroup END "   }}}
 
-    augroup jst "   {{{
+    augroup jst_ejs "   {{{
         au!
         " Syntax for JST
-        au BufNewFile,BufRead *.jst set syntax=jst filetype=jst
+        " au BufNewFile,BufRead *.jst set syntax=jst filetype=jst
     augroup END "   }}}
 
     augroup clojurescript "   {{{
@@ -1012,7 +1010,7 @@ nnoremap <down>  :lnext<cr>zvzz
 
 " Folds                         {{{
 
-set foldlevelstart=0
+set foldlevelstart=1
 
 " Space to toggle folds.
 nnoremap <tab> za
@@ -1057,7 +1055,7 @@ cnoremap <c-p> <up>
 
 " CtrlP                         {{{
 
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
@@ -1106,6 +1104,8 @@ let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['less'] = 'css'
 let g:snipMate.scope_aliases['php'] = 'php,html'
+let g:snipMate.scope_aliases['jst'] = 'js,html'
+let g:snipMate.scope_aliases['ejs'] = 'js,html'
 " }}}
 
 " Pandoc                         {{{
