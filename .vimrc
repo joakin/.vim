@@ -61,12 +61,14 @@ Bundle 'paradigm/SkyBison'
 
 " Programming plugins           {{{
 " JS
-" Bundle 'pangloss/vim-javascript'
-Bundle 'drslump/vim-syntax-js'
+Bundle 'pangloss/vim-javascript'
+" Bundle 'drslump/vim-syntax-js'
 " CoffeeScript
 Bundle 'kchmck/vim-coffee-script'
 " Clojure
-Bundle 'vim-scripts/VimClojure'
+Bundle 'tpope/vim-foreplay'
+" Bundle 'tpope/vim-classpath'
+Bundle 'guns/vim-clojure-static'
 " HTML
 Bundle 'mattn/zencoding-vim'
 " Livescript
@@ -83,7 +85,6 @@ Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'itspriddle/vim-jquery'
-Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
 " }}}
@@ -1185,7 +1186,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 " JS                            {{{
 
 " Options: 'function', 'semicolon', 'comma', 'return', 'this', 'proto'
-let g:syntax_js=['function', 'semicolon', 'this', 'proto', 'return']
+" let g:syntax_js=['function', 'semicolon', 'this', 'proto', 'return']
 
 " }}}
 
