@@ -839,6 +839,17 @@ hi def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#00ffff ctermbg=14
 
 " }}}
 
+" Remove trailing whitespace     {{{
+
+nnoremap <leader>i<space> :%s/\s\+$<cr>
+
+" }}}
+
+" Map search to very magic      {{{
+nnoremap / /\v
+nnoremap ? ?\v
+
+" }}}
 
 " }}}
 
@@ -866,12 +877,16 @@ inoremap <C-space> <C-X><C-O>
 " }}}
 
 " Manipulate windows          {{{
-nnoremap <C-W><C-F>   <C-W>_:vertical resize<cr>
-nnoremap <C-W><C-E>   <C-W>=
-nnoremap <C-W><Down>  <C-W>10+
-nnoremap <C-W><Up>    <C-W>10-
-nnoremap <C-W><Left>  <C-W>20<
-nnoremap <C-W><Right> <C-W>20>
+nnoremap <C-W><C-F>     <C-W>_:vertical resize<cr>
+nnoremap <C-W><C-E>     <C-W>=
+nnoremap <C-W><Down>    <C-W>10+
+nnoremap <C-W><C-Down>  <C-W>10+
+nnoremap <C-W><Up>      <C-W>10-
+nnoremap <C-W><C-Up>    <C-W>10-
+nnoremap <C-W><Left>    <C-W>20<
+nnoremap <C-W><C-Right> <C-W>20>
+nnoremap <C-W><Right>   <C-W>20>
+nnoremap <C-W><C-Left>  <C-W>20<
 
 nnoremap <leader>ot :tabe<cr>
 nnoremap <leader>os :sp<cr>:enew<cr>
@@ -971,10 +986,10 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Same when jumping around
-nnoremap g; g;zz
-nnoremap g, g,zz
-nnoremap <c-o> <c-o>zz
-nnoremap <c-i> <c-i>zz
+nnoremap g; g;zzzv
+nnoremap g, g,zzzv
+nnoremap <c-o> <c-o>zzzv
+nnoremap <c-i> <c-i>zzzv
 " }}}
 
 " Line-wise movements          {{{
