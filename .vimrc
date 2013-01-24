@@ -134,7 +134,7 @@ set nowrap
 " set wrap
 set textwidth=79
 set colorcolumn=80
-set formatoptions=tcroqn21
+set formatoptions=tcroqn1
 
 " Make vim think that dash is part of words. i want 'this-stuff' to be a word
 set iskeyword+=-
@@ -150,7 +150,7 @@ set hidden
 
 set ignorecase    " Not case sensitive search
 set smartcase     " Unless the search contains caps letters
-" set hlsearch      " highlight search terms
+set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
 set gdefault      " Default g flag on substitutions
 set showmatch     " Jump to bracket/parens briefly. Does not interrupt editing
@@ -233,6 +233,9 @@ let g:maplocalleader= "\\"
 " set guicursor+=n-c:block-Cursor-blinkon0
 " set guicursor+=v:block-vCursor-blinkon0
 " set guicursor+=i-ci:ver20-iCursor
+
+" When available switch to open buffers in current and different tabs
+set switchbuf=useopen,usetab
 
 " }}}
 
@@ -318,17 +321,18 @@ hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 "set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 "hi clear StatusLine
 "hi clear StatusLineNC
-hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=66
-hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=8 ctermbg=232
+hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33
+hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
 
 hi User1 guifg=#005F00 guibg=#B5E61D
 hi User1 guifg=#ffffff guibg=#0087AF
 hi User2 guifg=#ffffff guibg=#585858
-hi User3 guifg=#666666 guibg=#000000
+hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
 hi User4 guifg=#FA8072 guibg=#DC143C
 hi User5 guifg=#333333 guibg=#dddddd
+
 set statusline=
-set statusline +=%3*\ [%n]\ %*  " buffer number
+set statusline +=%3*\ %n\ %*  " buffer number
 " set statusline +=%5*%{&ff}%*  " file format
 set statusline +=\ \ %<%f\ \ %* " full path
 set statusline +=%4*%m%*        " modified flag
@@ -369,11 +373,16 @@ if has('autocmd')
                     \ endif
     augroup END "   }}}
 
-    augroup cline "   {{{
-        au!
-        au WinLeave,InsertEnter * set nocursorline
-        au WinEnter,InsertLeave * set cursorline
-    augroup END "   }}}
+    " augroup cline "   {{{
+    "     au!
+    "     au WinLeave,InsertEnter * set nocursorline
+    "     au WinEnter,InsertLeave * set cursorline
+    " augroup END "   }}}
+
+    augroup status_line_colors " {{{
+      au InsertEnter * hi StatusLine guibg=#df5f00 ctermbg=166
+      au InsertLeave * hi StatusLine guibg=#0087AF ctermfg=33
+    augroup END "                }}}
 
     augroup viml "   {{{
         au!
@@ -383,12 +392,6 @@ if has('autocmd')
     augroup php "   {{{
         au!
         au FileType php setlocal shiftwidth=4
-    augroup END "   }}}
-
-    augroup jst_ejs "   {{{
-        au!
-        " Syntax for JST
-        " au BufNewFile,BufRead *.jst set syntax=jst filetype=jst
     augroup END "   }}}
 
     augroup clojurescript "   {{{
@@ -430,13 +433,13 @@ if has('autocmd')
 
     augroup txt "   {{{
         au!
-        au FileType txt setlocal formatoptions+=a
+        au FileType txt setlocal formatoptions+=a2
     augroup END "   }}}
 
     augroup dont_wrap_us "   {{{
         au!
-        au FileType html,php setlocal nowrap
-        au FileType html,php setlocal formatoptions-=croqn21
+        au FileType html,php,jst setlocal nowrap
+        au FileType html,php,jst setlocal formatoptions-=t
     augroup END "   }}}
 
     augroup quicktask "      {{{
@@ -912,7 +915,7 @@ vnoremap <A-l> >gv
 
 " Toggling settings           {{{
 
-nnoremap <leader>s/ :set hlsearch!<CR>
+nnoremap <leader>s/ :nohlsearch<CR>
 
 " Map to set local path to file current path
 nnoremap <leader>sp :lcd %:p:h<CR>:pwd<CR>
@@ -1013,6 +1016,11 @@ nnoremap gI `.
 nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
 " }}}
 
+" Normal mode */# remap         {{{
+nnoremap * *Nzzzv
+nnoremap # #Nzzzv
+" }}}
+
 " Visual Mode */# from Scrooloose {{{
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
@@ -1048,7 +1056,7 @@ nnoremap zO zCzO
 " This mapping wipes out the z mark, which I never use.
 "
 " I use :sus for the rare times I want to actually background Vim.
-nnoremap <c-cr> mzzMzvzz5<c-e>`z:Pulse<cr>
+nnoremap <c-cr> mzzMzvzz3<c-e>`z:Pulse<cr>
 " }}}
 
 " netrw                       {{{
@@ -1063,6 +1071,13 @@ noremap <leader>N :e %:h<CR>
 cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
+
+" }}}
+
+" Substitute shortcut           {{{
+
+nnoremap <leader>r :%s/
+xnoremap <leader>r :s/
 
 " }}}
 
