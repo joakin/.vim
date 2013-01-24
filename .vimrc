@@ -56,7 +56,7 @@ Bundle 'kana/vim-smartinput'
 Bundle 'mileszs/ack.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'paradigm/vim-multicursor'
-Bundle 'paradigm/SkyBison'
+" Bundle 'paradigm/SkyBison'
 " }}}
 
 " Programming plugins           {{{
@@ -92,6 +92,7 @@ Bundle 'briancollins/vim-jst'
 " External tools                {{{
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
+Bundle 'guns/xterm-color-table.vim'
 " }}}
 
 " Color schemes                 {{{
@@ -1160,14 +1161,14 @@ let g:multicursor_quit = "<c-c>"
 " }}}
 
 " Skybison                               {{{
-
-let g:skybison_fuzz = 2
-nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
-" nnoremap <leader>b 2:<c-u>call SkyBison("b ")<cr>
-" nnoremap <leader>e  :<c-u>call SkyBison("e ")<cr>
-" nnoremap <leader>h 2:<c-u>call SkyBison("h ")<cr>
-cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
-
+" 
+" let g:skybison_fuzz = 2
+" nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
+" " nnoremap <leader>b 2:<c-u>call SkyBison("b ")<cr>
+" " nnoremap <leader>e  :<c-u>call SkyBison("e ")<cr>
+" " nnoremap <leader>h 2:<c-u>call SkyBison("h ")<cr>
+" cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
+" 
 " }}}
 
 " }}}
