@@ -130,8 +130,8 @@ set undofile
 set ttyfast
 
 " Wrap text when 80 cols
-set nowrap
-" set wrap
+" set nowrap
+set wrap
 set textwidth=79
 set colorcolumn=80
 set formatoptions=tcroqn1
@@ -438,7 +438,7 @@ if has('autocmd')
 
     augroup dont_wrap_us "   {{{
         au!
-        au FileType html,php,jst setlocal nowrap
+        " au FileType html,php,jst setlocal nowrap
         au FileType html,php,jst setlocal formatoptions-=t
     augroup END "   }}}
 
