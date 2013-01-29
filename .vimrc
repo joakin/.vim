@@ -433,7 +433,7 @@ if has('autocmd')
 
     augroup txt "   {{{
         au!
-        au FileType txt setlocal formatoptions+=a2
+        au FileType txt,text setlocal formatoptions+=a2
     augroup END "   }}}
 
     augroup dont_wrap_us "   {{{
@@ -704,6 +704,8 @@ function! s:Pulse() " {{{
     endfor
 
     execute 'hi ' . old_hi
+
+    setlocal nocursorline
 endfunction " }}}
 command! -nargs=0 Pulse call s:Pulse()
 "}}}
