@@ -251,32 +251,41 @@ endif
 " }}}
 
 " Font and colorscheme          {{{
+" Set font according to system
 
+if IsUnix()
+    set linespace=4
+    let g:fnc = 3
+    let g:fnd = [
+    \  'DejaVu\ Sans\ Mono:h17',
+    \  'Akkurat-Mono:h15',
+    \  'M+ 1m light:h16',
+    \  'Source\ Code\ Pro\ Light:h19',
+    \  'Menlo:h19'
+    \ ]
+else
+    set linespace=2
+    let g:fnc = 0
+    let g:fnd = [
+    \  'Menlo_for_Powerline:h11',
+    \  'Mensch_for_Powerline:h11',
+    \  'Inconsolata-g:h12',
+    \  'Inconsolata:h12',
+    \  'PragmataPro:h12',
+    \  'Anka/Coder_Narrow:h12',
+    \  'Anka/Coder_Condensed:h12',
+    \  'Monoxil_Regular:h12',
+    \  'Aurulent_Sans_Mono:h10',
+    \  'Source_Code_Pro:h10',
+    \  'Monaco:h10',
+    \  'Droid_Sans_Mono:h11',
+    \  'Dejavu_Sans_Mono:h11',
+    \  'Source_Code_Pro_Light:h17'
+    \ ]
+endif
 fun! SetFont()
-    " Set font according to system
-    if IsUnix()
-        " set guifont=DejaVu\ Sans\ Mono:h17
-        " set guifont=Akkurat-Mono:h15
-        set linespace=4
-        " set guifont=M+\ 1m\ light:h16
-        " set guifont=Source\ Code\ Pro\ Light:h19
-        set guifont=Menlo:h19
-    else
-        set guifont=Menlo_for_Powerline:h11
-        " set guifont=Mensch_for_Powerline:h11
-        " set linespace=2
-        " set guifont=PragmataPro:h12
-        " set guifont=Anka/Coder_Narrow:h14
-        " set guifont=Anka/Coder_Condensed:h14
-        " set guifont=Monoxil_Regular:h10
-        " set guifont=Aurulent_Sans_Mono:h10
-        " set guifont=Inconsolata-g:h12
-        " set guifont=Monaco:h10
-        " set guifont=Source_Code_Pro:h10
-        " set guifont=Source_Code_Pro_Light:h17
-        " set guifont=Droid_Sans_Mono:h13
-        " set guifont=Dejavu_Sans_Mono:h9
-    endif
+    let &guifont = escape(get(g:fnd, g:fnc), " ")
+    echo &guifont
 endfun
 call SetFont()
 command! SetDefaultFont call SetFont()
@@ -478,6 +487,28 @@ function! SmallerFont()
   call AdjustFontSize('-'.s:fontIncrements)
 endfunction
 command! SmallerFont call SmallerFont()
+
+" }}}
+
+" Font family cycle             {{{
+
+" Cycles font family.
+" a:fwd true -> goes foward through the array
+function! CycleFontFamily(fwd)
+  let step = a:fwd ? 1 : -1
+  let limit = a:fwd ? len(g:fnd) : -1
+  let reset = a:fwd ? 0 : len(g:fnd)-1
+  let g:fnc += step
+  if g:fnc == limit
+    let g:fnc = reset
+  endif
+endfunction
+function! CycleFont(fwd)
+  call CycleFontFamily(a:fwd)
+  call SetFont()
+endfunc
+command! CycleFontBackwards call CycleFont(0)
+command! CycleFontFoward call CycleFont(1)
 
 " }}}
 
@@ -949,6 +980,8 @@ nnoremap <leader>sC :call g:ToggleConceal(1)<cr>
 nnoremap <A-=> :LargerFont<CR>
 nnoremap <A--> :SmallerFont<CR>
 nnoremap <A-0> :SetDefaultFont<CR>
+nnoremap <A-8> :CycleFontBackwards<CR>
+nnoremap <A-9> :CycleFontFoward<CR>
 " }}}
 
 " Common editing stuff        {{{
