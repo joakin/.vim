@@ -285,7 +285,7 @@ else
 endif
 fun! SetFont()
     let &guifont = escape(get(g:fnd, g:fnc), " ")
-    echo &guifont
+    " echo &guifont
 endfun
 call SetFont()
 command! SetDefaultFont call SetFont()
