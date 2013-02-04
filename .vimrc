@@ -112,6 +112,81 @@ Bundle 'aaronbieber/quicktask'
 
 " }}}
 
+" Font and colorscheme          {{{
+" Set font according to system
+
+if IsUnix()
+    set linespace=4
+    let g:fnc = 3
+    let g:fnd = [
+    \  'DejaVu\ Sans\ Mono:h17',
+    \  'Akkurat-Mono:h15',
+    \  'M+ 1m light:h16',
+    \  'Source\ Code\ Pro\ Light:h19',
+    \  'Menlo:h19'
+    \ ]
+else
+    set linespace=2
+    let g:fnc = 5
+    let g:fnd = [
+    \  'Menlo_for_Powerline:h14',
+    \  'Mensch_for_Powerline:h14',
+    \  'Inconsolata-g:h14',
+    \  'Inconsolata:h14',
+    \  'PragmataPro:h12',
+    \  'Anka/Coder_Narrow:h13',
+    \  'Anka/Coder_Condensed:h13',
+    \  'Monoxil_Regular:h14',
+    \  'Aurulent_Sans_Mono:h10',
+    \  'Source_Code_Pro:h10',
+    \  'Monaco:h10',
+    \  'Droid_Sans_Mono:h11',
+    \  'Dejavu_Sans_Mono:h11',
+    \  'Source_Code_Pro_Light:h17'
+    \ ]
+endif
+fun! SetFont()
+    let &guifont = escape(get(g:fnd, g:fnc), " ")
+    " echo &guifont
+endfun
+call SetFont()
+command! SetDefaultFont call SetFont()
+
+if has("gui_running")
+
+  " Gui options
+  set guioptions=c
+
+  set guioptions-=T
+  set t_Co=256
+
+  "set background=dark
+  "colorscheme solarized
+  colorscheme lucius
+  LuciusBlackLowContrast
+  " LuciusLightHighContrast
+
+" LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+" LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+" LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+" LuciusBlack: http://i.imgur.com/iD4ri.png
+" LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+" LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+" LuciusLight (light default): http://i.imgur.com/soYD8.png
+" LuciusLightLowContrast: http://i.imgur.com/95I86.png
+" LuciusWhite: http://i.imgur.com/wDzkz.png
+" LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+
+else
+  set t_Co=256
+  colorscheme lucius
+  LuciusBlackLowContrast
+endif
+
+hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
+
+" }}}
+
 " Vim general settings          {{{
 
 " Enable filetype plugin
@@ -230,9 +305,19 @@ let maplocalleader= "\\"
 let g:maplocalleader= "\\"
 
 " Different cursors for different modes.
-" set guicursor+=n-c:block-Cursor-blinkon0
+set guicursor=a:block-Cursor-blinkon0
+set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
+set guicursor+=v:block-vCursor-blinkon0
+" set guicursor=n-c:block-Cursor-blinkon0
 " set guicursor+=v:block-vCursor-blinkon0
-" set guicursor+=i-ci:ver20-iCursor
+" set guicursor+=i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150
+
+" Cursor colors
+hi Cursor guibg=white ctermbg=15
+hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
+" hi iCursor guibg=#df5f00 ctermbg=166
+
+  " guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175,n-c:block-Cursor-blinkon0,v:block-vCursor-blinkon0,i-ci:ver20-iCursor,i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150,i-ci:ver30-inCursor-blickwait300-blinkon200-blinkoff150
 
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
@@ -248,81 +333,6 @@ else
   " set shellxquote=\"
   " set shellslash
 endif
-" }}}
-
-" Font and colorscheme          {{{
-" Set font according to system
-
-if IsUnix()
-    set linespace=4
-    let g:fnc = 3
-    let g:fnd = [
-    \  'DejaVu\ Sans\ Mono:h17',
-    \  'Akkurat-Mono:h15',
-    \  'M+ 1m light:h16',
-    \  'Source\ Code\ Pro\ Light:h19',
-    \  'Menlo:h19'
-    \ ]
-else
-    set linespace=2
-    let g:fnc = 0
-    let g:fnd = [
-    \  'Menlo_for_Powerline:h11',
-    \  'Mensch_for_Powerline:h11',
-    \  'Inconsolata-g:h12',
-    \  'Inconsolata:h12',
-    \  'PragmataPro:h12',
-    \  'Anka/Coder_Narrow:h12',
-    \  'Anka/Coder_Condensed:h12',
-    \  'Monoxil_Regular:h12',
-    \  'Aurulent_Sans_Mono:h10',
-    \  'Source_Code_Pro:h10',
-    \  'Monaco:h10',
-    \  'Droid_Sans_Mono:h11',
-    \  'Dejavu_Sans_Mono:h11',
-    \  'Source_Code_Pro_Light:h17'
-    \ ]
-endif
-fun! SetFont()
-    let &guifont = escape(get(g:fnd, g:fnc), " ")
-    " echo &guifont
-endfun
-call SetFont()
-command! SetDefaultFont call SetFont()
-
-if has("gui_running")
-
-  " Gui options
-  set guioptions=c
-
-  set guioptions-=T
-  set t_Co=256
-
-  "set background=dark
-  "colorscheme solarized
-  colorscheme lucius
-  LuciusBlackLowContrast
-  " LuciusLightHighContrast
-
-" LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-" LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-" LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-" LuciusBlack: http://i.imgur.com/iD4ri.png
-" LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-" LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-" LuciusLight (light default): http://i.imgur.com/soYD8.png
-" LuciusLightLowContrast: http://i.imgur.com/95I86.png
-" LuciusWhite: http://i.imgur.com/wDzkz.png
-" LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
-
-else
-  set t_Co=256
-  colorscheme lucius
-  LuciusBlackLowContrast
-endif
-
-hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
-
 " }}}
 
 " Statusline                    {{{
