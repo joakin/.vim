@@ -1126,6 +1126,16 @@ xnoremap <leader>r :s/
 
 " }}}
 
+" Insert mode stuff (shame) {{{
+inoremap <c-l> <Del>
+inoremap <c-k> <c-o>D
+inoremap <c-u> <c-o>d0
+inoremap <c-e> <c-o>$
+inoremap <c-a> <c-o>_
+inoremap <c-f> <c-o>l
+inoremap <c-b> <c-o>h
+" }}}
+
 " }}}
 
 " Plugin settings & mappings    {{{
