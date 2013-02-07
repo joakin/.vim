@@ -57,6 +57,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'paradigm/vim-multicursor'
 " Bundle 'paradigm/SkyBison'
+Bundle 'Lokaltog/vim-easymotion'
 " }}}
 
 " Programming plugins           {{{
@@ -127,7 +128,7 @@ if IsUnix()
     \ ]
 else
     set linespace=2
-    let g:fnc = 5
+    let g:fnc = 9
     let g:fnd = [
     \  'Menlo_for_Powerline:h14',
     \  'Mensch_for_Powerline:h14',
@@ -1136,6 +1137,14 @@ inoremap <c-f> <c-o>l
 inoremap <c-b> <c-o>h
 " }}}
 
+" Easier : reach, and saner ; map
+" Now, ; goes avanti with f/F t/T and <shift-;> goes backwards
+" Also command line goes to , which is better than <shift-;>
+nnoremap , :
+xnoremap , :
+nnoremap : ,
+xnoremap : ,
+
 " }}}
 
 " Plugin settings & mappings    {{{
@@ -1216,7 +1225,12 @@ command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 " }}}
 
 " EasyMotion                    {{{
-" let g:EasyMotion_leader_key = '<CR>'
+let g:EasyMotion_leader_key = '<leader>j'
+let g:EasyMotion_mapping_w = '<c-n>'
+let g:EasyMotion_mapping_b = '<c-p>'
+let g:EasyMotion_keys="gfdsahjkltrewqyuiopvcxzbnmGFDSAHJKLTREWQYUIOPVCXZBNM"
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
 " }}}
 
 " Multicursor                   {{{
