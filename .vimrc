@@ -118,7 +118,7 @@ Bundle 'aaronbieber/quicktask'
 
 if IsUnix()
     set linespace=4
-    let g:fnc = 3
+    let g:fnc = 4
     let g:fnd = [
     \  'DejaVu\ Sans\ Mono:h17',
     \  'Akkurat-Mono:h15',
