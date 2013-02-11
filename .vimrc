@@ -1128,6 +1128,7 @@ xnoremap <leader>r :s/
 " }}}
 
 " Insert mode stuff (shame) {{{
+inoremap <c-d> <c-k>
 inoremap <c-l> <Del>
 inoremap <c-k> <c-o>D
 inoremap <c-u> <c-o>d0
