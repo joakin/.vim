@@ -1084,7 +1084,7 @@ nnoremap <down>  :lnext<cr>zvzz
 set foldlevelstart=1
 
 " Space to toggle folds.
-" nnoremap <cr> za
+nnoremap <c-space> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
@@ -1128,6 +1128,7 @@ xnoremap <leader>r :s/
 " }}}
 
 " Insert mode stuff (shame) {{{
+inoremap <c-d> <c-k>
 inoremap <c-l> <Del>
 inoremap <c-k> <c-o>D
 inoremap <c-u> <c-o>d0
