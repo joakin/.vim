@@ -128,22 +128,22 @@ if IsUnix()
     \ ]
 else
     set linespace=2
-    let g:fnc = 9
+    let g:fnc = -1
     let g:fnd = [
-    \  'Menlo_for_Powerline:h14',
-    \  'Mensch_for_Powerline:h14',
-    \  'Inconsolata-g:h14',
-    \  'Inconsolata:h14',
-    \  'PragmataPro:h12',
+    \  'Menlo_for_Powerline:h11',
+    \  'Mensch_for_Powerline:h11',
+    \  'Inconsolata-g:h11',
+    \  'Inconsolata:h11',
+    \  'PragmataPro:h11',
     \  'Anka/Coder_Narrow:h13',
     \  'Anka/Coder_Condensed:h13',
     \  'Monoxil_Regular:h14',
     \  'Aurulent_Sans_Mono:h10',
     \  'Source_Code_Pro:h10',
-    \  'Monaco:h10',
+    \  'Monaco:h11',
     \  'Droid_Sans_Mono:h11',
     \  'Dejavu_Sans_Mono:h11',
-    \  'Source_Code_Pro_Light:h17'
+    \  'Source_Code_Pro_Light:h11'
     \ ]
 endif
 fun! SetFont()
@@ -1226,10 +1226,8 @@ command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 " }}}
 
 " EasyMotion                    {{{
-let g:EasyMotion_leader_key = '<leader>j'
-let g:EasyMotion_mapping_w = '<c-n>'
-let g:EasyMotion_mapping_b = '<c-p>'
-let g:EasyMotion_keys="gfdsahjkltrewqyuiopvcxzbnmGFDSAHJKLTREWQYUIOPVCXZBNM"
+let g:EasyMotion_leader_key = 's'
+let g:EasyMotion_keys="fjdkslaghtrewqyuiopvcxzbnmGFDSAHJKLTREWQYUIOPVCXZBNM"
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
 " }}}
