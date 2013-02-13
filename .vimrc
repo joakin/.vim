@@ -118,7 +118,7 @@ Bundle 'aaronbieber/quicktask'
 
 if IsUnix()
     set linespace=4
-    let g:fnc = 3
+    let g:fnc = 4
     let g:fnd = [
     \  'DejaVu\ Sans\ Mono:h17',
     \  'Akkurat-Mono:h15',
@@ -316,7 +316,7 @@ set guicursor+=v:block-vCursor-blinkon0
 " Cursor colors
 hi Cursor guibg=white ctermbg=15
 hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-" hi iCursor guibg=#df5f00 ctermbg=166
+hi iCursor guibg=#df5f00 ctermbg=166
 
   " guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175,n-c:block-Cursor-blinkon0,v:block-vCursor-blinkon0,i-ci:ver20-iCursor,i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150,i-ci:ver30-inCursor-blickwait300-blinkon200-blinkoff150
 
