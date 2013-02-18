@@ -118,36 +118,38 @@ Bundle 'aaronbieber/quicktask'
 
 if IsUnix()
     set linespace=4
+    let g:fns = 19
     let g:fnc = 4
     let g:fnd = [
-    \  'DejaVu\ Sans\ Mono:h17',
-    \  'Akkurat-Mono:h15',
-    \  'M+ 1m light:h16',
-    \  'Source\ Code\ Pro\ Light:h19',
-    \  'Menlo:h19'
+    \  'DejaVu Sans Mono',
+    \  'Akkurat-Mono',
+    \  'M+ 1m light',
+    \  'Source Code Pro Light',
+    \  'Menlo'
     \ ]
 else
     set linespace=2
-    let g:fnc = -1
+    let g:fns = 10
+    let g:fnc = 8
     let g:fnd = [
-    \  'Menlo_for_Powerline:h11',
-    \  'Mensch_for_Powerline:h11',
-    \  'Inconsolata-g:h11',
-    \  'Inconsolata:h11',
-    \  'PragmataPro:h11',
-    \  'Anka/Coder_Narrow:h13',
-    \  'Anka/Coder_Condensed:h13',
-    \  'Monoxil_Regular:h14',
-    \  'Aurulent_Sans_Mono:h10',
-    \  'Source_Code_Pro:h10',
-    \  'Monaco:h11',
-    \  'Droid_Sans_Mono:h11',
-    \  'Dejavu_Sans_Mono:h11',
-    \  'Source_Code_Pro_Light:h11'
+    \  'Menlo_for_Powerline',
+    \  'Mensch_for_Powerline',
+    \  'Inconsolata-g',
+    \  'Inconsolata',
+    \  'PragmataPro',
+    \  'Anka/Coder_Narrow',
+    \  'Anka/Coder_Condensed',
+    \  'Monoxil_Regular',
+    \  'Aurulent_Sans_Mono',
+    \  'Source_Code_Pro',
+    \  'Monaco',
+    \  'Droid_Sans_Mono',
+    \  'Dejavu_Sans_Mono',
+    \  'Source_Code_Pro_Light'
     \ ]
 endif
 fun! SetFont()
-    let &guifont = escape(get(g:fnd, g:fnc), " ")
+    let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
     " echo &guifont
 endfun
 call SetFont()
