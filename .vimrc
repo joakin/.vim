@@ -116,37 +116,39 @@ Bundle 'aaronbieber/quicktask'
 " Font and colorscheme          {{{
 " Set font according to system
 
-if IsUnix()
-    set linespace=4
-    let g:fns = 19
-    let g:fnc = 4
-    let g:fnd = [
-    \  'DejaVu Sans Mono',
-    \  'Akkurat-Mono',
-    \  'M+ 1m light',
-    \  'Source Code Pro Light',
-    \  'Menlo'
-    \ ]
-else
-    set linespace=2
-    let g:fns = 10
-    let g:fnc = 8
-    let g:fnd = [
-    \  'Menlo_for_Powerline',
-    \  'Mensch_for_Powerline',
-    \  'Inconsolata-g',
-    \  'Inconsolata',
-    \  'PragmataPro',
-    \  'Anka/Coder_Narrow',
-    \  'Anka/Coder_Condensed',
-    \  'Monoxil_Regular',
-    \  'Aurulent_Sans_Mono',
-    \  'Source_Code_Pro',
-    \  'Monaco',
-    \  'Droid_Sans_Mono',
-    \  'Dejavu_Sans_Mono',
-    \  'Source_Code_Pro_Light'
-    \ ]
+if !exists("g:fnd")
+  if IsUnix()
+      set linespace=4
+      let g:fns = 19
+      let g:fnc = 4
+      let g:fnd = [
+      \  'DejaVu Sans Mono',
+      \  'Akkurat-Mono',
+      \  'M+ 1m light',
+      \  'Source Code Pro Light',
+      \  'Menlo'
+      \ ]
+  else
+      set linespace=2
+      let g:fns = 10
+      let g:fnc = 8
+      let g:fnd = [
+      \  'Menlo_for_Powerline',
+      \  'Mensch_for_Powerline',
+      \  'Inconsolata-g',
+      \  'Inconsolata',
+      \  'PragmataPro',
+      \  'Anka/Coder_Narrow',
+      \  'Anka/Coder_Condensed',
+      \  'Monoxil_Regular',
+      \  'Aurulent_Sans_Mono',
+      \  'Source_Code_Pro',
+      \  'Monaco',
+      \  'Droid_Sans_Mono',
+      \  'Dejavu_Sans_Mono',
+      \  'Source_Code_Pro_Light'
+      \ ]
+  endif
 endif
 fun! SetFont()
     let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
