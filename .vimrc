@@ -486,6 +486,8 @@ function! AdjustFontSize(amount)
      \ '\=eval(submatch(0)'.a:amount.')',
      \ '')
 
+    let g:fns = eval(g:fns.a:amount)
+
   else
     echoerr "You need to run gui version of Vim to use this function."
   endif
@@ -992,9 +994,8 @@ nnoremap <leader>sC :call g:ToggleConceal(1)<cr>
 " Font size maps              {{{
 nnoremap <A-=> :LargerFont<CR>
 nnoremap <A--> :SmallerFont<CR>
-nnoremap <A-0> :SetDefaultFont<CR>
-nnoremap <A-8> :CycleFontBackwards<CR>
-nnoremap <A-9> :CycleFontFoward<CR>
+nnoremap <A-9> :CycleFontBackwards<CR>
+nnoremap <A-0> :CycleFontFoward<CR>
 " }}}
 
 " Common editing stuff        {{{
