@@ -130,8 +130,8 @@ if !exists("g:fnd")
       \ ]
   else
       set linespace=2
-      let g:fns = 10
-      let g:fnc = 8
+      let g:fns = 13
+      let g:fnc = 0
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Mensch_for_Powerline',
@@ -188,7 +188,10 @@ else
   LuciusBlackLowContrast
 endif
 
-hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
+function! SetConcealHi()
+  hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
+endfunction
+call SetConcealHi()
 
 " }}}
 
