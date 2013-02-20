@@ -120,7 +120,7 @@ Bundle 'aaronbieber/quicktask'
 if !exists("g:fnd")
   if IsUnix()
       set linespace=4
-      let g:fns = 19
+      let g:fns = 15
       let g:fnc = 4
       let g:fnd = [
       \  'DejaVu Sans Mono',
