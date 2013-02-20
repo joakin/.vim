@@ -188,10 +188,8 @@ else
   LuciusBlackLowContrast
 endif
 
-function! SetConcealHi()
-  hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
-endfunction
-call SetConcealHi()
+" XXX: This is not respected as it should
+hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 " }}}
 

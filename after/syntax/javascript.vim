@@ -20,9 +20,7 @@ if (has('conceal') && &enc=="utf-8")
   syntax match jsConcealProto /\.prototype\./ containedin=@javaScriptAll conceal cchar=→
   hi def link jsConcealProto Type
 
-
-  " hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
-  call SetConcealHi()
+  hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 endif
 
