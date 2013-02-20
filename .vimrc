@@ -117,37 +117,39 @@ Bundle 'aaronbieber/quicktask'
 " Font and colorscheme          {{{
 " Set font according to system
 
-if IsUnix()
-    set linespace=4
-    let g:fns = 19
-    let g:fnc = 4
-    let g:fnd = [
-    \  'DejaVu Sans Mono',
-    \  'Akkurat-Mono',
-    \  'M+ 1m light',
-    \  'Source Code Pro Light',
-    \  'Menlo'
-    \ ]
-else
-    set linespace=2
-    let g:fns = 10
-    let g:fnc = 8
-    let g:fnd = [
-    \  'Menlo_for_Powerline',
-    \  'Mensch_for_Powerline',
-    \  'Inconsolata-g',
-    \  'Inconsolata',
-    \  'PragmataPro',
-    \  'Anka/Coder_Narrow',
-    \  'Anka/Coder_Condensed',
-    \  'Monoxil_Regular',
-    \  'Aurulent_Sans_Mono',
-    \  'Source_Code_Pro',
-    \  'Monaco',
-    \  'Droid_Sans_Mono',
-    \  'Dejavu_Sans_Mono',
-    \  'Source_Code_Pro_Light'
-    \ ]
+if !exists("g:fnd")
+  if IsUnix()
+      set linespace=4
+      let g:fns = 19
+      let g:fnc = 4
+      let g:fnd = [
+      \  'DejaVu Sans Mono',
+      \  'Akkurat-Mono',
+      \  'M+ 1m light',
+      \  'Source Code Pro Light',
+      \  'Menlo'
+      \ ]
+  else
+      set linespace=2
+      let g:fns = 13
+      let g:fnc = 0
+      let g:fnd = [
+      \  'Menlo_for_Powerline',
+      \  'Mensch_for_Powerline',
+      \  'Inconsolata-g',
+      \  'Inconsolata',
+      \  'PragmataPro',
+      \  'Anka/Coder_Narrow',
+      \  'Anka/Coder_Condensed',
+      \  'Monoxil_Regular',
+      \  'Aurulent_Sans_Mono',
+      \  'Source_Code_Pro',
+      \  'Monaco',
+      \  'Droid_Sans_Mono',
+      \  'Dejavu_Sans_Mono',
+      \  'Source_Code_Pro_Light'
+      \ ]
+  endif
 endif
 fun! SetFont()
     let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
@@ -187,6 +189,7 @@ else
   LuciusBlackLowContrast
 endif
 
+" XXX: This is not respected as it should
 hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 " }}}
@@ -486,6 +489,8 @@ function! AdjustFontSize(amount)
      \ ':h\zs\d\+',
      \ '\=eval(submatch(0)'.a:amount.')',
      \ '')
+
+    let g:fns = eval(g:fns.a:amount)
 
   else
     echoerr "You need to run gui version of Vim to use this function."
@@ -993,9 +998,8 @@ nnoremap <leader>sC :call g:ToggleConceal(1)<cr>
 " Font size maps              {{{
 nnoremap <A-=> :LargerFont<CR>
 nnoremap <A--> :SmallerFont<CR>
-nnoremap <A-0> :SetDefaultFont<CR>
-nnoremap <A-8> :CycleFontBackwards<CR>
-nnoremap <A-9> :CycleFontFoward<CR>
+nnoremap <A-9> :CycleFontBackwards<CR>
+nnoremap <A-0> :CycleFontFoward<CR>
 " }}}
 
 " Common editing stuff        {{{
