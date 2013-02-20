@@ -16,6 +16,7 @@ set encoding=utf-8
 " Vundle                        {{{
 "
 " Vundle init                   {{{
+filetype on    " test
 filetype off   " required for vundle
 
 if IsUnix()
