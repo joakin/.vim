@@ -462,10 +462,11 @@ if has('autocmd')
         au FileType txt,text setlocal formatoptions+=a2
     augroup END "   }}}
 
-    augroup dont_wrap_us "   {{{
+    augroup dont_wrap_us_and_fuck_with_our_indent "   {{{
         au!
         " au FileType html,php,jst setlocal nowrap
         au FileType html,php,jst setlocal formatoptions-=t
+        au FileType html,php,jst setlocal indentkeys-=*<Return>
     augroup END "   }}}
 
     augroup quicktask "      {{{
