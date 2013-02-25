@@ -50,7 +50,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
-Bundle 'kana/vim-smartinput'
+" Bundle 'kana/vim-smartinput'
 " Bundle 'kana/vim-textobj-indent'
 " Bundle 'kana/vim-arpeggio'
 Bundle 'mileszs/ack.vim'
@@ -132,7 +132,7 @@ if !exists("g:fnd")
   else
       set linespace=2
       let g:fns = 13
-      let g:fnc = 0
+      let g:fnc = -2
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Mensch_for_Powerline',
@@ -168,9 +168,10 @@ if has("gui_running")
 
   "set background=dark
   "colorscheme solarized
-  colorscheme lucius
-  LuciusBlackLowContrast
-  " LuciusLightHighContrast
+  colorscheme ir_black
+
+  " colorscheme lucius
+  " LuciusBlackLowContrast
 
 " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
 " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
