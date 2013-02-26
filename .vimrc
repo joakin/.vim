@@ -51,7 +51,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
-Bundle 'kana/vim-smartinput'
+" Bundle 'kana/vim-smartinput'
 " Bundle 'kana/vim-textobj-indent'
 " Bundle 'kana/vim-arpeggio'
 Bundle 'mileszs/ack.vim'
@@ -1170,7 +1170,7 @@ let g:ctrlp_custom_ignore = {
 	\ 'link': '',
 	\ }
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>t :CtrlPTag<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
 
 " }}}
 
