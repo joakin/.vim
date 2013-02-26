@@ -115,6 +115,10 @@ Bundle 'sjl/badwolf'
 Bundle 'aaronbieber/quicktask'
 " }}}
 
+" Javascript                    {{{
+Bundle 'othree/javascript-libraries-syntax.vim'
+" }}}
+
 " }}}
 
 " Font and colorscheme          {{{
@@ -252,7 +256,7 @@ set ttyfast
 set wrap
 set textwidth=79
 set colorcolumn=80
-set formatoptions=tcroqn1
+set formatoptions=croqn1
 
 " Make vim think that dash is part of words. i want 'this-stuff' to be a word
 set iskeyword+=-
@@ -461,7 +465,7 @@ if has('autocmd')
 
     augroup javascript "   {{{
         au!
-        au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         au FileType javascript setlocal conceallevel=2 concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
     augroup END "   }}}
@@ -483,7 +487,7 @@ if has('autocmd')
 
     augroup txt "   {{{
         au!
-        au FileType txt,text setlocal formatoptions+=a2
+        au FileType txt,text setlocal formatoptions+=ta2
     augroup END "   }}}
 
     augroup dont_wrap_us_and_fuck_with_our_indent "   {{{
@@ -1316,8 +1320,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 
 " JS                            {{{
 
-" Options: 'function', 'semicolon', 'comma', 'return', 'this', 'proto'
-" let g:syntax_js=['function', 'semicolon', 'this', 'proto', 'return']
+let g:used_javascript_libs = 'jquery,underscore,backbone,prelude'
 
 " }}}
 
