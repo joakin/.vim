@@ -106,6 +106,9 @@ Bundle 'tomasr/molokai'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'wgibbs/vim-irblack'
+Bundle 'tylerball/vim-hypertint'
+Bundle 'noahfrederick/Hemisu'
+Bundle 'sjl/badwolf'
 " }}}
 
 " Notes and data                {{{
@@ -132,7 +135,7 @@ if !exists("g:fnd")
   else
       set linespace=2
       let g:fns = 13
-      let g:fnc = -2
+      let g:fnc = 0
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Mensch_for_Powerline',
@@ -166,23 +169,55 @@ if has("gui_running")
   set guioptions-=T
   set t_Co=256
 
-  "set background=dark
-  "colorscheme solarized
-  colorscheme ir_black
+  " badwolf colorscheme settings {{{
+
+  let g:badwolf_darkgutter = 1
+  let g:badwolf_tabline = 3
+  let g:badwolf_css_props_highlight = 1
+  colorscheme badwolf
+
+  " Cursor colors
+  hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
+
+  hi link User2 StatusLineNC
+  hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+
+  " }}}
+
+  " lucius colorscheme settings {{{
 
   " colorscheme lucius
   " LuciusBlackLowContrast
 
-" LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-" LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-" LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-" LuciusBlack: http://i.imgur.com/iD4ri.png
-" LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-" LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-" LuciusLight (light default): http://i.imgur.com/soYD8.png
-" LuciusLightLowContrast: http://i.imgur.com/95I86.png
-" LuciusWhite: http://i.imgur.com/wDzkz.png
-" LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+  " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+  " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+  " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+  " LuciusBlack: http://i.imgur.com/iD4ri.png
+  " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+  " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+  " LuciusLight (light default): http://i.imgur.com/soYD8.png
+  " LuciusLightLowContrast: http://i.imgur.com/95I86.png
+  " LuciusWhite: http://i.imgur.com/wDzkz.png
+  " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+
+  " Lucius Cursor colors
+  " hi Cursor guibg=white ctermbg=15
+  " hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
+  " hi iCursor guibg=#df5f00 ctermbg=166
+
+  "hi clear StatusLine
+  "hi clear StatusLineNC
+  " hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33
+  " hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
+  " 
+  " hi User1 guifg=#005F00 guibg=#B5E61D
+  " hi User1 guifg=#ffffff guibg=#0087AF
+  " hi User2 guifg=#ffffff guibg=#45413b
+  " hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+  " hi User4 guifg=#FA8072 guibg=#DC143C
+  " hi User5 guifg=#333333 guibg=#dddddd
+
+  " }}}
 
 else
   set t_Co=256
@@ -320,11 +355,6 @@ set guicursor+=v:block-vCursor-blinkon0
 " set guicursor+=v:block-vCursor-blinkon0
 " set guicursor+=i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150
 
-" Cursor colors
-hi Cursor guibg=white ctermbg=15
-hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-hi iCursor guibg=#df5f00 ctermbg=166
-
   " guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175,n-c:block-Cursor-blinkon0,v:block-vCursor-blinkon0,i-ci:ver20-iCursor,i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150,i-ci:ver30-inCursor-blickwait300-blinkon200-blinkoff150
 
 " When available switch to open buffers in current and different tabs
@@ -346,17 +376,6 @@ endif
 " Statusline                    {{{
 
 "set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
-"hi clear StatusLine
-"hi clear StatusLineNC
-hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33
-hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
-
-hi User1 guifg=#005F00 guibg=#B5E61D
-hi User1 guifg=#ffffff guibg=#0087AF
-hi User2 guifg=#ffffff guibg=#585858
-hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-hi User4 guifg=#FA8072 guibg=#DC143C
-hi User5 guifg=#333333 guibg=#dddddd
 
 set statusline=
 set statusline +=%3*\ %n\ %*  " buffer number
@@ -407,8 +426,12 @@ if has('autocmd')
     " augroup END "   }}}
 
     augroup status_line_colors " {{{
+
       au InsertEnter * hi StatusLine guibg=#df5f00 ctermbg=166
-      au InsertLeave * hi StatusLine guibg=#0087AF ctermfg=33
+      " Lucius StatusLine
+      " au InsertLeave * hi StatusLine guibg=#0087AF ctermfg=33
+      " Badwolf StatusLine
+      au InsertLeave * hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff
     augroup END "                }}}
 
     augroup viml "   {{{
