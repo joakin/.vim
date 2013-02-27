@@ -116,7 +116,7 @@ Bundle 'aaronbieber/quicktask'
 " }}}
 
 " Javascript                    {{{
-Bundle 'othree/javascript-libraries-syntax.vim'
+" Bundle 'othree/javascript-libraries-syntax.vim'
 " }}}
 
 " }}}
@@ -1320,7 +1320,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 
 " JS                            {{{
 
-let g:used_javascript_libs = 'jquery,underscore,backbone,prelude'
+" let g:used_javascript_libs = 'jquery,underscore,backbone,prelude'
 
 " }}}
 
