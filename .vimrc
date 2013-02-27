@@ -16,6 +16,7 @@ set encoding=utf-8
 " Vundle                        {{{
 "
 " Vundle init                   {{{
+filetype on    " test
 filetype off   " required for vundle
 
 if IsUnix()
@@ -127,7 +128,7 @@ Bundle 'aaronbieber/quicktask'
 if !exists("g:fnd")
   if IsUnix()
       set linespace=4
-      let g:fns = 19
+      let g:fns = 15
       let g:fnc = 4
       let g:fnd = [
       \  'DejaVu Sans Mono',
@@ -1198,7 +1199,7 @@ let g:ctrlp_custom_ignore = {
 	\ 'link': '',
 	\ }
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>t :CtrlPTag<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
 
 " }}}
 
