@@ -138,25 +138,21 @@ if !exists("g:fnd")
       \  'Menlo'
       \ ]
   else
-      set linespace=2
-      let g:fns = 13
-      let g:fnc = 0
+      " set linespace=2
+      let g:fns = 9
+      let g:fnc = 2
       let g:fnd = [
       \  'Menlo_for_Powerline',
-      \  'Mensch_for_Powerline',
-      \  'Inconsolata-g',
-      \  'Inconsolata',
-      \  'PragmataPro',
-      \  'Anka/Coder_Narrow',
-      \  'Anka/Coder_Condensed',
-      \  'Monoxil_Regular',
       \  'Aurulent_Sans_Mono',
       \  'Source_Code_Pro',
-      \  'Monaco',
-      \  'Droid_Sans_Mono',
-      \  'Dejavu_Sans_Mono',
-      \  'Source_Code_Pro_Light'
+      \  'Source_Code_Pro_Light',
+      \  'Meslo_LG_L',
       \ ]
+
+      set linespace=4
+      " \  'Monaco',
+      " \  'Meslo_LG_M',
+      " \  'Meslo_LG_S'
   endif
 endif
 fun! SetFont()
