@@ -67,6 +67,7 @@ Bundle 'pangloss/vim-javascript'
 " Bundle 'drslump/vim-syntax-js'
 " CoffeeScript
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mintplant/vim-literate-coffeescript'
 " Clojure
 Bundle 'tpope/vim-foreplay'
 " Bundle 'tpope/vim-classpath'
@@ -77,12 +78,8 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'gkz/vim-ls'
 " }}}
 
-" Syntax                        {{{
-" if IsUnix()
-"     Bundle 'vim-pandoc/vim-pandoc'
-" else
-    Bundle 'tpope/vim-markdown'
-" endif
+Bundle 'tpope/vim-markdown'
+
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
@@ -90,6 +87,7 @@ Bundle 'wavded/vim-stylus'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
+Bundle 'leshill/vim-json'
 " }}}
 
 " External tools                {{{
@@ -476,11 +474,6 @@ if has('autocmd')
         au!
         au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     augroup END "   }}}
-
-    " augroup coffeescript "   {{{
-    "     au!
-    "     au BufNewFile,BufReadPost *.coffee setlocal shiftwidth=2 expandtab
-    " augroup END "   }}}
 
     augroup txt "   {{{
         au!
