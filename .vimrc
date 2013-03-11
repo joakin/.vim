@@ -499,6 +499,10 @@ if has('autocmd')
         au BufNewFile,BufRead *.quicktask setlocal filetype=quicktask
         au BufNewFile,BufRead *.qtask setlocal filetype=quicktask
     augroup END "   }}}
+
+    augroup make "              {{{
+        au FileType make setlocal noexpandtab
+    augroup END "   }}}
 endif
 " }}}
 
