@@ -441,7 +441,7 @@ if has('autocmd')
 
     augroup viml "   {{{
         au!
-        au FileType vim setlocal foldmethod=marker
+        au FileType vim setlocal foldmethod=marker foldenable
     augroup END "   }}}
 
     augroup php "   {{{
@@ -1114,6 +1114,7 @@ nnoremap <down>  :lnext<cr>zvzz
 
 " Folds                         {{{
 
+set nofoldenable
 set foldlevelstart=1
 
 " Space to toggle folds.
