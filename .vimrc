@@ -125,16 +125,20 @@ Bundle 'aaronbieber/quicktask'
 
 if !exists("g:fnd")
   if IsUnix()
-      set linespace=4
-      let g:fns = 15
-      let g:fnc = 4
+      set linespace=2
+      let g:fns = 14
+      let g:fnc = 2
       let g:fnd = [
+      \  'Inconsolata-dz for Powerline',
+      \  'Monaco',
+      \  'Consolas',
       \  'DejaVu Sans Mono',
-      \  'Akkurat-Mono',
-      \  'M+ 1m light',
+      \  'Source Code Pro',
       \  'Source Code Pro Light',
       \  'Menlo'
       \ ]
+      " \  'M\+ 1m light',
+      " \  'Akkurat-Mono',
   else
       " set linespace=2
       let g:fns = 9
