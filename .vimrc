@@ -142,13 +142,19 @@ if !exists("g:fnd")
   else
       " set linespace=2
       let g:fns = 9
-      let g:fnc = 2
+      let g:fnc = -2
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
       \  'Source_Code_Pro',
       \  'Source_Code_Pro_Light',
       \  'Meslo_LG_L',
+      \  'Tamsyn5x9',
+      \  'Tamsyn6x12',
+      \  'Tamsyn7x14',
+      \  'Tamsyn8x15',
+      \  'Tamsyn8x17',
+      \  'Tamsyn10x20'
       \ ]
 
       set linespace=4
@@ -439,7 +445,7 @@ if has('autocmd')
 
     augroup viml "   {{{
         au!
-        au FileType vim setlocal foldmethod=marker
+        au FileType vim setlocal foldmethod=marker foldenable
     augroup END "   }}}
 
     augroup php "   {{{
@@ -465,7 +471,8 @@ if has('autocmd')
     augroup javascript "   {{{
         au!
         " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        au FileType javascript setlocal conceallevel=2 concealcursor=nc
+
+        " au FileType javascript setlocal conceallevel=2 concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
     augroup END "   }}}
 
@@ -495,6 +502,10 @@ if has('autocmd')
         au!
         au BufNewFile,BufRead *.quicktask setlocal filetype=quicktask
         au BufNewFile,BufRead *.qtask setlocal filetype=quicktask
+    augroup END "   }}}
+
+    augroup make "              {{{
+        au FileType make setlocal noexpandtab
     augroup END "   }}}
 endif
 " }}}
@@ -797,7 +808,7 @@ function! MyFoldText()
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    return line . '°' . repeat(" ",fillcharcount) . foldedlinecount . '°' . ' '
 endfunction
 set foldtext=MyFoldText()
 " }}}
@@ -1007,7 +1018,7 @@ nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark
 
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
+set listchars=tab:→\ ,trail:·,extends:°,precedes:°,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
@@ -1111,6 +1122,7 @@ nnoremap <down>  :lnext<cr>zvzz
 
 " Folds                         {{{
 
+set nofoldenable
 set foldlevelstart=1
 
 " Space to toggle folds.
