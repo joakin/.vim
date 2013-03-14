@@ -108,6 +108,8 @@ Bundle 'wgibbs/vim-irblack'
 Bundle 'tylerball/vim-hypertint'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'sjl/badwolf'
+Bundle 'mayansmoke'
+Bundle 'morhetz/gruvbox'
 " }}}
 
 " Notes and data                {{{
@@ -138,19 +140,13 @@ if !exists("g:fnd")
   else
       " set linespace=2
       let g:fns = 9
-      let g:fnc = -2
+      let g:fnc = 2
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
       \  'Source_Code_Pro',
       \  'Source_Code_Pro_Light',
-      \  'Meslo_LG_L',
-      \  'Tamsyn5x9',
-      \  'Tamsyn6x12',
-      \  'Tamsyn7x14',
-      \  'Tamsyn8x15',
-      \  'Tamsyn8x17',
-      \  'Tamsyn10x20'
+      \  'Meslo_LG_L'
       \ ]
 
       set linespace=4
@@ -174,54 +170,70 @@ if has("gui_running")
   set guioptions-=T
   set t_Co=256
 
+  let s:badwolf=0
+  let s:lucius=0
+  let s:gruvbox=1
+
+  " gruvbox colorscheme settings {{{
+  if s:gruvbox
+    colorscheme gruvbox
+    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=235 ctermbg=243 gui=bold guifg=#282828 guibg=#7c6f64"
+    exe g:status_line_colors
+  endif
+  " }}}
+
   " badwolf colorscheme settings {{{
+  if s:badwolf
+    let g:badwolf_darkgutter = 1
+    let g:badwolf_tabline = 3
+    let g:badwolf_css_props_highlight = 1
+    colorscheme badwolf
 
-  let g:badwolf_darkgutter = 1
-  let g:badwolf_tabline = 3
-  let g:badwolf_css_props_highlight = 1
-  colorscheme badwolf
+    " Cursor colors
+    hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
 
-  " Cursor colors
-  hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
+    hi link User2 StatusLineNC
+    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff"
+    exe g:status_line_colors
 
-  hi link User2 StatusLineNC
-  hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-
+    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+  endif
   " }}}
 
   " lucius colorscheme settings {{{
+  if s:lucius
+    colorscheme lucius
+    LuciusBlackLowContrast
 
-  " colorscheme lucius
-  " LuciusBlackLowContrast
+    " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+    " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+    " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+    " LuciusBlack: http://i.imgur.com/iD4ri.png
+    " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+    " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+    " LuciusLight (light default): http://i.imgur.com/soYD8.png
+    " LuciusLightLowContrast: http://i.imgur.com/95I86.png
+    " LuciusWhite: http://i.imgur.com/wDzkz.png
+    " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
 
-  " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-  " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-  " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-  " LuciusBlack: http://i.imgur.com/iD4ri.png
-  " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-  " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-  " LuciusLight (light default): http://i.imgur.com/soYD8.png
-  " LuciusLightLowContrast: http://i.imgur.com/95I86.png
-  " LuciusWhite: http://i.imgur.com/wDzkz.png
-  " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+    " Lucius Cursor colors
+    hi Cursor guibg=white ctermbg=15
+    hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
+    hi iCursor guibg=#df5f00 ctermbg=166
 
-  " Lucius Cursor colors
-  " hi Cursor guibg=white ctermbg=15
-  " hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-  " hi iCursor guibg=#df5f00 ctermbg=166
+    hi clear StatusLine
+    hi clear StatusLineNC
+    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
+    exe g:status_line_colors
+    hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
 
-  "hi clear StatusLine
-  "hi clear StatusLineNC
-  " hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33
-  " hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
-  " 
-  " hi User1 guifg=#005F00 guibg=#B5E61D
-  " hi User1 guifg=#ffffff guibg=#0087AF
-  " hi User2 guifg=#ffffff guibg=#45413b
-  " hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-  " hi User4 guifg=#FA8072 guibg=#DC143C
-  " hi User5 guifg=#333333 guibg=#dddddd
-
+    hi User1 guifg=#005F00 guibg=#B5E61D
+    hi User1 guifg=#ffffff guibg=#0087AF
+    hi User2 guifg=#ffffff guibg=#45413b
+    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+    hi User4 guifg=#FA8072 guibg=#DC143C
+    hi User5 guifg=#333333 guibg=#dddddd
+  endif
   " }}}
 
 else
@@ -253,8 +265,8 @@ set undofile
 set ttyfast
 
 " Wrap text when 80 cols
-" set nowrap
-set wrap
+set nowrap
+" set wrap
 set textwidth=79
 set colorcolumn=80
 set formatoptions=croqn1
@@ -433,10 +445,8 @@ if has('autocmd')
     augroup status_line_colors " {{{
 
       au InsertEnter * hi StatusLine guibg=#df5f00 ctermbg=166
-      " Lucius StatusLine
-      " au InsertLeave * hi StatusLine guibg=#0087AF ctermfg=33
-      " Badwolf StatusLine
-      au InsertLeave * hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff
+      exe "au InsertLeave * " g:status_line_colors
+
     augroup END "                }}}
 
     augroup viml "   {{{
@@ -804,7 +814,7 @@ function! MyFoldText()
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '°' . repeat(" ",fillcharcount) . foldedlinecount . '°' . ' '
+    return line . '⋯' . repeat(" ",fillcharcount) . foldedlinecount . '⋯' . ' '
 endfunction
 set foldtext=MyFoldText()
 " }}}
@@ -1014,7 +1024,7 @@ nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark
 
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:°,precedes:°,nbsp:&,eol:¬
+set listchars=tab:→\ ,trail:·,extends:⋯,precedes:⋯,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
