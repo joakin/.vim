@@ -125,7 +125,7 @@ Bundle 'aaronbieber/quicktask'
 " Font and colorscheme          {{{
 " Set font according to system
 
-if !exists("g:fnd")
+if 1 || !exists("g:fnd")
   if IsUnix()
       set linespace=2
       let g:fns = 14
