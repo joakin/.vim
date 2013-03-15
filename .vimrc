@@ -150,7 +150,8 @@ if 1 || !exists("g:fnd")
       \  'Aurulent_Sans_Mono',
       \  'Source_Code_Pro',
       \  'Source_Code_Pro_Light',
-      \  'Meslo_LG_L'
+      \  'Meslo_LG_L',
+      \  'Monaco'
       \ ]
 
       set linespace=4
@@ -818,7 +819,7 @@ function! MyFoldText()
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '⋯' . repeat(" ",fillcharcount) . foldedlinecount . '⋯' . ' '
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
 set foldtext=MyFoldText()
 " }}}
@@ -1028,7 +1029,7 @@ nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark
 
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:⋯,precedes:⋯,nbsp:&,eol:¬
+set listchars=tab:→\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
