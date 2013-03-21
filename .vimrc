@@ -143,8 +143,8 @@ if 1 || !exists("g:fnd")
       " \  'Akkurat-Mono',
   else
       " set linespace=2
-      let g:fns = 9
-      let g:fnc = 2
+      let g:fns = 10
+      let g:fnc = -1
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
@@ -175,9 +175,9 @@ if has("gui_running")
   set guioptions-=T
   set t_Co=256
 
-  let s:badwolf=0
+  let s:badwolf=1
   let s:lucius=0
-  let s:gruvbox=1
+  let s:gruvbox=0
 
   " gruvbox colorscheme settings {{{
   if s:gruvbox
@@ -1029,7 +1029,7 @@ nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark
 
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
+set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
