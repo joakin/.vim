@@ -76,7 +76,6 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'mattn/zencoding-vim'
 " Livescript
 Bundle 'gkz/vim-ls'
-" }}}
 
 Bundle 'tpope/vim-markdown'
 
@@ -143,7 +142,7 @@ if 1 || !exists("g:fnd")
       " \  'Akkurat-Mono',
   else
       " set linespace=2
-      let g:fns = 10
+      let g:fns = 12
       let g:fnc = -1
       let g:fnd = [
       \  'Menlo_for_Powerline',
