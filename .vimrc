@@ -515,6 +515,9 @@ if has('autocmd')
     augroup workflowish "      {{{
         au!
         " au FileType workflowish setlocal noexpandtab
+        " This mappings make <cr> to zoom in and <bs> to zoom out
+        au FileType workflowish nmap <buffer> <cr> zq
+        au FileType workflowish nmap <buffer> <bs> zp
     augroup END "   }}}
 
     augroup make "              {{{
