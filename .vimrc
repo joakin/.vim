@@ -112,7 +112,7 @@ Bundle 'morhetz/gruvbox'
 " }}}
 
 " Notes and data                {{{
-Bundle 'aaronbieber/quicktask'
+Bundle 'lukaszkorecki/workflowish'
 " }}}
 
 " Javascript                    {{{
@@ -143,7 +143,7 @@ if 1 || !exists("g:fnd")
       " \  'Akkurat-Mono',
   else
       " set linespace=2
-      let g:fns = 12
+      let g:fns = 10
       let g:fnc = -1
       let g:fnd = [
       \  'Menlo_for_Powerline',
@@ -196,6 +196,9 @@ if has("gui_running")
 
     " Cursor colors
     hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
+
+    " Make folds a bit different than comments
+    au ColorScheme * hi Folded ctermfg=241 ctermbg=235 guifg=#cccccc guibg=#343331
 
     hi link User2 StatusLineNC
     let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff"
@@ -509,10 +512,9 @@ if has('autocmd')
         au FileType html,php,jst setlocal indentkeys-=*<Return>
     augroup END "   }}}
 
-    augroup quicktask "      {{{
+    augroup workflowish "      {{{
         au!
-        au BufNewFile,BufRead *.quicktask setlocal filetype=quicktask
-        au BufNewFile,BufRead *.qtask setlocal filetype=quicktask
+        " au FileType workflowish setlocal noexpandtab
     augroup END "   }}}
 
     augroup make "              {{{
@@ -959,11 +961,11 @@ nnoremap ? ?\v
 " Settings editing              {{{
 if IsUnix()
     nnoremap <leader>ev :e $MYVIMRC<cr>
-    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.qtask<cr>:lcd %:h<cr>
+    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
     nnoremap <leader>ew :e ~/Dropbox/data/wiki/<cr>:lcd %:h<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.qtask<cr>:lcd %:h<cr>
+    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.wofl<cr>:lcd %:h<cr>
     nnoremap <leader>ew :e D:\devel\Dropbox\data\wiki\<cr>:lcd %:h<cr>
 endif
 " }}}
