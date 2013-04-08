@@ -117,6 +117,7 @@ Bundle 'aaronbieber/quicktask'
 
 " Javascript                    {{{
 " Bundle 'othree/javascript-libraries-syntax.vim'
+let g:javascript_conceal=1
 " }}}
 
 " }}}
@@ -482,7 +483,7 @@ if has('autocmd')
         au!
         " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
-        " au FileType javascript setlocal conceallevel=2 concealcursor=nc
+        au FileType javascript setlocal conceallevel=2 concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
     augroup END "   }}}
 
@@ -1279,10 +1280,15 @@ command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 
 " EasyMotion                    {{{
 let g:EasyMotion_leader_key = 's'
-let g:EasyMotion_keys="fjdkslaghtrewqyuiopvcxzbnmGFDSAHJKLTREWQYUIOPVCXZBNM"
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
+let g:EasyMotion_keys="jklfdsaghtrewqyuiopvcxzbnmJKLFDSAGHTREWQYUIOPVCXZBNM"
+hi EasyMotionShade ctermfg=darkgrey guifg=darkgrey guibg=black
+hi EasyMotionTarget ctermfg=darkred guifg=yellow guibg=darkred
 " }}}
+
+" AceJump                       {{{
+nnoremap ss :call AceJump()<CR>
+" }}}
+
 
 " Multicursor                   {{{
 
@@ -1290,7 +1296,7 @@ nnoremap <leader>cc    :<c-u>call MultiCursorPlaceCursor()<cr>
 xnoremap <leader>cc    :<c-u>call MultiCursorVisual()<cr>
 nnoremap <leader>c<cr> :<c-u>call MultiCursorManual()<cr>
 nnoremap <leader>cd    :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
+nnoremap <leader>c/    :<c-u>call MultiCursorSearch('')<cr>
 let g:multicursor_quit = "<c-c>"
 
 " }}}
