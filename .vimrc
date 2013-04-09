@@ -117,7 +117,12 @@ Bundle 'lukaszkorecki/workflowish'
 
 " Javascript                    {{{
 " Bundle 'othree/javascript-libraries-syntax.vim'
+
 let g:javascript_conceal=1
+
+command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
+command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
+
 " }}}
 
 " }}}
@@ -488,6 +493,10 @@ if has('autocmd')
 
         au FileType javascript setlocal conceallevel=2 concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
+    augroup END "   }}}
+
+    augroup json "   {{{
+        au!
     augroup END "   }}}
 
     augroup python "   {{{
