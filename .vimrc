@@ -1203,6 +1203,12 @@ inoremap <c-e> <c-o>$
 inoremap <c-a> <c-o>_
 inoremap <c-f> <c-o>l
 inoremap <c-b> <c-o>h
+inoremap <a-f> <c-o>w
+inoremap <a-b> <c-o>b
+inoremap <a-a> <c-o>(
+inoremap <a-e> <c-o>)
+inoremap <a-d> <c-o>dw
+inoremap <a-bs> <c-o>db
 " }}}
 
 " Easier : reach, and saner ; map
