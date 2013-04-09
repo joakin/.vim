@@ -1185,6 +1185,15 @@ cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
+cnoremap <a-l> <right>
+cnoremap <a-h> <left>
+cnoremap <a-f> <c-right>
+cnoremap <a-b> <c-left>
+
+cnoremap <c-a> <c-b>
+
+cnoremap <a-bs> <c-w>
+
 " }}}
 
 " Substitute shortcut           {{{
