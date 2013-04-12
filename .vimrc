@@ -329,6 +329,9 @@ if has("gui_running")
   if s:ir_black
     colorscheme ir_black
 
+    hi! link FoldColumn CursorColumn
+    hi! link SignColumn CursorColumn
+
     " Cursor colors
     call DefaultCursors()
 
