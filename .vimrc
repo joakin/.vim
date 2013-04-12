@@ -127,139 +127,6 @@ command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 
 " }}}
 
-" Font and colorscheme          {{{
-" Set font according to system
-
-if 1 || !exists("g:fnd")
-  if IsUnix()
-      set linespace=2
-      let g:fns = 14
-      let g:fnc = 2
-      let g:fnd = [
-      \  'Inconsolata-dz for Powerline',
-      \  'Monaco',
-      \  'Consolas',
-      \  'DejaVu Sans Mono',
-      \  'Source Code Pro',
-      \  'Source Code Pro Light',
-      \  'Menlo'
-      \ ]
-      " \  'M\+ 1m light',
-      " \  'Akkurat-Mono',
-  else
-      " set linespace=2
-      let g:fns = 10
-      let g:fnc = -1
-      let g:fnd = [
-      \  'Menlo_for_Powerline',
-      \  'Aurulent_Sans_Mono',
-      \  'Source_Code_Pro',
-      \  'Source_Code_Pro_Light',
-      \  'Meslo_LG_L',
-      \  'Monaco'
-      \ ]
-
-      set linespace=4
-      " \  'Monaco',
-      " \  'Meslo_LG_M',
-      " \  'Meslo_LG_S'
-  endif
-endif
-fun! SetFont()
-    let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
-    " echo &guifont
-endfun
-call SetFont()
-command! SetDefaultFont call SetFont()
-
-if has("gui_running")
-
-  " Gui options
-  set guioptions=c
-
-  set guioptions-=T
-  set t_Co=256
-
-  let s:badwolf=1
-  let s:lucius=0
-  let s:gruvbox=0
-
-  " gruvbox colorscheme settings {{{
-  if s:gruvbox
-    colorscheme gruvbox
-    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=235 ctermbg=243 gui=bold guifg=#282828 guibg=#7c6f64"
-    exe g:status_line_colors
-  endif
-  " }}}
-
-  " badwolf colorscheme settings {{{
-  if s:badwolf
-    let g:badwolf_darkgutter = 1
-    let g:badwolf_tabline = 3
-    let g:badwolf_css_props_highlight = 1
-    colorscheme badwolf
-
-    " Cursor colors
-    hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
-
-    " Make folds a bit different than comments
-    au ColorScheme * hi Folded ctermfg=241 ctermbg=235 guifg=#cccccc guibg=#343331
-
-    hi link User2 StatusLineNC
-    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff"
-    exe g:status_line_colors
-
-    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-  endif
-  " }}}
-
-  " lucius colorscheme settings {{{
-  if s:lucius
-    colorscheme lucius
-    LuciusBlackLowContrast
-
-    " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-    " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-    " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-    " LuciusBlack: http://i.imgur.com/iD4ri.png
-    " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-    " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-    " LuciusLight (light default): http://i.imgur.com/soYD8.png
-    " LuciusLightLowContrast: http://i.imgur.com/95I86.png
-    " LuciusWhite: http://i.imgur.com/wDzkz.png
-    " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
-
-    " Lucius Cursor colors
-    hi Cursor guibg=white ctermbg=15
-    hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-    hi iCursor guibg=#df5f00 ctermbg=166
-
-    hi clear StatusLine
-    hi clear StatusLineNC
-    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
-    exe g:status_line_colors
-    hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
-
-    hi User1 guifg=#005F00 guibg=#B5E61D
-    hi User1 guifg=#ffffff guibg=#0087AF
-    hi User2 guifg=#ffffff guibg=#45413b
-    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-    hi User4 guifg=#FA8072 guibg=#DC143C
-    hi User5 guifg=#333333 guibg=#dddddd
-  endif
-  " }}}
-
-else
-  set t_Co=256
-  colorscheme lucius
-  LuciusBlackLowContrast
-endif
-
-" XXX: This is not respected as it should
-hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
-
-" }}}
-
 " Vim general settings          {{{
 
 " Enable filetype plugin
@@ -381,6 +248,7 @@ let g:maplocalleader= "\\"
 set guicursor=a:block-Cursor-blinkon0
 set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
 set guicursor+=v:block-vCursor-blinkon0
+
 " set guicursor=n-c:block-Cursor-blinkon0
 " set guicursor+=v:block-vCursor-blinkon0
 " set guicursor+=i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150
@@ -389,6 +257,157 @@ set guicursor+=v:block-vCursor-blinkon0
 
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
+
+" }}}
+
+" Font and colorscheme          {{{
+" Set font according to system
+
+if 1 || !exists("g:fnd")
+  if IsUnix()
+      set linespace=2
+      let g:fns = 14
+      let g:fnc = 2
+      let g:fnd = [
+      \  'Inconsolata-dz for Powerline',
+      \  'Monaco',
+      \  'Consolas',
+      \  'DejaVu Sans Mono',
+      \  'Source Code Pro',
+      \  'Source Code Pro Light',
+      \  'Menlo'
+      \ ]
+      " \  'M\+ 1m light',
+      " \  'Akkurat-Mono',
+  else
+      " set linespace=2
+      let g:fns = 10
+      let g:fnc = -1
+      let g:fnd = [
+      \  'Menlo_for_Powerline',
+      \  'Aurulent_Sans_Mono',
+      \  'Source_Code_Pro',
+      \  'Source_Code_Pro_Light',
+      \  'Meslo_LG_L',
+      \  'Monaco',
+      \  'PragmataPro'
+      \ ]
+
+      set linespace=4
+      " \  'Monaco',
+      " \  'Meslo_LG_M',
+      " \  'Meslo_LG_S'
+  endif
+endif
+fun! SetFont()
+    let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
+    " echo &guifont
+endfun
+call SetFont()
+command! SetDefaultFont call SetFont()
+
+if has("gui_running")
+
+  fun! DefaultCursors()
+    hi Cursor guibg=white ctermbg=15
+    hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
+    hi iCursor guibg=#df5f00 ctermbg=166
+  endfun
+
+  " Gui options
+  set guioptions=c
+
+  set guioptions-=T
+  set t_Co=256
+
+  let s:badwolf=0
+  let s:lucius=0
+  let s:gruvbox=0
+  let s:ir_black=1
+
+  " ir_black colorscheme settings {{{
+  if s:ir_black
+    colorscheme ir_black
+
+    " Cursor colors
+    call DefaultCursors()
+
+    let g:status_line_colors="hi StatusLine term=bold,reverse ctermfg=15 ctermbg=8 gui=italic guifg=#CCCCCC guibg=#202020"
+    exe g:status_line_colors
+  endif
+  " }}}
+
+  " gruvbox colorscheme settings {{{
+  if s:gruvbox
+    colorscheme gruvbox
+    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=235 ctermbg=243 gui=bold guifg=#282828 guibg=#7c6f64"
+    exe g:status_line_colors
+  endif
+  " }}}
+
+  " badwolf colorscheme settings {{{
+  if s:badwolf
+    let g:badwolf_darkgutter = 1
+    let g:badwolf_tabline = 3
+    let g:badwolf_css_props_highlight = 1
+    colorscheme badwolf
+
+    " Cursor colors
+    hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
+
+    " Make folds a bit different than comments
+    au ColorScheme * hi Folded ctermfg=241 ctermbg=235 guifg=#cccccc guibg=#343331
+
+    hi link User2 StatusLineNC
+    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff"
+    exe g:status_line_colors
+
+    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+  endif
+  " }}}
+
+  " lucius colorscheme settings {{{
+  if s:lucius
+    colorscheme lucius
+    LuciusBlackLowContrast
+
+    " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+    " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+    " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+    " LuciusBlack: http://i.imgur.com/iD4ri.png
+    " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+    " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+    " LuciusLight (light default): http://i.imgur.com/soYD8.png
+    " LuciusLightLowContrast: http://i.imgur.com/95I86.png
+    " LuciusWhite: http://i.imgur.com/wDzkz.png
+    " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+
+    " Lucius Cursor colors
+    call DefaultCursors()
+
+    hi clear StatusLine
+    hi clear StatusLineNC
+    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
+    exe g:status_line_colors
+    hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
+
+    hi User1 guifg=#005F00 guibg=#B5E61D
+    hi User1 guifg=#ffffff guibg=#0087AF
+    hi User2 guifg=#ffffff guibg=#45413b
+    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+    hi User4 guifg=#FA8072 guibg=#DC143C
+    hi User5 guifg=#333333 guibg=#dddddd
+  endif
+  " }}}
+
+else
+  set t_Co=256
+  colorscheme lucius
+  LuciusBlackLowContrast
+endif
+
+" XXX: This is not respected as it should
+hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 " }}}
 
@@ -457,7 +476,7 @@ if has('autocmd')
 
     augroup status_line_colors " {{{
 
-      au InsertEnter * hi StatusLine guibg=#df5f00 ctermbg=166
+      au InsertEnter * hi StatusLine guifg=white guibg=#df5f00 ctermbg=166
       exe "au InsertLeave * " g:status_line_colors
 
     augroup END "                }}}
