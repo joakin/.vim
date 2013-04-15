@@ -38,7 +38,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'majutsushi/tagbar'
-Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
 " Bundle 'vim-scripts/Gundo'
 " Bundle 'scrooloose/syntastic'
