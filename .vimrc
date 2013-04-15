@@ -282,7 +282,7 @@ if 1 || !exists("g:fnd")
   else
       " set linespace=2
       let g:fns = 10
-      let g:fnc = -1
+      let g:fnc = 0
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
@@ -785,10 +785,10 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 " Create new text objects for pairs of identical characters
 
 for char in ['$',',','.','/','-','_','=','+','%']
-	exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
-	exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-	exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
-	exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
+  exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
+  exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
+  exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 " Create a text object for folding regions
 xnoremap if :<C-U>silent!normal![zjV]zk<CR>
@@ -1343,17 +1343,24 @@ nnoremap ss :call AceJump()<CR>
 
 " Multicursor                   {{{
 
-nnoremap <leader>cc    :<c-u>call MultiCursorPlaceCursor()<cr>
-xnoremap <leader>cc    :<c-u>call MultiCursorVisual()<cr>
-nnoremap <leader>c<cr> :<c-u>call MultiCursorManual()<cr>
-nnoremap <leader>cd    :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <leader>c/    :<c-u>call MultiCursorSearch('')<cr>
+nnoremap <leader>m    :<c-u>call MultiCursorPlaceCursor()<cr>
+xnoremap <leader>m    :<c-u>call MultiCursorVisual()<cr>
+nnoremap <leader><cr> :<c-u>call MultiCursorManual()<cr>
+nnoremap <leader>cd   :<c-u>call MultiCursorRemoveCursors()<cr>
+nnoremap <leader>c/   :<c-u>call MultiCursorSearch('')<cr>
 let g:multicursor_quit = "<c-c>"
+
+" To get a sublime text like interface
+" Have to use xmap to get advantage of */# remaps. If I remap : this will break
+nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
+nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
+xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
+xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
 
 " }}}
 
 " Skybison                               {{{
-" 
+"
 " let g:skybison_fuzz = 2
 " nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
 " " nnoremap <leader>b 2:<c-u>call SkyBison("b ")<cr>
