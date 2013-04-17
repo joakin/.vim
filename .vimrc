@@ -380,6 +380,10 @@ if has("gui_running")
 
     " Cursor colors
     call DefaultCursors()
+
+    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
+    exe g:status_line_colors
+
   endif
   " }}}
 
@@ -454,8 +458,6 @@ else
   " Lucius Cursor colors
   call DefaultCursors()
 
-  let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
-  exe g:status_line_colors
 endif
 
 " XXX: This is not respected as it should
