@@ -351,13 +351,14 @@ endfun
 call SetFont()
 command! SetDefaultFont call SetFont()
 
-if has("gui_running")
 
-  fun! DefaultCursors()
-    hi Cursor guibg=white ctermbg=15
-    hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-    hi iCursor guibg=#df5f00 ctermbg=166
-  endfun
+fun! DefaultCursors()
+  hi Cursor guibg=white ctermbg=15
+  hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
+  hi iCursor guibg=#df5f00 ctermbg=166
+endfun
+
+if has("gui_running")
 
   " Gui options
   set guioptions=c
@@ -379,9 +380,6 @@ if has("gui_running")
 
     " Cursor colors
     call DefaultCursors()
-
-    let g:status_line_colors="hi StatusLine term=bold,reverse ctermfg=15 ctermbg=8 gui=italic guifg=#CCCCCC guibg=#202020"
-    exe g:status_line_colors
   endif
   " }}}
 
@@ -452,6 +450,12 @@ else
   set t_Co=256
   colorscheme lucius
   LuciusBlackLowContrast
+
+  " Lucius Cursor colors
+  call DefaultCursors()
+
+  let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
+  exe g:status_line_colors
 endif
 
 " XXX: This is not respected as it should
@@ -524,8 +528,10 @@ if has('autocmd')
 
     augroup status_line_colors " {{{
 
-      au InsertEnter * hi StatusLine guifg=white guibg=#df5f00 ctermbg=166
-      exe "au InsertLeave * " g:status_line_colors
+      if has("gui_running")
+        au InsertEnter * hi StatusLine guifg=white guibg=#df5f00 ctermbg=166
+        exe "au InsertLeave * " g:status_line_colors
+      endif
 
     augroup END "                }}}
 
@@ -1328,13 +1334,6 @@ noremap <leader>a<space> :Tabularize spaces<cr>
 noremap <leader>a=       :Tabularize assignment<cr>
 noremap <leader>acss     :Tabularize inline_css<cr>
 
-" }}}
-
-" Indent guides                         {{{
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-let g:indent_guides_color_change_percent = 2
-let g:indent_guides_enable_on_vim_startup = 1
 " }}}
 
 " VimClojure                         {{{
