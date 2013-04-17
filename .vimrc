@@ -38,7 +38,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'majutsushi/tagbar'
-Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
 " Bundle 'vim-scripts/Gundo'
 " Bundle 'scrooloose/syntastic'
@@ -76,7 +76,6 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'mattn/zencoding-vim'
 " Livescript
 Bundle 'gkz/vim-ls'
-" }}}
 
 Bundle 'tpope/vim-markdown'
 
@@ -108,138 +107,23 @@ Bundle 'wgibbs/vim-irblack'
 Bundle 'tylerball/vim-hypertint'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'sjl/badwolf'
+Bundle 'mayansmoke'
+Bundle 'morhetz/gruvbox'
 " }}}
 
 " Notes and data                {{{
-Bundle 'aaronbieber/quicktask'
+Bundle 'lukaszkorecki/workflowish'
 " }}}
 
 " Javascript                    {{{
 " Bundle 'othree/javascript-libraries-syntax.vim'
-" }}}
+
+let g:javascript_conceal=1
+
+command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
+command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 
 " }}}
-
-" Font and colorscheme          {{{
-" Set font according to system
-
-if 1 || !exists("g:fnd")
-  if IsUnix()
-      let g:fns = 17
-      let g:fnc = 4
-      let g:fnd = [
-      \  'Inconsolata-dz for Powerline',
-      \  'Monaco',
-      \  'Consolas',
-      \  'Source Code Pro',
-      \  'Source Code Pro Light',
-      \  'M+ 1m light',
-      \  'Akkurat-Mono',
-      \  'Menlo'
-      \ ]
-
-      set linespace=2
-  else
-      " set linespace=2
-      let g:fns = 9
-      let g:fnc = -2
-      let g:fnd = [
-      \  'Menlo_for_Powerline',
-      \  'Aurulent_Sans_Mono',
-      \  'Source_Code_Pro',
-      \  'Source_Code_Pro_Light',
-      \  'Meslo_LG_L',
-      \  'Tamsyn5x9',
-      \  'Tamsyn6x12',
-      \  'Tamsyn7x14',
-      \  'Tamsyn8x15',
-      \  'Tamsyn8x17',
-      \  'Tamsyn10x20'
-      \ ]
-
-      set linespace=4
-      " \  'Monaco',
-      " \  'Meslo_LG_M',
-      " \  'Meslo_LG_S'
-  endif
-endif
-fun! SetFont()
-  if IsUnix()
-    let &guifont = get(g:fnd, g:fnc) . ':h' . g:fns
-  else
-    let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
-  endif
-    " echo &guifont
-endfun
-call SetFont()
-command! SetDefaultFont call SetFont()
-
-if has("gui_running")
-
-  " Gui options
-  set guioptions=c
-
-  set guioptions-=T
-  set t_Co=256
-
-  " badwolf colorscheme settings {{{
-
-  let g:badwolf_darkgutter = 1
-  let g:badwolf_tabline = 3
-  let g:badwolf_css_props_highlight = 1
-  colorscheme badwolf
-
-  " Cursor colors
-  hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
-
-  hi link User2 StatusLineNC
-  hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-
-  " }}}
-
-  " lucius colorscheme settings {{{
-
-  " colorscheme lucius
-  " LuciusBlackLowContrast
-
-  " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-  " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-  " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-  " LuciusBlack: http://i.imgur.com/iD4ri.png
-  " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-  " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-  " LuciusLight (light default): http://i.imgur.com/soYD8.png
-  " LuciusLightLowContrast: http://i.imgur.com/95I86.png
-  " LuciusWhite: http://i.imgur.com/wDzkz.png
-  " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
-
-  " Lucius Cursor colors
-  " hi Cursor guibg=white ctermbg=15
-  " hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-  " hi iCursor guibg=#df5f00 ctermbg=166
-
-  "hi clear StatusLine
-  "hi clear StatusLineNC
-  " hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33
-  " hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
-  " 
-  " hi User1 guifg=#005F00 guibg=#B5E61D
-  " hi User1 guifg=#ffffff guibg=#0087AF
-  " hi User2 guifg=#ffffff guibg=#45413b
-  " hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-  " hi User4 guifg=#FA8072 guibg=#DC143C
-  " hi User5 guifg=#333333 guibg=#dddddd
-
-  " }}}
-
-else
-  set t_Co=256
-  colorscheme lucius
-  LuciusBlackLowContrast
-endif
-
-" XXX: This is not respected as it should
-hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 " }}}
 
@@ -261,8 +145,8 @@ set undofile
 set ttyfast
 
 " Wrap text when 80 cols
-" set nowrap
-set wrap
+set nowrap
+" set wrap
 set textwidth=79
 set colorcolumn=80
 set formatoptions=croqn1
@@ -364,6 +248,7 @@ let g:maplocalleader= "\\"
 set guicursor=a:block-Cursor-blinkon0
 set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
 set guicursor+=v:block-vCursor-blinkon0
+
 " set guicursor=n-c:block-Cursor-blinkon0
 " set guicursor+=v:block-vCursor-blinkon0
 " set guicursor+=i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150
@@ -372,6 +257,205 @@ set guicursor+=v:block-vCursor-blinkon0
 
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
+
+" }}}
+
+" Font and colorscheme          {{{
+" Set font according to system
+
+if 1 || !exists("g:fnd")
+  if IsUnix()
+      let g:fns = 17
+      let g:fnc = 4
+      let g:fnd = [
+      \  'Inconsolata-dz for Powerline',
+      \  'Monaco',
+      \  'Consolas',
+      \  'Source Code Pro',
+      \  'Source Code Pro Light',
+      \  'M+ 1m light',
+      \  'Akkurat-Mono',
+      \  'Menlo'
+      \ ]
+
+      set linespace=2
+  else
+      " set linespace=2
+      let g:fns = 9
+      let g:fnc = -2
+      let g:fnd = [
+      \  'Menlo_for_Powerline',
+      \  'Aurulent_Sans_Mono',
+      \  'Source_Code_Pro',
+      \  'Source_Code_Pro_Light',
+      \  'Meslo_LG_L',
+      \  'Tamsyn5x9',
+      \  'Tamsyn6x12',
+      \  'Tamsyn7x14',
+      \  'Tamsyn8x15',
+      \  'Tamsyn8x17',
+      \  'Tamsyn10x20'
+      \ ]
+
+      set linespace=4
+      " \  'Monaco',
+      " \  'Meslo_LG_M',
+      " \  'Meslo_LG_S'
+  endif
+endif
+
+if 1 || !exists("g:fnd")
+  if IsUnix()
+      let g:fns = 17
+      let g:fnc = 4
+      let g:fnd = [
+      \  'Inconsolata-dz for Powerline',
+      \  'Monaco',
+      \  'Consolas',
+      \  'Source Code Pro',
+      \  'Source Code Pro Light',
+      \  'M+ 1m light',
+      \  'Akkurat-Mono',
+      \  'Menlo'
+      \ ]
+
+      set linespace=2
+  else
+      " set linespace=2
+      let g:fns = 10
+      let g:fnc = 0
+      let g:fnd = [
+      \  'Menlo_for_Powerline',
+      \  'Aurulent_Sans_Mono',
+      \  'Source_Code_Pro',
+      \  'Source_Code_Pro_Light',
+      \  'Meslo_LG_L',
+      \  'Monaco',
+      \  'PragmataPro'
+      \ ]
+
+      set linespace=4
+      " \  'Monaco',
+      " \  'Meslo_LG_M',
+      " \  'Meslo_LG_S'
+  endif
+endif
+fun! SetFont()
+  if IsUnix()
+    let &guifont = get(g:fnd, g:fnc) . ':h' . g:fns
+  else
+    let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
+  endif
+    " echo &guifont
+endfun
+call SetFont()
+command! SetDefaultFont call SetFont()
+
+if has("gui_running")
+
+  fun! DefaultCursors()
+    hi Cursor guibg=white ctermbg=15
+    hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
+    hi iCursor guibg=#df5f00 ctermbg=166
+  endfun
+
+  " Gui options
+  set guioptions=c
+
+  set guioptions-=T
+  set t_Co=256
+
+  let s:badwolf=0
+  let s:lucius=0
+  let s:gruvbox=0
+  let s:ir_black=1
+
+  " ir_black colorscheme settings {{{
+  if s:ir_black
+    colorscheme ir_black
+
+    hi! link FoldColumn CursorColumn
+    hi! link SignColumn CursorColumn
+
+    " Cursor colors
+    call DefaultCursors()
+
+    let g:status_line_colors="hi StatusLine term=bold,reverse ctermfg=15 ctermbg=8 gui=italic guifg=#CCCCCC guibg=#202020"
+    exe g:status_line_colors
+  endif
+  " }}}
+
+  " gruvbox colorscheme settings {{{
+  if s:gruvbox
+    colorscheme gruvbox
+    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=235 ctermbg=243 gui=bold guifg=#282828 guibg=#7c6f64"
+    exe g:status_line_colors
+  endif
+  " }}}
+
+  " badwolf colorscheme settings {{{
+  if s:badwolf
+    let g:badwolf_darkgutter = 1
+    let g:badwolf_tabline = 3
+    let g:badwolf_css_props_highlight = 1
+    colorscheme badwolf
+
+    " Cursor colors
+    hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
+
+    " Make folds a bit different than comments
+    au ColorScheme * hi Folded ctermfg=241 ctermbg=235 guifg=#cccccc guibg=#343331
+
+    hi link User2 StatusLineNC
+    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff"
+    exe g:status_line_colors
+
+    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+  endif
+  " }}}
+
+  " lucius colorscheme settings {{{
+  if s:lucius
+    colorscheme lucius
+    LuciusBlackLowContrast
+
+    " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+    " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+    " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+    " LuciusBlack: http://i.imgur.com/iD4ri.png
+    " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+    " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+    " LuciusLight (light default): http://i.imgur.com/soYD8.png
+    " LuciusLightLowContrast: http://i.imgur.com/95I86.png
+    " LuciusWhite: http://i.imgur.com/wDzkz.png
+    " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+
+    " Lucius Cursor colors
+    call DefaultCursors()
+
+    hi clear StatusLine
+    hi clear StatusLineNC
+    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
+    exe g:status_line_colors
+    hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
+
+    hi User1 guifg=#005F00 guibg=#B5E61D
+    hi User1 guifg=#ffffff guibg=#0087AF
+    hi User2 guifg=#ffffff guibg=#45413b
+    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
+    hi User4 guifg=#FA8072 guibg=#DC143C
+    hi User5 guifg=#333333 guibg=#dddddd
+  endif
+  " }}}
+
+else
+  set t_Co=256
+  colorscheme lucius
+  LuciusBlackLowContrast
+endif
+
+" XXX: This is not respected as it should
+hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 " }}}
 
@@ -440,11 +524,9 @@ if has('autocmd')
 
     augroup status_line_colors " {{{
 
-      au InsertEnter * hi StatusLine guibg=#df5f00 ctermbg=166
-      " Lucius StatusLine
-      " au InsertLeave * hi StatusLine guibg=#0087AF ctermfg=33
-      " Badwolf StatusLine
-      au InsertLeave * hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff
+      au InsertEnter * hi StatusLine guifg=white guibg=#df5f00 ctermbg=166
+      exe "au InsertLeave * " g:status_line_colors
+
     augroup END "                }}}
 
     augroup viml "   {{{
@@ -476,8 +558,12 @@ if has('autocmd')
         au!
         " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
-        " au FileType javascript setlocal conceallevel=2 concealcursor=nc
+        au FileType javascript setlocal conceallevel=2 concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
+    augroup END "   }}}
+
+    augroup json "   {{{
+        au!
     augroup END "   }}}
 
     augroup python "   {{{
@@ -502,10 +588,12 @@ if has('autocmd')
         au FileType html,php,jst setlocal indentkeys-=*<Return>
     augroup END "   }}}
 
-    augroup quicktask "      {{{
+    augroup workflowish "      {{{
         au!
-        au BufNewFile,BufRead *.quicktask setlocal filetype=quicktask
-        au BufNewFile,BufRead *.qtask setlocal filetype=quicktask
+        " au FileType workflowish setlocal noexpandtab
+        " This mappings make <cr> to zoom in and <bs> to zoom out
+        au FileType workflowish nmap <buffer> <cr> zq
+        au FileType workflowish nmap <buffer> <bs> zp
     augroup END "   }}}
 
     augroup make "              {{{
@@ -742,10 +830,10 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 " Create new text objects for pairs of identical characters
 
 for char in ['$',',','.','/','-','_','=','+','%']
-	exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
-	exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-	exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
-	exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
+  exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
+  exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+  exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
+  exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 " Create a text object for folding regions
 xnoremap if :<C-U>silent!normal![zjV]zk<CR>
@@ -812,7 +900,7 @@ function! MyFoldText()
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '°' . repeat(" ",fillcharcount) . foldedlinecount . '°' . ' '
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
 set foldtext=MyFoldText()
 " }}}
@@ -952,11 +1040,11 @@ nnoremap ? ?\v
 " Settings editing              {{{
 if IsUnix()
     nnoremap <leader>ev :e $MYVIMRC<cr>
-    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.qtask<cr>:lcd %:h<cr>
+    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
     nnoremap <leader>ew :e ~/Dropbox/data/wiki/<cr>:lcd %:h<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.qtask<cr>:lcd %:h<cr>
+    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.wofl<cr>:lcd %:h<cr>
     nnoremap <leader>ew :e D:\devel\Dropbox\data\wiki\<cr>:lcd %:h<cr>
 endif
 " }}}
@@ -1022,7 +1110,7 @@ nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark
 
 " Toggle invisibles
 nnoremap <leader>si :set list!<CR>
-set listchars=tab:→\ ,trail:·,extends:°,precedes:°,nbsp:&,eol:¬
+set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
@@ -1164,6 +1252,15 @@ cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
+cnoremap <a-l> <right>
+cnoremap <a-h> <left>
+cnoremap <a-f> <c-right>
+cnoremap <a-b> <c-left>
+
+cnoremap <c-a> <c-b>
+
+cnoremap <a-bs> <c-w>
+
 " }}}
 
 " Substitute shortcut           {{{
@@ -1182,6 +1279,12 @@ inoremap <c-e> <c-o>$
 inoremap <c-a> <c-o>_
 inoremap <c-f> <c-o>l
 inoremap <c-b> <c-o>h
+inoremap <a-f> <c-o>w
+inoremap <a-b> <c-o>b
+inoremap <a-a> <c-o>(
+inoremap <a-e> <c-o>)
+inoremap <a-d> <c-o>dw
+inoremap <a-bs> <c-o>db
 " }}}
 
 " Easier : reach, and saner ; map
@@ -1273,24 +1376,36 @@ command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 
 " EasyMotion                    {{{
 let g:EasyMotion_leader_key = 's'
-let g:EasyMotion_keys="fjdkslaghtrewqyuiopvcxzbnmGFDSAHJKLTREWQYUIOPVCXZBNM"
-hi link EasyMotionTarget ErrorMsg
-hi link EasyMotionShade  Comment
+let g:EasyMotion_keys="jklfdsaghtrewqyuiopvcxzbnmJKLFDSAGHTREWQYUIOPVCXZBNM"
+hi EasyMotionShade ctermfg=darkgrey guifg=darkgrey guibg=black
+hi EasyMotionTarget ctermfg=darkred guifg=yellow guibg=darkred
 " }}}
+
+" AceJump                       {{{
+nnoremap ss :call AceJump()<CR>
+" }}}
+
 
 " Multicursor                   {{{
 
-nnoremap <leader>cc    :<c-u>call MultiCursorPlaceCursor()<cr>
-xnoremap <leader>cc    :<c-u>call MultiCursorVisual()<cr>
-nnoremap <leader>c<cr> :<c-u>call MultiCursorManual()<cr>
-nnoremap <leader>cd    :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
+nnoremap <leader>m    :<c-u>call MultiCursorPlaceCursor()<cr>
+xnoremap <leader>m    :<c-u>call MultiCursorVisual()<cr>
+nnoremap <leader><cr> :<c-u>call MultiCursorManual()<cr>
+nnoremap <leader>cd   :<c-u>call MultiCursorRemoveCursors()<cr>
+nnoremap <leader>c/   :<c-u>call MultiCursorSearch('')<cr>
 let g:multicursor_quit = "<c-c>"
+
+" To get a sublime text like interface
+" Have to use xmap to get advantage of */# remaps. If I remap : this will break
+nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
+nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
+xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
+xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
 
 " }}}
 
 " Skybison                               {{{
-" 
+"
 " let g:skybison_fuzz = 2
 " nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
 " " nnoremap <leader>b 2:<c-u>call SkyBison("b ")<cr>
