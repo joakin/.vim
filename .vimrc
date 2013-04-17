@@ -123,22 +123,22 @@ Bundle 'aaronbieber/quicktask'
 " Font and colorscheme          {{{
 " Set font according to system
 
-if !exists("g:fnd")
+if 1 || !exists("g:fnd")
   if IsUnix()
-      set linespace=2
-      let g:fns = 14
-      let g:fnc = 2
+      let g:fns = 17
+      let g:fnc = 4
       let g:fnd = [
       \  'Inconsolata-dz for Powerline',
       \  'Monaco',
       \  'Consolas',
-      \  'DejaVu Sans Mono',
       \  'Source Code Pro',
       \  'Source Code Pro Light',
+      \  'M+ 1m light',
+      \  'Akkurat-Mono',
       \  'Menlo'
       \ ]
-      " \  'M\+ 1m light',
-      " \  'Akkurat-Mono',
+
+      set linespace=2
   else
       " set linespace=2
       let g:fns = 9
@@ -164,7 +164,11 @@ if !exists("g:fnd")
   endif
 endif
 fun! SetFont()
+  if IsUnix()
+    let &guifont = get(g:fnd, g:fnc) . ':h' . g:fns
+  else
     let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
+  endif
     " echo &guifont
 endfun
 call SetFont()
@@ -550,10 +554,10 @@ command! SmallerFont call SmallerFont()
 function! CycleFontFamily(fwd)
   let step = a:fwd ? 1 : -1
   let limit = a:fwd ? len(g:fnd) : -1
-  let reset = a:fwd ? 0 : len(g:fnd)-1
+  let rst = a:fwd ? 0 : len(g:fnd)-1
   let g:fnc += step
   if g:fnc == limit
-    let g:fnc = reset
+    let g:fnc = rst
   endif
 endfunction
 function! CycleFont(fwd)
