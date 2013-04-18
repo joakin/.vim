@@ -59,6 +59,11 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'paradigm/vim-multicursor'
 " Bundle 'paradigm/SkyBison'
 Bundle 'Lokaltog/vim-easymotion'
+
+" Text Objects                  {{{
+Bundle 'coderifous/textobj-word-column.vim'
+" }}}
+
 " }}}
 
 " Programming plugins           {{{
