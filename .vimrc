@@ -32,72 +32,102 @@ endif
 Bundle 'gmarik/vundle'
 " }}}
 
-" Vim improvements              {{{
+" VimL libraries and deps       {{{
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
+Bundle 'tpope/vim-repeat'
+" }}}
+
+" Vim improvements              {{{
+
+" Command line                  {{{
+Bundle 'kien/ctrlp.vim'
+" Bundle 'paradigm/SkyBison'
+" }}}
+
+" Movement                      {{{
+Bundle 'matchit.zip'
+Bundle 'Lokaltog/vim-easymotion'
+" }}}
+
+" Unclassified                  {{{
+" Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'vim-scripts/Gundo'
+" }}}
+
+" Editing                       {{{
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-Bundle 'majutsushi/tagbar'
-" Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'michaeljsmith/vim-indent-object'
-" Bundle 'vim-scripts/Gundo'
-" Bundle 'scrooloose/syntastic'
+
 Bundle 'godlygeek/tabular'
-Bundle 'matchit.zip'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-repeat'
+
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
-Bundle 'vim-scripts/scratch.vim'
 " Bundle 'kana/vim-smartinput'
-" Bundle 'kana/vim-textobj-indent'
-" Bundle 'kana/vim-arpeggio'
-Bundle 'mileszs/ack.vim'
-Bundle 'tomtom/tcomment_vim'
+
+Bundle 'vim-scripts/scratch.vim'
+
 Bundle 'paradigm/vim-multicursor'
-" Bundle 'paradigm/SkyBison'
-Bundle 'Lokaltog/vim-easymotion'
+" }}}
 
 " Text Objects                  {{{
+Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
 " }}}
 
 " }}}
 
-" Programming plugins           {{{
-" JS
+" Coding                   {{{
+
+" Editing                  {{{
+Bundle 'mileszs/ack.vim'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'majutsushi/tagbar'
+" }}}
+
+" Languages                {{{
+" JS                       {{{
 Bundle 'pangloss/vim-javascript'
 " Bundle 'drslump/vim-syntax-js'
-" CoffeeScript
+Bundle 'itspriddle/vim-jquery'
+Bundle 'leshill/vim-json'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'briancollins/vim-jst'
+" }}}
+" CoffeeScript             {{{
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mintplant/vim-literate-coffeescript'
-" Clojure
+" }}}
+" Clojure                  {{{
 Bundle 'tpope/vim-foreplay'
 " Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
-" HTML
+" }}}
+" HTML                     {{{
 Bundle 'mattn/zencoding-vim'
-" Livescript
+" }}}
+" Livescript {{{
 Bundle 'gkz/vim-ls'
-
-Bundle 'tpope/vim-markdown'
-
+" }}}
+" CSS                      {{{
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'wavded/vim-stylus'
-Bundle 'itspriddle/vim-jquery'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'briancollins/vim-jst'
-Bundle 'leshill/vim-json'
+" }}}
+" Markdown                 {{{
+Bundle 'tpope/vim-markdown'
+" }}}
 " }}}
 
 " External tools                {{{
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
 Bundle 'guns/xterm-color-table.vim'
+" }}}
+
 " }}}
 
 " Color schemes                 {{{
@@ -118,16 +148,6 @@ Bundle 'morhetz/gruvbox'
 
 " Notes and data                {{{
 Bundle 'lukaszkorecki/workflowish'
-" }}}
-
-" Javascript                    {{{
-" Bundle 'othree/javascript-libraries-syntax.vim'
-
-let g:javascript_conceal=1
-
-command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
-command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
-
 " }}}
 
 " }}}
@@ -1449,9 +1469,14 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 " and suffixes autocomplete on that files
 "   set suffixesadd=.java
 
-" JS                            {{{
 
-" let g:used_javascript_libs = 'jquery,underscore,backbone,prelude'
+" Javascript                    {{{
+" Bundle 'othree/javascript-libraries-syntax.vim'
+
+let g:javascript_conceal=1
+
+command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
+command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 
 " }}}
 
