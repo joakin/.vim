@@ -316,47 +316,6 @@ if 1 || !exists("g:fnd")
       set linespace=2
   else
       " set linespace=2
-      let g:fns = 9
-      let g:fnc = -2
-      let g:fnd = [
-      \  'Menlo_for_Powerline',
-      \  'Aurulent_Sans_Mono',
-      \  'Source_Code_Pro',
-      \  'Source_Code_Pro_Light',
-      \  'Meslo_LG_L',
-      \  'Tamsyn5x9',
-      \  'Tamsyn6x12',
-      \  'Tamsyn7x14',
-      \  'Tamsyn8x15',
-      \  'Tamsyn8x17',
-      \  'Tamsyn10x20'
-      \ ]
-
-      set linespace=4
-      " \  'Monaco',
-      " \  'Meslo_LG_M',
-      " \  'Meslo_LG_S'
-  endif
-endif
-
-if 1 || !exists("g:fnd")
-  if IsUnix()
-      let g:fns = 17
-      let g:fnc = 4
-      let g:fnd = [
-      \  'Inconsolata-dz for Powerline',
-      \  'Monaco',
-      \  'Consolas',
-      \  'Source Code Pro',
-      \  'Source Code Pro Light',
-      \  'M+ 1m light',
-      \  'Akkurat-Mono',
-      \  'Menlo'
-      \ ]
-
-      set linespace=2
-  else
-      " set linespace=2
       let g:fns = 10
       let g:fnc = 0
       let g:fnd = [
@@ -366,7 +325,13 @@ if 1 || !exists("g:fnd")
       \  'Source_Code_Pro_Light',
       \  'Meslo_LG_L',
       \  'Monaco',
-      \  'PragmataPro'
+      \  'PragmataPro',
+      \  'Tamsyn5x9',
+      \  'Tamsyn6x12',
+      \  'Tamsyn7x14',
+      \  'Tamsyn8x15',
+      \  'Tamsyn8x17',
+      \  'Tamsyn10x20'
       \ ]
 
       set linespace=4
