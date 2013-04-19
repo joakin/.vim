@@ -78,6 +78,7 @@ Bundle 'thinca/vim-textobj-between'
 Bundle 'kana/vim-textobj-line'
 Bundle 'kana/vim-textobj-fold'
 Bundle 'kana/vim-textobj-entire'
+Bundle 'kana/vim-textobj-lastpat'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
 " }}}
