@@ -810,10 +810,10 @@ vnoremap  <silent> <c-h> <Esc>:call NextIndent(0, 0, -1)<CR>m'gv''
 vnoremap  <silent> <c-l> <Esc>:call NextIndent(0, 1, 1 )<CR>m'gv''
 "vnoremap <silent> <c-L> <Esc>:call NextIndent(0, 0, 1 )<CR>m'gv''
 "vnoremap <silent> <c-H> <Esc>:call NextIndent(0, 1, -1)<CR>m'gv''
-"onoremap <silent> <c-k> _:call     NextIndent(0, 0, 0 )<CR>_
-"onoremap <silent> <c-j> $:call     NextIndent(0, 1, 0 )<CR>$
-"onoremap <silent> <c-h> _:call     NextIndent(1, 0, 1 )<CR>_
-"onoremap <silent> <c-l> $:call     NextIndent(1, 1, 1 )<CR>$
+onoremap <silent> <c-k> :<c-u>normal V<c-v><c-k><cr>
+onoremap <silent> <c-j> :<c-u>normal V<c-v><c-j><cr>
+onoremap <silent> <c-h> :<c-u>normal V<c-v><c-h>j<cr>
+onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 "onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
 "onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
 
@@ -862,7 +862,7 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " Create new text objects for pairs of identical characters
 
-for char in ['$',',','.','/','-','_','=','+','%']
+for char in ['$',',','.','/','\','-','_','=','+','%','+',' ']
   exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
   exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
   exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
