@@ -82,6 +82,10 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
 " }}}
 
+" Visual                        {{{
+Bundle 'terryma/vim-expand-region'
+" }}}
+
 " }}}
 
 " Coding                   {{{
