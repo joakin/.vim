@@ -73,6 +73,11 @@ Bundle 'paradigm/vim-multicursor'
 " }}}
 
 " Text Objects                  {{{
+Bundle 'kana/vim-textobj-user'
+Bundle 'thinca/vim-textobj-between'
+Bundle 'kana/vim-textobj-line'
+Bundle 'kana/vim-textobj-fold'
+Bundle 'kana/vim-textobj-entire'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
 " }}}
@@ -858,29 +863,6 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
 " }}}
 
-" Custom text objects           {{{
-
-" Create new text objects for pairs of identical characters
-
-for char in ['$',',','.','/','\','-','_','=','+','%','+',' ']
-  exec 'xnoremap i' . char . ' :<C-U>silent!normal!T' . char . 'vt' . char . '<CR>'
-  exec 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  exec 'xnoremap a' . char . ' :<C-U>silent!normal!F' . char . 'vf' . char . '<CR>'
-  exec 'onoremap a' . char . ' :normal va' . char . '<CR>'
-endfor
-" Create a text object for folding regions
-xnoremap if :<C-U>silent!normal![zjV]zk<CR>
-onoremap if :normal Vif<CR>
-xnoremap af :<C-U>silent!normal![zV]z<CR>
-onoremap af :normal Vaf<CR>
-" Create a text object for the entire buffer
-xnoremap ie :<c-u>silent!normal!ggVG<cr>
-onoremap ie :normal Vie<cr>
-xnoremap ae :<c-u>silent!normal!ggVG<cr>
-onoremap ae :normal Vie<cr>
-
-" }}}
-
 " Pulse Line                    {{{
 
 function! s:Pulse() " {{{
@@ -945,59 +927,6 @@ function! s:VSetSearch()
   let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
   let @@ = temp
 endfunction
-" }}}
-
-" Next and Last text objects    {{{
-"
-" Motion for "next/last object".  "Last" here means "previous", not "final".
-" Unfortunately the "p" motion was already taken for paragraphs.
-"
-" Next acts on the next object of the given type in the current line, last acts
-" on the previous object of the given type in the current line.
-"
-" Currently only works for (, [, {, b, r, B, ', and ".
-"
-" Some examples (C marks cursor positions, V means visually selected):
-"
-" din'  -> delete in next single quotes                foo = bar('spam')
-"                                                      C
-"                                                      foo = bar('')
-"                                                                C
-"
-" canb  -> change around next parens                   foo = bar('spam')
-"                                                      C
-"                                                      foo = bar
-"                                                               C
-"
-" vil"  -> select inside last double quotes            print "hello ", name
-"                                                                        C
-"                                                      print "hello ", name
-"                                                             VVVVVV
-
-onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-
-onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-
-function! s:NextTextObject(motion, dir)
-  let c = nr2char(getchar())
-
-  if c ==# "b"
-      let c = "("
-  elseif c ==# "B"
-      let c = "{"
-  elseif c ==# "r"
-      let c = "["
-  endif
-
-  exe "normal! ".a:dir.c."v".a:motion.c
-endfunction
-
 " }}}
 
 " Highlight Word {{{
