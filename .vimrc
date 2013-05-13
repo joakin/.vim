@@ -1221,6 +1221,7 @@ inoremap <a-d> <c-o>dw
 inoremap <a-bs> <c-o>db
 " }}}
 
+" Colon and Semi-colon mappings   {{{
 " Easier : reach, and saner ; map
 " Now, ; goes avanti with f/F t/T and <shift-;> goes backwards
 " Also command line goes to , which is better than <shift-;>
@@ -1228,6 +1229,16 @@ nnoremap , :
 xnoremap , :
 nnoremap : ,
 xnoremap : ,
+" }}}
+
+" Easy filetype changing        {{{
+nnoremap <leader>sft :set filetype=txt<cr>
+nnoremap <leader>sfj :set filetype=javascript<cr>
+nnoremap <leader>sfm :set filetype=markdown<cr>
+nnoremap <leader>sfw :set filetype=workflowish<cr>
+nnoremap <leader>sfv :set filetype=vim<cr>
+nnoremap <leader>sff :set filetype=
+" }}}
 
 " }}}
 
