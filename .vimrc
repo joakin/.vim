@@ -293,6 +293,8 @@ set guicursor+=v:block-vCursor-blinkon0
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
 
+set conceallevel=0
+
 " }}}
 
 " Font and colorscheme          {{{
@@ -316,8 +318,8 @@ if 1 || !exists("g:fnd")
       set linespace=2
   else
       " set linespace=2
-      let g:fns = 10
-      let g:fnc = 0
+      let g:fns = 11
+      let g:fnc = 1
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
@@ -566,7 +568,8 @@ if has('autocmd')
         au!
         " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
-        au FileType javascript setlocal conceallevel=2 concealcursor=nc
+        " conceallevel=2
+        au FileType javascript setlocal concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
     augroup END "   }}}
 
@@ -1071,7 +1074,6 @@ nnoremap <leader>P "+P
 vnoremap <leader>P "+P
 " }}}
 
-
 " Quick fix and location window mappings   {{{
 nnoremap <leader>eq :copen<cr>
 nnoremap <leader>el :lopen<cr>
@@ -1238,10 +1240,10 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\.git$\|\.hg$\|\.svn$',
-	\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
-	\ 'link': '',
-	\ }
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
+  \ 'link': '',
+  \ }
 nnoremap <leader>b :CtrlPBuffer<CR>
 " nnoremap <leader>t :CtrlPTag<CR>
 
