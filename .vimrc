@@ -81,6 +81,8 @@ Bundle 'kana/vim-textobj-entire'
 Bundle 'kana/vim-textobj-lastpat'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
+
+Bundle 'paradigm/TextObjectify'
 " }}}
 
 " Visual                        {{{
@@ -319,7 +321,7 @@ if 1 || !exists("g:fnd")
   else
       " set linespace=2
       let g:fns = 11
-      let g:fnc = 1
+      let g:fnc = -1
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
@@ -328,12 +330,8 @@ if 1 || !exists("g:fnd")
       \  'Meslo_LG_L',
       \  'Monaco',
       \  'PragmataPro',
-      \  'Tamsyn5x9',
-      \  'Tamsyn6x12',
-      \  'Tamsyn7x14',
-      \  'Tamsyn8x15',
-      \  'Tamsyn8x17',
-      \  'Tamsyn10x20'
+      \  'Ubuntu_Mono',
+      \  'Luxi_Mono'
       \ ]
 
       set linespace=4
