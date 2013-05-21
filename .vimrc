@@ -331,7 +331,8 @@ if 1 || !exists("g:fnd")
       \  'Monaco',
       \  'PragmataPro',
       \  'Ubuntu_Mono',
-      \  'Luxi_Mono'
+      \  'Luxi_Mono',
+      \  'Cousine'
       \ ]
 
       set linespace=4
@@ -567,6 +568,7 @@ if has('autocmd')
         " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
         " conceallevel=2
+        au FileType javascript setlocal tabstop=2
         au FileType javascript setlocal concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
     augroup END "   }}}
