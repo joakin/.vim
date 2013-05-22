@@ -319,7 +319,6 @@ if 1 || !exists("g:fnd")
 
       set linespace=2
   else
-      " set linespace=2
       let g:fns = 11
       let g:fnc = -1
       let g:fnd = [
@@ -330,15 +329,13 @@ if 1 || !exists("g:fnd")
       \  'Meslo_LG_L',
       \  'Monaco',
       \  'PragmataPro',
+      \  'Envy_Code_R',
       \  'Ubuntu_Mono',
       \  'Luxi_Mono',
       \  'Cousine'
       \ ]
 
       set linespace=4
-      " \  'Monaco',
-      " \  'Meslo_LG_M',
-      " \  'Meslo_LG_S'
   endif
 endif
 fun! SetFont()
