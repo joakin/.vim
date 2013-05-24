@@ -320,7 +320,7 @@ if 1 || !exists("g:fnd")
       set linespace=2
   else
       let g:fns = 11
-      let g:fnc = -1
+      let g:fnc = 6
       let g:fnd = [
       \  'Menlo_for_Powerline',
       \  'Aurulent_Sans_Mono',
