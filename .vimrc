@@ -250,7 +250,7 @@ syntax enable "Enable syntax hl
 
 set omnifunc=syntaxcomplete#Complete
 
-set completeopt=menu,longest,preview
+set completeopt=menu,preview
 
 set backspace=indent,eol,start
 
