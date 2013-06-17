@@ -111,9 +111,10 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'mintplant/vim-literate-coffeescript'
 " }
 " Clojure {
-" Bundle 'tpope/vim-foreplay'
-" Bundle 'tpope/vim-classpath'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
+Bundle 'kien/rainbow_parentheses.vim'
 " }
 " HTML {
 Bundle 'mattn/zencoding-vim'
@@ -370,33 +371,40 @@ set statusline +=%5*\ %P\       " percentage of file
 
 " Autocommands {
 if has('autocmd')
-    " settings immediately take effect
-    augroup instantsettings " {
-        au!
-        au BufWritePost $MYVIMRC :source $MYVIMRC
+  " settings immediately take effect
+  augroup instantsettings " {
+    au!
+    au BufWritePost $MYVIMRC :source $MYVIMRC
 
-        if !IsUnix()
-            au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
-        else
-            au BufWritePost /Users/jkn/Develop/projects/conf/.vim/.vimrc :source $MYVIMRC
-        endif
-    augroup END " }
+    if !IsUnix()
+      au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
+    else
+      au BufWritePost /Users/jkn/Develop/projects/conf/.vim/.vimrc :source $MYVIMRC
+    endif
+  augroup END " }
 
-    augroup writeonfocus " {
-        au!
-        " Autosave when focus is lost
-        au FocusLost * :silent! wall
-    augroup END " }
+  augroup writeonfocus " {
+    au!
+    " Autosave when focus is lost
+    au FocusLost * :silent! wall
+  augroup END " }
 
-    augroup rememberlastcursorpos " {
-        au!
-        au BufReadPost *
-                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                    \   exe "normal! g`\"zvzz"                        |
-                    \ endif
-    augroup END " }
+  augroup rememberlastcursorpos " {
+    au!
+    au BufReadPost *
+          \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+          \   exe "normal! g`\"zvzz"                        |
+          \ endif
+  augroup END " }
+
+  augroup rainbow_parenthesis " {
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+  augroup END " }
 endif
-" }
+  " }
 
 " Vim mappings {
 
@@ -723,11 +731,6 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 " }
 
 " VimClojure {
-" Highlight clojure functions
-let vimclojure#HighlightBuiltins = 1
-" Enable rainbow parenthesis
-let vimclojure#ParenRainbow = 1
-let vimclojure#DynamicHighlighting = 1
 " }
 
 " Snipmate stuff {
