@@ -1,5 +1,5 @@
 
-" Utility functions             {{{
+" Utility functions {
 
 let g:isUnix = 1
 if has('win32') || has('win64')
@@ -8,14 +8,14 @@ endif
 fun! IsUnix()
     return g:isUnix
 endfun
-" }}}
+" }
 
 set nocompatible
 set encoding=utf-8
 
-" Vundle                        {{{
+" Vundle {
 "
-" Vundle init                   {{{
+" Vundle init {
 filetype on    " test
 filetype off   " required for vundle
 
@@ -30,32 +30,27 @@ endif
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-" }}}
+" }
 
-" VimL libraries and deps       {{{
+" VimL libraries and deps {
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'tpope/vim-repeat'
-" }}}
+" }
 
-" Vim improvements              {{{
+" Vim improvements {
 
-" Command line                  {{{
+" Command line {
 Bundle 'kien/ctrlp.vim'
 " Bundle 'paradigm/SkyBison'
-" }}}
+" }
 
-" Movement                      {{{
+" Movement {
 Bundle 'matchit.zip'
 Bundle 'Lokaltog/vim-easymotion'
-" }}}
+" }
 
-" Unclassified                  {{{
-" Bundle 'nathanaelkane/vim-indent-guides'
-" Bundle 'vim-scripts/Gundo'
-" }}}
-
-" Editing                       {{{
+" Editing {
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 
@@ -70,9 +65,9 @@ Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
 
 Bundle 'paradigm/vim-multicursor'
-" }}}
+" }
 
-" Text Objects                  {{{
+" Text Objects {
 Bundle 'kana/vim-textobj-user'
 Bundle 'thinca/vim-textobj-between'
 Bundle 'kana/vim-textobj-line'
@@ -83,66 +78,67 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
 
 Bundle 'paradigm/TextObjectify'
-" }}}
+" }
 
-" Visual                        {{{
+" Visual {
 Bundle 'terryma/vim-expand-region'
-" }}}
+" }
 
-" }}}
+" }
 
-" Coding                   {{{
+" Coding {
 
-" Editing                  {{{
+" Editing {
 Bundle 'mileszs/ack.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'majutsushi/tagbar'
-" }}}
+" }
 
-" Languages                {{{
-" JS                       {{{
+" Languages {
+" JS {
 Bundle 'pangloss/vim-javascript'
 " Bundle 'drslump/vim-syntax-js'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
-" }}}
-" CoffeeScript             {{{
+Bundle 'nono/vim-handlebars'
+" }
+" CoffeeScript {
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mintplant/vim-literate-coffeescript'
-" }}}
-" Clojure                  {{{
-Bundle 'tpope/vim-foreplay'
+" }
+" Clojure {
+" Bundle 'tpope/vim-foreplay'
 " Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
-" }}}
-" HTML                     {{{
+" }
+" HTML {
 Bundle 'mattn/zencoding-vim'
-" }}}
-" Livescript {{{
+" }
+" Livescript {
 Bundle 'gkz/vim-ls'
-" }}}
-" CSS                      {{{
+" }
+" CSS {
 Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'wavded/vim-stylus'
-" }}}
-" Markdown                 {{{
+" }
+" Markdown {
 Bundle 'tpope/vim-markdown'
-" }}}
-" }}}
+" }
+" }
 
-" External tools                {{{
+" External tools {
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
 Bundle 'guns/xterm-color-table.vim'
-" }}}
+" }
 
-" }}}
+" }
 
-" Color schemes                 {{{
+" Color schemes {
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'cschlueter/vim-wombat'
 Bundle 'shawncplus/skittles_berry'
@@ -156,15 +152,15 @@ Bundle 'noahfrederick/Hemisu'
 Bundle 'sjl/badwolf'
 Bundle 'mayansmoke'
 Bundle 'morhetz/gruvbox'
-" }}}
+" }
 
-" Notes and data                {{{
+" Notes and data {
 Bundle 'lukaszkorecki/workflowish'
-" }}}
+" }
 
-" }}}
+" }
 
-" Vim general settings          {{{
+" Vim general settings {
 
 " Enable filetype plugin
 filetype plugin on
@@ -270,6 +266,8 @@ set title
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
 
+set mouse=a
+
 " set cursorline
 " set cursorcolumn
 
@@ -281,200 +279,64 @@ let g:mapleader = " "
 let maplocalleader= "\\"
 let g:maplocalleader= "\\"
 
-" Different cursors for different modes.
-set guicursor=a:block-Cursor-blinkon0
-set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
-set guicursor+=v:block-vCursor-blinkon0
-
-" set guicursor=n-c:block-Cursor-blinkon0
-" set guicursor+=v:block-vCursor-blinkon0
-" set guicursor+=i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150
-
-  " guicursor=n-v-c:block-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175,n-c:block-Cursor-blinkon0,v:block-vCursor-blinkon0,i-ci:ver20-iCursor,i-ci:ver30-iCursor-blickwait300-blinkon200-blinkoff150,i-ci:ver30-inCursor-blickwait300-blinkon200-blinkoff150
+" GUI Cursor: Different cursors for different modes. {
+if has("gui_running")
+  set guicursor=a:block-Cursor-blinkon0
+  set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
+  set guicursor+=v:block-vCursor-blinkon0
+endif
+" }
 
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
 
 set conceallevel=0
 
-" }}}
+" }
 
-" Font and colorscheme          {{{
-" Set font according to system
-
-if 1 || !exists("g:fnd")
-  if IsUnix()
-      let g:fns = 17
-      let g:fnc = 4
-      let g:fnd = [
-      \  'Inconsolata-dz for Powerline',
-      \  'Monaco',
-      \  'Consolas',
-      \  'Source Code Pro',
-      \  'Source Code Pro Light',
-      \  'M+ 1m light',
-      \  'Akkurat-Mono',
-      \  'Menlo'
-      \ ]
-
-      set linespace=2
-  else
-      let g:fns = 11
-      let g:fnc = 6
-      let g:fnd = [
-      \  'Menlo_for_Powerline',
-      \  'Aurulent_Sans_Mono',
-      \  'Source_Code_Pro',
-      \  'Source_Code_Pro_Light',
-      \  'Meslo_LG_L',
-      \  'Monaco',
-      \  'PragmataPro',
-      \  'Envy_Code_R',
-      \  'Ubuntu_Mono',
-      \  'Luxi_Mono',
-      \  'Cousine'
-      \ ]
-
-      set linespace=4
-  endif
-endif
-fun! SetFont()
-  if IsUnix()
-    let &guifont = get(g:fnd, g:fnc) . ':h' . g:fns
-  else
-    let &guifont = escape(get(g:fnd, g:fnc), " ") . ':h' . g:fns
-  endif
-    " echo &guifont
-endfun
-call SetFont()
-command! SetDefaultFont call SetFont()
-
-
-fun! DefaultCursors()
-  hi Cursor guibg=white ctermbg=15
-  hi vCursor guifg=black guibg=#a3d3ff ctermfg=0 ctermbg=250
-  hi iCursor guibg=#df5f00 ctermbg=166
-endfun
+" Font and colorscheme {
 
 if has("gui_running")
+  set gfn=Nitti\ WM2\ Light:h20
+  set linespace=2
 
   " Gui options
   set guioptions=c
-
   set guioptions-=T
-  set t_Co=256
 
-  let s:badwolf=0
-  let s:lucius=0
-  let s:gruvbox=0
-  let s:ir_black=1
-
-  " ir_black colorscheme settings {{{
-  if s:ir_black
-    colorscheme ir_black
-
-    hi! link FoldColumn CursorColumn
-    hi! link SignColumn CursorColumn
-
-    " Cursor colors
-    call DefaultCursors()
-
-    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
-    exe g:status_line_colors
-
-  endif
-  " }}}
-
-  " gruvbox colorscheme settings {{{
-  if s:gruvbox
-    colorscheme gruvbox
-    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=235 ctermbg=243 gui=bold guifg=#282828 guibg=#7c6f64"
-    exe g:status_line_colors
-  endif
-  " }}}
-
-  " badwolf colorscheme settings {{{
-  if s:badwolf
-    let g:badwolf_darkgutter = 1
-    let g:badwolf_tabline = 3
-    let g:badwolf_css_props_highlight = 1
-    colorscheme badwolf
-
-    " Cursor colors
-    hi vCursor cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#4abdff
-
-    " Make folds a bit different than comments
-    au ColorScheme * hi Folded ctermfg=241 ctermbg=235 guifg=#cccccc guibg=#343331
-
-    hi link User2 StatusLineNC
-    let g:status_line_colors="hi StatusLine term=bold,reverse cterm=bold ctermfg=16 ctermbg=39 gui=bold guifg=#000000 guibg=#0a9dff"
-    exe g:status_line_colors
-
-    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-  endif
-  " }}}
-
-  " lucius colorscheme settings {{{
-  if s:lucius
-    colorscheme lucius
-    LuciusBlackLowContrast
-
-    " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-    " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-    " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-    " LuciusBlack: http://i.imgur.com/iD4ri.png
-    " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-    " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-    " LuciusLight (light default): http://i.imgur.com/soYD8.png
-    " LuciusLightLowContrast: http://i.imgur.com/95I86.png
-    " LuciusWhite: http://i.imgur.com/wDzkz.png
-    " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
-
-    " Lucius Cursor colors
-    call DefaultCursors()
-
-    hi clear StatusLine
-    hi clear StatusLineNC
-    let g:status_line_colors="hi StatusLine guifg=#ffffff guibg=#0087AF ctermfg=33"
-    exe g:status_line_colors
-    hi StatusLineNC guifg=#ffffff guibg=#585858 ctermfg=15 ctermbg=240
-
-    hi User1 guifg=#005F00 guibg=#B5E61D
-    hi User1 guifg=#ffffff guibg=#0087AF
-    hi User2 guifg=#ffffff guibg=#45413b
-    hi User3 guifg=#666666 guibg=#080808 ctermfg=242 ctermbg=232
-    hi User4 guifg=#FA8072 guibg=#DC143C
-    hi User5 guifg=#333333 guibg=#dddddd
-  endif
-  " }}}
-
+  " colorscheme ir_black
+  " colorscheme gruvbox
+  " let g:badwolf_darkgutter = 1
+  " let g:badwolf_tabline = 3
+  " let g:badwolf_css_props_highlight = 1
+  " colorscheme badwolf
+  " colorscheme lucius
+  " LuciusBlackLowContrast
+  " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
+  " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
+  " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
+  " LuciusBlack: http://i.imgur.com/iD4ri.png
+  " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
+  " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
+  " LuciusLight (light default): http://i.imgur.com/soYD8.png
+  " LuciusLightLowContrast: http://i.imgur.com/95I86.png
+  " LuciusWhite: http://i.imgur.com/wDzkz.png
+  " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
 else
-  set t_Co=256
-  colorscheme lucius
-  LuciusBlackLowContrast
 
-  " Lucius Cursor colors
-  call DefaultCursors()
+  colorscheme lucius
+  LuciusBlack
 
 endif
+
+set t_Co=256
 
 " XXX: This is not respected as it should
-hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
+hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=darkred
 
-" }}}
+" }
 
-" Vim OS specific settings      {{{
-
-if IsUnix()
-else
-  " set shell=D:\devel\bin\Git\bin\sh.exe
-  " set shellcmdflag=--login\ -c
-  " set shellxquote=\"
-  " set shellslash
-endif
-" }}}
-
-" Statusline                    {{{
+" Statusline {
 
 "set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
@@ -490,12 +352,12 @@ set statusline +=%2*%5l%*       " current line
 set statusline +=%2*/%L\ \ %*   " total lines
 set statusline +=%5*\ %P\       " percentage of file
 
-" }}}
+" }
 
-" Autocommands                  {{{
+" Autocommands {
 if has('autocmd')
     " settings immediately take effect
-    augroup instantsettings "   {{{
+    augroup instantsettings " {
         au!
         au BufWritePost $MYVIMRC :source $MYVIMRC
 
@@ -504,63 +366,54 @@ if has('autocmd')
         else
             au BufWritePost /Users/jkn/Develop/projects/conf/.vim/.vimrc :source $MYVIMRC
         endif
-    augroup END "   }}}
+    augroup END " }
 
-    augroup writeonfocus "   {{{
+    augroup writeonfocus " {
         au!
         " Autosave when focus is lost
         au FocusLost * :silent! wall
-    augroup END "   }}}
+    augroup END " }
 
-    augroup rememberlastcursorpos "   {{{
+    augroup rememberlastcursorpos " {
         au!
         au BufReadPost *
                     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
                     \   exe "normal! g`\"zvzz"                        |
                     \ endif
-    augroup END "   }}}
+    augroup END " }
 
-    " augroup cline "   {{{
+    " augroup cline " {
     "     au!
     "     au WinLeave,InsertEnter * set nocursorline
     "     au WinEnter,InsertLeave * set cursorline
-    " augroup END "   }}}
+    " augroup END " }
 
-    augroup status_line_colors " {{{
-
-      if has("gui_running")
-        au InsertEnter * hi StatusLine guifg=white guibg=#df5f00 ctermbg=166
-        exe "au InsertLeave * " g:status_line_colors
-      endif
-
-    augroup END "                }}}
-
-    augroup viml "   {{{
+    augroup viml " {
         au!
         au FileType vim setlocal foldmethod=marker foldenable
-    augroup END "   }}}
+    augroup END " }
 
-    augroup php "   {{{
+    augroup php " {
         au!
         au FileType php setlocal shiftwidth=4
-    augroup END "   }}}
+    augroup END " }
 
-    augroup clojurescript "   {{{
+    augroup clojurescript " {
         au!
         au BufRead,BufNewFile *.cljs setlocal filetype=clojure
-    augroup END "   }}}
+    augroup END " }
 
-    augroup css "   {{{
+    augroup css " {
         au!
         au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    augroup END "   }}}
+    augroup END " }
 
-    augroup html_markdown "   {{{
+    augroup html_markdown " {
         au!
         au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    augroup END "   }}}
+    augroup END " }
 
-    augroup javascript "   {{{
+    augroup javascript " {
         au!
         " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
@@ -568,104 +421,82 @@ if has('autocmd')
         au FileType javascript setlocal tabstop=2
         au FileType javascript setlocal concealcursor=nc
         au FileType javascript setlocal foldmethod=syntax
-    augroup END "   }}}
+    augroup END " }
 
-    augroup json "   {{{
+    augroup json " {
         au!
-    augroup END "   }}}
+    augroup END " }
 
-    augroup python "   {{{
+    augroup python " {
         au!
         au FileType python setlocal omnifunc=pythoncomplete#Complete
-    augroup END "   }}}
+    augroup END " }
 
-    augroup xml "   {{{
+    augroup xml " {
         au!
         au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    augroup END "   }}}
+    augroup END " }
 
-    augroup txt "   {{{
+    augroup txt " {
         au!
         au FileType txt,text setlocal formatoptions+=ta2
-    augroup END "   }}}
+    augroup END " }
 
-    augroup dont_wrap_us_and_fuck_with_our_indent "   {{{
+    augroup dont_wrap_us_and_fuck_with_our_indent " {
         au!
         " au FileType html,php,jst setlocal nowrap
         au FileType html,php,jst setlocal formatoptions-=t
         au FileType html,php,jst setlocal indentkeys-=*<Return>
-    augroup END "   }}}
+    augroup END " }
 
-    augroup workflowish "      {{{
+    augroup workflowish " {
         au!
         " au FileType workflowish setlocal noexpandtab
         " This mappings make <cr> to zoom in and <bs> to zoom out
         au FileType workflowish nmap <buffer> <cr> zq
         au FileType workflowish nmap <buffer> <bs> zp
-    augroup END "   }}}
+    augroup END " }
 
-    augroup make "              {{{
+    augroup make " {
         au FileType make setlocal noexpandtab
-    augroup END "   }}}
+    augroup END " }
 endif
-" }}}
+" }
 
-" Utilities                     {{{
+" Utilities {
 
-" Font size changing            {{{
+" Font size changing {
 
-let s:fontIncrements = '1'
-function! AdjustFontSize(amount)
-  if has("gui_running")
+if has("gui_running")
+  let s:fontIncrements = '1'
+  function! AdjustFontSize(amount)
+    if has("gui_running")
 
-    let &guifont = substitute(
-     \ &guifont,
-     \ ':h\zs\d\+',
-     \ '\=eval(submatch(0)'.a:amount.')',
-     \ '')
+      let &guifont = substitute(
+       \ &guifont,
+       \ ':h\zs\d\+',
+       \ '\=eval(submatch(0)'.a:amount.')',
+       \ '')
 
-    let g:fns = eval(g:fns.a:amount)
+    else
+      echoerr "You need to run gui version of Vim to use this function."
+    endif
+  endfunction
 
-  else
-    echoerr "You need to run gui version of Vim to use this function."
-  endif
-endfunction
+  function! LargerFont()
+    call AdjustFontSize('+'.s:fontIncrements)
+  endfunction
+  command! LargerFont call LargerFont()
 
-function! LargerFont()
-  call AdjustFontSize('+'.s:fontIncrements)
-endfunction
-command! LargerFont call LargerFont()
+  function! SmallerFont()
+    call AdjustFontSize('-'.s:fontIncrements)
+  endfunction
+  command! SmallerFont call SmallerFont()
+endif
 
-function! SmallerFont()
-  call AdjustFontSize('-'.s:fontIncrements)
-endfunction
-command! SmallerFont call SmallerFont()
+" }
 
-" }}}
-
-" Font family cycle             {{{
-
-" Cycles font family.
-" a:fwd true -> goes foward through the array
-function! CycleFontFamily(fwd)
-  let step = a:fwd ? 1 : -1
-  let limit = a:fwd ? len(g:fnd) : -1
-  let rst = a:fwd ? 0 : len(g:fnd)-1
-  let g:fnc += step
-  if g:fnc == limit
-    let g:fnc = rst
-  endif
-endfunction
-function! CycleFont(fwd)
-  call CycleFontFamily(a:fwd)
-  call SetFont()
-endfunc
-command! CycleFontBackwards call CycleFont(0)
-command! CycleFontFoward call CycleFont(1)
-
-" }}}
-
-" Toggle line number type       {{{
+" Toggle line number type {
 
 function! g:ToggleNuMode(globally)
     if(&rnu ==? 1)
@@ -683,9 +514,9 @@ function! g:ToggleNuMode(globally)
     endif
 endfunc
 
-" }}}
+" }
 
-" Toggle conceal level       {{{
+" Toggle conceal level {
 
 function! g:ToggleConceal(globally)
     if(&conceallevel)
@@ -703,9 +534,9 @@ function! g:ToggleConceal(globally)
     endif
 endfunc
 
-" }}}
+" }
 
-" Moving through indent levels  {{{
+" Moving through indent levels {
 "
 " Jump to the next or previous line that has the same level or a different
 " level of indentation than the current line.
@@ -792,9 +623,9 @@ onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 "onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
 "onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
 
-" }}}
+" }
 
-" Quickfix results to args      {{{
+" Quickfix results to args {
 
 function! QuickfixFilenames()
   " Building a hash ensures we get each buffer only once
@@ -806,9 +637,9 @@ function! QuickfixFilenames()
 endfunction
 command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 
-" }}}
+" }
 
-" Scroll fn                     {{{
+" Scroll fn {
 
 " function! SmoothScroll(up)
 "     if a:up
@@ -831,11 +662,11 @@ command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 " inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>Mi
 " inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>Mi
 
-" }}}
+" }
 
-" Pulse Line                    {{{
+" Pulse Line {
 
-function! s:Pulse() " {{{
+function! s:Pulse() " {
     let current_window = winnr()
     windo set nocursorline
     execute current_window . 'wincmd w'
@@ -867,11 +698,11 @@ function! s:Pulse() " {{{
     execute 'hi ' . old_hi
 
     setlocal nocursorline
-endfunction " }}}
+endfunction " }
 command! -nargs=0 Pulse call s:Pulse()
-"}}}
+"}
 
-" FoldText                      {{{
+" FoldText {
 function! MyFoldText()
     let line = getline(v:foldstart)
 
@@ -888,18 +719,18 @@ function! MyFoldText()
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
 set foldtext=MyFoldText()
-" }}}
+" }
 
-" V Search function */#         {{{
+" V Search function */# {
 function! s:VSetSearch()
   let temp = @@
   norm! gvy
   let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
   let @@ = temp
 endfunction
-" }}}
+" }
 
-" Highlight Word {{{
+" Highlight Word {
 "
 " This mini-plugin provides a few mappings for highlighting words temporarily.
 "
@@ -951,25 +782,25 @@ hi def InterestingWord7 guifg=#000000 ctermfg=16 guibg=#df5fff ctermbg=171
 hi def InterestingWord8 guifg=#000000 ctermfg=16 guibg=#c0c0c0 ctermbg=7
 hi def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#00ffff ctermbg=14
 
-" }}}
+" }
 
-" Remove trailing whitespace     {{{
+" Remove trailing whitespace {
 
 nnoremap <leader>i<space> :%s/\s\+$<cr>
 
-" }}}
+" }
 
-" Map search to very magic      {{{
+" Map search to very magic {
 nnoremap / /\v
 nnoremap ? ?\v
 
-" }}}
+" }
 
-" }}}
+" }
 
-" Vim mappings                  {{{
+" Vim mappings {
 
-" Settings editing              {{{
+" Settings editing {
 if IsUnix()
     nnoremap <leader>ev :e $MYVIMRC<cr>
     nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
@@ -979,18 +810,18 @@ else
     nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.wofl<cr>:lcd %:h<cr>
     nnoremap <leader>ew :e D:\devel\Dropbox\data\wiki\<cr>:lcd %:h<cr>
 endif
-" }}}
+" }
 
-" Fast saving & quitting      {{{
+" Fast saving & quitting {
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
-" }}}
+" }
 
-" Easier omnicompletion       {{{
+" Easier omnicompletion {
 inoremap <C-space> <C-X><C-O>
-" }}}
+" }
 
-" Manipulate windows          {{{
+" Manipulate windows {
 nnoremap <C-W><C-F>     <C-W>_:vertical resize<cr>
 nnoremap <C-W><C-E>     <C-W>=
 nnoremap <C-W><Down>    <C-W>10+
@@ -1005,9 +836,9 @@ nnoremap <C-W><C-Left>  <C-W>20<
 nnoremap <leader>ot :tabe<cr>
 nnoremap <leader>os :sp<cr>:enew<cr>
 nnoremap <leader>ov :vsp<cr>:enew<cr>
-" }}}
+" }
 
-" Move lines of code          {{{
+" Move lines of code {
 " with Alt+[hjkl] in all modes
 nnoremap <A-j> :m+<CR>==
 nnoremap <A-k> :m-2<CR>==
@@ -1021,9 +852,9 @@ vnoremap <A-j> :m'>+<CR>gv=gv
 vnoremap <A-k> :m-2<CR>gv=gv
 vnoremap <A-h> <gv
 vnoremap <A-l> >gv
-" }}}
+" }
 
-" Toggling settings           {{{
+" Toggling settings {
 
 nnoremap <leader>s/ :nohlsearch<CR>
 
@@ -1051,16 +882,13 @@ nnoremap <leader>ss :set spell!<CR>
 nnoremap <leader>sc :call g:ToggleConceal(0)<cr>
 nnoremap <leader>sC :call g:ToggleConceal(1)<cr>
 
-" }}}
+" Toggle wrap
+nnoremap <leader>sw :setlocal wrap!<cr>
+nnoremap <leader>sW :set wrap!<cr>
 
-" Font size maps              {{{
-nnoremap <A-=> :LargerFont<CR>
-nnoremap <A--> :SmallerFont<CR>
-nnoremap <A-9> :CycleFontBackwards<CR>
-nnoremap <A-0> :CycleFontFoward<CR>
-" }}}
+" }
 
-" Common editing stuff        {{{
+" Common editing stuff {
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>d "+d
@@ -1069,33 +897,33 @@ nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
-" }}}
+" }
 
-" Quick fix and location window mappings   {{{
+" Quick fix and location window mappings {
 nnoremap <leader>eq :copen<cr>
 nnoremap <leader>el :lopen<cr>
-" }}}
+" }
 
-" Highlight Group(s)          {{{
+" Highlight Group(s) {
 nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
                         \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
                         \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-" }}}
+" }
 
-" Panic Button                 {{{
+" Panic Button {
 nnoremap <f9> mzggg?G`z
-" }}}
+" }
 
-" Formatting                   {{{
+" Formatting {
 nnoremap Q gqip
 vnoremap Q gq
-" }}}
+" }
 
-" Sudo to write                {{{
+" Sudo to write {
 cnoremap w!! w !sudo tee % >/dev/null
-" }}}
+" }
 
-" Center screen when moving     {{{
+" Center screen when moving {
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
@@ -1104,9 +932,9 @@ nnoremap g; g;zzzv
 nnoremap g, g,zzzv
 nnoremap <c-o> <c-o>zzzv
 nnoremap <c-i> <c-i>zzzv
-" }}}
+" }
 
-" Line-wise movements          {{{
+" Line-wise movements {
 " Easier to type
 noremap H ^
 noremap L $
@@ -1114,39 +942,40 @@ vnoremap L g_
 " Mantain
 noremap gH H
 noremap gL L
-" }}}
+" }
 
-" gI                           {{{
+" gI {
 " gi already moves to "last place you exited insert mode", so we'll map gI to
 " something similar: move to last change
 nnoremap gI `.
-" }}}
+" }
 
-" Toggle "keep current line in the center of the screen" mode {{{
+" Toggle "keep current line in the center of the screen" mode {
 nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
-" }}}
+" }
 
-" Normal mode */# remap         {{{
+" Normal mode */# remap {
 nnoremap * *Nzzzv
 nnoremap # #Nzzzv
-" }}}
+" }
 
-" Visual Mode */# from Scrooloose {{{
+" Visual Mode */# from Scrooloose {
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-" }}}
+" }
 
-" List navigation               {{{
+" List navigation {
 nnoremap <left>  :cprev<cr>zvzz
 nnoremap <right> :cnext<cr>zvzz
 nnoremap <up>    :lprev<cr>zvzz
 nnoremap <down>  :lnext<cr>zvzz
-" }}}
+" }
 
-" Folds                         {{{
+" Folds {
 
 set nofoldenable
 set foldlevelstart=1
+set foldmarker={,}
 
 " Space to toggle folds.
 nnoremap <c-space> za
@@ -1155,9 +984,9 @@ nnoremap <c-space> za
 " cursor happens to be.
 nnoremap zO zCzO
 
-" }}}
+" }
 
-" "Focus" the current line       {{{
+" "Focus" the current line {
 "
 " 1. Close all folds.
 " 2. Open just the folds containing the current line.
@@ -1168,16 +997,16 @@ nnoremap zO zCzO
 "
 " I use :sus for the rare times I want to actually background Vim.
 nnoremap <c-cr> mzzMzvzz3<c-e>`z:Pulse<cr>
-" }}}
+" }
 
-" netrw                       {{{
+" netrw {
 let g:netrw_liststyle = 1
 noremap <F1> :e.<CR>
 noremap <leader>n :e.<CR>
 noremap <leader>N :e %:h<CR>
-" }}}
+" }
 
-" Command line maps             {{{
+" Command line maps {
 
 cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <c-n> <down>
@@ -1192,16 +1021,16 @@ cnoremap <c-a> <c-b>
 
 cnoremap <a-bs> <c-w>
 
-" }}}
+" }
 
-" Substitute shortcut           {{{
+" Substitute shortcut {
 
 nnoremap <leader>r :%s/
 xnoremap <leader>r :s/
 
-" }}}
+" }
 
-" Insert mode stuff (shame) {{{
+" Insert mode stuff (shame) {
 inoremap <c-d> <c-k>
 inoremap <c-l> <Del>
 inoremap <c-k> <c-o>D
@@ -1216,9 +1045,12 @@ inoremap <a-a> <c-o>(
 inoremap <a-e> <c-o>)
 inoremap <a-d> <c-o>dw
 inoremap <a-bs> <c-o>db
-" }}}
 
-" Colon and Semi-colon mappings   {{{
+inoremap <c-s> <esc>:w
+
+" }
+
+" Colon and Semi-colon mappings {
 " Easier : reach, and saner ; map
 " Now, ; goes avanti with f/F t/T and <shift-;> goes backwards
 " Also command line goes to , which is better than <shift-;>
@@ -1226,22 +1058,22 @@ nnoremap , :
 xnoremap , :
 nnoremap : ,
 xnoremap : ,
-" }}}
+" }
 
-" Easy filetype changing        {{{
+" Easy filetype changing {
 nnoremap <leader>sft :set filetype=txt<cr>
 nnoremap <leader>sfj :set filetype=javascript<cr>
 nnoremap <leader>sfm :set filetype=markdown<cr>
 nnoremap <leader>sfw :set filetype=workflowish<cr>
 nnoremap <leader>sfv :set filetype=vim<cr>
 nnoremap <leader>sff :set filetype=
-" }}}
+" }
 
-" }}}
+" }
 
-" Plugin settings & mappings    {{{
+" Plugin settings & mappings {
 
-" CtrlP                         {{{
+" CtrlP {
 
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
@@ -1255,13 +1087,13 @@ let g:ctrlp_custom_ignore = {
 nnoremap <leader>b :CtrlPBuffer<CR>
 " nnoremap <leader>t :CtrlPTag<CR>
 
-" }}}
+" }
 
-" Tagbar                         {{{
+" Tagbar {
 nnoremap <silent> <F2> :TagbarToggle<CR>
-" }}}
+" }
 
-" Tabularize stuff                         {{{
+" Tabularize stuff {
 
 noremap <leader>at       :Tabularize /
 noremap <leader>aa       :Tabularize /
@@ -1270,58 +1102,58 @@ noremap <leader>a<space> :Tabularize spaces<cr>
 noremap <leader>a=       :Tabularize assignment<cr>
 noremap <leader>acss     :Tabularize inline_css<cr>
 
-" }}}
+" }
 
-" VimClojure                         {{{
+" VimClojure {
 " Highlight clojure functions
 let vimclojure#HighlightBuiltins = 1
 " Enable rainbow parenthesis
 let vimclojure#ParenRainbow = 1
 let vimclojure#DynamicHighlighting = 1
-" }}}
+" }
 
-" Snipmate stuff                         {{{
+" Snipmate stuff {
 let g:snipMate = {}
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['less'] = 'css'
 let g:snipMate.scope_aliases['php'] = 'php,html'
 let g:snipMate.scope_aliases['jst'] = 'js,html'
 let g:snipMate.scope_aliases['ejs'] = 'js,html'
-" }}}
+" }
 
-" Pandoc                         {{{
+" Pandoc {
 " if IsUnix()
 "     " Pandoc setting
 "     " Use hard wraps
 "     let g:pandoc_use_hard_wraps = 1
 " endif
-" }}}
+" }
 
-" Scratch                         {{{
+" Scratch {
 nnoremap <leader>es :Scratch<cr>
-" }}}
+" }
 
-" Ack commands abbr             {{{
+" Ack commands abbr {
 
 nnoremap <leader>/ :Ack 
 command! TODO execute "Ack TODO"
 command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 
-" }}}
+" }
 
-" EasyMotion                    {{{
+" EasyMotion {
 let g:EasyMotion_leader_key = 's'
 let g:EasyMotion_keys="jklfdsaghtrewqyuiopvcxzbnmJKLFDSAGHTREWQYUIOPVCXZBNM"
-hi EasyMotionShade ctermfg=darkgrey guifg=darkgrey guibg=black
-hi EasyMotionTarget ctermfg=darkred guifg=yellow guibg=darkred
-" }}}
+hi EasyMotionShade ctermfg=darkgrey ctermbg=black guifg=darkgrey guibg=black
+hi EasyMotionTarget ctermfg=yellow ctermbg=darkred guifg=yellow guibg=darkred
+" }
 
-" AceJump                       {{{
+" AceJump {
 nnoremap ss :call AceJump()<CR>
-" }}}
+" }
 
 
-" Multicursor                   {{{
+" Multicursor {
 
 nnoremap <leader>m    :<c-u>call MultiCursorPlaceCursor()<cr>
 xnoremap <leader>m    :<c-u>call MultiCursorVisual()<cr>
@@ -1337,9 +1169,9 @@ nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
 xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
 xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
 
-" }}}
+" }
 
-" Skybison                               {{{
+" Skybison {
 "
 " let g:skybison_fuzz = 2
 " nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
@@ -1348,11 +1180,11 @@ xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
 " " nnoremap <leader>h 2:<c-u>call SkyBison("h ")<cr>
 " cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
 " 
-" }}}
+" }
 
-" }}}
+" }
 
-" Abbreviations                 {{{
+" Abbreviations {
 
 iabbrev @@    joaquin@chimeces.com
 iabbrev wweb  http://chimeces.com
@@ -1366,9 +1198,9 @@ iabbrev alice5 Either the well was very deep, or she fell very slowly, for she h
 iabbrev alice6 <cr>There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. `Very uncomfortable for the Dormouse,' thought Alice; `only, as it's asleep, I suppose it doesn't mind.'<cr><cr>The table was a large one, but the three were all crowded together at one corner of it: `No room! No room!' they cried out when they saw Alice coming. `There's plenty of room!' said Alice indignantly, and she sat down in a large arm-chair at one end of the table.<cr>
 iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking it every now and then, and holding it to his ear.<cr><cr>Alice considered a little, and then said `The fourth.'<cr><cr>`Two days wrong!' sighed the Hatter. `I told you butter wouldn't suit the works!' he added looking angrily at the March Hare.<cr><cr>`It was the best butter,' the March Hare meekly replied.<cr><cr>`Yes, but some crumbs must have got in as well,' the Hatter grumbled: `you shouldn't have put it in with the bread-knife.'<cr><cr>The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, `It was the best butter, you know.'<cr>
 
-" }}}
+" }
 
-" Language settings             {{{
+" Language settings {
 
 " For reference
 " Places where :find and gf look for files
@@ -1379,7 +1211,7 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 "   set suffixesadd=.java
 
 
-" Javascript                    {{{
+" Javascript {
 " Bundle 'othree/javascript-libraries-syntax.vim'
 
 let g:javascript_conceal=1
@@ -1387,35 +1219,24 @@ let g:javascript_conceal=1
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 
-" }}}
+" }
 
-" }}}
+" }
 
-" Per project settings          {{{
+" Per project settings {
 
 if has('autocmd')
 
-    " augroup esearchFE_settings
-    "     au!
-    "     if !IsUnix()
-    "         au BufNewFile,BufRead d:/devel/projects/eSearchFE/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
-    "     endif
-    " augroup END
-    " augroup website_framework_settings
-    "     au!
-    "     if !IsUnix()
-    "         au BufNewFile,BufRead d:/devel/projects/WebsiteFramework/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
-    "     endif
-    " augroup END
-    augroup fsp_settings
-        au!
-        if !IsUnix()
-            " au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
-        endif
-    augroup END
+  " Example of project settings.
+  " augroup project_settings
+  "   au!
+  "   if !IsUnix()
+  "     au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+  "   endif
+  " augroup END
 
 endif
 
-" }}}
+" }
 
 
