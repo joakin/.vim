@@ -66,6 +66,7 @@ Bundle 'tpope/vim-abolish'
 Bundle 'vim-scripts/scratch.vim'
 
 Bundle 'paradigm/vim-multicursor'
+Bundle 'terryma/vim-multiple-cursors'
 " }
 
 " Text Objects {
@@ -162,6 +163,11 @@ Bundle 'lukaszkorecki/workflowish'
 " }
 
 " Vim general settings {
+
+" Key capture time on terminal. Else it takes a second to process Esc...
+if !has("gui_running")
+  set ttimeoutlen=100
+endif
 
 " Enable filetype plugin
 filetype plugin on
@@ -764,10 +770,17 @@ let g:multicursor_quit = "<c-c>"
 
 " To get a sublime text like interface
 " Have to use xmap to get advantage of */# remaps. If I remap : this will break
-nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
-nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
-xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
-xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
+" DISABLED BECAUSE OF terryma/vim-multiple-cursors
+" nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
+" nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
+" xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
+" xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
+
+" }
+
+" Multiplecursors (terryma) {
+highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+highlight link multiple_cursors_visual Visual
 " }
 
 " }
