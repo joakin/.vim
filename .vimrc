@@ -1,5 +1,6 @@
 
 " Utility functions {
+"
 
 let g:isUnix = 1
 if has('win32') || has('win64')
@@ -465,144 +466,8 @@ endif
 
 " Utilities {
 
-" Font size changing {
 
-if has("gui_running")
-  let s:fontIncrements = '1'
-  function! AdjustFontSize(amount)
-    if has("gui_running")
-
-      let &guifont = substitute(
-       \ &guifont,
-       \ ':h\zs\d\+',
-       \ '\=eval(submatch(0)'.a:amount.')',
-       \ '')
-
-    else
-      echoerr "You need to run gui version of Vim to use this function."
-    endif
-  endfunction
-
-  function! LargerFont()
-    call AdjustFontSize('+'.s:fontIncrements)
-  endfunction
-  command! LargerFont call LargerFont()
-
-  function! SmallerFont()
-    call AdjustFontSize('-'.s:fontIncrements)
-  endfunction
-  command! SmallerFont call SmallerFont()
-endif
-
-" }
-
-" Toggle line number type {
-
-function! g:ToggleNuMode(globally)
-    if(&rnu ==? 1)
-      if(a:globally)
-        set number
-      else
-        setlocal number
-      endif
-    else
-      if(a:globally)
-        set relativenumber
-      else
-        setlocal relativenumber
-      endif
-    endif
-endfunc
-
-" }
-
-" Toggle conceal level {
-
-function! g:ToggleConceal(globally)
-    if(&conceallevel)
-      if(a:globally)
-        set conceallevel=0
-      else
-        setlocal conceallevel=0
-      endif
-    else
-      if(a:globally)
-        set conceallevel=2
-      else
-        setlocal conceallevel=2
-      endif
-    endif
-endfunc
-
-" }
-
-" Moving through indent levels {
-"
-" Jump to the next or previous line that has the same level or a different
-" level of indentation than the current line.
-"
-" exclusive (bool): true: Motion is exclusive
-"                   false: Motion is inclusive
-" fwd (bool): true: Go to next line
-"             false: Go to previous line
-" difflevel (bool): -1 : Go to line with less indentation level
-"                    0 : Go to line with the same indentation level
-"                    1 : Go to line with more indentation level
-"
-function! NextIndent(exclusive, fwd, difflevel)
-  let line = line('.')
-  let column = col('.')
-  let lastline = line('$')
-  let indent = indent(line)
-  let stepvalue = a:fwd ? 1 : -1
-  let difflevel0mode = 0
-  if (indent(line+stepvalue) == indent && strlen(getline(line+stepvalue)))
-    let difflevel0mode = 1
-  endif
-  if (a:difflevel == -1 && indent == 0)
-    return
-  endif
-  while (line > 0 && line <= lastline)
-    let line = line + stepvalue
-    let currentindent = indent(line)
-
-    let islevel0mode0 = a:difflevel == 0 && difflevel0mode == 0
-    let islevel0mode1 = a:difflevel == 0 && difflevel0mode == 1
-
-    let isempty = strlen(getline(line)) <= 0
-
-    let fin0 = ( islevel0mode0 && currentindent == indent && !isempty ) ||
-             \ ( islevel0mode1 && currentindent != indent ) ||
-             \ ( islevel0mode1 && currentindent == indent && isempty )
-    let fin1 = ( !isempty && a:difflevel == 1  && currentindent > indent )
-    let fin2 = ( !isempty && a:difflevel == -1 && currentindent < indent )
-
-    let fin = fin0 || fin1 || fin2
-
-    " if (   ( diffindentfound == 1 && a:difflevel == 0 &&
-    "      \     ( currentindent == indent &&
-    "      \       currentindent == indent) ) ||
-    "      \ ( diffindentfound == 0 && a:difflevel == 0 &&
-    "      \     ( (indent(line-stepvalue) == indent &&
-    "      \       currentindent != indent) ||
-    "      \       (indent(line-stepvalue) != indent &&
-    "      \        currentindent == indent)) ) ||
-    if ( fin )
-        if (a:exclusive || islevel0mode1)
-          let line = line - stepvalue
-        endif
-        exe line
-        exe "normal " column . "|"
-        return
-    else
-      if ( a:difflevel == 1  && !isempty && currentindent < indent )
-          return
-      endif
-    endif
-  endwhile
-endfunction
-
-" Moving back and forth between lines of same or lower indentation
+" Moving back and forth between lines of same or lower indentation {
 
 nnoremap  <silent> <c-k> :call      NextIndent(0, 0, 0 )<CR>_
 nnoremap  <silent> <c-j> :call      NextIndent(0, 1, 0 )<CR>_
@@ -625,58 +490,6 @@ onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 
 " }
 
-" Quickfix results to args {
-
-function! QuickfixFilenames()
-  " Building a hash ensures we get each buffer only once
-  let buffer_numbers = {}
-  for quickfix_item in getqflist()
-    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-  endfor
-  return join(values(buffer_numbers))
-endfunction
-command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
-
-" }
-
-" Pulse Line {
-
-function! s:Pulse() " {
-    let current_window = winnr()
-    windo set nocursorline
-    execute current_window . 'wincmd w'
-    setlocal cursorline
-
-    redir => old_hi
-        silent execute 'hi CursorLine'
-    redir END
-    let old_hi = split(old_hi, '\n')[0]
-    let old_hi = substitute(old_hi, 'xxx', '', '')
-
-    let steps = 9
-    let width = 1
-    let start = width
-    let end = steps * width
-    let color = 233
-
-    for i in range(start, end, width)
-        execute "hi CursorLine ctermbg=" . (color + i)
-        redraw
-        sleep 6m
-    endfor
-    for i in range(end, start, -1 * width)
-        execute "hi CursorLine ctermbg=" . (color + i)
-        redraw
-        sleep 6m
-    endfor
-
-    execute 'hi ' . old_hi
-
-    setlocal nocursorline
-endfunction " }
-command! -nargs=0 Pulse call s:Pulse()
-"}
-
 " FoldText {
 function! MyFoldText()
     let line = getline(v:foldstart)
@@ -696,47 +509,7 @@ endfunction
 set foldtext=MyFoldText()
 " }
 
-" V Search function */# {
-function! s:VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
-endfunction
-" }
-
 " Highlight Word {
-"
-" This mini-plugin provides a few mappings for highlighting words temporarily.
-"
-" Sometimes you're looking at a hairy piece of code and would like a certain
-" word or two to stand out temporarily.  You can search for it, but that only
-" gives you one color of highlighting.  Now you can use <leader>N where N is
-" a number from 1-6 to highlight the current word in a specific color.
-
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-
-    " Yank the current word into the z register.
-    normal! "zyiw
-
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
-    " Move back to our original location.
-    normal! `z
-endfunction
-
 nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
 nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
 nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
@@ -746,29 +519,15 @@ nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
 nnoremap <silent> <leader>7 :call HiInterestingWord(7)<cr>
 nnoremap <silent> <leader>8 :call HiInterestingWord(8)<cr>
 nnoremap <silent> <leader>9 :call HiInterestingWord(9)<cr>
-
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#00afff ctermbg=39
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#df0000 ctermbg=160
-hi def InterestingWord7 guifg=#000000 ctermfg=16 guibg=#df5fff ctermbg=171
-hi def InterestingWord8 guifg=#000000 ctermfg=16 guibg=#c0c0c0 ctermbg=7
-hi def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#00ffff ctermbg=14
-
 " }
 
 " Remove trailing whitespace {
-
 nnoremap <leader>i<space> :%s/\s\+$<cr>
-
 " }
 
 " Map search to very magic {
 nnoremap / /\v
 nnoremap ? ?\v
-
 " }
 
 " }
@@ -814,19 +573,19 @@ nnoremap <leader>ov :vsp<cr>:enew<cr>
 " }
 
 " Move lines of code {
-" with Alt+[hjkl] in all modes
-nnoremap <A-j> :m+<CR>==
-nnoremap <A-k> :m-2<CR>==
-nnoremap <A-h> <<
-nnoremap <A-l> >>
-inoremap <A-j> <Esc>:m+<CR>==gi
-inoremap <A-k> <Esc>:m-2<CR>==gi
-inoremap <A-h> <Esc><<`]a
-inoremap <A-l> <Esc>>>`]a
-vnoremap <A-j> :m'>+<CR>gv=gv
-vnoremap <A-k> :m-2<CR>gv=gv
-vnoremap <A-h> <gv
-vnoremap <A-l> >gv
+" with arrows in all modes
+nnoremap <Down>  :m+<CR>==
+nnoremap <Up>    :m-2<CR>==
+nnoremap <Left>  <<
+nnoremap <Right> >>
+inoremap <Down>  <Esc>:m+<CR>==gi
+inoremap <Up>    <Esc>:m-2<CR>==gi
+inoremap <Left>  <Esc><<`]a
+inoremap <Right> <Esc>>>`]a
+vnoremap <Down>  :m'>+<CR>gv=gv
+vnoremap <Up>    :m-2<CR>gv=gv
+vnoremap <Left>  <gv
+vnoremap <Right> >gv
 " }
 
 " Toggling settings {
@@ -837,11 +596,7 @@ nnoremap <leader>s/ :nohlsearch<CR>
 nnoremap <leader>sp :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap <leader>sl :call g:ToggleNuMode(0)<cr>
-nnoremap <leader>sL :call g:ToggleNuMode(1)<cr>
-" Toggle line numbers mode
-nnoremap <leader>sn :setlocal number!<cr>
-nnoremap <leader>sN :set number!<cr>
+nnoremap <leader>sl :call g:ToggleNuMode()<cr>
 
 " Toggle background color
 nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
@@ -937,13 +692,6 @@ nnoremap # #Nzzzv
 " Visual Mode */# from Scrooloose {
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-" }
-
-" List navigation {
-nnoremap <left>  :cprev<cr>zvzz
-nnoremap <right> :cnext<cr>zvzz
-nnoremap <up>    :lprev<cr>zvzz
-nnoremap <down>  :lnext<cr>zvzz
 " }
 
 " Folds {
@@ -1111,7 +859,6 @@ hi EasyMotionTarget ctermfg=yellow ctermbg=darkred guifg=yellow guibg=darkred
 " AceJump {
 nnoremap ss :call AceJump()<CR>
 " }
-
 
 " Multicursor {
 
