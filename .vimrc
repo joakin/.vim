@@ -52,8 +52,8 @@ Bundle 'Lokaltog/vim-easymotion'
 " }
 
 " Editing {
-Bundle "snipmate-snippets"
-Bundle "garbas/vim-snipmate"
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
 
 Bundle 'godlygeek/tabular'
 
@@ -231,18 +231,6 @@ set splitright
 set wildmenu
 set wildmode=list:longest
 
-set wildignore+=.hg,.git,.svn                    " Version control
-set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.spl                            " compiled spelling word lists
-set wildignore+=*.sw?                            " Vim swap files
-set wildignore+=*.DS_Store                       " OSX bullshit
-
-" Clojure/Leiningen
-set wildignore+=classes
-set wildignore+=lib
-
 syntax enable "Enable syntax hl
 
 set omnifunc=syntaxcomplete#Complete
@@ -401,89 +389,7 @@ if has('autocmd')
                     \   exe "normal! g`\"zvzz"                        |
                     \ endif
     augroup END " }
-
-    " augroup cline " {
-    "     au!
-    "     au WinLeave,InsertEnter * set nocursorline
-    "     au WinEnter,InsertLeave * set cursorline
-    " augroup END " }
-
-    augroup viml " {
-        au!
-        au FileType vim setlocal foldmethod=marker foldenable
-    augroup END " }
-
-    augroup php " {
-        au!
-        au FileType php setlocal shiftwidth=4
-    augroup END " }
-
-    augroup clojurescript " {
-        au!
-        au BufRead,BufNewFile *.cljs setlocal filetype=clojure
-    augroup END " }
-
-    augroup css " {
-        au!
-        au FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    augroup END " }
-
-    augroup html_markdown " {
-        au!
-        au FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    augroup END " }
-
-    augroup javascript " {
-        au!
-        " au FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
-        " conceallevel=2
-        au FileType javascript setlocal tabstop=2
-        au FileType javascript setlocal concealcursor=nc
-        au FileType javascript setlocal foldmethod=syntax
-    augroup END " }
-
-    augroup json " {
-        au!
-    augroup END " }
-
-    augroup python " {
-        au!
-        au FileType python setlocal omnifunc=pythoncomplete#Complete
-    augroup END " }
-
-    augroup xml " {
-        au!
-        au FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    augroup END " }
-
-    augroup txt " {
-        au!
-        au FileType txt,text setlocal formatoptions+=ta2
-    augroup END " }
-
-    augroup dont_wrap_us_and_fuck_with_our_indent " {
-        au!
-        " au FileType html,php,jst setlocal nowrap
-        au FileType html,php,jst setlocal formatoptions-=t
-        au FileType html,php,jst setlocal indentkeys-=*<Return>
-    augroup END " }
-
-    augroup workflowish " {
-        au!
-        " au FileType workflowish setlocal noexpandtab
-        " This mappings make <cr> to zoom in and <bs> to zoom out
-        au FileType workflowish nmap <buffer> <cr> zq
-        au FileType workflowish nmap <buffer> <bs> zp
-    augroup END " }
-
-    augroup make " {
-        au FileType make setlocal noexpandtab
-    augroup END " }
 endif
-" }
-
-" Utilities {
 " }
 
 " Vim mappings {
@@ -786,12 +692,12 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
   \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
   \ 'link': '',
   \ }
 nnoremap <leader>b :CtrlPBuffer<CR>
-" nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>t :CtrlPTag<CR>
 
 " }
 
@@ -827,24 +733,14 @@ let g:snipMate.scope_aliases['jst'] = 'js,html'
 let g:snipMate.scope_aliases['ejs'] = 'js,html'
 " }
 
-" Pandoc {
-" if IsUnix()
-"     " Pandoc setting
-"     " Use hard wraps
-"     let g:pandoc_use_hard_wraps = 1
-" endif
-" }
-
 " Scratch {
 nnoremap <leader>es :Scratch<cr>
 " }
 
 " Ack commands abbr {
-
 nnoremap <leader>/ :Ack 
 command! TODO execute "Ack TODO"
 command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
-
 " }
 
 " EasyMotion {
@@ -859,7 +755,6 @@ nnoremap ss :call AceJump()<CR>
 " }
 
 " Multicursor {
-
 nnoremap <leader>m  :<c-u>call MultiCursorPlaceCursor()<cr>
 xnoremap <leader>m  :<c-u>call MultiCursorVisual()<cr>
 nnoremap <leader>cc :<c-u>call MultiCursorManual()<cr>
@@ -873,7 +768,6 @@ nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
 nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
 xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
 xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
-
 " }
 
 " }
@@ -895,32 +789,49 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 " }
 
 " Language settings {
-
 " For reference
 " Places where :find and gf look for files
 "   set path+=c:\\asd
 "   set path+=./asd
-"
 " and suffixes autocomplete on that files
 "   set suffixesadd=.java
+" and files/folders to ignore on completion
+"   set wildignore+=.class,classes
 
+" General settings {
+set path=**
+
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+" }
+
+" CSS {
+set suffixesadd+=.css,.styl,.less,.sass,.scss
+" }
 
 " Javascript {
+set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.jade
+
 " Bundle 'othree/javascript-libraries-syntax.vim'
-
 let g:javascript_conceal=1
-
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
-
 " }
 
+" Clojure {
+set wildignore+=.class,classes
+set suffixesadd+=.clj,.cljs
 " }
+
+"}
 
 " Per project settings {
-
 if has('autocmd')
-
   " Example of project settings.
   " augroup project_settings
   "   au!
@@ -928,9 +839,7 @@ if has('autocmd')
   "     au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   "   endif
   " augroup END
-
 endif
-
 " }
 
 
