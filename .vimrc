@@ -293,6 +293,25 @@ set switchbuf=useopen,usetab
 
 set conceallevel=0
 
+" FoldText {
+function! MyFoldText()
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction
+set foldtext=MyFoldText()
+" }
+
 " }
 
 " Font and colorscheme {
@@ -465,71 +484,6 @@ endif
 " }
 
 " Utilities {
-
-
-" Moving back and forth between lines of same or lower indentation {
-
-nnoremap  <silent> <c-k> :call      NextIndent(0, 0, 0 )<CR>_
-nnoremap  <silent> <c-j> :call      NextIndent(0, 1, 0 )<CR>_
-nnoremap  <silent> <c-h> :call      NextIndent(0, 0, -1)<CR>_
-nnoremap  <silent> <c-l> :call      NextIndent(0, 1, 1 )<CR>_
-"nnoremap <silent> <c-L> :call      NextIndent(0, 0, 1 )<CR>_
-"nnoremap <silent> <c-H> :call      NextIndent(0, 1, -1)<CR>_
-vnoremap  <silent> <c-k> <Esc>:call NextIndent(0, 0, 0 )<CR>m'gv''
-vnoremap  <silent> <c-j> <Esc>:call NextIndent(0, 1, 0 )<CR>m'gv''
-vnoremap  <silent> <c-h> <Esc>:call NextIndent(0, 0, -1)<CR>m'gv''
-vnoremap  <silent> <c-l> <Esc>:call NextIndent(0, 1, 1 )<CR>m'gv''
-"vnoremap <silent> <c-L> <Esc>:call NextIndent(0, 0, 1 )<CR>m'gv''
-"vnoremap <silent> <c-H> <Esc>:call NextIndent(0, 1, -1)<CR>m'gv''
-onoremap <silent> <c-k> :<c-u>normal V<c-v><c-k><cr>
-onoremap <silent> <c-j> :<c-u>normal V<c-v><c-j><cr>
-onoremap <silent> <c-h> :<c-u>normal V<c-v><c-h>j<cr>
-onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
-"onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
-"onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
-
-" }
-
-" FoldText {
-function! MyFoldText()
-    let line = getline(v:foldstart)
-
-    let nucolwidth = &fdc + &number * &numberwidth
-    let windowwidth = winwidth(0) - nucolwidth - 3
-    let foldedlinecount = v:foldend - v:foldstart
-
-    " expand tabs into spaces
-    let onetab = strpart('          ', 0, &tabstop)
-    let line = substitute(line, '\t', onetab, 'g')
-
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-endfunction
-set foldtext=MyFoldText()
-" }
-
-" Highlight Word {
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
-nnoremap <silent> <leader>7 :call HiInterestingWord(7)<cr>
-nnoremap <silent> <leader>8 :call HiInterestingWord(8)<cr>
-nnoremap <silent> <leader>9 :call HiInterestingWord(9)<cr>
-" }
-
-" Remove trailing whitespace {
-nnoremap <leader>i<space> :%s/\s\+$<cr>
-" }
-
-" Map search to very magic {
-nnoremap / /\v
-nnoremap ? ?\v
-" }
-
 " }
 
 " Vim mappings {
@@ -775,6 +729,50 @@ nnoremap <leader>sfm :set filetype=markdown<cr>
 nnoremap <leader>sfw :set filetype=workflowish<cr>
 nnoremap <leader>sfv :set filetype=vim<cr>
 nnoremap <leader>sff :set filetype=
+" }
+
+" Moving back and forth between lines of same or lower indentation {
+
+nnoremap  <silent> <c-k> :call      NextIndent(0, 0, 0 )<CR>_
+nnoremap  <silent> <c-j> :call      NextIndent(0, 1, 0 )<CR>_
+nnoremap  <silent> <c-h> :call      NextIndent(0, 0, -1)<CR>_
+nnoremap  <silent> <c-l> :call      NextIndent(0, 1, 1 )<CR>_
+"nnoremap <silent> <c-L> :call      NextIndent(0, 0, 1 )<CR>_
+"nnoremap <silent> <c-H> :call      NextIndent(0, 1, -1)<CR>_
+vnoremap  <silent> <c-k> <Esc>:call NextIndent(0, 0, 0 )<CR>m'gv''
+vnoremap  <silent> <c-j> <Esc>:call NextIndent(0, 1, 0 )<CR>m'gv''
+vnoremap  <silent> <c-h> <Esc>:call NextIndent(0, 0, -1)<CR>m'gv''
+vnoremap  <silent> <c-l> <Esc>:call NextIndent(0, 1, 1 )<CR>m'gv''
+"vnoremap <silent> <c-L> <Esc>:call NextIndent(0, 0, 1 )<CR>m'gv''
+"vnoremap <silent> <c-H> <Esc>:call NextIndent(0, 1, -1)<CR>m'gv''
+onoremap <silent> <c-k> :<c-u>normal V<c-v><c-k><cr>
+onoremap <silent> <c-j> :<c-u>normal V<c-v><c-j><cr>
+onoremap <silent> <c-h> :<c-u>normal V<c-v><c-h>j<cr>
+onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
+"onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
+"onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
+
+" }
+
+" Highlight Word {
+nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+nnoremap <silent> <leader>7 :call HiInterestingWord(7)<cr>
+nnoremap <silent> <leader>8 :call HiInterestingWord(8)<cr>
+nnoremap <silent> <leader>9 :call HiInterestingWord(9)<cr>
+" }
+
+" Remove trailing whitespace {
+nnoremap <leader>i<space> :%s/\s\+$<cr>
+" }
+
+" Map search to very magic {
+nnoremap / /\v
+nnoremap ? ?\v
 " }
 
 " }
