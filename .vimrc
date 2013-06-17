@@ -602,7 +602,7 @@ function! NextIndent(exclusive, fwd, difflevel)
   endwhile
 endfunction
 
-" Moving back and forth between lines of same or lower indentation.
+" Moving back and forth between lines of same or lower indentation
 
 nnoremap  <silent> <c-k> :call      NextIndent(0, 0, 0 )<CR>_
 nnoremap  <silent> <c-j> :call      NextIndent(0, 1, 0 )<CR>_
@@ -636,31 +636,6 @@ function! QuickfixFilenames()
   return join(values(buffer_numbers))
 endfunction
 command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
-
-" }
-
-" Scroll fn {
-
-" function! SmoothScroll(up)
-"     if a:up
-"         let scrollaction="2"
-"     else
-"         let scrollaction="2"
-"     endif
-"     exec "norm " . scrollaction
-"     redraw
-"     let counter=1
-"     while counter<&scroll/2
-"         let counter+=1
-"         sleep 1m
-"         redraw
-"         exec "norm " . scrollaction
-"     endwhile
-" endfunction
-" nnoremap <C-U> :call SmoothScroll(1)<Enter>M
-" nnoremap <C-D> :call SmoothScroll(0)<Enter>M
-" inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>Mi
-" inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>Mi
 
 " }
 
@@ -818,7 +793,7 @@ nnoremap <leader>q :q<cr>
 " }
 
 " Easier omnicompletion {
-inoremap <C-space> <C-X><C-O>
+inoremap <c-@> <C-X><C-O>
 " }
 
 " Manipulate windows {
@@ -978,7 +953,7 @@ set foldlevelstart=1
 set foldmarker={,}
 
 " Space to toggle folds.
-nnoremap <c-space> za
+nnoremap z<space> za
 
 " Make zO recursively open whatever top level fold we're in, no matter where the
 " cursor happens to be.
@@ -996,7 +971,7 @@ nnoremap zO zCzO
 " This mapping wipes out the z mark, which I never use.
 "
 " I use :sus for the rare times I want to actually background Vim.
-nnoremap <c-cr> mzzMzvzz3<c-e>`z:Pulse<cr>
+nnoremap z<cr> mzzMzvzz3<c-e>`z:Pulse<cr>
 " }
 
 " netrw {
@@ -1012,14 +987,7 @@ cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 
-cnoremap <a-l> <right>
-cnoremap <a-h> <left>
-cnoremap <a-f> <c-right>
-cnoremap <a-b> <c-left>
-
 cnoremap <c-a> <c-b>
-
-cnoremap <a-bs> <c-w>
 
 " }
 
@@ -1039,14 +1007,6 @@ inoremap <c-e> <c-o>$
 inoremap <c-a> <c-o>_
 inoremap <c-f> <c-o>l
 inoremap <c-b> <c-o>h
-inoremap <a-f> <c-o>w
-inoremap <a-b> <c-o>b
-inoremap <a-a> <c-o>(
-inoremap <a-e> <c-o>)
-inoremap <a-d> <c-o>dw
-inoremap <a-bs> <c-o>db
-
-inoremap <c-s> <esc>:w
 
 " }
 
@@ -1155,11 +1115,11 @@ nnoremap ss :call AceJump()<CR>
 
 " Multicursor {
 
-nnoremap <leader>m    :<c-u>call MultiCursorPlaceCursor()<cr>
-xnoremap <leader>m    :<c-u>call MultiCursorVisual()<cr>
-nnoremap <leader><cr> :<c-u>call MultiCursorManual()<cr>
-nnoremap <leader>cd   :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <leader>c/   :<c-u>call MultiCursorSearch('')<cr>
+nnoremap <leader>m  :<c-u>call MultiCursorPlaceCursor()<cr>
+xnoremap <leader>m  :<c-u>call MultiCursorVisual()<cr>
+nnoremap <leader>cc :<c-u>call MultiCursorManual()<cr>
+nnoremap <leader>cd :<c-u>call MultiCursorRemoveCursors()<cr>
+nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
 let g:multicursor_quit = "<c-c>"
 
 " To get a sublime text like interface
@@ -1169,17 +1129,6 @@ nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
 xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
 xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
 
-" }
-
-" Skybison {
-"
-" let g:skybison_fuzz = 2
-" nnoremap <leader>;  :<c-u>call SkyBison("")<cr>
-" " nnoremap <leader>b 2:<c-u>call SkyBison("b ")<cr>
-" " nnoremap <leader>e  :<c-u>call SkyBison("e ")<cr>
-" " nnoremap <leader>h 2:<c-u>call SkyBison("h ")<cr>
-" cnoremap <c-l> <c-r>=SkyBison("")<cr><cr>
-" 
 " }
 
 " }
