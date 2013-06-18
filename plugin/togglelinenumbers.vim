@@ -1,7 +1,7 @@
 
 " Toggle line number type {
 
-function! g:ToggleNuMode(globally)
+function! g:ToggleNuMode()
 
   if(&nu ==? 0 && &rnu ==? 0)
     set nu

@@ -339,12 +339,13 @@ if has("gui_running")
   " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
 else
 
+  set background=dark
   colorscheme lucius
   LuciusBlack
 
 endif
 
-set t_Co=256
+" set t_Co=256
 
 " XXX: This is not respected as it should
 hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=darkred
@@ -470,7 +471,7 @@ nnoremap <leader>s/ :nohlsearch<CR>
 nnoremap <leader>sp :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap <leader>sl :call g:ToggleNuMode()<cr>
+nnoremap <leader>sn :call g:ToggleNuMode()<cr>
 
 " Toggle background color
 nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
@@ -481,6 +482,8 @@ set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
+set spelllang=en
+set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
 
 " Toggle conceal
 nnoremap <leader>sc :call g:ToggleConceal(0)<cr>
