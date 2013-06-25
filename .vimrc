@@ -140,6 +140,7 @@ Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
 Bundle 'guns/xterm-color-table.vim'
+Bundle 'jpalardy/vim-slime'
 " }
 
 " }
@@ -797,6 +798,9 @@ highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
 highlight link multiple_cursors_visual Visual
 " }
 
+" Slime {
+let g:slime_target = "tmux"
+" }
 " }
 
 " Abbreviations {
