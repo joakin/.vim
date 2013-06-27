@@ -218,7 +218,7 @@ set matchtime=1   " Time of the jump of showmatch
 
 set magic "Set magic on, for regular expressions (default?)
 
-set list
+set nolist
 
 set directory=~/.vimswap//
 set undodir=~/.vimundo//
@@ -800,6 +800,10 @@ highlight link multiple_cursors_visual Visual
 
 " Slime {
 let g:slime_target = "tmux"
+let g:slime_no_mappings = 1
+nmap <leader>v <Plug>SlimeMotionSend
+nmap <leader>vv <Plug>SlimeParagraphSend
+xmap <leader>v <Plug>SlimeRegionSend
 " }
 " }
 
