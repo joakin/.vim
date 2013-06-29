@@ -6,7 +6,7 @@
 " gives you one color of highlighting.  Now you can use <leader>N where N is
 " a number from 1-6 to highlight the current word in a specific color.
 
-function! HiInterestingWord(n)
+function! g:HiInterestingWord(n)
     " Save our location.
     normal! mz
 

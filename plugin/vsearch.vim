@@ -1,6 +1,6 @@
 
 " V Search function */# {
-function! s:VSetSearch()
+function! g:VSetSearch()
   let temp = @@
   norm! gvy
   let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')

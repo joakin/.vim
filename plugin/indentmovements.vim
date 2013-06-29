@@ -51,15 +51,15 @@ function! NextIndent(exclusive, fwd, difflevel)
     "      \       (indent(line-stepvalue) != indent &&
     "      \        currentindent == indent)) ) ||
     if ( fin )
-        if (a:exclusive || islevel0mode1)
-          let line = line - stepvalue
-        endif
-        exe line
-        exe "normal " column . "|"
-        return
+      if (a:exclusive || islevel0mode1)
+        let line = line - stepvalue
+      endif
+      exe line
+      exe "normal " column . "|"
+      return
     else
       if ( a:difflevel == 1  && !isempty && currentindent < indent )
-          return
+        return
       endif
     endif
   endwhile
