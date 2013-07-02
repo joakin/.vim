@@ -352,8 +352,21 @@ if has("gui_running")
 else
 
   set background=dark
-  colorscheme lucius
-  LuciusBlack
+
+  " Black bg:
+  " colorscheme lucius
+  " LuciusBlack
+  colorscheme ir_black
+  "
+  " Dark bg:
+  " colorscheme hypertint
+  " colorscheme badwolf
+  " colorscheme wombat256
+  "
+  " Light bg:
+  " set background=light
+  " colorscheme hemisu
+  "
 
 endif
 
