@@ -310,6 +310,19 @@ endfunction
 set foldtext=MyFoldText()
 " }
 
+" Matchit (old) { 
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+" }
+
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+" Make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
 " }
 
 " Font and colorscheme {
