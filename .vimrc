@@ -17,7 +17,6 @@ set encoding=utf-8
 " Vundle {
 "
 " Vundle init {
-filetype on    " test
 filetype off   " required for vundle
 
 if IsUnix()
@@ -165,6 +164,10 @@ Bundle 'morhetz/gruvbox'
 Bundle 'lukaszkorecki/workflowish'
 " }
 
+" Enable filetype plugin after Vundle
+filetype plugin on
+filetype indent on
+
 " }
 
 " Vim general settings {
@@ -173,10 +176,6 @@ Bundle 'lukaszkorecki/workflowish'
 if !has("gui_running")
   set ttimeoutlen=100
 endif
-
-" Enable filetype plugin
-filetype plugin on
-filetype indent on
 
 " Tab size
 set softtabstop=2
