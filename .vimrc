@@ -40,6 +40,10 @@ Bundle 'tpope/vim-repeat'
 
 " Vim improvements {
 
+" Gui {
+Bundle 'bling/vim-airline'
+" }
+
 " Command line {
 Bundle 'kien/ctrlp.vim'
 " }
@@ -162,9 +166,11 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'lukaszkorecki/workflowish'
 " }
 
+" After Vundle {
 " Enable filetype plugin after Vundle
 filetype plugin on
 filetype indent on
+" }
 
 " }
 
@@ -844,6 +850,13 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 " }
+
+" Airline {
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+  let g:airline_fugitive_prefix = '  ± ' " ⎇ 
+" }
+
 " }
 
 " Abbreviations {
