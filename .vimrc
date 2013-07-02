@@ -42,7 +42,6 @@ Bundle 'tpope/vim-repeat'
 
 " Command line {
 Bundle 'kien/ctrlp.vim'
-" Bundle 'paradigm/SkyBison'
 " }
 
 " Movement {
@@ -82,7 +81,7 @@ Bundle 'paradigm/TextObjectify'
 " }
 
 " Visual {
-Bundle 'terryma/vim-expand-region'
+" Bundle 'terryma/vim-expand-region'
 " }
 
 " }
@@ -90,7 +89,6 @@ Bundle 'terryma/vim-expand-region'
 " Coding {
 
 " Editing {
-Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'majutsushi/tagbar'
 " }
@@ -109,6 +107,9 @@ Bundle 'nono/vim-handlebars'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mintplant/vim-literate-coffeescript'
 " }
+" Livescript {
+Bundle 'gkz/vim-ls'
+" }
 " Clojure {
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-classpath'
@@ -117,9 +118,6 @@ Bundle 'kien/rainbow_parentheses.vim'
 " }
 " HTML {
 Bundle 'mattn/zencoding-vim'
-" }
-" Livescript {
-Bundle 'gkz/vim-ls'
 " }
 " CSS {
 Bundle 'skammer/vim-css-color'
@@ -136,6 +134,7 @@ Bundle 'tpope/vim-liquid'
 " }
 
 " External tools {
+Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/syntastic'
 Bundle 'guns/xterm-color-table.vim'
@@ -148,15 +147,12 @@ Bundle 'jpalardy/vim-slime'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'cschlueter/vim-wombat'
 Bundle 'shawncplus/skittles_berry'
-Bundle 'phd'
-Bundle 'tomasr/molokai'
 Bundle 'endel/vim-github-colorscheme'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'wgibbs/vim-irblack'
 Bundle 'tylerball/vim-hypertint'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'sjl/badwolf'
-Bundle 'mayansmoke'
 Bundle 'morhetz/gruvbox'
 " }
 
