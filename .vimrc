@@ -153,7 +153,9 @@ Bundle 'wgibbs/vim-irblack'
 Bundle 'tylerball/vim-hypertint'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'sjl/badwolf'
-Bundle 'morhetz/gruvbox'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'xoria256.vim'
+Bundle 'nanotech/jellybeans.vim'
 " }
 
 " Notes and data {
@@ -324,15 +326,14 @@ nnoremap Y y$
 " Font and colorscheme {
 
 if has("gui_running")
-  set gfn=Nitti\ WM2\ Light:h20
+  set gfn=Monaco:h16
   set linespace=2
 
   " Gui options
   set guioptions=c
   set guioptions-=T
 
-  " colorscheme ir_black
-  " colorscheme gruvbox
+  colorscheme ir_black
   " let g:badwolf_darkgutter = 1
   " let g:badwolf_tabline = 3
   " let g:badwolf_css_props_highlight = 1
@@ -362,6 +363,8 @@ else
   " colorscheme hypertint
   " colorscheme badwolf
   " colorscheme wombat256
+  " colorscheme xoria256
+  " colorscheme jellybeans
   "
   " Light bg:
   " set background=light
