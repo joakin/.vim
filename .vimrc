@@ -36,16 +36,18 @@ Bundle 'gmarik/vundle'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'tpope/vim-repeat'
+Bundle 'Shougo/vimproc.vim'
 " }
 
 " Vim improvements {
 
 " Gui {
 Bundle 'bling/vim-airline'
+Bundle 'Shougo/unite.vim'
 " }
 
 " Command line {
-Bundle 'kien/ctrlp.vim'
+" Bundle 'kien/ctrlp.vim'
 " }
 
 " Movement {
@@ -737,17 +739,17 @@ nnoremap ? ?\v
 
 " CtrlP {
 
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_by_filename = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
-  \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
-  \ 'link': '',
-  \ }
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>t :CtrlPTag<CR>
+" let g:ctrlp_map = '<leader>f'
+" let g:ctrlp_cmd = 'CtrlP'
+" let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_by_filename = 1
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
+"   \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
+"   \ 'link': '',
+"   \ }
+" nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
 
 " }
 
@@ -855,6 +857,79 @@ let g:rbpt_colorpairs = [
   let g:airline_left_sep = '' " ▶
   let g:airline_right_sep = '' " ◀
   let g:airline_fugitive_prefix = '  ' " ⎇  ±
+" }
+
+" Unite {
+
+let g:unite_source_history_yank_enable = 1
+
+" Start insert.
+let g:unite_enable_start_insert = 1
+let g:unite_enable_short_source_names = 1
+
+" To track long mru history.
+let g:unite_source_file_mru_long_limit = 3000
+let g:unite_source_directory_mru_long_limit = 3000
+
+" For ack.
+if executable('ack-grep')
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
+call unite#custom#source('file_rec', 'ignore_pattern', '\.git\|\.hg\|\.svn\|node_modules\|\.exe$\|\.so$\|\.dll$\|\.swp$')
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+nnoremap <leader>b   :<c-u>Unite -no-split -buffer-name=buffers   buffer<cr>
+nnoremap <leader>f   :<c-u>Unite -no-split -buffer-name=files     file_rec/async<cr>
+nnoremap <leader>uf  :<c-u>Unite -no-split -buffer-name=files     file<cr>
+nnoremap <leader>uy  :<C-u>Unite -no-split -buffer-name=yanks     history/yank<CR>
+nnoremap <leader>ub  :<C-u>Unite -no-split -buffer-name=bufmru    buffer             file_mru bookmark<CR>
+nnoremap <leader>ur  :<c-u>Unite -no-split -buffer-name=registers register<cr>
+nnoremap <leader>ut  :<c-u>Unite -no-split -buffer-name=tabs      tab<cr>
+nnoremap <leader>ul  :<c-u>Unite -no-split -buffer-name=lines     line<cr>
+nnoremap <leader>uj  :<c-u>Unite -no-split -buffer-name=jumps     jump<cr>
+nnoremap <leader>um  :<c-u>Unite -no-split -buffer-name=menus     menu<cr>
+nnoremap <leader>uc  :<c-u>Unite -no-split -buffer-name=command   command<cr>
+nnoremap <leader>uo  :<c-u>Unite -no-split -buffer-name=output    output<cr>
+nnoremap <leader>uma :<C-u>Unite -no-split mapping<CR>
+nnoremap <leader>ume :<C-u>Unite -no-split output:message<CR>
+nnoremap <leader>uu  :<C-u>Unite -no-split source<CR>
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings() " {
+
+  nmap <buffer> <ESC>     <Plug>(unite_exit)
+  nmap <buffer> <leader>q <Plug>(unite_exit)
+
+  nmap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
+  imap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
+
+  nmap <buffer> a i
+
+  let unite = unite#get_current_unite()
+
+  nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
+
+  nmap <buffer><expr> S unite#mappings#set_current_filters(
+          \ empty(unite#mappings#get_current_filters()) ?
+          \ ['sorter_reverse'] : [])
+
+  
+  nmap <buffer> <c-z> <Plug>(unite_toggle_mark_current_candidate)
+  imap <buffer> <c-z> <Plug>(unite_toggle_mark_current_candidate)
+
+  " Runs "split" action by <C-s>.
+  nmap <buffer><expr> <c-s> unite#do_action('split')
+  imap <buffer><expr> <c-s> unite#do_action('split')
+  nmap <buffer><expr> <c-v> unite#do_action('vsplit')
+  imap <buffer><expr> <c-v> unite#do_action('vsplit')
+  nmap <buffer><expr> <c-t> unite#do_action('tabopen')
+  imap <buffer><expr> <c-t> unite#do_action('tabopen')
+
+endfunction " }
+
 " }
 
 " }
