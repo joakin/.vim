@@ -221,7 +221,7 @@ set matchtime=1   " Time of the jump of showmatch
 
 set magic "Set magic on, for regular expressions (default?)
 
-set nolist
+set list
 
 set directory=~/.vimswap//
 set undodir=~/.vimundo//
