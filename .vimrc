@@ -852,9 +852,9 @@ let g:rbpt_colorpairs = [
 " }
 
 " Airline {
-  let g:airline_left_sep = '▶'
-  let g:airline_right_sep = '◀'
-  let g:airline_fugitive_prefix = '  ± ' " ⎇ 
+  let g:airline_left_sep = '' " ▶
+  let g:airline_right_sep = '' " ◀
+  let g:airline_fugitive_prefix = '  ' " ⎇  ±
 " }
 
 " }
