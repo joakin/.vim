@@ -126,7 +126,6 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'mattn/zencoding-vim'
 " }
 " CSS {
-Bundle 'skammer/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'wavded/vim-stylus'
