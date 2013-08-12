@@ -36,14 +36,14 @@ Bundle 'gmarik/vundle'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'tpope/vim-repeat'
-Bundle 'Shougo/vimproc.vim'
+" Bundle 'Shougo/vimproc.vim'
 " }
 
 " Vim improvements {
 
 " Gui {
 Bundle 'bling/vim-airline'
-Bundle 'Shougo/unite.vim'
+" Bundle 'Shougo/unite.vim'
 " }
 
 " Command line {
@@ -71,6 +71,8 @@ Bundle 'vim-scripts/scratch.vim'
 
 Bundle 'paradigm/vim-multicursor'
 Bundle 'terryma/vim-multiple-cursors'
+
+Bundle 'AndrewRadev/switch.vim'
 " }
 
 " Text Objects {
@@ -744,10 +746,10 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
-  \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
-  \ 'link': '',
-  \ }
+\ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
+\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
+\ 'link': '',
+\ }
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 
@@ -834,29 +836,37 @@ xmap <leader>v <Plug>SlimeRegionSend
 
 " Rainbow parenthesis {
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+  \ ['brown',       'RoyalBlue3'],
+  \ ['Darkblue',    'SeaGreen3'],
+  \ ['darkgreen',   'firebrick3'],
+  \ ['darkgray',    'DarkOrchid3'],
+  \ ['darkcyan',    'RoyalBlue3'],
+  \ ['darkred',     'SeaGreen3'],
+  \ ['darkmagenta', 'DarkOrchid3'],
+  \ ['brown',       'firebrick3'],
+  \ ['gray',        'RoyalBlue3'],
+  \ ['black',       'SeaGreen3'],
+  \ ['darkred',     'DarkOrchid3'],
+  \ ['darkgreen',   'RoyalBlue3'],
+  \ ['darkmagenta', 'DarkOrchid3'],
+  \ ['Darkblue',    'firebrick3'],
+  \ ['darkcyan',    'SeaGreen3'],
+  \ ['red',         'firebrick3'],
+  \ ]
 " }
 
 " Airline {
-  let g:airline_left_sep = '' " ▶
-  let g:airline_right_sep = '' " ◀
-  let g:airline_branch_prefix = '  ' " ⎇  ±
+let g:airline_left_sep = '' " ▶
+let g:airline_right_sep = '' " ◀
+let g:airline_branch_prefix = '  ' " ⎇  ±
+" }
+
+" Switch {
+nnoremap - :Switch<cr>
+
+let g:switch_custom_definitions = []
+" Use buffer local on ftplugin/xxxx.vim for filetype switches
+" let b:switch_custom_definitions = []
 " }
 
 " }
