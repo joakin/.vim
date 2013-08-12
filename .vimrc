@@ -125,7 +125,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
 " }
 " HTML {
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 " }
 " CSS {
 Bundle 'groenewege/vim-less'
