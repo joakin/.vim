@@ -362,9 +362,9 @@ else
   set background=dark
 
   " Black bg:
-  " colorscheme lucius
-  " LuciusBlack
-  colorscheme ir_black
+  colorscheme lucius
+  LuciusBlack
+  " colorscheme ir_black
   "
   " Dark bg:
   " colorscheme hypertint
@@ -375,6 +375,7 @@ else
   "
   " Light bg:
   " set background=light
+  " set background=dark " It works nicely with black by restarting
   " colorscheme hemisu
   "
 
