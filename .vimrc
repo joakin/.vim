@@ -514,6 +514,7 @@ set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
+nnoremap <leader>is z=1<CR><CR>
 set spelllang=en
 set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
 
