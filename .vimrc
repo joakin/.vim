@@ -36,14 +36,12 @@ Bundle 'gmarik/vundle'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'tpope/vim-repeat'
-" Bundle 'Shougo/vimproc.vim'
 " }
 
 " Vim improvements {
 
 " Gui {
 Bundle 'bling/vim-airline'
-" Bundle 'Shougo/unite.vim'
 " }
 
 " Command line {
@@ -52,13 +50,9 @@ Bundle 'kien/ctrlp.vim'
 
 " Movement {
 Bundle 'matchit.zip'
-Bundle 'Lokaltog/vim-easymotion'
 " }
 
 " Editing {
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-
 Bundle 'godlygeek/tabular'
 
 Bundle 'tpope/vim-surround'
@@ -67,12 +61,8 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
 " Bundle 'kana/vim-smartinput'
 
-Bundle 'vim-scripts/scratch.vim'
-
-Bundle 'paradigm/vim-multicursor'
+" Bundle 'paradigm/vim-multicursor'
 Bundle 'terryma/vim-multiple-cursors'
-
-Bundle 'AndrewRadev/switch.vim'
 " }
 
 " Text Objects {
@@ -89,7 +79,6 @@ Bundle 'paradigm/TextObjectify'
 " }
 
 " Visual {
-" Bundle 'terryma/vim-expand-region'
 " }
 
 " }
@@ -98,14 +87,12 @@ Bundle 'paradigm/TextObjectify'
 
 " Editing {
 Bundle 'tpope/vim-commentary'
-Bundle 'majutsushi/tagbar'
 " }
 
 " Languages {
 " JS {
 Bundle 'pangloss/vim-javascript'
 " Bundle 'drslump/vim-syntax-js'
-Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
@@ -142,27 +129,19 @@ Bundle 'tpope/vim-liquid'
 
 " External tools {
 Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-fugitive'
+" Bundle 'mhinz/vim-signify'
 Bundle 'scrooloose/syntastic'
-Bundle 'guns/xterm-color-table.vim'
 Bundle 'jpalardy/vim-slime'
 " }
 
 " }
 
 " Color schemes {
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'cschlueter/vim-wombat'
-Bundle 'shawncplus/skittles_berry'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'jonathanfilip/vim-lucius'
 Bundle 'wgibbs/vim-irblack'
-Bundle 'tylerball/vim-hypertint'
-Bundle 'noahfrederick/Hemisu'
-Bundle 'sjl/badwolf'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'xoria256.vim'
+Bundle 'jonathanfilip/vim-lucius'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'noahfrederick/Hemisu'
+Bundle 'john2x/flatui.vim'
 " }
 
 " Notes and data {
@@ -246,7 +225,7 @@ set splitbelow
 set splitright
 
 set wildmenu
-set wildmode=list:longest
+set wildmode=full
 
 syntax enable "Enable syntax hl
 
@@ -285,14 +264,6 @@ let g:mapleader = " "
 let maplocalleader= "\\"
 let g:maplocalleader= "\\"
 
-" GUI Cursor: Different cursors for different modes. {
-if has("gui_running")
-  set guicursor=a:block-Cursor-blinkon0
-  set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
-  set guicursor+=v:block-vCursor-blinkon0
-endif
-" }
-
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
 
@@ -317,7 +288,7 @@ endfunction
 set foldtext=MyFoldText()
 " }
 
-" Matchit (old) { 
+" Matchit (old) {
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
@@ -330,55 +301,44 @@ xnoremap & :&&<CR>
 " Make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
+" Make . work with a visual selection
+vnoremap . :normal .<cr>
+
 " }
 
 " Font and colorscheme {
 
 if has("gui_running")
-  set gfn=Monaco:h16
-  set linespace=2
+  " Mac font
+  " set gfn=Monaco:h16
+  " Linux font
+  set gfn=CosmicSansNeueMono\ Medium\ 13
+  " Akkurat-Mono\ 13
+
+  " set linespace=2
 
   " Gui options
   set guioptions=c
   set guioptions-=T
 
-  colorscheme ir_black
-  " let g:badwolf_darkgutter = 1
-  " let g:badwolf_tabline = 3
-  " let g:badwolf_css_props_highlight = 1
-  " colorscheme badwolf
-  " colorscheme lucius
-  " LuciusBlackLowContrast
-  " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-  " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-  " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-  " LuciusBlack: http://i.imgur.com/iD4ri.png
-  " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-  " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-  " LuciusLight (light default): http://i.imgur.com/soYD8.png
-  " LuciusLightLowContrast: http://i.imgur.com/95I86.png
-  " LuciusWhite: http://i.imgur.com/wDzkz.png
-  " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+  colorscheme jellybeans
 else
 
-  set background=dark
+  " set background=dark
 
   " Black bg:
-  colorscheme lucius
-  LuciusBlack
-  " colorscheme ir_black
+  " colorscheme lucius
+  " LuciusBlack
+  colorscheme ir_black
   "
-  " Dark bg:
-  " colorscheme hypertint
-  " colorscheme badwolf
-  " colorscheme wombat256
-  " colorscheme xoria256
+  " Dark bg: (slow)
   " colorscheme jellybeans
   "
   " Light bg:
   " set background=light
   " set background=dark " It works nicely with black by restarting
   " colorscheme hemisu
+  " colorscheme flatui
   "
 
 endif
@@ -756,12 +716,7 @@ nnoremap <leader>t :CtrlPTag<CR>
 
 " }
 
-" Tagbar {
-nnoremap <silent> <F2> :TagbarToggle<CR>
-" }
-
 " Tabularize stuff {
-
 noremap <leader>at       :Tabularize /
 noremap <leader>aa       :Tabularize /
 noremap <leader>a:       :Tabularize colon<cr>
@@ -774,52 +729,14 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 " VimClojure {
 " }
 
-" Snipmate stuff {
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['less'] = 'css'
-let g:snipMate.scope_aliases['php'] = 'php,html'
-let g:snipMate.scope_aliases['jst'] = 'js,html'
-let g:snipMate.scope_aliases['ejs'] = 'js,html'
-" }
-
 " Scratch {
-nnoremap <leader>es :Scratch<cr>
+nnoremap <leader>es :enew<cr>
 " }
 
 " Ack commands abbr {
 nnoremap <leader>/ :Ack 
 command! TODO execute "Ack TODO"
 command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
-" }
-
-" EasyMotion {
-let g:EasyMotion_leader_key = 's'
-let g:EasyMotion_keys="jklfdsaghtrewqyuiopvcxzbnmJKLFDSAGHTREWQYUIOPVCXZBNM"
-hi EasyMotionShade ctermfg=darkgrey ctermbg=black guifg=darkgrey guibg=black
-hi EasyMotionTarget ctermfg=yellow ctermbg=darkred guifg=yellow guibg=darkred
-" }
-
-" AceJump {
-nnoremap ss :call AceJump()<CR>
-" }
-
-" Multicursor {
-nnoremap <leader>m  :<c-u>call MultiCursorPlaceCursor()<cr>
-xnoremap <leader>m  :<c-u>call MultiCursorVisual()<cr>
-nnoremap <leader>cc :<c-u>call MultiCursorManual()<cr>
-nnoremap <leader>cd :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
-let g:multicursor_quit = "<c-c>"
-
-" To get a sublime text like interface
-" Have to use xmap to get advantage of */# remaps. If I remap : this will break
-" DISABLED BECAUSE OF terryma/vim-multiple-cursors
-" nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
-" nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
-" xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
-" xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
-
 " }
 
 " Multiplecursors (terryma) {
@@ -861,15 +778,21 @@ let g:rbpt_colorpairs = [
 " Airline {
 let g:airline_left_sep = '' " ▶
 let g:airline_right_sep = '' " ◀
-let g:airline_branch_prefix = '  ' " ⎇  ±
+let g:airline_branch_prefix = '' " ⎇  ±
 " }
 
-" Switch {
-nnoremap - :Switch<cr>
+" Signify {
+" let g:signify_vcs_list = [ 'git' ]
+" let g:signify_sign_overwrite = 0
+" }
 
-let g:switch_custom_definitions = []
-" Use buffer local on ftplugin/xxxx.vim for filetype switches
-" let b:switch_custom_definitions = []
+" Startify {
+" let g:startify_custom_header =
+"   \ map(split(system('fortune | cowsay -f tux -W 76'), '\n'), '"   ". v:val') + ['','']
+" }
+
+" Syntastic {
+" let g:syntastic_check_on_open=1
 " }
 
 " }
@@ -917,7 +840,7 @@ set suffixesadd+=.css,.styl,.less,.sass,.scss
 " }
 
 " Javascript {
-set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.jade
+set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
 " Bundle 'othree/javascript-libraries-syntax.vim'
 let g:javascript_conceal=1
