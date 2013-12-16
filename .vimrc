@@ -36,29 +36,23 @@ Bundle 'gmarik/vundle'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle 'tpope/vim-repeat'
-Bundle 'Shougo/vimproc.vim'
 " }
 
 " Vim improvements {
 
 " Gui {
 Bundle 'bling/vim-airline'
-Bundle 'Shougo/unite.vim'
 " }
 
 " Command line {
-" Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 " }
 
 " Movement {
 Bundle 'matchit.zip'
-Bundle 'Lokaltog/vim-easymotion'
 " }
 
 " Editing {
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
-
 Bundle 'godlygeek/tabular'
 
 Bundle 'tpope/vim-surround'
@@ -67,9 +61,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
 " Bundle 'kana/vim-smartinput'
 
-Bundle 'vim-scripts/scratch.vim'
-
-Bundle 'paradigm/vim-multicursor'
+" Bundle 'paradigm/vim-multicursor'
 Bundle 'terryma/vim-multiple-cursors'
 " }
 
@@ -87,7 +79,6 @@ Bundle 'paradigm/TextObjectify'
 " }
 
 " Visual {
-" Bundle 'terryma/vim-expand-region'
 " }
 
 " }
@@ -96,14 +87,12 @@ Bundle 'paradigm/TextObjectify'
 
 " Editing {
 Bundle 'tpope/vim-commentary'
-Bundle 'majutsushi/tagbar'
 " }
 
 " Languages {
 " JS {
 Bundle 'pangloss/vim-javascript'
 " Bundle 'drslump/vim-syntax-js'
-Bundle 'itspriddle/vim-jquery'
 Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
@@ -117,13 +106,13 @@ Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'gkz/vim-ls'
 " }
 " Clojure {
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-classpath'
+" Bundle 'tpope/vim-fireplace'
+" Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
 " }
 " HTML {
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 " }
 " CSS {
 Bundle 'groenewege/vim-less'
@@ -140,27 +129,19 @@ Bundle 'tpope/vim-markdown'
 
 " External tools {
 Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-fugitive'
+" Bundle 'mhinz/vim-signify'
 Bundle 'scrooloose/syntastic'
-Bundle 'guns/xterm-color-table.vim'
 Bundle 'jpalardy/vim-slime'
 " }
 
 " }
 
 " Color schemes {
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'cschlueter/vim-wombat'
-Bundle 'shawncplus/skittles_berry'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'jonathanfilip/vim-lucius'
 Bundle 'wgibbs/vim-irblack'
-Bundle 'tylerball/vim-hypertint'
-Bundle 'noahfrederick/Hemisu'
-Bundle 'sjl/badwolf'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'xoria256.vim'
+Bundle 'jonathanfilip/vim-lucius'
 Bundle 'nanotech/jellybeans.vim'
+Bundle 'noahfrederick/Hemisu'
+Bundle 'john2x/flatui.vim'
 " }
 
 " Notes and data {
@@ -244,7 +225,7 @@ set splitbelow
 set splitright
 
 set wildmenu
-set wildmode=list:longest
+set wildmode=full
 
 syntax enable "Enable syntax hl
 
@@ -283,14 +264,6 @@ let g:mapleader = " "
 let maplocalleader= "\\"
 let g:maplocalleader= "\\"
 
-" GUI Cursor: Different cursors for different modes. {
-if has("gui_running")
-  set guicursor=a:block-Cursor-blinkon0
-  set guicursor+=i:ver20-iCursor-blinkon400-blinkoff50
-  set guicursor+=v:block-vCursor-blinkon0
-endif
-" }
-
 " When available switch to open buffers in current and different tabs
 set switchbuf=useopen,usetab
 
@@ -315,7 +288,7 @@ endfunction
 set foldtext=MyFoldText()
 " }
 
-" Matchit (old) { 
+" Matchit (old) {
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
@@ -328,54 +301,44 @@ xnoremap & :&&<CR>
 " Make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
+" Make . work with a visual selection
+vnoremap . :normal .<cr>
+
 " }
 
 " Font and colorscheme {
 
 if has("gui_running")
-  set gfn=Monaco:h16
-  set linespace=2
+  " Mac font
+  " set gfn=Monaco:h16
+  " Linux font
+  " set gfn=Inconsolata\ 13
+  " Akkurat-Mono\ 13
+
+  " set linespace=2
 
   " Gui options
   set guioptions=c
   set guioptions-=T
 
-  colorscheme ir_black
-  " let g:badwolf_darkgutter = 1
-  " let g:badwolf_tabline = 3
-  " let g:badwolf_css_props_highlight = 1
-  " colorscheme badwolf
-  " colorscheme lucius
-  " LuciusBlackLowContrast
-  " LuciusDark (dark default): http://i.imgur.com/LsZbF.png
-  " LuciusDarkHighContrast: http://i.imgur.com/e70i9.png
-  " LuciusDarkLowContrast: http://i.imgur.com/Hmw8s.png
-  " LuciusBlack: http://i.imgur.com/iD4ri.png
-  " LuciusBlackHighContrast: http://i.imgur.com/lHvTJ.png
-  " LuciusBlackLowContrast: http://i.imgur.com/oZLkg.png
-  " LuciusLight (light default): http://i.imgur.com/soYD8.png
-  " LuciusLightLowContrast: http://i.imgur.com/95I86.png
-  " LuciusWhite: http://i.imgur.com/wDzkz.png
-  " LuciusWhiteLowContrast: http://i.imgur.com/jlUf4.png
+  colorscheme jellybeans
 else
 
-  set background=dark
+  " set background=dark
 
   " Black bg:
   " colorscheme lucius
   " LuciusBlack
   colorscheme ir_black
   "
-  " Dark bg:
-  " colorscheme hypertint
-  " colorscheme badwolf
-  " colorscheme wombat256
-  " colorscheme xoria256
+  " Dark bg: (slow)
   " colorscheme jellybeans
   "
   " Light bg:
   " set background=light
+  " set background=dark " It works nicely with black by restarting
   " colorscheme hemisu
+  " colorscheme flatui
   "
 
 endif
@@ -511,6 +474,7 @@ set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Toggle spell checking
 nnoremap <leader>ss :set spell!<CR>
+nnoremap <leader>is z=1<CR><CR>
 set spelllang=en
 set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
 
@@ -738,26 +702,21 @@ nnoremap ? ?\v
 
 " CtrlP {
 
-" let g:ctrlp_map = '<leader>f'
-" let g:ctrlp_cmd = 'CtrlP'
-" let g:ctrlp_working_path_mode = 0
-" let g:ctrlp_by_filename = 1
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
-"   \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
-"   \ 'link': '',
-"   \ }
-" nnoremap <leader>b :CtrlPBuffer<CR>
-" nnoremap <leader>t :CtrlPTag<CR>
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_by_filename = 1
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
+\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
+\ 'link': '',
+\ }
+nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>t :CtrlPTag<CR>
 
-" }
-
-" Tagbar {
-nnoremap <silent> <F2> :TagbarToggle<CR>
 " }
 
 " Tabularize stuff {
-
 noremap <leader>at       :Tabularize /
 noremap <leader>aa       :Tabularize /
 noremap <leader>a:       :Tabularize colon<cr>
@@ -770,52 +729,14 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 " VimClojure {
 " }
 
-" Snipmate stuff {
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {}
-let g:snipMate.scope_aliases['less'] = 'css'
-let g:snipMate.scope_aliases['php'] = 'php,html'
-let g:snipMate.scope_aliases['jst'] = 'js,html'
-let g:snipMate.scope_aliases['ejs'] = 'js,html'
-" }
-
 " Scratch {
-nnoremap <leader>es :Scratch<cr>
+nnoremap <leader>es :enew<cr>
 " }
 
 " Ack commands abbr {
 nnoremap <leader>/ :Ack 
 command! TODO execute "Ack TODO"
 command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
-" }
-
-" EasyMotion {
-let g:EasyMotion_leader_key = 's'
-let g:EasyMotion_keys="jklfdsaghtrewqyuiopvcxzbnmJKLFDSAGHTREWQYUIOPVCXZBNM"
-hi EasyMotionShade ctermfg=darkgrey ctermbg=black guifg=darkgrey guibg=black
-hi EasyMotionTarget ctermfg=yellow ctermbg=darkred guifg=yellow guibg=darkred
-" }
-
-" AceJump {
-nnoremap ss :call AceJump()<CR>
-" }
-
-" Multicursor {
-nnoremap <leader>m  :<c-u>call MultiCursorPlaceCursor()<cr>
-xnoremap <leader>m  :<c-u>call MultiCursorVisual()<cr>
-nnoremap <leader>cc :<c-u>call MultiCursorManual()<cr>
-nnoremap <leader>cd :<c-u>call MultiCursorRemoveCursors()<cr>
-nnoremap <leader>c/ :<c-u>call MultiCursorSearch('')<cr>
-let g:multicursor_quit = "<c-c>"
-
-" To get a sublime text like interface
-" Have to use xmap to get advantage of */# remaps. If I remap : this will break
-" DISABLED BECAUSE OF terryma/vim-multiple-cursors
-" nnoremap <c-p>  :<c-u>call MultiCursorPlaceCursor()<cr>N
-" nnoremap <c-n>  :<c-u>call MultiCursorPlaceCursor()<cr>n
-" xmap     <c-p> #,<c-u>call MultiCursorPlaceCursor()<cr>N
-" xmap     <c-n> *,<c-u>call MultiCursorPlaceCursor()<cr>n
-
 " }
 
 " Multiplecursors (terryma) {
@@ -826,6 +747,8 @@ highlight link multiple_cursors_visual Visual
 " Slime {
 let g:slime_target = "tmux"
 let g:slime_no_mappings = 1
+let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
 nmap <leader>v <Plug>SlimeMotionSend
 nmap <leader>vv <Plug>SlimeParagraphSend
 xmap <leader>v <Plug>SlimeRegionSend
@@ -833,101 +756,43 @@ xmap <leader>v <Plug>SlimeRegionSend
 
 " Rainbow parenthesis {
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+  \ ['brown',       'RoyalBlue3'],
+  \ ['Darkblue',    'SeaGreen3'],
+  \ ['darkgreen',   'firebrick3'],
+  \ ['darkgray',    'DarkOrchid3'],
+  \ ['darkcyan',    'RoyalBlue3'],
+  \ ['darkred',     'SeaGreen3'],
+  \ ['darkmagenta', 'DarkOrchid3'],
+  \ ['brown',       'firebrick3'],
+  \ ['gray',        'RoyalBlue3'],
+  \ ['black',       'SeaGreen3'],
+  \ ['darkred',     'DarkOrchid3'],
+  \ ['darkgreen',   'RoyalBlue3'],
+  \ ['darkmagenta', 'DarkOrchid3'],
+  \ ['Darkblue',    'firebrick3'],
+  \ ['darkcyan',    'SeaGreen3'],
+  \ ['red',         'firebrick3'],
+  \ ]
 " }
 
 " Airline {
-  let g:airline_left_sep = '' " ▶
-  let g:airline_right_sep = '' " ◀
-  let g:airline_fugitive_prefix = '  ' " ⎇  ±
+let g:airline_left_sep = '' " ▶
+let g:airline_right_sep = '' " ◀
+let g:airline_branch_prefix = '' " ⎇  ±
 " }
 
-" Unite {
+" Signify {
+" let g:signify_vcs_list = [ 'git' ]
+" let g:signify_sign_overwrite = 0
+" }
 
-let g:unite_source_history_yank_enable = 1
+" Startify {
+" let g:startify_custom_header =
+"   \ map(split(system('fortune | cowsay -f tux -W 76'), '\n'), '"   ". v:val') + ['','']
+" }
 
-" Start insert.
-let g:unite_enable_start_insert = 1
-let g:unite_enable_short_source_names = 1
-
-" To track long mru history.
-let g:unite_source_file_mru_long_limit = 3000
-let g:unite_source_directory_mru_long_limit = 3000
-
-" For ack.
-if executable('ack-grep')
-  let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-
-call unite#custom#source('file_rec', 'ignore_pattern', '\.git\|\.hg\|\.svn\|node_modules\|\.exe$\|\.so$\|\.dll$\|\.swp$')
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-nnoremap <leader>b   :<c-u>Unite -no-split -buffer-name=buffers   buffer<cr>
-nnoremap <leader>f   :<c-u>Unite -no-split -buffer-name=files     file_rec/async<cr>
-nnoremap <leader>uf  :<c-u>Unite -no-split -buffer-name=files     file<cr>
-nnoremap <leader>uy  :<C-u>Unite -no-split -buffer-name=yanks     history/yank<CR>
-nnoremap <leader>ub  :<C-u>Unite -no-split -buffer-name=bufmru    buffer             file_mru bookmark<CR>
-nnoremap <leader>ur  :<c-u>Unite -no-split -buffer-name=registers register<cr>
-nnoremap <leader>ut  :<c-u>Unite -no-split -buffer-name=tabs      tab<cr>
-nnoremap <leader>ul  :<c-u>Unite -no-split -buffer-name=lines     line<cr>
-nnoremap <leader>uj  :<c-u>Unite -no-split -buffer-name=jumps     jump<cr>
-nnoremap <leader>um  :<c-u>Unite -no-split -buffer-name=menus     menu<cr>
-nnoremap <leader>uc  :<c-u>Unite -no-split -buffer-name=command   command<cr>
-nnoremap <leader>uo  :<c-u>Unite -no-split -buffer-name=output    output<cr>
-nnoremap <leader>uma :<C-u>Unite -no-split mapping<CR>
-nnoremap <leader>ume :<C-u>Unite -no-split output:message<CR>
-nnoremap <leader>uu  :<C-u>Unite -no-split source<CR>
-
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings() " {
-
-  nmap <buffer> <ESC>     <Plug>(unite_exit)
-  nmap <buffer> <leader>q <Plug>(unite_exit)
-
-  nmap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
-  imap <buffer> <C-j> <Plug>(unite_toggle_auto_preview)
-
-  nmap <buffer> a i
-
-  let unite = unite#get_current_unite()
-
-  nnoremap <silent><buffer><expr> cd unite#do_action('lcd')
-
-  nmap <buffer><expr> S unite#mappings#set_current_filters(
-          \ empty(unite#mappings#get_current_filters()) ?
-          \ ['sorter_reverse'] : [])
-
-  nmap <buffer> <c-z> <Plug>(unite_toggle_mark_current_candidate)
-  imap <buffer> <c-z> <Plug>(unite_toggle_mark_current_candidate)
-
-  " Runs "split" action by <C-s>.
-  nmap <buffer><expr> <c-s> unite#do_action('split')
-  imap <buffer><expr> <c-s> unite#do_action('split')
-  nmap <buffer><expr> <c-v> unite#do_action('vsplit')
-  imap <buffer><expr> <c-v> unite#do_action('vsplit')
-  nmap <buffer><expr> <c-t> unite#do_action('tabopen')
-  imap <buffer><expr> <c-t> unite#do_action('tabopen')
-
-endfunction " }
-
+" Syntastic {
+" let g:syntastic_check_on_open=1
 " }
 
 " }
@@ -975,7 +840,7 @@ set suffixesadd+=.css,.styl,.less,.sass,.scss
 " }
 
 " Javascript {
-set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.jade
+set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
 " Bundle 'othree/javascript-libraries-syntax.vim'
 let g:javascript_conceal=1
