@@ -134,7 +134,7 @@ Bundle 'wavded/vim-stylus'
 Bundle 'tpope/vim-markdown'
 " }
 " Liquid {
-Bundle 'tpope/vim-liquid'
+" Bundle 'tpope/vim-liquid'
 " }
 " }
 
@@ -915,7 +915,6 @@ function! s:unite_my_settings() " {
           \ empty(unite#mappings#get_current_filters()) ?
           \ ['sorter_reverse'] : [])
 
-  
   nmap <buffer> <c-z> <Plug>(unite_toggle_mark_current_candidate)
   imap <buffer> <c-z> <Plug>(unite_toggle_mark_current_candidate)
 
