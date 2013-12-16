@@ -312,7 +312,7 @@ if has("gui_running")
   " Mac font
   " set gfn=Monaco:h16
   " Linux font
-  set gfn=CosmicSansNeueMono\ Medium\ 13
+  " set gfn=Inconsolata\ 13
   " Akkurat-Mono\ 13
 
   " set linespace=2
