@@ -4,10 +4,25 @@
 
 let g:isUnix = 1
 if has('win32') || has('win64')
-    let g:isUnix = 0
+  let g:isUnix = 0
 endif
+
 fun! IsUnix()
-    return g:isUnix
+  return g:isUnix
+endfun
+
+let g:isMac = 0
+if has('macunix')
+  let g:isMac = 1
+endif
+
+fun! IsMac()
+  return g:isMac
+endfun
+
+let g:isLinux = IsUnix() && !IsMac()
+fun! IsLinux()
+  return g:isLinux
 endfun
 " }
 
@@ -309,10 +324,16 @@ vnoremap . :normal .<cr>
 " Font and colorscheme {
 
 if has("gui_running")
-  " Mac font
-  " set gfn=Monaco:h16
+
   " Linux font
-  " set gfn=Inconsolata\ 13
+  if IsLinux()
+    set gfn=Inconsolata\ 13
+  endif
+
+  " Mac font
+  if IsMac()
+    set gfn=Monaco:h16
+  endif
   " Akkurat-Mono\ 13
 
   " set linespace=2
