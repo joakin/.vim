@@ -65,6 +65,7 @@ Bundle 'kien/ctrlp.vim'
 
 " Movement {
 Bundle 'matchit.zip'
+Bundle 'justinmk/vim-sneak'
 " }
 
 " Editing {
