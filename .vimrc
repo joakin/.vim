@@ -114,6 +114,8 @@ Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'briancollins/vim-jst'
 Bundle 'nono/vim-handlebars'
+Bundle 'moll/vim-node'
+Bundle 'ahayman/vim-nodejs-complete'
 " }
 " CoffeeScript {
 Bundle 'kchmck/vim-coffee-script'
