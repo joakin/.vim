@@ -57,6 +57,7 @@ Bundle 'tpope/vim-repeat'
 
 " Gui {
 Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-vinegar'
 " }
 
 " Command line {
@@ -75,7 +76,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-abolish'
-" Bundle 'kana/vim-smartinput'
+Bundle 'kana/vim-smartinput'
 
 " Bundle 'paradigm/vim-multicursor'
 Bundle 'terryma/vim-multiple-cursors'
@@ -126,8 +127,9 @@ Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'gkz/vim-ls'
 " }
 " Clojure {
-" Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-fireplace'
 " Bundle 'tpope/vim-classpath'
+" Bundle 'paredit.vim'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
 " }
@@ -148,10 +150,13 @@ Bundle 'tpope/vim-markdown'
 " }
 
 " External tools {
-Bundle 'mileszs/ack.vim'
+" Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 " Bundle 'mhinz/vim-signify'
-Bundle 'scrooloose/syntastic'
 Bundle 'jpalardy/vim-slime'
+
+" Doesn't work in FISH?
+Bundle 'scrooloose/syntastic'
 " }
 
 " }
@@ -162,6 +167,7 @@ Bundle 'jonathanfilip/vim-lucius'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'john2x/flatui.vim'
+Bundle 'fxn/vim-monochrome'
 " }
 
 " Notes and data {
@@ -255,8 +261,8 @@ set completeopt=menu,preview
 
 set backspace=indent,eol,start
 
-" set number
-" set relativenumber
+set number
+set relativenumber
 
 set scrolloff=3
 
@@ -273,8 +279,8 @@ set synmaxcol=800
 
 set mouse=a
 
-" set cursorline
-" set cursorcolumn
+set cursorline
+set cursorcolumn
 
 " Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
 set nrformats-=octal
@@ -337,7 +343,10 @@ if has("gui_running")
 
   " Mac font
   if IsMac()
-    set gfn=Monaco:h16
+    " set gfn=Fira\ Mono\ OT:h15
+    " set gfn=TheSansMono-Regular:h16
+    set gfn=Onuava:h19
+    set linespace=4
   endif
   " Akkurat-Mono\ 13
 
@@ -347,7 +356,12 @@ if has("gui_running")
   set guioptions=c
   set guioptions-=T
 
-  colorscheme jellybeans
+  " colorscheme jellybeans
+  " colorscheme monochrome
+  colorscheme lucius
+  LuciusBlackLowContrast
+  " set background=dark
+  " colorscheme hemisu
 else
 
   " set background=dark
@@ -717,10 +731,13 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$',
+\ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$|^target$',
 \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 \ 'link': '',
 \ }
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 
@@ -743,10 +760,16 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 nnoremap <leader>es :enew<cr>
 " }
 
+" Ag {
+nnoremap <leader>/ :Ag 
+command! TODO execute "Ag TODO"
+command! FIX execute "Ag \"FIX|XXX|HACK|OPTIMIZE\""
+" }
+
 " Ack commands abbr {
-nnoremap <leader>/ :Ack 
-command! TODO execute "Ack TODO"
-command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
+" nnoremap <leader>/ :Ack 
+" command! TODO execute "Ack TODO"
+" command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
 " }
 
 " Multiplecursors (terryma) {
@@ -756,32 +779,30 @@ highlight link multiple_cursors_visual Visual
 
 " Slime {
 let g:slime_target = "tmux"
-let g:slime_no_mappings = 1
-let g:slime_paste_file = "$HOME/.slime_paste"
+" let g:slime_no_mappings = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
-nmap <leader>v <Plug>SlimeMotionSend
-nmap <leader>vv <Plug>SlimeParagraphSend
-xmap <leader>v <Plug>SlimeRegionSend
+nmap <c-c> <Plug>SlimeMotionSend
+imap <c-c><c-c> 
 " }
 
 " Rainbow parenthesis {
 let g:rbpt_colorpairs = [
-  \ ['brown',       'RoyalBlue3'],
-  \ ['Darkblue',    'SeaGreen3'],
-  \ ['darkgreen',   'firebrick3'],
-  \ ['darkgray',    'DarkOrchid3'],
-  \ ['darkcyan',    'RoyalBlue3'],
-  \ ['darkred',     'SeaGreen3'],
-  \ ['darkmagenta', 'DarkOrchid3'],
-  \ ['brown',       'firebrick3'],
-  \ ['gray',        'RoyalBlue3'],
-  \ ['black',       'SeaGreen3'],
-  \ ['darkred',     'DarkOrchid3'],
-  \ ['darkgreen',   'RoyalBlue3'],
-  \ ['darkmagenta', 'DarkOrchid3'],
-  \ ['Darkblue',    'firebrick3'],
-  \ ['darkcyan',    'SeaGreen3'],
-  \ ['red',         'firebrick3'],
+  \ ['104', '#887FD5'],
+  \ ['75', '#70BFFF'],
+  \ ['86', '#55F1E1'],
+  \ ['83', '#63EB63'],
+  \ ['227', '#EFEF66'],
+  \ ['215', '#FFBB44'],
+  \ ['213', '#EB77EC'],
+  \ ['104', '#887FD5'],
+  \ ['75', '#70BFFF'],
+  \ ['86', '#55F1E1'],
+  \ ['83', '#63EB63'],
+  \ ['227', '#EFEF66'],
+  \ ['215', '#FFBB44'],
+  \ ['213', '#EB77EC'],
+  \ ['104', '#887FD5'],
+  \ ['75', '#70BFFF'],
   \ ]
 " }
 
@@ -843,6 +864,9 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
+
+set wildignore+=target/                          " Clojure
+
 " }
 
 " CSS {
