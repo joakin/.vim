@@ -346,7 +346,7 @@ if has("gui_running")
     " set gfn=Fira\ Mono\ OT:h15
     " set gfn=TheSansMono-Regular:h16
     set gfn=Onuava:h19
-    set linespace=4
+    set linespace=6
   endif
   " Akkurat-Mono\ 13
 
