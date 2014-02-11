@@ -603,8 +603,8 @@ nnoremap # #Nzzzv
 " }
 
 " Visual Mode */# from Scrooloose {
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+vnoremap * :<C-u>call g:VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call g:VSetSearch()<CR>??<CR><c-o>
 " }
 
 " Folds {
@@ -700,15 +700,15 @@ onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 " }
 
 " Highlight Word {
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
-nnoremap <silent> <leader>7 :call HiInterestingWord(7)<cr>
-nnoremap <silent> <leader>8 :call HiInterestingWord(8)<cr>
-nnoremap <silent> <leader>9 :call HiInterestingWord(9)<cr>
+nnoremap <silent> <leader>1 :call g:HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>2 :call g:HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>3 :call g:HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>4 :call g:HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>5 :call g:HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>6 :call g:HiInterestingWord(6)<cr>
+nnoremap <silent> <leader>7 :call g:HiInterestingWord(7)<cr>
+nnoremap <silent> <leader>8 :call g:HiInterestingWord(8)<cr>
+nnoremap <silent> <leader>9 :call g:HiInterestingWord(9)<cr>
 " }
 
 " Remove trailing whitespace {
