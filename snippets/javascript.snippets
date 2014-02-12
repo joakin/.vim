@@ -1,25 +1,4 @@
-# Test snippet
-snippet log
-	console.log(${1:arguments})${2}
-# Mocha / Sinon / Chai
-snippet describe
-	describe('${1}', function() {
-		${3}
-	})${2}
-snippet it
-	it('${1}', function(${2:done}) {
-		${4}
-	})${3}
-snippet expect
-	expect(${1}).to.${2}
-# Require JS
-snippet define
-	define([${1}], function(${2}) {
-		${4}
-	})${3}
-snippet require
-	require(['${1}'], function(${2}) {
-		${3}
-	})${4}
-snippet req
-	${1} = require('${2}')${3}
+
+snippet r "common js require"
+${2:$1} = require('${1:${VISUAL}}')${3}
+endsnippet

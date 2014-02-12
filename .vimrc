@@ -82,6 +82,8 @@ Bundle 'kana/vim-smartinput'
 Bundle 'terryma/vim-multiple-cursors'
 
 Bundle "tpope/vim-rsi"
+
+Bundle "SirVer/ultisnips"
 " }
 
 " Text Objects {
@@ -723,6 +725,13 @@ nnoremap ? ?\v
 " }
 
 " Plugin settings & mappings {
+
+" Ultisnips {
+let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippets']
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }
 
 " CtrlP {
 
