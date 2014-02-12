@@ -164,6 +164,8 @@ Bundle 'scrooloose/syntastic'
 " }
 
 " Color schemes {
+Bundle 'morhetz/gruvbox'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'wgibbs/vim-irblack'
 Bundle 'jonathanfilip/vim-lucius'
 Bundle 'nanotech/jellybeans.vim'
@@ -194,6 +196,7 @@ endif
 " Tab size
 set softtabstop=2
 set shiftwidth=2
+set shiftround
 set tabstop=2
 set expandtab
 
@@ -265,6 +268,7 @@ set backspace=indent,eol,start
 
 set number
 set relativenumber
+set numberwidth=2
 
 set scrolloff=3
 
@@ -346,9 +350,11 @@ if has("gui_running")
   " Mac font
   if IsMac()
     " set gfn=Fira\ Mono\ OT:h15
-    " set gfn=TheSansMono-Regular:h16
-    set gfn=Onuava:h19
-    set linespace=6
+    set gfn=PragmataPro:h17
+    set linespace=4
+    " set gfn=M+\ 1m\ light:h16
+    " set gfn=Onuava:h16
+    " set linespace=6
   endif
   " Akkurat-Mono\ 13
 
@@ -358,10 +364,13 @@ if has("gui_running")
   set guioptions=c
   set guioptions-=T
 
+  set background=dark
+  colorscheme gruvbox
+  " colorscheme ir_black
   " colorscheme jellybeans
   " colorscheme monochrome
-  colorscheme lucius
-  LuciusBlackLowContrast
+  " colorscheme lucius
+  " LuciusBlackLowContrast
   " set background=dark
   " colorscheme hemisu
 else
@@ -369,8 +378,8 @@ else
   " set background=dark
 
   " Black bg:
-  colorscheme lucius
-  LuciusBlackLowContrast
+  " colorscheme lucius
+  " LuciusBlackLowContrast
   " colorscheme ir_black
   "
   " Dark bg: (slow)
@@ -378,8 +387,8 @@ else
   "
   " Light bg:
   " set background=light
-  " set background=dark " It works nicely with black by restarting
-  " colorscheme hemisu
+  set background=dark " It works nicely with black by restarting
+  colorscheme hemisu
   " colorscheme flatui
   "
 
@@ -464,7 +473,7 @@ nnoremap <leader>q :q<cr>
 " }
 
 " Easier omnicompletion {
-inoremap <c-@> <C-X><C-O>
+inoremap <c-space> <C-X><C-O>
 " }
 
 " Manipulate windows {
@@ -795,24 +804,24 @@ imap <c-c><c-c> 
 " }
 
 " Rainbow parenthesis {
-let g:rbpt_colorpairs = [
-  \ ['104', '#887FD5'],
-  \ ['75', '#70BFFF'],
-  \ ['86', '#55F1E1'],
-  \ ['83', '#63EB63'],
-  \ ['227', '#EFEF66'],
-  \ ['215', '#FFBB44'],
-  \ ['213', '#EB77EC'],
-  \ ['104', '#887FD5'],
-  \ ['75', '#70BFFF'],
-  \ ['86', '#55F1E1'],
-  \ ['83', '#63EB63'],
-  \ ['227', '#EFEF66'],
-  \ ['215', '#FFBB44'],
-  \ ['213', '#EB77EC'],
-  \ ['104', '#887FD5'],
-  \ ['75', '#70BFFF'],
-  \ ]
+" let g:rbpt_colorpairs = [
+"   \ ['104', '#887FD5'],
+"   \ ['75', '#70BFFF'],
+"   \ ['86', '#55F1E1'],
+"   \ ['83', '#63EB63'],
+"   \ ['227', '#EFEF66'],
+"   \ ['215', '#FFBB44'],
+"   \ ['213', '#EB77EC'],
+"   \ ['104', '#887FD5'],
+"   \ ['75', '#70BFFF'],
+"   \ ['86', '#55F1E1'],
+"   \ ['83', '#63EB63'],
+"   \ ['227', '#EFEF66'],
+"   \ ['215', '#FFBB44'],
+"   \ ['213', '#EB77EC'],
+"   \ ['104', '#887FD5'],
+"   \ ['75', '#70BFFF'],
+"   \ ]
 " }
 
 " Airline {
