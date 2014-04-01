@@ -84,6 +84,11 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle "tpope/vim-rsi"
 
 Bundle "SirVer/ultisnips"
+
+Bundle 'tommcdo/vim-exchange'
+Bundle 'Shougo/neocomplete.vim'
+
+Bundle 'tpope/vim-sleuth'
 " }
 
 " Text Objects {
@@ -100,6 +105,7 @@ Bundle 'paradigm/TextObjectify'
 " }
 
 " Visual {
+Bundle 'ntpeters/vim-better-whitespace'
 " }
 
 " }
@@ -350,11 +356,12 @@ if has("gui_running")
   " Mac font
   if IsMac()
     " set gfn=Fira\ Mono\ OT:h15
-    set gfn=PragmataPro:h17
-    set linespace=4
+    " set gfn=PragmataPro:h17
+    " set linespace=4
     " set gfn=M+\ 1m\ light:h16
     " set gfn=Onuava:h16
-    " set linespace=6
+    set gfn=Inconsolata:h23
+    set linespace=6
   endif
   " Akkurat-Mono\ 13
 
@@ -737,7 +744,6 @@ nnoremap ? ?\v
 
 " Ultisnips {
 let g:UltiSnipsSnippetsDir='~/.vim/snippets'
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippets']
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }
@@ -846,6 +852,14 @@ let g:airline_branch_prefix = '' " ⎇  ±
 
 " Emmet {
 let g:user_emmet_leader_key = '<F3>'
+" }
+
+" Neocomplete {
+let g:neocomplete#enable_at_startup = 1
+" }
+
+" Better whitespace {
+highlight ExtraWhitespace ctermbg = 52 guibg = #550000
 " }
 
 " }
