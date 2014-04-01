@@ -136,7 +136,7 @@ Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
 " }
 " HTML {
-Bundle 'mattn/emmet-vim'
+" Bundle 'mattn/emmet-vim'
 " }
 " CSS {
 Bundle 'groenewege/vim-less'
@@ -842,6 +842,10 @@ let g:airline_branch_prefix = '' " ⎇  ±
 
 " Syntastic {
 " let g:syntastic_check_on_open=1
+" }
+
+" Emmet {
+let g:user_emmet_leader_key = '<F3>'
 " }
 
 " }
