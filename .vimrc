@@ -360,7 +360,8 @@ if has("gui_running")
     " set linespace=4
     " set gfn=M+\ 1m\ light:h16
     " set gfn=Onuava:h16
-    set gfn=Inconsolata:h23
+    " set gfn=Inconsolata:h23
+    set gfn=Monaco:h20
     set linespace=6
   endif
   " Akkurat-Mono\ 13
