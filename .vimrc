@@ -171,8 +171,15 @@ Bundle 'rking/ag.vim'
 " Bundle 'mhinz/vim-signify'
 Bundle 'jpalardy/vim-slime'
 
-" Doesn't work in FISH?
 Bundle 'scrooloose/syntastic'
+" }
+
+" Internets {
+
+" Dep for gist-vim
+Bundle 'mattn/webapi-vim'
+
+Bundle 'mattn/gist-vim'
 " }
 
 " }
@@ -872,6 +879,17 @@ let g:neocomplete#enable_at_startup = 1
 
 " Better whitespace {
 highlight ExtraWhitespace ctermbg = 52 guibg = #550000
+" }
+
+" Gist {
+if IsMac()
+  let g:gist_clip_command = 'pbcopy'
+endif
+if IsLinux()
+  let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
 " }
 
 " }
