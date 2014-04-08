@@ -67,6 +67,7 @@ Bundle 'kien/ctrlp.vim'
 " Movement {
 Bundle 'matchit.zip'
 Bundle 'justinmk/vim-sneak'
+Bundle 'tommcdo/vim-ninja-feet'
 " }
 
 " Editing {
@@ -85,10 +86,16 @@ Bundle "tpope/vim-rsi"
 
 Bundle "SirVer/ultisnips"
 
+" Operator for exchanging text (cx)
 Bundle 'tommcdo/vim-exchange'
+
 Bundle 'Shougo/neocomplete.vim'
 
+" Auto detect indent settings
 Bundle 'tpope/vim-sleuth'
+
+" Operator for aligning text (gl, gL)
+Bundle 'tommcdo/vim-lion'
 " }
 
 " Text Objects {
@@ -98,6 +105,7 @@ Bundle 'kana/vim-textobj-line'
 Bundle 'kana/vim-textobj-fold'
 Bundle 'kana/vim-textobj-entire'
 Bundle 'kana/vim-textobj-lastpat'
+Bundle 'qstrahl/vim-dentures'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'coderifous/textobj-word-column.vim'
 
