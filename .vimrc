@@ -564,6 +564,9 @@ vnoremap <leader>P "+P
 " Quick fix and location window mappings {
 nnoremap <leader>eq :copen<cr>
 nnoremap <leader>el :lopen<cr>
+
+" Make preview window closing also close location and quickfix windows
+nnoremap <silent> <C-W>z :wincmd z<Bar>cclose<Bar>lclose<CR>
 " }
 
 " Highlight Group(s) {
