@@ -376,7 +376,8 @@ if has("gui_running")
     " set gfn=M+\ 1m\ light:h16
     " set gfn=Onuava:h16
     " set gfn=Inconsolata:h23
-    set gfn=Monaco:h20
+    " set gfn=Monaco:h20
+    set gfn=Edlo:h18
     set linespace=6
   endif
   " Akkurat-Mono\ 13
@@ -789,14 +790,12 @@ nnoremap <leader>t :CtrlPTag<CR>
 " Tabularize stuff {
 noremap <leader>at       :Tabularize /
 noremap <leader>aa       :Tabularize /
+noremap <leader>a\|       :Tabularize /\|<cr>
 noremap <leader>a:       :Tabularize colon<cr>
 noremap <leader>a<space> :Tabularize spaces<cr>
 noremap <leader>a=       :Tabularize assignment<cr>
 noremap <leader>acss     :Tabularize inline_css<cr>
 
-" }
-
-" VimClojure {
 " }
 
 " Scratch {
