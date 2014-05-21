@@ -520,7 +520,7 @@ nnoremap <leader>q :q<cr>
 " }
 
 " Easier omnicompletion {
-" inoremap <c-space> <Nul><C-X><C-O>
+inoremap <c-@> <C-X><C-O>
 " }
 
 " Manipulate windows {
