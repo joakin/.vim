@@ -373,6 +373,13 @@ nnoremap Y y$
 " Make . work with a visual selection
 vnoremap . :normal .<cr>
 
+" Invisible char settings (list)
+set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
+
+" Spell stuff
+set spelllang=en
+set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
+
 " }
 
 " Font and colorscheme {
@@ -513,7 +520,7 @@ nnoremap <leader>q :q<cr>
 " }
 
 " Easier omnicompletion {
-inoremap <c-space> <C-X><C-O>
+" inoremap <c-space> <Nul><C-X><C-O>
 " }
 
 " Manipulate windows {
@@ -547,38 +554,20 @@ vnoremap <Down>  :m'>+<CR>gv=gv
 vnoremap <Up>    :m-2<CR>gv=gv
 vnoremap <Left>  <gv
 vnoremap <Right> >gv
+vnoremap < <gv
+vnoremap > >gv
 " }
 
 " Toggling settings {
 
-nnoremap <leader>s/ :nohlsearch<CR>
-
 " Map to set local path to file current path
-nnoremap <leader>sp :lcd %:p:h<CR>:pwd<CR>
+nnoremap cop :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap <leader>sn :call g:ToggleNuMode()<cr>
-
-" Toggle background color
-nnoremap <leader>sb :let &background = ( &background ==? "dark"? "light" : "dark" )<CR>
-
-" Toggle invisibles
-nnoremap <leader>si :set list!<CR>
-set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
-
-" Toggle spell checking
-nnoremap <leader>ss :set spell!<CR>
-nnoremap <leader>is z=1<CR><CR>
-set spelllang=en
-set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
+nnoremap con :call g:ToggleNuMode()<cr>
 
 " Toggle conceal
-nnoremap <leader>sc :call g:ToggleConceal(0)<cr>
-nnoremap <leader>sC :call g:ToggleConceal(1)<cr>
-
-" Toggle wrap
-nnoremap <leader>sw :setlocal wrap!<cr>
-nnoremap <leader>sW :set wrap!<cr>
+nnoremap coC :call g:ToggleConceal(1)<cr>
 
 " }
 
@@ -648,7 +637,7 @@ nnoremap gI `.
 " }
 
 " Toggle "keep current line in the center of the screen" mode {
-nnoremap <leader>C :let &scrolloff=999-&scrolloff<cr>
+nnoremap <leader>c :let &scrolloff=999-&scrolloff<cr>
 " }
 
 " Normal mode */# remap {
@@ -722,12 +711,13 @@ xnoremap : ,
 " }
 
 " Easy filetype changing {
-nnoremap <leader>sft :set filetype=txt<cr>
-nnoremap <leader>sfj :set filetype=javascript<cr>
-nnoremap <leader>sfm :set filetype=markdown<cr>
-nnoremap <leader>sfw :set filetype=workflowish<cr>
-nnoremap <leader>sfv :set filetype=vim<cr>
-nnoremap <leader>sff :set filetype=
+nnoremap coft :set filetype=txt<cr>
+nnoremap cofj :set filetype=javascript<cr>
+nnoremap cofm :set filetype=markdown<cr>
+nnoremap cofw :set filetype=workflowish<cr>
+nnoremap cofv :set filetype=vim<cr>
+nnoremap cofc :set filetype=clojure<cr>
+nnoremap coff :set filetype=
 " }
 
 " Moving back and forth between lines of same or lower indentation {
@@ -767,6 +757,10 @@ nnoremap <silent> <leader>9 :call g:HiInterestingWord(9)<cr>
 
 " Remove trailing whitespace {
 nnoremap <leader>i<space> :%s/\s\+$<cr>
+" }
+
+" Substitute word with first spell suggestion {
+nnoremap <leader>is z=1<CR><CR>
 " }
 
 " Map search to very magic {
@@ -865,6 +859,7 @@ imap <c-c><c-c> 
 " }
 
 " Airline {
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep = '' " ▶
 let g:airline_right_sep = '' " ◀
 let g:airline_branch_prefix = '' " ⎇  ±
