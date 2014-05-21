@@ -56,39 +56,48 @@ Bundle 'tpope/vim-repeat'
 " Vim improvements {
 
 " Gui {
+" Nice status bar
 Bundle 'bling/vim-airline'
+" Fix some netrw
 Bundle 'tpope/vim-vinegar'
 " }
 
 " Command line {
+" File/Buffer/Tag finder
 Bundle 'kien/ctrlp.vim'
 " }
 
 " Movement {
 Bundle 'matchit.zip'
+" Like f but multiline and faster 's'
 Bundle 'justinmk/vim-sneak'
+" d]a) or c[i( for example
 Bundle 'tommcdo/vim-ninja-feet'
 " }
 
 " Editing {
+" Align text :Tabularize
 Bundle 'godlygeek/tabular'
-
+" Change surrounding delimiters (cs"')
 Bundle 'tpope/vim-surround'
+" c-a c-x for dates
 Bundle 'tpope/vim-speeddating'
+" Tons of useful mappings
 Bundle 'tpope/vim-unimpaired'
+" Abbreviations, Substitutions, Coercion...
 Bundle 'tpope/vim-abolish'
 Bundle 'kana/vim-smartinput'
 
-" Bundle 'paradigm/vim-multicursor'
-Bundle 'terryma/vim-multiple-cursors'
-
+" Readline mappings
 Bundle "tpope/vim-rsi"
 
+" Snippets
 Bundle "SirVer/ultisnips"
 
 " Operator for exchanging text (cx)
 Bundle 'tommcdo/vim-exchange'
 
+" Auto completion popup
 Bundle 'Shougo/neocomplete.vim'
 
 " Auto detect indent settings
@@ -99,17 +108,22 @@ Bundle 'tommcdo/vim-lion'
 " }
 
 " Text Objects {
+" Custom text objects (kana dep)
 Bundle 'kana/vim-textobj-user'
+" f{char}
 Bundle 'thinca/vim-textobj-between'
+" il al
 Bundle 'kana/vim-textobj-line'
+" iz az
 Bundle 'kana/vim-textobj-fold'
+" ie ae
 Bundle 'kana/vim-textobj-entire'
+" i/ a/ i? a?
 Bundle 'kana/vim-textobj-lastpat'
+" ai ii aI iI
 Bundle 'qstrahl/vim-dentures'
-Bundle 'michaeljsmith/vim-indent-object'
+" ic ac iC aC
 Bundle 'coderifous/textobj-word-column.vim'
-
-Bundle 'paradigm/TextObjectify'
 " }
 
 " Visual {
@@ -121,19 +135,19 @@ Bundle 'ntpeters/vim-better-whitespace'
 " Coding {
 
 " Editing {
+" Comment and uncomment code with gc{motion} (gcc gcgc)
 Bundle 'tpope/vim-commentary'
 " }
 
 " Languages {
 " JS {
 Bundle 'pangloss/vim-javascript'
-" Bundle 'drslump/vim-syntax-js'
 Bundle 'leshill/vim-json'
 Bundle 'digitaltoad/vim-jade'
-Bundle 'briancollins/vim-jst'
+" Bundle 'briancollins/vim-jst'
 Bundle 'nono/vim-handlebars'
 Bundle 'moll/vim-node'
-Bundle 'ahayman/vim-nodejs-complete'
+Bundle 'marijnh/tern_for_vim'
 " }
 " CoffeeScript {
 Bundle 'kchmck/vim-coffee-script'
@@ -143,11 +157,12 @@ Bundle 'mintplant/vim-literate-coffeescript'
 Bundle 'gkz/vim-ls'
 " }
 " Clojure {
+" Language and repl integration
 Bundle 'tpope/vim-fireplace'
-" Bundle 'tpope/vim-classpath'
-" Bundle 'paredit.vim'
+" Clojure syntax files
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/rainbow_parentheses.vim'
+" Bundle 'tpope/vim-classpath'
 " }
 " HTML {
 " Bundle 'mattn/emmet-vim'
@@ -167,18 +182,23 @@ Bundle 'tpope/vim-markdown'
 
 " External tools {
 " Bundle 'mileszs/ack.vim'
+" Search with :Ag
 Bundle 'rking/ag.vim'
+" Git gutter
 " Bundle 'mhinz/vim-signify'
+" Send text to tmux/screen pane c-c
 Bundle 'jpalardy/vim-slime'
-
+" Syntax checking and linting
 Bundle 'scrooloose/syntastic'
+" Git commands
+Bundle 'tpope/vim-fugitive'
 " }
 
 " Internets {
 
 " Dep for gist-vim
 Bundle 'mattn/webapi-vim'
-
+" Upload gists with :Gist
 Bundle 'mattn/gist-vim'
 " }
 
@@ -193,10 +213,6 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'john2x/flatui.vim'
 Bundle 'fxn/vim-monochrome'
-" }
-
-" Notes and data {
-Bundle 'lukaszkorecki/workflowish'
 " }
 
 " After Vundle {
