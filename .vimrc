@@ -902,6 +902,18 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 " }
 
+" Fugitive {
+nnoremap <leader>gg :Git 
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gr :Gread<cr>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gl :Glog<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gm :Gmove 
+" }
+
 " }
 
 " Abbreviations {
