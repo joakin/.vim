@@ -382,6 +382,9 @@ set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 set spelllang=en
 set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
 
+" Separators and fillchar
+set fillchars=vert:│,fold:─,diff:━,stlnc:-
+
 " }
 
 " Font and colorscheme {
@@ -403,8 +406,11 @@ if has("gui_running")
     " set gfn=Inconsolata:h23
     " set gfn=Monaco:h20
     " set gfn=Edlo:h18
-    set gfn=Monosten\ A:h18
-    set linespace=6
+    " set gfn=Monosten\ A:h18
+    " set linespace=6
+
+    set gfn=Source\ Code\ Pro:h20
+    set linespace=4
   endif
   " Akkurat-Mono\ 13
 
