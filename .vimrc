@@ -128,6 +128,7 @@ Bundle 'coderifous/textobj-word-column.vim'
 
 " Visual {
 Bundle 'ntpeters/vim-better-whitespace'
+Bundle 'junegunn/goyo.vim'
 " }
 
 " }
@@ -213,6 +214,7 @@ Bundle 'nanotech/jellybeans.vim'
 Bundle 'noahfrederick/Hemisu'
 Bundle 'john2x/flatui.vim'
 Bundle 'fxn/vim-monochrome'
+Bundle 'sjl/badwolf'
 " }
 
 " After Vundle {
@@ -322,8 +324,8 @@ set synmaxcol=800
 
 set mouse=a
 
-set cursorline
-set cursorcolumn
+set nocursorline
+set nocursorcolumn
 
 " Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
 set nrformats-=octal
@@ -400,7 +402,8 @@ if has("gui_running")
     " set gfn=Onuava:h16
     " set gfn=Inconsolata:h23
     " set gfn=Monaco:h20
-    set gfn=Edlo:h18
+    " set gfn=Edlo:h18
+    set gfn=Monosten\ A:h18
     set linespace=6
   endif
   " Akkurat-Mono\ 13
@@ -412,9 +415,9 @@ if has("gui_running")
   set guioptions-=T
 
   set background=dark
-  colorscheme gruvbox
+  " colorscheme gruvbox
   " colorscheme ir_black
-  " colorscheme jellybeans
+  colorscheme jellybeans
   " colorscheme monochrome
   " colorscheme lucius
   " LuciusBlackLowContrast
@@ -426,16 +429,16 @@ else
 
   " Black bg:
   " colorscheme lucius
-  " LuciusBlackLowContrast
+  " LuciusBlackHighContrast
   " colorscheme ir_black
   "
   " Dark bg: (slow)
-  " colorscheme jellybeans
+  colorscheme jellybeans
+  " colorscheme badwolf
   "
   " Light bg:
   " set background=light
-  set background=dark " It works nicely with black by restarting
-  colorscheme hemisu
+  " colorscheme hemisu
   " colorscheme flatui
   "
 
@@ -863,6 +866,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep = '' " ▶
 let g:airline_right_sep = '' " ◀
 let g:airline_branch_prefix = '' " ⎇  ±
+
+if exists('g:loaded_airline')
+  AirlineRefresh
+endif
 " }
 
 " Signify {
@@ -912,6 +919,11 @@ nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gm :Gmove 
+" }
+
+" Goyo {
+nnoremap <C-W><C-G> :Goyo<cr>
+nnoremap <C-W>g     :Goyo<cr>
 " }
 
 " }
