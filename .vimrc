@@ -93,6 +93,7 @@ Bundle "tpope/vim-rsi"
 
 " Snippets
 Bundle "SirVer/ultisnips"
+Bundle 'honza/vim-snippets'
 
 " Operator for exchanging text (cx)
 Bundle 'tommcdo/vim-exchange'
@@ -295,7 +296,7 @@ set splitbelow
 set splitright
 
 set wildmenu
-set wildmode=full
+set wildmode=list:longest
 
 syntax enable "Enable syntax hl
 
@@ -782,7 +783,7 @@ nnoremap ? ?\v
 " Plugin settings & mappings {
 
 " Ultisnips {
-let g:UltiSnipsSnippetsDir='~/.vim/snippets'
+let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }
