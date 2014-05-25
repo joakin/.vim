@@ -2,3 +2,18 @@
 snippet r "common js require"
 ${2:$1} = require('${1:${VISUAL}}')${3}
 endsnippet
+
+snippet log "console.log"
+console.log(${1:${VISUAL}})${3}
+endsnippet
+
+snippet f "Anonymous function"
+function ($1) {$2}
+endsnippet
+
+snippet ef "exports.fn"
+exports.${1:function_name} = function $1(${2:argument}) {
+  $3
+}$4
+endsnippet
+
