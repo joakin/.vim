@@ -910,6 +910,7 @@ let g:user_emmet_leader_key = '<F3>'
 
 " Neocomplete {
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#disable_auto_complete = 1
 " }
 
 " Better whitespace {
