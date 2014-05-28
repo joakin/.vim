@@ -410,7 +410,7 @@ if has("gui_running")
     " set gfn=Monosten\ A:h18
     " set linespace=6
 
-    set gfn=Source\ Code\ Pro:h20
+    set gfn=Menlo:h20
     set linespace=4
   endif
   " Akkurat-Mono\ 13
