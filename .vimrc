@@ -530,8 +530,8 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 " }
 
-" Easier omnicompletion {
-inoremap <c-@> <C-X><C-O>
+" Easier completion {
+inoremap <c-@> <C-X><C-U>
 " }
 
 " Manipulate windows {
