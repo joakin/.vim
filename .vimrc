@@ -394,7 +394,8 @@ if has("gui_running")
 
   " Linux font
   if IsLinux()
-    set gfn=Inconsolata\ 13
+    set gfn=DejaVu\ Sans\ Mono\ 14
+    set linespace=2
   endif
 
   " Mac font
