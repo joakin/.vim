@@ -413,7 +413,7 @@ if has("gui_running")
     " set gfn=Monosten\ A:h18
     " set linespace=6
 
-    set gfn=Source\ Code\ Pro:h20
+    set gfn=Menlo:h20
     set linespace=4
   endif
   " Akkurat-Mono\ 13
@@ -532,8 +532,8 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 " }
 
-" Easier omnicompletion {
-inoremap <c-@> <C-X><C-O>
+" Easier completion {
+inoremap <c-@> <C-X><C-U>
 " }
 
 " Manipulate windows {
@@ -912,6 +912,7 @@ let g:user_emmet_leader_key = '<F3>'
 
 " Neocomplete {
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#disable_auto_complete = 1
 " }
 
 " Better whitespace {
