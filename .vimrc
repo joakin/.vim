@@ -86,6 +86,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-unimpaired'
 " Abbreviations, Substitutions, Coercion...
 Bundle 'tpope/vim-abolish'
+" Autocomplete (autoclose) parens brackets, quotes, etc
 Bundle 'kana/vim-smartinput'
 
 " Readline mappings
@@ -149,6 +150,7 @@ Bundle 'digitaltoad/vim-jade'
 " Bundle 'briancollins/vim-jst'
 Bundle 'nono/vim-handlebars'
 Bundle 'moll/vim-node'
+Bundle 'mxw/vim-jsx'
 Bundle 'marijnh/tern_for_vim'
 " }
 " CoffeeScript {
