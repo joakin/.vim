@@ -196,6 +196,8 @@ Bundle 'jpalardy/vim-slime'
 Bundle 'scrooloose/syntastic'
 " Git commands
 Bundle 'tpope/vim-fugitive'
+" Unix commands
+Bundle 'tpope/vim-eunuch'
 " }
 
 " Internets {
