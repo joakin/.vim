@@ -100,7 +100,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'tommcdo/vim-exchange'
 
 " Auto completion popup
-Bundle 'Shougo/neocomplete.vim'
+" Bundle 'Shougo/neocomplete.vim'
 
 " Auto detect indent settings
 Bundle 'tpope/vim-sleuth'
@@ -789,6 +789,7 @@ nnoremap ? ?\v
 
 " Ultisnips {
 let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+let g:UltiSnipsListSnippets='<c-tab>'
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 " }
@@ -913,8 +914,8 @@ let g:user_emmet_leader_key = '<F3>'
 " }
 
 " Neocomplete {
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#disable_auto_complete = 1
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#disable_auto_complete = 1
 " }
 
 " Better whitespace {
