@@ -14,6 +14,21 @@ endsnippet
 snippet ef "exports.fn"
 exports.${1:function_name} = function $1(${2:argument}) {
   $3
-}$4
+}
 endsnippet
 
+snippet me "module.exports"
+module.exports = $1
+endsnippet
+
+snippet mf "module.exports = fn"
+module.exports = function ${1:function_name} (${2:argument}) {
+  $3
+}
+endsnippet
+
+snippet tape "tape test"
+test('$1', function (t) {
+  ${2:t.end()}
+})
+endsnippet
