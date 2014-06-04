@@ -789,7 +789,7 @@ nnoremap ? ?\v
 
 " Ultisnips {
 let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
-let g:UltiSnipsListSnippets='<c-tab>'
+let g:UltiSnipsListSnippets='<c-j>'
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 " }
