@@ -944,6 +944,7 @@ nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gm :Gmove 
+nnoremap <leader>gp :Git pp<cr>
 " }
 
 " Goyo {
