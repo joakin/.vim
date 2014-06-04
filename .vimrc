@@ -535,7 +535,7 @@ nnoremap <leader>q :q<cr>
 " }
 
 " Easier completion {
-inoremap <c-@> <C-X><C-U>
+inoremap <c-@> <C-X><C-O>
 " }
 
 " Manipulate windows {
