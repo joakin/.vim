@@ -151,6 +151,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'nono/vim-handlebars'
 Bundle 'moll/vim-node'
 Bundle 'mxw/vim-jsx'
+Bundle 'briancollins/vim-jst'
 Bundle 'marijnh/tern_for_vim'
 " }
 " CoffeeScript {
@@ -413,9 +414,10 @@ if has("gui_running")
     " set gfn=Monaco:h20
     " set gfn=Edlo:h18
     " set gfn=Monosten\ A:h18
+    set gfn=monoOne:h20
     " set linespace=6
 
-    set gfn=Menlo:h20
+    " set gfn=Menlo:h20
     set linespace=4
   endif
   " Akkurat-Mono\ 13
