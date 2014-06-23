@@ -396,7 +396,7 @@ if has("gui_running")
 
   " Linux font
   if IsLinux()
-    set gfn=DejaVu\ Sans\ Mono\ 14
+    set gfn=monoOne\ 14
     set linespace=2
   endif
 
