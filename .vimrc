@@ -100,7 +100,7 @@ Bundle 'honza/vim-snippets'
 Bundle 'tommcdo/vim-exchange'
 
 " Auto completion popup
-Bundle 'Shougo/neocomplete.vim'
+" Bundle 'Shougo/neocomplete.vim'
 
 " Auto detect indent settings
 Bundle 'tpope/vim-sleuth'
@@ -151,6 +151,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'nono/vim-handlebars'
 Bundle 'moll/vim-node'
 Bundle 'mxw/vim-jsx'
+Bundle 'briancollins/vim-jst'
 Bundle 'marijnh/tern_for_vim'
 " }
 " CoffeeScript {
@@ -196,6 +197,8 @@ Bundle 'jpalardy/vim-slime'
 Bundle 'scrooloose/syntastic'
 " Git commands
 Bundle 'tpope/vim-fugitive'
+" Unix commands
+Bundle 'tpope/vim-eunuch'
 " }
 
 " Internets {
@@ -411,9 +414,10 @@ if has("gui_running")
     " set gfn=Monaco:h20
     " set gfn=Edlo:h18
     " set gfn=Monosten\ A:h18
+    set gfn=monoOne:h20
     " set linespace=6
 
-    set gfn=Menlo:h20
+    " set gfn=Menlo:h20
     set linespace=4
   endif
   " Akkurat-Mono\ 13
@@ -533,7 +537,7 @@ nnoremap <leader>q :q<cr>
 " }
 
 " Easier completion {
-inoremap <c-@> <C-X><C-U>
+inoremap <c-@> <C-X><C-O>
 " }
 
 " Manipulate windows {
@@ -787,6 +791,7 @@ nnoremap ? ?\v
 
 " Ultisnips {
 let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+let g:UltiSnipsListSnippets='<c-j>'
 let g:UltiSnipsJumpForwardTrigger="<TAB>"
 let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 " }
@@ -904,6 +909,7 @@ endif
 
 " Syntastic {
 " let g:syntastic_check_on_open=1
+autocmd BufNewFile,BufRead *.jsx let b:syntastic_checkers = ['jsxhint']
 " }
 
 " Emmet {
@@ -911,8 +917,8 @@ let g:user_emmet_leader_key = '<F3>'
 " }
 
 " Neocomplete {
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#disable_auto_complete = 1
+" let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#disable_auto_complete = 1
 " }
 
 " Better whitespace {
@@ -940,6 +946,7 @@ nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gm :Gmove 
+nnoremap <leader>gp :Git pp<cr>
 " }
 
 " Goyo {
