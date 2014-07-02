@@ -173,6 +173,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 " Bundle 'mattn/emmet-vim'
 " }
 " CSS {
+Bundle '1995eaton/vim-better-css-completion'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'wavded/vim-stylus'
