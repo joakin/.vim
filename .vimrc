@@ -87,7 +87,7 @@ Bundle 'tpope/vim-unimpaired'
 " Abbreviations, Substitutions, Coercion...
 Bundle 'tpope/vim-abolish'
 " Autocomplete (autoclose) parens brackets, quotes, etc
-Bundle 'kana/vim-smartinput'
+" Bundle 'kana/vim-smartinput'
 
 " Readline mappings
 Bundle "tpope/vim-rsi"
@@ -259,7 +259,7 @@ set colorcolumn=80
 set formatoptions=croqn1
 
 " Make vim think that dash is part of words. i want 'this-stuff' to be a word
-set iskeyword+=-
+" set iskeyword+=-
 
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
