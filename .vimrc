@@ -331,8 +331,8 @@ set synmaxcol=800
 
 set mouse=a
 
-set nocursorline
-set nocursorcolumn
+set cursorline
+set cursorcolumn
 
 " Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
 set nrformats-=octal
@@ -572,8 +572,6 @@ vnoremap <Down>  :m'>+<CR>gv=gv
 vnoremap <Up>    :m-2<CR>gv=gv
 vnoremap <Left>  <gv
 vnoremap <Right> >gv
-vnoremap < <gv
-vnoremap > >gv
 " }
 
 " Toggling settings {
@@ -943,7 +941,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
-nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gc :Gcommit --verbose<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gm :Gmove 
