@@ -331,8 +331,8 @@ set synmaxcol=800
 
 set mouse=a
 
-set nocursorline
-set nocursorcolumn
+set cursorline
+set cursorcolumn
 
 " Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
 set nrformats-=octal
@@ -448,21 +448,20 @@ else
   " colorscheme ir_black
   "
   " Dark bg: (slow)
-  colorscheme jellybeans
+  " colorscheme jellybeans
   " colorscheme badwolf
   "
   " Light bg:
-  " set background=light
-  " colorscheme hemisu
-  " colorscheme flatui
+  set background=light
+  colorscheme hemisu
   "
 
 endif
 
 " set t_Co=256
-
-" XXX: This is not respected as it should
-hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=darkred
+hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
+" XXX: JS Noise :O
+" hi Noise guifg=#626262 ctermfg=241
 
 " }
 
@@ -890,6 +889,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep = '' " ▶
 let g:airline_right_sep = '' " ◀
 let g:airline_branch_prefix = '' " ⎇  ±
+let g:airline_theme='light'
 
 if exists('g:loaded_airline')
   AirlineRefresh
@@ -941,7 +941,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
-nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gc :Gcommit --verbose<cr>
 nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>gm :Gmove 
@@ -982,7 +982,8 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 "   set wildignore+=.class,classes
 
 " General settings {
-set path=**
+set path=.
+set path+=**
 
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
@@ -1004,7 +1005,7 @@ set suffixesadd+=.css,.styl,.less,.sass,.scss
 set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
 " Bundle 'othree/javascript-libraries-syntax.vim'
-let g:javascript_conceal=1
+let g:javascript_conceal=0
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 " }
