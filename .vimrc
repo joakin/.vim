@@ -572,8 +572,6 @@ vnoremap <Down>  :m'>+<CR>gv=gv
 vnoremap <Up>    :m-2<CR>gv=gv
 vnoremap <Left>  <gv
 vnoremap <Right> >gv
-vnoremap < <gv
-vnoremap > >gv
 " }
 
 " Toggling settings {
