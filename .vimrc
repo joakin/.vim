@@ -126,6 +126,8 @@ Bundle 'kana/vim-textobj-lastpat'
 Bundle 'qstrahl/vim-dentures'
 " ic ac iC aC
 Bundle 'coderifous/textobj-word-column.vim'
+" aj ij (json objects)
+Bundle 'tpope/vim-jdaddy'
 " }
 
 " Visual {
@@ -443,7 +445,7 @@ else
   " set background=dark
 
   " Black bg:
-  " colorscheme lucius
+  colorscheme lucius
   " LuciusBlackHighContrast
   " colorscheme ir_black
   "
@@ -452,8 +454,8 @@ else
   " colorscheme badwolf
   "
   " Light bg:
-  set background=light
-  colorscheme hemisu
+  " set background=light
+  " colorscheme hemisu
   "
 
 endif
