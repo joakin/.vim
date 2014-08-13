@@ -417,7 +417,9 @@ if has("gui_running")
     " set gfn=Monaco:h20
     " set gfn=Edlo:h18
     " set gfn=Monosten\ A:h18
-    set gfn=monoOne:h20
+    " set gfn=monoOne:h20
+    " set gfn=Anka/Coder\ Narrow\ Regular:h24
+    set gfn=InputMonoCompressed\ ExLight:h18
     " set linespace=6
 
     " set gfn=Menlo:h20
@@ -431,12 +433,13 @@ if has("gui_running")
   set guioptions=c
   set guioptions-=T
 
-  set background=dark
+  " set background=dark
   " colorscheme gruvbox
   " colorscheme ir_black
-  colorscheme jellybeans
+  " colorscheme jellybeans
   " colorscheme monochrome
-  " colorscheme lucius
+  colorscheme lucius
+  LuciusLightHighContrast
   " LuciusBlackLowContrast
   " set background=dark
   " colorscheme hemisu
@@ -446,6 +449,7 @@ else
 
   " Black bg:
   colorscheme lucius
+  LuciusLightHighContrast
   " LuciusBlackHighContrast
   " colorscheme ir_black
   "
