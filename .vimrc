@@ -976,6 +976,11 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 " }
 
+" rsi {
+" Breaks macros on the terminal
+let g:rsi_no_meta = 1
+" }
+
 " }
 
 " Abbreviations {
