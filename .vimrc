@@ -389,7 +389,7 @@ set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 
 " Spell stuff
 set spelllang=en
-set spellfile=$HOME/Dropbox/data/vim/spell/custom.utf-8.add
+set spellfile=$HOME/drive/data/vim/spell/custom.utf-8.add
 
 " Separators and fillchar
 set fillchars=vert:│,fold:─,diff:━,stlnc:-
@@ -524,12 +524,12 @@ endif
 " Settings editing {
 if IsUnix()
     nnoremap <leader>ev :e $MYVIMRC<cr>
-    nnoremap <leader>et :e ~/Dropbox/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
-    nnoremap <leader>ew :e ~/Dropbox/data/wiki/<cr>:lcd %:h<cr>
+    nnoremap <leader>et :e ~/drive/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
+    nnoremap <leader>ew :e ~/drive/data/wiki/<cr>:lcd %:h<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-    nnoremap <leader>et :e D:\devel\Dropbox\data\tasks\tasks.wofl<cr>:lcd %:h<cr>
-    nnoremap <leader>ew :e D:\devel\Dropbox\data\wiki\<cr>:lcd %:h<cr>
+    nnoremap <leader>et :e D:\devel\drive\data\tasks\tasks.wofl<cr>:lcd %:h<cr>
+    nnoremap <leader>ew :e D:\devel\drive\data\wiki\<cr>:lcd %:h<cr>
 endif
 " }
 
