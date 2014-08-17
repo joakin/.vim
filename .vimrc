@@ -419,7 +419,8 @@ if has("gui_running")
     " set gfn=Monosten\ A:h18
     " set gfn=monoOne:h20
     " set gfn=Anka/Coder\ Narrow\ Regular:h24
-    set gfn=InputMonoCompressed\ ExLight:h18
+    " set gfn=InputMonoCompressed\ ExLight:h18
+    set gfn=TheSansMono-Light:h19
     " set linespace=6
 
     " set gfn=Menlo:h20
