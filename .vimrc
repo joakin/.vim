@@ -449,13 +449,12 @@ else
   " set background=dark
 
   " Black bg:
-  colorscheme lucius
-  LuciusLightHighContrast
+  " colorscheme lucius
   " LuciusBlackHighContrast
   " colorscheme ir_black
   "
   " Dark bg: (slow)
-  " colorscheme jellybeans
+  colorscheme jellybeans
   " colorscheme badwolf
   "
   " Light bg:
@@ -896,7 +895,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_left_sep = '' " ▶
 let g:airline_right_sep = '' " ◀
 let g:airline_branch_prefix = '' " ⎇  ±
-let g:airline_theme='light'
+" let g:airline_theme='light'
 
 if exists('g:loaded_airline')
   AirlineRefresh
