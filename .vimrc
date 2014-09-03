@@ -702,8 +702,9 @@ nnoremap z<cr> mzzMzvzz3<c-e>`z:Pulse<cr>
 " netrw {
 let g:netrw_liststyle = 1
 noremap <F1> :e.<CR>
-noremap <leader>n :e.<CR>
-noremap <leader>N :e %:h<CR>
+nnoremap _ :e %:h<CR>
+" noremap <leader>n :e.<CR>
+" noremap <leader>N :e %:h<CR>
 " }
 
 " Command line maps {
@@ -789,6 +790,9 @@ nnoremap / /\v
 nnoremap ? ?\v
 " }
 
+" CTRL+SHIFT+6 to leader+o
+nnoremap <leader>n <c-^>
+
 " }
 
 " Plugin settings & mappings {
@@ -831,7 +835,7 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 " }
 
 " Scratch {
-nnoremap <leader>es :enew<cr>
+nnoremap <leader>en :enew<cr>
 " }
 
 " Ag {
