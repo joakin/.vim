@@ -1037,7 +1037,7 @@ set suffixesadd+=.css,.styl,.less,.sass,.scss
 set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
 " Bundle 'othree/javascript-libraries-syntax.vim'
-let g:javascript_conceal=0
+let g:javascript_conceal=1
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 " }
