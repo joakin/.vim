@@ -824,9 +824,12 @@ nnoremap <leader>t :CtrlPTag<CR>
 " }
 
 " Tabularize stuff {
+
 noremap <leader>at       :Tabularize /
 noremap <leader>aa       :Tabularize /
-noremap <leader>a\|       :Tabularize /\|<cr>
+noremap <leader>af       :Tabularize /^.\{-}\zs
+noremap <leader>al       :Tabularize /^.*\zs
+noremap <leader>a\|      :Tabularize /\|<cr>
 noremap <leader>a:       :Tabularize colon<cr>
 noremap <leader>a<space> :Tabularize spaces<cr>
 noremap <leader>a=       :Tabularize assignment<cr>
