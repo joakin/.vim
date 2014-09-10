@@ -36,105 +36,105 @@ filetype off   " required for vundle
 
 if IsUnix()
     " Usual quickstart instructions
-    set runtimepath+=~/.vim/bundle/vundle/
-    call vundle#rc()
+    set runtimepath+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
 else
     set runtimepath+=~/vimfiles/bundle/vundle/
-    call vundle#rc('$HOME/vimfiles/bundle/')
+    call vundle#begin('$HOME/vimfiles/bundle/')
 endif
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 " }
 
 " VimL libraries and deps {
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle 'tpope/vim-repeat'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-repeat'
 " }
 
 " Vim improvements {
 
 " Gui {
 " Nice status bar
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " Fix some netrw ( - for up dir )
-Bundle 'tpope/vim-vinegar'
+Plugin 'tpope/vim-vinegar'
 " Open file manager or terminal with current file PWD (gof got)
-Bundle 'justinmk/vim-gtfo'
+Plugin 'justinmk/vim-gtfo'
 " }
 
 " Command line {
 " File/Buffer/Tag finder
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " }
 
 " Movement {
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 " Like f but multiline and faster 's'
-Bundle 'justinmk/vim-sneak'
+Plugin 'justinmk/vim-sneak'
 " d]a) or c[i( for example
-Bundle 'tommcdo/vim-ninja-feet'
+Plugin 'tommcdo/vim-ninja-feet'
 " }
 
 " Editing {
 " Align text :Tabularize
-Bundle 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
 " Change surrounding delimiters (cs"')
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " c-a c-x for dates
-Bundle 'tpope/vim-speeddating'
+Plugin 'tpope/vim-speeddating'
 " Tons of useful mappings
-Bundle 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-unimpaired'
 " Abbreviations, Substitutions, Coercion...
-Bundle 'tpope/vim-abolish'
+Plugin 'tpope/vim-abolish'
 " Autocomplete (autoclose) parens brackets, quotes, etc
-" Bundle 'kana/vim-smartinput'
+" Plugin 'kana/vim-smartinput'
 
 " Readline mappings
-Bundle "tpope/vim-rsi"
+Plugin 'tpope/vim-rsi'
 
 " Snippets
-Bundle "SirVer/ultisnips"
-Bundle 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " Operator for exchanging text (cx)
-Bundle 'tommcdo/vim-exchange'
+Plugin 'tommcdo/vim-exchange'
 
 " Auto completion popup
-" Bundle 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim'
 
 " Auto detect indent settings
-Bundle 'tpope/vim-sleuth'
+Plugin 'tpope/vim-sleuth'
 
 " Operator for aligning text (gl, gL)
-Bundle 'tommcdo/vim-lion'
+Plugin 'tommcdo/vim-lion'
 " }
 
 " Text Objects {
 " Custom text objects (kana dep)
-Bundle 'kana/vim-textobj-user'
+Plugin 'kana/vim-textobj-user'
 " f{char}
-Bundle 'thinca/vim-textobj-between'
+Plugin 'thinca/vim-textobj-between'
 " il al
-Bundle 'kana/vim-textobj-line'
+Plugin 'kana/vim-textobj-line'
 " iz az
-Bundle 'kana/vim-textobj-fold'
+Plugin 'kana/vim-textobj-fold'
 " ie ae
-Bundle 'kana/vim-textobj-entire'
+Plugin 'kana/vim-textobj-entire'
 " i/ a/ i? a?
-Bundle 'kana/vim-textobj-lastpat'
+Plugin 'kana/vim-textobj-lastpat'
 " ai ii aI iI
-Bundle 'qstrahl/vim-dentures'
+Plugin 'qstrahl/vim-dentures'
 " ic ac iC aC
-Bundle 'coderifous/textobj-word-column.vim'
+Plugin 'coderifous/textobj-word-column.vim'
 " aj ij (json objects)
-Bundle 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-jdaddy'
 " }
 
 " Visual {
-Bundle 'ntpeters/vim-better-whitespace'
-Bundle 'junegunn/goyo.vim'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'junegunn/goyo.vim'
 " }
 
 " }
@@ -143,95 +143,95 @@ Bundle 'junegunn/goyo.vim'
 
 " Editing {
 " Comment and uncomment code with gc{motion} (gcc gcgc)
-Bundle 'tpope/vim-commentary'
+Plugin 'tpope/vim-commentary'
 " }
 
 " Languages {
 " JS {
-Bundle 'pangloss/vim-javascript'
-Bundle 'leshill/vim-json'
-Bundle 'digitaltoad/vim-jade'
-" Bundle 'briancollins/vim-jst'
-Bundle 'nono/vim-handlebars'
-Bundle 'moll/vim-node'
-Bundle 'mxw/vim-jsx'
-Bundle 'briancollins/vim-jst'
-Bundle 'marijnh/tern_for_vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'leshill/vim-json'
+Plugin 'digitaltoad/vim-jade'
+" Plugin 'briancollins/vim-jst'
+Plugin 'nono/vim-handlebars'
+Plugin 'moll/vim-node'
+Plugin 'mxw/vim-jsx'
+Plugin 'briancollins/vim-jst'
+Plugin 'marijnh/tern_for_vim'
 " }
 " CoffeeScript {
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mintplant/vim-literate-coffeescript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mintplant/vim-literate-coffeescript'
 " }
 " Livescript {
-Bundle 'gkz/vim-ls'
+Plugin 'gkz/vim-ls'
 " }
 " Clojure {
 " Language and repl integration
-Bundle 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fireplace'
 " Clojure syntax files
-Bundle 'guns/vim-clojure-static'
-Bundle 'kien/rainbow_parentheses.vim'
-" Bundle 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'tpope/vim-classpath'
 " }
 " HTML {
-" Bundle 'mattn/emmet-vim'
+" Plugin 'mattn/emmet-vim'
 " }
 " CSS {
-Bundle '1995eaton/vim-better-css-completion'
-Bundle 'groenewege/vim-less'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'wavded/vim-stylus'
+Plugin '1995eaton/vim-better-css-completion'
+Plugin 'groenewege/vim-less'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'wavded/vim-stylus'
 " }
 " Markdown {
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
 " }
 " Liquid {
-" Bundle 'tpope/vim-liquid'
+" Plugin 'tpope/vim-liquid'
 " }
 " }
 
 " External tools {
-" Bundle 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
 " Search with :Ag
-Bundle 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 " Git gutter
-" Bundle 'mhinz/vim-signify'
+" Plugin 'mhinz/vim-signify'
 " Send text to tmux/screen pane c-c
-Bundle 'jpalardy/vim-slime'
+Plugin 'jpalardy/vim-slime'
 " Syntax checking and linting
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " Git commands
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Unix commands
-Bundle 'tpope/vim-eunuch'
+Plugin 'tpope/vim-eunuch'
 " }
 
 " Internets {
 
 " Dep for gist-vim
-Bundle 'mattn/webapi-vim'
+Plugin 'mattn/webapi-vim'
 " Upload gists with :Gist
-Bundle 'mattn/gist-vim'
+Plugin 'mattn/gist-vim'
 " }
 
 " }
 
 " Color schemes {
-Bundle 'morhetz/gruvbox'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'wgibbs/vim-irblack'
-Bundle 'jonathanfilip/vim-lucius'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'noahfrederick/Hemisu'
-Bundle 'john2x/flatui.vim'
-Bundle 'fxn/vim-monochrome'
-Bundle 'sjl/badwolf'
+Plugin 'morhetz/gruvbox'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'wgibbs/vim-irblack'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'noahfrederick/Hemisu'
+Plugin 'john2x/flatui.vim'
+Plugin 'fxn/vim-monochrome'
+Plugin 'sjl/badwolf'
 " }
 
 " After Vundle {
-" Enable filetype plugin after Vundle
-filetype plugin on
-filetype indent on
+" All Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 " }
 
 " }
@@ -1053,7 +1053,7 @@ set suffixesadd+=.css,.styl,.less,.sass,.scss
 " Javascript {
 set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
-" Bundle 'othree/javascript-libraries-syntax.vim'
+" Plugin 'othree/javascript-libraries-syntax.vim'
 let g:javascript_conceal=1
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
