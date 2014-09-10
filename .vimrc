@@ -263,7 +263,7 @@ set colorcolumn=80
 set formatoptions=croqn1
 
 " Make vim think that dash is part of words. i want 'this-stuff' to be a word
-" set iskeyword+=-
+set iskeyword+=-
 
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
@@ -316,8 +316,10 @@ set completeopt=menu,preview
 
 set backspace=indent,eol,start
 
-set number
-set relativenumber
+" set number
+" set relativenumber
+set nonumber
+set norelativenumber
 set numberwidth=2
 
 set scrolloff=3
@@ -417,16 +419,18 @@ if has("gui_running")
     " set gfn=Onuava:h16
     " set gfn=Inconsolata:h23
     " set gfn=Monaco:h20
+    set gfn=Consolas:h20
     " set gfn=Edlo:h18
     " set gfn=Monosten\ A:h18
     " set gfn=monoOne:h20
     " set gfn=Anka/Coder\ Narrow\ Regular:h24
     " set gfn=InputMonoCompressed\ ExLight:h18
-    set gfn=TheSansMono-Light:h19
-    " set linespace=6
+    " set gfn=TheSansMono-Light:h19
+    set linespace=6
+    " set gfn=Century\ Schoolbook\ Monospace\ BT:h20
 
     " set gfn=Menlo:h20
-    set linespace=4
+    " set linespace=4
   endif
   " Akkurat-Mono\ 13
 
@@ -439,10 +443,10 @@ if has("gui_running")
   " set background=dark
   " colorscheme gruvbox
   " colorscheme ir_black
-  " colorscheme jellybeans
+  colorscheme jellybeans
   " colorscheme monochrome
-  colorscheme lucius
-  LuciusLightHighContrast
+  " colorscheme lucius
+  " LuciusLightHighContrast
   " LuciusBlackLowContrast
   " set background=dark
   " colorscheme hemisu
@@ -587,7 +591,7 @@ vnoremap <Right> >gv
 nnoremap cop :lcd %:p:h<CR>:pwd<CR>
 
 " Toggle line number mode
-nnoremap con :call g:ToggleNuMode()<cr>
+nnoremap coN :call g:ToggleNuMode()<cr>
 
 " Toggle conceal
 nnoremap coC :call g:ToggleConceal(1)<cr>
@@ -983,6 +987,10 @@ xmap t <Plug>Sneak_t
 xmap T <Plug>Sneak_T
 omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
+
+" : map (what was , before)
+" nnoremap : <Plug>SneakPrevious
+" xnoremap : <Plug>SneakPrevious
 " }
 
 " rsi {
