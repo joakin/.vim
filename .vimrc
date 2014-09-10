@@ -58,8 +58,10 @@ Bundle 'tpope/vim-repeat'
 " Gui {
 " Nice status bar
 Bundle 'bling/vim-airline'
-" Fix some netrw
+" Fix some netrw ( - for up dir )
 Bundle 'tpope/vim-vinegar'
+" Open file manager or terminal with current file PWD (gof got)
+Bundle 'justinmk/vim-gtfo'
 " }
 
 " Command line {
@@ -986,6 +988,10 @@ omap T <Plug>Sneak_T
 " rsi {
 " Breaks macros on the terminal
 let g:rsi_no_meta = 1
+" }
+
+" gtfo {
+let g:gtfo#terminals = { 'mac' : 'iterm' }
 " }
 
 " }
