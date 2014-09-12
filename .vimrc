@@ -226,6 +226,7 @@ Plugin 'noahfrederick/Hemisu'
 Plugin 'john2x/flatui.vim'
 Plugin 'fxn/vim-monochrome'
 Plugin 'sjl/badwolf'
+Plugin 'romainl/Apprentice'
 " }
 
 " After Vundle {
@@ -412,21 +413,22 @@ if has("gui_running")
 
   " Mac font
   if IsMac()
-    " set gfn=Fira\ Mono\ OT:h15
+    set gfn=Fira\ Mono:h14
+    set linespace=2
     " set gfn=PragmataPro:h17
     " set linespace=4
     " set gfn=M+\ 1m\ light:h16
     " set gfn=Onuava:h16
     " set gfn=Inconsolata:h23
     " set gfn=Monaco:h20
-    set gfn=Consolas:h20
+    " set gfn=Consolas:h20
     " set gfn=Edlo:h18
     " set gfn=Monosten\ A:h18
     " set gfn=monoOne:h20
     " set gfn=Anka/Coder\ Narrow\ Regular:h24
     " set gfn=InputMonoCompressed\ ExLight:h18
     " set gfn=TheSansMono-Light:h19
-    set linespace=6
+    " set linespace=6
     " set gfn=Century\ Schoolbook\ Monospace\ BT:h20
 
     " set gfn=Menlo:h20
@@ -457,10 +459,13 @@ else
   " Black bg:
   " colorscheme lucius
   " LuciusBlackHighContrast
-  " colorscheme ir_black
+  " colorscheme monochrome
+  " call MonochromeTweaks()
+  colorscheme jkn-monochrome
   "
   " Dark bg: (slow)
-  colorscheme jellybeans
+  " colorscheme jellybeans
+  " colorscheme apprentice
   " colorscheme badwolf
   "
   " Light bg:
