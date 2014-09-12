@@ -478,7 +478,7 @@ endif
 " set t_Co=256
 hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
 " XXX: JS Noise :O
-" hi Noise guifg=#626262 ctermfg=241
+hi Noise guifg=#303030 ctermfg=236
 
 " }
 
