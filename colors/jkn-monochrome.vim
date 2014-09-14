@@ -22,6 +22,6 @@ hi link CursorColumn CursorLine
 
 hi ColorColumn ctermbg=233 guibg=#121212
 
-hi FoldColumn       ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
-hi Folded           ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
+hi FoldColumn ctermbg=234 ctermfg=242 guibg=#1c1c1c guifg=#6c6c6c cterm=NONE gui=NONE
+hi Folded     ctermbg=234 ctermfg=242 guibg=#1c1c1c guifg=#6c6c6c cterm=NONE gui=NONE
 
