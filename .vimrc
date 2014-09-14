@@ -802,8 +802,10 @@ nnoremap / /\v
 nnoremap ? ?\v
 " }
 
-" CTRL+SHIFT+6 to leader+o
+" CTRL+SHIFT+6 to leader+o {
 nnoremap <leader>n <c-^>
+" }
+
 
 " }
 
