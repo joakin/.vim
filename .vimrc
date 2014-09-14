@@ -540,7 +540,7 @@ endif
 
 " Settings editing {
 if IsUnix()
-    nnoremap <leader>ev :e $MYVIMRC<cr>
+    nnoremap <leader>ev :e ~/.vim/.vimrc<cr>
     nnoremap <leader>et :e ~/drive/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
     nnoremap <leader>ew :e ~/drive/data/wiki/<cr>:lcd %:h<cr>
 else
