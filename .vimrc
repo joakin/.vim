@@ -24,6 +24,7 @@ let g:isLinux = IsUnix() && !IsMac()
 fun! IsLinux()
   return g:isLinux
 endfun
+
 " }
 
 set nocompatible
@@ -413,8 +414,8 @@ if has("gui_running")
 
   " Mac font
   if IsMac()
-    set gfn=Fira\ Mono:h14
-    set linespace=2
+    " set gfn=Fira\ Mono:h14
+    " set linespace=2
     " set gfn=PragmataPro:h17
     " set linespace=4
     " set gfn=M+\ 1m\ light:h16
@@ -430,9 +431,10 @@ if has("gui_running")
     " set gfn=TheSansMono-Light:h19
     " set linespace=6
     " set gfn=Century\ Schoolbook\ Monospace\ BT:h20
-
     " set gfn=Menlo:h20
     " set linespace=4
+    set gfn=Fedra\ Mono\ Light:h16
+    set linespace=6
   endif
   " Akkurat-Mono\ 13
 
@@ -445,6 +447,7 @@ if has("gui_running")
   " set background=dark
   " colorscheme gruvbox
   " colorscheme ir_black
+  " colorscheme jkn-monochrome
   colorscheme jellybeans
   " colorscheme monochrome
   " colorscheme lucius
@@ -458,9 +461,8 @@ else
 
   " Black bg:
   " colorscheme lucius
-  " LuciusBlackHighContrast
+  " LuciusBlackLowContrast
   " colorscheme monochrome
-  " call MonochromeTweaks()
   colorscheme jkn-monochrome
   "
   " Dark bg: (slow)
@@ -747,7 +749,6 @@ xnoremap : ,
 nnoremap coft :set filetype=txt<cr>
 nnoremap cofj :set filetype=javascript<cr>
 nnoremap cofm :set filetype=markdown<cr>
-nnoremap cofw :set filetype=workflowish<cr>
 nnoremap cofv :set filetype=vim<cr>
 nnoremap cofc :set filetype=clojure<cr>
 nnoremap coff :set filetype=
