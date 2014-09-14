@@ -63,6 +63,8 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-vinegar'
 " Open file manager or terminal with current file PWD (gof got)
 Plugin 'justinmk/vim-gtfo'
+" VCS signs
+Plugin 'mhinz/vim-signify'
 " }
 
 " Command line {
@@ -195,8 +197,6 @@ Plugin 'tpope/vim-markdown'
 " Plugin 'mileszs/ack.vim'
 " Search with :Ag
 Plugin 'rking/ag.vim'
-" Git gutter
-" Plugin 'mhinz/vim-signify'
 " Send text to tmux/screen pane c-c
 Plugin 'jpalardy/vim-slime'
 " Syntax checking and linting
@@ -927,7 +927,7 @@ endif
 " }
 
 " Signify {
-" let g:signify_vcs_list = [ 'git' ]
+let g:signify_vcs_list = [ 'git' ]
 " let g:signify_sign_overwrite = 0
 " }
 
