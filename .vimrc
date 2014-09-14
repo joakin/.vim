@@ -512,7 +512,7 @@ if has('autocmd')
     if !IsUnix()
       au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
     else
-      au BufWritePost /Users/jkn/Develop/projects/conf/.vim/.vimrc :source $MYVIMRC
+      au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
     endif
   augroup END " }
 
