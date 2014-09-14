@@ -806,6 +806,9 @@ nnoremap ? ?\v
 nnoremap <leader>n <c-^>
 " }
 
+" Resolve symlink (useful for fugitive) {
+command! FollowSymlink :exec "file ". resolve(expand('%:p')) | e
+" }
 
 " }
 
