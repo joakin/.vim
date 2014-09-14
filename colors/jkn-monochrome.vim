@@ -13,8 +13,8 @@ let g:colors_name = "jkn-monochrome"
 
 let g:airline_theme = "tomorrow"
 
-hi clear StatusLine
-hi clear StatusLineNC
+" hi clear StatusLine
+" hi clear StatusLineNC
 
 "Set up your new & improved colors
 hi clear CursorColumn
