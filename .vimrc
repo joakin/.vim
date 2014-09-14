@@ -973,7 +973,7 @@ nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gc :Gcommit --verbose<cr>
 nnoremap <leader>gl :Glog<cr>
-nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gm :Gmove 
 nnoremap <leader>gp :Git pp<cr>
 " }
