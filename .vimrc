@@ -420,21 +420,22 @@ if has("gui_running")
     " set linespace=4
     " set gfn=M+\ 1m\ light:h16
     " set gfn=Onuava:h16
-    " set gfn=Inconsolata:h23
+    " set gfn=Inconsolata:h18
     " set gfn=Monaco:h20
     " set gfn=Consolas:h20
     " set gfn=Edlo:h18
-    " set gfn=Monosten\ A:h18
     " set gfn=monoOne:h20
-    " set gfn=Anka/Coder\ Narrow\ Regular:h24
+    set gfn=Anka/Coder\ Narrow\ Regular:h22
+    set linespace=4
     " set gfn=InputMonoCompressed\ ExLight:h18
     " set gfn=TheSansMono-Light:h19
     " set linespace=6
     " set gfn=Century\ Schoolbook\ Monospace\ BT:h20
     " set gfn=Menlo:h20
     " set linespace=4
-    set gfn=Fedra\ Mono\ Light:h16
-    set linespace=6
+    " set gfn=Fedra\ Mono\ Light:h16
+    " set gfn=NanumGothicCoding:h20
+    " set linespace=0
   endif
   " Akkurat-Mono\ 13
 
