@@ -160,6 +160,7 @@ Plugin 'moll/vim-node'
 Plugin 'mxw/vim-jsx'
 Plugin 'briancollins/vim-jst'
 Plugin 'marijnh/tern_for_vim'
+Plugin 'mustache/vim-mustache-handlebars'
 " }
 " CoffeeScript {
 Plugin 'kchmck/vim-coffee-script'
