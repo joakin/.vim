@@ -464,10 +464,10 @@ else
   " colorscheme lucius
   " LuciusBlackLowContrast
   " colorscheme monochrome
-  colorscheme jkn-monochrome
+  " colorscheme jkn-monochrome
   "
   " Dark bg: (slow)
-  " colorscheme jellybeans
+  colorscheme jellybeans
   " colorscheme apprentice
   " colorscheme badwolf
   "
