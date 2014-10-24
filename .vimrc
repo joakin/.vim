@@ -535,6 +535,10 @@ if has('autocmd')
   augroup autoclose_popups " {
     au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
   augroup END " }
+
+  augroup checktime_on_focus " {
+    au FocusGained,BufEnter * :checktime
+  augroup END " }
 endif
 " }
 
