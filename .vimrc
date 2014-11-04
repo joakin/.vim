@@ -426,9 +426,10 @@ if has("gui_running")
     " set gfn=Consolas:h20
     " set gfn=Edlo:h18
     " set gfn=monoOne:h20
-    set gfn=Anka/Coder\ Narrow\ Regular:h22
-    set linespace=4
-    " set gfn=InputMonoCompressed\ ExLight:h18
+    " set gfn=Anka/Coder\ Narrow\ Regular:h22
+    " set linespace=4
+    set gfn=InputMono\ ExLight:h14
+    set linespace=2
     " set gfn=TheSansMono-Light:h19
     " set linespace=6
     " set gfn=Century\ Schoolbook\ Monospace\ BT:h20
