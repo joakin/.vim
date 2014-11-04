@@ -865,7 +865,9 @@ nnoremap <leader>en :enew<cr>
 " }
 
 " Ag {
-nnoremap <leader>/ :Ag 
+nnoremap gS :Ag "\V"<left>
+nnoremap gs :Ag<cr>
+xnoremap gs :<C-u>call g:VSetSearch()<CR>:AgFromSearch<CR>
 command! TODO execute "Ag TODO"
 command! FIX execute "Ag \"FIX|XXX|HACK|OPTIMIZE\""
 " }
