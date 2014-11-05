@@ -483,7 +483,7 @@ endif
 " set t_Co=256
 hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
 " XXX: JS Noise :O
-hi Noise guifg=#303030 ctermfg=236
+hi Noise guifg=#303030 ctermfg=240
 
 " }
 
@@ -951,6 +951,7 @@ nmap [g <plug>(signify-prev-hunk)
 
 " Syntastic {
 " let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 autocmd BufNewFile,BufRead *.jsx let b:syntastic_checkers = ['jsxhint']
 " }
 
