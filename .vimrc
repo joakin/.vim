@@ -559,7 +559,7 @@ endif
 
 " Fast saving & quitting {
 nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
+nnoremap <leader>q :bd<cr>
 " }
 
 " Easier completion {
