@@ -112,6 +112,9 @@ Plugin 'tpope/vim-sleuth'
 
 " Operator for aligning text (gl, gL)
 Plugin 'tommcdo/vim-lion'
+
+" Auto formatprg (gq)
+Plugin 'Chiel92/vim-autoformat'
 " }
 
 " Text Objects {
@@ -266,7 +269,7 @@ set colorcolumn=80
 set formatoptions=croqn1
 
 " Make vim think that dash is part of words. i want 'this-stuff' to be a word
-set iskeyword+=-
+" set iskeyword+=-
 
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
@@ -559,7 +562,8 @@ endif
 
 " Fast saving & quitting {
 nnoremap <leader>w :w<cr>
-nnoremap <leader>q :bd<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>u :bd<cr>
 " }
 
 " Easier completion {
@@ -866,7 +870,7 @@ nnoremap <leader>en :enew<cr>
 " }
 
 " Ag {
-nnoremap gS :Ag "\V"<left>
+nnoremap gS :Ag ""<left>
 nnoremap gs :Ag<cr>
 xnoremap gs :<C-u>call g:VSetSearch()<CR>:AgFromSearch<CR>
 command! TODO execute "Ag TODO"
