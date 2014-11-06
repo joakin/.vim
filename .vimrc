@@ -551,12 +551,8 @@ endif
 " Settings editing {
 if IsUnix()
     nnoremap <leader>ev :e ~/.vim/.vimrc<cr>
-    nnoremap <leader>et :e ~/drive/data/tasks/tasks.wofl<cr>:lcd %:h<cr>
-    nnoremap <leader>ew :e ~/drive/data/wiki/<cr>:lcd %:h<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-    nnoremap <leader>et :e D:\devel\drive\data\tasks\tasks.wofl<cr>:lcd %:h<cr>
-    nnoremap <leader>ew :e D:\devel\drive\data\wiki\<cr>:lcd %:h<cr>
 endif
 " }
 
@@ -582,9 +578,7 @@ nnoremap <C-W><C-Right> <C-W>20>
 nnoremap <C-W><Right>   <C-W>20>
 nnoremap <C-W><C-Left>  <C-W>20<
 
-nnoremap <leader>ot :tabe<cr>
-nnoremap <leader>os :sp<cr>:enew<cr>
-nnoremap <leader>ov :vsp<cr>:enew<cr>
+nnoremap <leader>et :tabe<cr>
 " }
 
 " Move lines of code {
@@ -814,7 +808,7 @@ nnoremap ? ?\v
 " }
 
 " CTRL+SHIFT+6 to leader+o {
-nnoremap <leader>n <c-^>
+nnoremap <leader>o <c-^>
 " }
 
 " Resolve symlink (useful for fugitive) {
