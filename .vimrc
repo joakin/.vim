@@ -195,6 +195,13 @@ Plugin 'tpope/vim-markdown'
 " Liquid {
 " Plugin 'tpope/vim-liquid'
 " }
+" PHP {
+Plugin 'StanAngeloff/php.vim'
+" }
+" YAML {
+" Vim 7.4 yaml syntax is horrible slow
+Plugin 'stephpy/vim-yaml'
+" }
 " }
 
 " External tools {
