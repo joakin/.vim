@@ -276,7 +276,7 @@ set colorcolumn=80
 set formatoptions=croqn1
 
 " Make vim think that dash is part of words. i want 'this-stuff' to be a word
-" set iskeyword+=-
+set iskeyword+=-
 
 set autoindent    " always set autoindenting on
 set copyindent    " copy the previous indentation on autoindenting
@@ -438,7 +438,7 @@ if has("gui_running")
     " set gfn=monoOne:h20
     " set gfn=Anka/Coder\ Narrow\ Regular:h22
     " set linespace=4
-    set gfn=InputMono\ ExLight:h14
+    set gfn=InputMono:h14
     set linespace=2
     " set gfn=TheSansMono-Light:h19
     " set linespace=6
@@ -941,7 +941,7 @@ endif
 " }
 
 " Signify {
-let g:signify_disable_by_default = 0
+let g:signify_disable_by_default = 1
 let g:signify_vcs_list = [ 'git' ]
 " let g:signify_sign_overwrite = 0
 nnoremap <leader>s :SignifyToggle<cr>
@@ -970,7 +970,7 @@ let g:user_emmet_leader_key = '<F3>'
 " }
 
 " Better whitespace {
-highlight ExtraWhitespace ctermbg = 52 guibg = #550000
+highlight ExtraWhitespace ctermbg=52 guibg=#550000
 " }
 
 " Gist {
@@ -991,8 +991,9 @@ nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gc :Gcommit --verbose<cr>
-nnoremap <leader>gl :Glog<cr>
-nnoremap <leader>gd :Gvdiff<cr>
+nnoremap <leader>gl :Glog -- <cr>
+nnoremap <leader>gdd :Gvdiff<cr>
+nnoremap <leader>gdl :Gvdiff HEAD^1<cr>
 nnoremap <leader>gm :Gmove 
 nnoremap <leader>gp :Git pp<cr>
 " }
