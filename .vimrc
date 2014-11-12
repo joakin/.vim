@@ -345,6 +345,9 @@ set spellfile=$HOME/drive/data/vim/spell/custom.utf-8.add
 " Separators and fillchar
 set fillchars=vert:│,fold:─,diff:━,stlnc:-
 
+" Use the system clipboard by default
+set clipboard=unnamed,unnamedplus
+
 " }
 
 " Font and colorscheme {
@@ -471,17 +474,6 @@ nnoremap <C-W>>     <C-W>20>
 nnoremap cop :lcd %:p:h<CR>:pwd<CR>
 nnoremap coN :call g:ToggleNuMode()<cr>
 nnoremap coC :call g:ToggleConceal(1)<cr>
-" }
-
-" Common editing stuff {
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nnoremap <leader>d "+d
-vnoremap <leader>d "+d
-nnoremap <leader>p "+p
-vnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>P "+P
 " }
 
 " Highlight Group(s) {
