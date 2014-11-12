@@ -438,9 +438,11 @@ endif
 
 " Opening stuff (files, windows, etc) {
 " Files:
-nnoremap <leader>ov :e ~/.vim/.vimrc<cr>
+nnoremap <leader>v :e ~/.vim/.vimrc<cr>
 " Windows/buffers:
 nnoremap <leader>ot :tabe<cr>
+nnoremap <leader>ov :vsp<cr>
+nnoremap <leader>os :sp<cr>
 nnoremap <leader>oq :copen<cr>
 nnoremap <leader>ol :lopen<cr>
 nnoremap <leader>on :enew<cr>
