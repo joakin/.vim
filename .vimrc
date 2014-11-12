@@ -454,21 +454,17 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>u :bd<cr>
 " }
 
-" Easier completion {
+" Easier omnicompletion {
 inoremap <c-@> <C-X><C-O>
 " }
 
 " Manipulate windows {
-nnoremap <C-W><C-F>     <C-W>_:vertical resize<cr>
-nnoremap <C-W><C-E>     <C-W>=
-nnoremap <C-W><Down>    <C-W>10+
-nnoremap <C-W><C-Down>  <C-W>10+
-nnoremap <C-W><Up>      <C-W>10-
-nnoremap <C-W><C-Up>    <C-W>10-
-nnoremap <C-W><Left>    <C-W>20<
-nnoremap <C-W><C-Right> <C-W>20>
-nnoremap <C-W><Right>   <C-W>20>
-nnoremap <C-W><C-Left>  <C-W>20<
+nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
+nnoremap <C-W><C-E> <C-W>=
+nnoremap <C-W>+     <C-W>10+
+nnoremap <C-W>-     <C-W>10-
+nnoremap <C-W><     <C-W>20<
+nnoremap <C-W>>     <C-W>20>
 " }
 
 " Move lines of code {
