@@ -467,17 +467,10 @@ nnoremap <C-W><     <C-W>20<
 nnoremap <C-W>>     <C-W>20>
 " }
 
-" Toggling settings {
-
-" Map to set local path to file current path
+" Toggling settings (to complete unimpaired) {
 nnoremap cop :lcd %:p:h<CR>:pwd<CR>
-
-" Toggle line number mode
 nnoremap coN :call g:ToggleNuMode()<cr>
-
-" Toggle conceal
 nnoremap coC :call g:ToggleConceal(1)<cr>
-
 " }
 
 " Common editing stuff {
