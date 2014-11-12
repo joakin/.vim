@@ -37,8 +37,6 @@ Plugin 'tpope/vim-repeat'
 " Vim improvements {
 
 " Gui {
-" Nice status bar
-Plugin 'bling/vim-airline'
 " Fix some netrw ( - for up dir )
 Plugin 'tpope/vim-vinegar'
 " Open file manager or terminal with current file PWD (gof got)
@@ -877,18 +875,6 @@ let g:rbpt_colorpairs = [
   \ [ '4',  '#268bd2'],
   \ [ '6',  '#2aa198'],
   \ ]
-" }
-
-" Airline {
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_left_sep = '' " ▶
-let g:airline_right_sep = '' " ◀
-let g:airline_branch_prefix = '' " ⎇  ±
-" let g:airline_theme='light'
-
-if exists('g:loaded_airline')
-  AirlineRefresh
-endif
 " }
 
 " Signify {
