@@ -1,17 +1,12 @@
 
 " OS detection vars {
 
-let g:isUnix = 1
-if has('win32') || has('win64')
-  let g:isUnix = 0
-endif
-
 let g:isMac = 0
 if has('macunix')
   let g:isMac = 1
 endif
 
-let g:isLinux = isUnix && !isMac
+let g:isLinux = !isMac
 
 " }
 
@@ -359,7 +354,7 @@ if has("gui_running")
     set gfn=monoOne\ 14
     set linespace=2
   elseif isMac
-    set gfn=Meslo\ LG\ L\ Regular:h14
+    set gfn=Consolas:h14
   endif
 
   " Gui options
@@ -412,12 +407,7 @@ if has('autocmd')
   augroup instantsettings " {
     au!
     au BufWritePost $MYVIMRC :source $MYVIMRC
-
-    if !isUnix
-      au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
-    else
-      au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
-    endif
+    au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
   augroup END " }
 
   augroup writeonfocus " {
@@ -447,11 +437,7 @@ endif
 " Vim mappings {
 
 " Settings editing {
-if isUnix
-    nnoremap <leader>ev :e ~/.vim/.vimrc<cr>
-else
-    nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
-endif
+nnoremap <leader>ev :e ~/.vim/.vimrc<cr>
 " }
 
 " Fast saving & quitting {
@@ -940,9 +926,7 @@ if has('autocmd')
   " Example of project settings.
   " augroup project_settings
   "   au!
-  "   if !isUnix
-  "     au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
-  "   endif
+"     au BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   " augroup END
 endif
 " }
