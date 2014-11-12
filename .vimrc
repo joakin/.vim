@@ -436,8 +436,14 @@ endif
 
 " Vim mappings {
 
-" Settings editing {
-nnoremap <leader>ev :e ~/.vim/.vimrc<cr>
+" Opening stuff (files, windows, etc) {
+" Files:
+nnoremap <leader>ov :e ~/.vim/.vimrc<cr>
+" Windows/buffers:
+nnoremap <leader>ot :tabe<cr>
+nnoremap <leader>oq :copen<cr>
+nnoremap <leader>ol :lopen<cr>
+nnoremap <leader>on :enew<cr>
 " }
 
 " Fast saving & quitting {
@@ -461,8 +467,6 @@ nnoremap <C-W><Left>    <C-W>20<
 nnoremap <C-W><C-Right> <C-W>20>
 nnoremap <C-W><Right>   <C-W>20>
 nnoremap <C-W><C-Left>  <C-W>20<
-
-nnoremap <leader>et :tabe<cr>
 " }
 
 " Move lines of code {
@@ -503,14 +507,6 @@ nnoremap <leader>p "+p
 vnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>P "+P
-" }
-
-" Quick fix and location window mappings {
-nnoremap <leader>eq :copen<cr>
-nnoremap <leader>el :lopen<cr>
-
-" Make preview window closing also close location and quickfix windows
-nnoremap <silent> <C-W>z :wincmd z<Bar>cclose<Bar>lclose<CR>
 " }
 
 " Highlight Group(s) {
@@ -691,8 +687,8 @@ nnoremap / /\v
 nnoremap ? ?\v
 " }
 
-" CTRL+SHIFT+6 to leader+o {
-nnoremap <leader>o <c-^>
+" CTRL+SHIFT+6 to something easier {
+nnoremap <cr> <c-^>
 " }
 
 " Resolve symlink (useful for fugitive) {
@@ -741,10 +737,6 @@ noremap <leader>a<space> :Tabularize spaces<cr>
 noremap <leader>a=       :Tabularize assignment<cr>
 noremap <leader>acss     :Tabularize inline_css<cr>
 
-" }
-
-" Scratch {
-nnoremap <leader>en :enew<cr>
 " }
 
 " Ag {
