@@ -828,7 +828,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.hg$\|\.svn$|^node_modules$|^target$',
+\ 'dir':  '\.git$\|\.hg$\|\.svn$|^target$',
 \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 \ 'link': '',
 \ }
