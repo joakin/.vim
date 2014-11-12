@@ -476,10 +476,6 @@ nnoremap coN :call g:ToggleNuMode()<cr>
 nnoremap coC :call g:ToggleConceal(1)<cr>
 " }
 
-" Panic Button {
-nnoremap <f9> mzggg?G`z
-" }
-
 " Formatting {
 nnoremap Q gqip
 vnoremap Q gq
