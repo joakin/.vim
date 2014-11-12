@@ -151,7 +151,6 @@ Plugin 'stephpy/vim-yaml'
 " }
 
 " External tools {
-" Plugin 'mileszs/ack.vim'
 " Search with :Ag
 Plugin 'rking/ag.vim'
 " Send text to tmux/screen pane c-c
@@ -160,7 +159,7 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'scrooloose/syntastic'
 " Git commands
 Plugin 'tpope/vim-fugitive'
-" Unix commands
+" Unix commands (Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
 Plugin 'tpope/vim-eunuch'
 " }
 
