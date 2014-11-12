@@ -878,17 +878,6 @@ command! TODO execute "Ag TODO"
 command! FIX execute "Ag \"FIX|XXX|HACK|OPTIMIZE\""
 " }
 
-" Ack commands abbr {
-" nnoremap <leader>/ :Ack 
-" command! TODO execute "Ack TODO"
-" command! FIX execute "Ack \"FIX|XXX|HACK|OPTIMIZE\""
-" }
-
-" Multiplecursors (terryma) {
-highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
-highlight link multiple_cursors_visual Visual
-" }
-
 " Slime {
 let g:slime_target = "tmux"
 " let g:slime_no_mappings = 1
@@ -908,24 +897,6 @@ let g:rbpt_colorpairs = [
   \ [ '4',  '#268bd2'],
   \ [ '6',  '#2aa198'],
   \ ]
-" let g:rbpt_colorpairs = [
-"   \ ['104', '#887FD5'],
-"   \ ['75', '#70BFFF'],
-"   \ ['86', '#55F1E1'],
-"   \ ['83', '#63EB63'],
-"   \ ['227', '#EFEF66'],
-"   \ ['215', '#FFBB44'],
-"   \ ['213', '#EB77EC'],
-"   \ ['104', '#887FD5'],
-"   \ ['75', '#70BFFF'],
-"   \ ['86', '#55F1E1'],
-"   \ ['83', '#63EB63'],
-"   \ ['227', '#EFEF66'],
-"   \ ['215', '#FFBB44'],
-"   \ ['213', '#EB77EC'],
-"   \ ['104', '#887FD5'],
-"   \ ['75', '#70BFFF'],
-"   \ ]
 " }
 
 " Airline {
