@@ -37,7 +37,7 @@ Plugin 'tpope/vim-repeat'
 " Vim improvements {
 
 " Gui {
-" Fix some netrw ( - for up dir )
+" Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
 Plugin 'tpope/vim-vinegar'
 " Open file manager or terminal with current file PWD (gof got)
 Plugin 'justinmk/vim-gtfo'
