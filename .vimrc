@@ -690,7 +690,7 @@ nnoremap ? ?\v
 " }
 
 " CTRL+SHIFT+6 to something easier {
-nnoremap <cr> <c-^>
+nnoremap <leader>n <c-^>
 " }
 
 " Resolve symlink (useful for fugitive) {
