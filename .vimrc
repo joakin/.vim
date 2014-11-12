@@ -131,9 +131,7 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 " Plugin 'tpope/vim-classpath'
 " }
-" HTML {
-" Plugin 'mattn/emmet-vim'
-" }
+" HTML {}
 " CSS {
 Plugin '1995eaton/vim-better-css-completion'
 Plugin 'groenewege/vim-less'
@@ -142,9 +140,6 @@ Plugin 'wavded/vim-stylus'
 " }
 " Markdown {
 Plugin 'tpope/vim-markdown'
-" }
-" Liquid {
-" Plugin 'tpope/vim-liquid'
 " }
 " PHP {
 Plugin 'StanAngeloff/php.vim'
