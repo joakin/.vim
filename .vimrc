@@ -640,7 +640,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
 " }
 
 " CtrlP {
-
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
@@ -655,11 +654,9 @@ if executable('ag')
 endif
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>t :CtrlPTag<CR>
-
 " }
 
 " Tabularize stuff {
-
 noremap <leader>at       :Tabularize /
 noremap <leader>aa       :Tabularize /
 noremap <leader>af       :Tabularize /^.\{-}\zs
@@ -669,7 +666,6 @@ noremap <leader>a:       :Tabularize colon<cr>
 noremap <leader>a<space> :Tabularize spaces<cr>
 noremap <leader>a=       :Tabularize assignment<cr>
 noremap <leader>acss     :Tabularize inline_css<cr>
-
 " }
 
 " Ag {
