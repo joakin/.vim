@@ -608,10 +608,6 @@ nnoremap <silent> <leader>8 :call g:HiInterestingWord(8)<cr>
 nnoremap <silent> <leader>9 :call g:HiInterestingWord(9)<cr>
 " }
 
-" Substitute word with first spell suggestion {
-nnoremap <leader>is z=1<CR><CR>
-" }
-
 " Map search to very magic {
 nnoremap / /\v
 nnoremap ? ?\v
