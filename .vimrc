@@ -174,16 +174,10 @@ Plugin 'mattn/gist-vim'
 " }
 
 " Color schemes {
-Plugin 'morhetz/gruvbox'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'wgibbs/vim-irblack'
 Plugin 'jonathanfilip/vim-lucius'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'noahfrederick/Hemisu'
-Plugin 'john2x/flatui.vim'
 Plugin 'fxn/vim-monochrome'
-Plugin 'sjl/badwolf'
-Plugin 'romainl/Apprentice'
 " }
 
 " After Vundle {
@@ -361,62 +355,19 @@ set fillchars=vert:│,fold:─,diff:━,stlnc:-
 " Font and colorscheme {
 
 if has("gui_running")
-
-  " Linux font
   if isLinux
     set gfn=monoOne\ 14
     set linespace=2
+  elseif isMac
+    set gfn=Meslo\ LG\ L\ Regular:h14
   endif
-
-  " Mac font
-  if isMac
-    " set gfn=Fira\ Mono:h14
-    " set linespace=2
-    " set gfn=PragmataPro:h17
-    " set linespace=4
-    " set gfn=M+\ 1m\ light:h16
-    " set gfn=Onuava:h16
-    " set gfn=Inconsolata:h18
-    " set gfn=Monaco:h20
-    " set gfn=Consolas:h20
-    " set gfn=Edlo:h18
-    " set gfn=monoOne:h20
-    " set gfn=Anka/Coder\ Narrow\ Regular:h22
-    " set linespace=4
-    set gfn=InputMono:h14
-    set linespace=2
-    " set gfn=TheSansMono-Light:h19
-    " set linespace=6
-    " set gfn=Century\ Schoolbook\ Monospace\ BT:h20
-    " set gfn=Menlo:h20
-    " set linespace=4
-    " set gfn=Fedra\ Mono\ Light:h16
-    " set gfn=NanumGothicCoding:h20
-    " set linespace=0
-  endif
-  " Akkurat-Mono\ 13
-
-  " set linespace=2
 
   " Gui options
   set guioptions=c
   set guioptions-=T
 
-  " set background=dark
-  " colorscheme gruvbox
-  " colorscheme ir_black
-  " colorscheme jkn-monochrome
   colorscheme jellybeans
-  " colorscheme monochrome
-  " colorscheme lucius
-  " LuciusLightHighContrast
-  " LuciusBlackLowContrast
-  " set background=dark
-  " colorscheme hemisu
 else
-
-  " set background=dark
-
   " Black bg:
   " colorscheme lucius
   " LuciusBlackLowContrast
@@ -425,17 +376,12 @@ else
   "
   " Dark bg: (slow)
   colorscheme jellybeans
-  " colorscheme apprentice
-  " colorscheme badwolf
   "
   " Light bg:
   " set background=light
   " colorscheme hemisu
-  "
-
 endif
 
-" set t_Co=256
 hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
 " XXX: JS Noise :O
 hi Noise guifg=#303030 ctermfg=240
@@ -866,8 +812,7 @@ highlight ExtraWhitespace ctermbg=52 guibg=#550000
 " Gist {
 if isMac
   let g:gist_clip_command = 'pbcopy'
-endif
-if isLinux
+elseif isLinux
   let g:gist_clip_command = 'xclip -selection clipboard'
 endif
 let g:gist_detect_filetype = 1
