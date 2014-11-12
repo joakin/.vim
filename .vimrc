@@ -775,8 +775,7 @@ omap t <Plug>Sneak_t
 omap T <Plug>Sneak_T
 
 " : map (what was , before)
-" nnoremap : <Plug>SneakPrevious
-" xnoremap : <Plug>SneakPrevious
+map : <Plug>SneakPrevious
 " }
 
 " rsi {
