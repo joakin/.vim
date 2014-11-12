@@ -1,29 +1,17 @@
 
-" Utility functions {
-"
+" OS detection vars {
 
 let g:isUnix = 1
 if has('win32') || has('win64')
   let g:isUnix = 0
 endif
 
-fun! IsUnix()
-  return g:isUnix
-endfun
-
 let g:isMac = 0
 if has('macunix')
   let g:isMac = 1
 endif
 
-fun! IsMac()
-  return g:isMac
-endfun
-
-let g:isLinux = IsUnix() && !IsMac()
-fun! IsLinux()
-  return g:isLinux
-endfun
+let g:isLinux = isUnix && !isMac
 
 " }
 
@@ -35,7 +23,7 @@ set encoding=utf-8
 " Vundle init {
 filetype off   " required for vundle
 
-if IsUnix()
+if isUnix
     " Usual quickstart instructions
     set runtimepath+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
@@ -418,13 +406,13 @@ set fillchars=vert:│,fold:─,diff:━,stlnc:-
 if has("gui_running")
 
   " Linux font
-  if IsLinux()
+  if isLinux
     set gfn=monoOne\ 14
     set linespace=2
   endif
 
   " Mac font
-  if IsMac()
+  if isMac
     " set gfn=Fira\ Mono:h14
     " set linespace=2
     " set gfn=PragmataPro:h17
@@ -522,7 +510,7 @@ if has('autocmd')
     au!
     au BufWritePost $MYVIMRC :source $MYVIMRC
 
-    if !IsUnix()
+    if !isUnix
       au BufWritePost ~/vimfiles/.vimrc :source $MYVIMRC
     else
       au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
@@ -556,7 +544,7 @@ endif
 " Vim mappings {
 
 " Settings editing {
-if IsUnix()
+if isUnix
     nnoremap <leader>ev :e ~/.vim/.vimrc<cr>
 else
     nnoremap <leader>ev :e ~\vimfiles\.vimrc<cr>
@@ -945,10 +933,10 @@ highlight ExtraWhitespace ctermbg=52 guibg=#550000
 " }
 
 " Gist {
-if IsMac()
+if isMac
   let g:gist_clip_command = 'pbcopy'
 endif
-if IsLinux()
+if isLinux
   let g:gist_clip_command = 'xclip -selection clipboard'
 endif
 let g:gist_detect_filetype = 1
@@ -1073,7 +1061,7 @@ if has('autocmd')
   " Example of project settings.
   " augroup project_settings
   "   au!
-  "   if !IsUnix()
+  "   if !isUnix
   "     au BufNewFile,BufRead d:/devel/projects/fsp/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   "   endif
   " augroup END
