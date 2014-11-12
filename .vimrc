@@ -41,8 +41,6 @@ Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-vinegar'
 " Open file manager or terminal with current file PWD (gof got)
 Plugin 'justinmk/vim-gtfo'
-" VCS signs
-Plugin 'mhinz/vim-signify'
 " }
 
 " Command line {
@@ -875,15 +873,6 @@ let g:rbpt_colorpairs = [
   \ [ '4',  '#268bd2'],
   \ [ '6',  '#2aa198'],
   \ ]
-" }
-
-" Signify {
-let g:signify_disable_by_default = 1
-let g:signify_vcs_list = [ 'git' ]
-" let g:signify_sign_overwrite = 0
-nnoremap <leader>s :SignifyToggle<cr>
-nmap ]g <plug>(signify-next-hunk)
-nmap [g <plug>(signify-prev-hunk)
 " }
 
 " Startify {
