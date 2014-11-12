@@ -476,12 +476,6 @@ nnoremap coN :call g:ToggleNuMode()<cr>
 nnoremap coC :call g:ToggleConceal(1)<cr>
 " }
 
-" Highlight Group(s) {
-nnoremap <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-" }
-
 " Panic Button {
 nnoremap <f9> mzggg?G`z
 " }
@@ -658,10 +652,17 @@ nnoremap ? ?\v
 nnoremap <leader>n <c-^>
 " }
 
+" }
+
+" Commands {
 " Resolve symlink (useful for fugitive) {
 command! FollowSymlink :exec "file ". resolve(expand('%:p')) | e
 " }
-
+" Highlight Group(s) {
+command! SyntaxInfo :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" }
 " }
 
 " Plugin settings & mappings {
