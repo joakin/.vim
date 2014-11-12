@@ -474,6 +474,8 @@ nnoremap <C-W>>     <C-W>20>
 nnoremap cop :lcd %:p:h<CR>:pwd<CR>
 nnoremap coN :call g:ToggleNuMode()<cr>
 nnoremap coC :call g:ToggleConceal(1)<cr>
+" Toggle "keep current line in the center of the screen" mode
+nnoremap coS :let &scrolloff=999-&scrolloff<cr>
 " }
 
 " Formatting {
@@ -484,7 +486,6 @@ vnoremap Q gq
 " Center screen when moving {
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
 " Same when jumping around
 nnoremap g; g;zzzv
 nnoremap g, g,zzzv
@@ -493,23 +494,15 @@ nnoremap <c-i> <c-i>zzzv
 " }
 
 " Line-wise movements {
-" Easier to type
 noremap H ^
 noremap L $
 vnoremap L g_
-" Mantain
-noremap gH H
-noremap gL L
 " }
 
 " gI {
 " gi already moves to "last place you exited insert mode", so we'll map gI to
 " something similar: move to last change
 nnoremap gI `.
-" }
-
-" Toggle "keep current line in the center of the screen" mode {
-nnoremap <leader>c :let &scrolloff=999-&scrolloff<cr>
 " }
 
 " Normal mode */# remap {
@@ -523,18 +516,11 @@ vnoremap # :<C-u>call g:VSetSearch()<CR>??<CR><c-o>
 " }
 
 " Folds {
-
 set nofoldenable
 set foldlevelstart=1
 set foldmarker={,}
-
 " Space to toggle folds.
 nnoremap z<space> za
-
-" Make zO recursively open whatever top level fold we're in, no matter where the
-" cursor happens to be.
-nnoremap zO zCzO
-
 " }
 
 " "Focus" the current line {
