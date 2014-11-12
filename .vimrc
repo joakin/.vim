@@ -481,10 +481,6 @@ nnoremap Q gqip
 vnoremap Q gq
 " }
 
-" Sudo to write {
-cnoremap w!! w !sudo tee % >/dev/null
-" }
-
 " Center screen when moving {
 nnoremap n nzzzv
 nnoremap N Nzzzv
