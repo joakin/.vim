@@ -900,6 +900,9 @@ nnoremap <leader>gp :Git pp<cr>
 " Goyo {
 nnoremap <C-W><C-G> :Goyo<cr>
 nnoremap <C-W>g     :Goyo<cr>
+let g:goyo_width=90
+let g:goyo_margin_top=1
+let g:goyo_margin_bottom=1
 " }
 
 " Sneak {
