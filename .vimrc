@@ -538,10 +538,7 @@ nnoremap z<cr> mzzMzvzz1<c-e>`z:Pulse<cr>
 
 " netrw {
 let g:netrw_liststyle = 1
-noremap <F1> :e.<CR>
-nnoremap _ :e %:h<CR>
-" noremap <leader>n :e.<CR>
-" noremap <leader>N :e %:h<CR>
+" vinegar has this mapped to -
 " }
 
 " Command line maps {
