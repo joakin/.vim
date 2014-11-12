@@ -22,17 +22,10 @@ set encoding=utf-8
 "
 " Vundle init {
 filetype off   " required for vundle
+set runtimepath+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-if isUnix
-    " Usual quickstart instructions
-    set runtimepath+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-else
-    set runtimepath+=~/vimfiles/bundle/vundle/
-    call vundle#begin('$HOME/vimfiles/bundle/')
-endif
-
-" let Vundle manage Vundle
+" Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 " }
 
