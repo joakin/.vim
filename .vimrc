@@ -569,6 +569,7 @@ nnoremap cofm :set filetype=markdown<cr>
 nnoremap cofv :set filetype=vim<cr>
 nnoremap cofc :set filetype=clojure<cr>
 nnoremap coff :set filetype=
+nnoremap cof :set filetype=
 " }
 
 " Moving back and forth between lines of same or lower indentation {
