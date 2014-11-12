@@ -467,22 +467,6 @@ nnoremap <C-W><     <C-W>20<
 nnoremap <C-W>>     <C-W>20>
 " }
 
-" Move lines of code {
-" with arrows in all modes
-nnoremap <Down>  :m+<CR>==
-nnoremap <Up>    :m-2<CR>==
-nnoremap <Left>  <<
-nnoremap <Right> >>
-inoremap <Down>  <Esc>:m+<CR>==gi
-inoremap <Up>    <Esc>:m-2<CR>==gi
-inoremap <Left>  <Esc><<`]a
-inoremap <Right> <Esc>>>`]a
-vnoremap <Down>  :m'>+<CR>gv=gv
-vnoremap <Up>    :m-2<CR>gv=gv
-vnoremap <Left>  <gv
-vnoremap <Right> >gv
-" }
-
 " Toggling settings {
 
 " Map to set local path to file current path
