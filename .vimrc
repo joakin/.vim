@@ -608,7 +608,7 @@ nnoremap <silent> <leader>8 :call g:HiInterestingWord(8)<cr>
 nnoremap <silent> <leader>9 :call g:HiInterestingWord(9)<cr>
 " }
 
-" Map search to very magic {
+" Map search to very magic by default {
 nnoremap / /\v
 nnoremap ? ?\v
 " }
