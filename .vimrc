@@ -71,6 +71,10 @@ Plugin 'tpope/vim-sleuth'
 Plugin 'tommcdo/vim-lion'
 " Auto formatprg (gq)
 Plugin 'Chiel92/vim-autoformat'
+" Highlights extra whitespace and provides cmds (StripWhitespace, etc)
+Plugin 'ntpeters/vim-better-whitespace'
+" Distraction free editing mode (:Goyo)
+Plugin 'junegunn/goyo.vim'
 
 " Text Objects {
 " Custom text objects (kana dep)
@@ -90,12 +94,6 @@ Plugin 'qstrahl/vim-dentures'
 " ic ac iC aC
 Plugin 'coderifous/textobj-word-column.vim'
 " }
-
-" Highlights extra whitespace and provides cmds (StripWhitespace, etc)
-Plugin 'ntpeters/vim-better-whitespace'
-
-" Distraction free editing mode (:Goyo)
-Plugin 'junegunn/goyo.vim'
 
 " }
 
