@@ -89,14 +89,13 @@ Plugin 'kana/vim-textobj-lastpat'
 Plugin 'qstrahl/vim-dentures'
 " ic ac iC aC
 Plugin 'coderifous/textobj-word-column.vim'
-" aj ij (json objects)
-Plugin 'tpope/vim-jdaddy'
 " }
 
-" Visual {
+" Highlights extra whitespace and provides cmds (StripWhitespace, etc)
 Plugin 'ntpeters/vim-better-whitespace'
+
+" Distraction free editing mode (:Goyo)
 Plugin 'junegunn/goyo.vim'
-" }
 
 " }
 
