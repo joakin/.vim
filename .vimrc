@@ -573,7 +573,6 @@ nnoremap cof :set filetype=
 " }
 
 " Moving back and forth between lines of same or lower indentation {
-
 nnoremap  <silent> <c-k> :call      NextIndent(0, 0, 0 )<CR>_
 nnoremap  <silent> <c-j> :call      NextIndent(0, 1, 0 )<CR>_
 nnoremap  <silent> <c-h> :call      NextIndent(0, 0, -1)<CR>_
@@ -592,10 +591,12 @@ onoremap <silent> <c-h> :<c-u>normal V<c-v><c-h>j<cr>
 onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 "onoremap <silent> <c-L> _:call     NextIndent(0, 0, 1 )<CR>_
 "onoremap <silent> <c-H> $:call     NextIndent(0, 1, -1)<CR>$
-
 " }
 
 " Highlight Word {
+if exists("*HiDefineColors")
+  call g:HiDefineColors()
+endif
 nnoremap <silent> <leader>1 :call g:HiInterestingWord(1)<cr>
 nnoremap <silent> <leader>2 :call g:HiInterestingWord(2)<cr>
 nnoremap <silent> <leader>3 :call g:HiInterestingWord(3)<cr>
@@ -605,10 +606,6 @@ nnoremap <silent> <leader>6 :call g:HiInterestingWord(6)<cr>
 nnoremap <silent> <leader>7 :call g:HiInterestingWord(7)<cr>
 nnoremap <silent> <leader>8 :call g:HiInterestingWord(8)<cr>
 nnoremap <silent> <leader>9 :call g:HiInterestingWord(9)<cr>
-" }
-
-" Remove trailing whitespace {
-nnoremap <leader>i<space> :%s/\s\+$<cr>
 " }
 
 " Substitute word with first spell suggestion {
@@ -739,6 +736,7 @@ let g:gist_open_browser_after_post = 1
 
 " Fugitive {
 nnoremap <leader>gg :Git 
+nnoremap <leader>ga :Git add -p<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gb :Gblame<cr>
 nnoremap <leader>gr :Gread<cr>
