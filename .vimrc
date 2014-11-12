@@ -49,7 +49,6 @@ Plugin 'kien/ctrlp.vim'
 " }
 
 " Movement {
-Plugin 'matchit.zip'
 " Like f but multiline and faster 's'
 Plugin 'justinmk/vim-sneak'
 " d]a) or c[i( for example
