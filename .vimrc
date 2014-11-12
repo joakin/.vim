@@ -533,7 +533,7 @@ nnoremap z<space> za
 " This mapping wipes out the z mark, which I never use.
 "
 " I use :sus for the rare times I want to actually background Vim.
-nnoremap z<cr> mzzMzvzz3<c-e>`z:Pulse<cr>
+nnoremap z<cr> mzzMzvzz1<c-e>`z:Pulse<cr>
 " }
 
 " netrw {
