@@ -36,24 +36,17 @@ Plugin 'tpope/vim-repeat'
 
 " Vim improvements {
 
-" Gui {
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
 Plugin 'tpope/vim-vinegar'
+
 " Open file manager or terminal with current file PWD (gof got)
 Plugin 'justinmk/vim-gtfo'
-" }
 
-" Command line {
 " File/Buffer/Tag finder
 Plugin 'kien/ctrlp.vim'
-" }
 
-" Movement {
 " Like f but multiline and faster 's'
 Plugin 'justinmk/vim-sneak'
-" d]a) or c[i( for example
-Plugin 'tommcdo/vim-ninja-feet'
-" }
 
 " Editing {
 " Align text :Tabularize
