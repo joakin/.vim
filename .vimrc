@@ -38,17 +38,12 @@ Plugin 'tpope/vim-repeat'
 
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
 Plugin 'tpope/vim-vinegar'
-
 " Open file manager or terminal with current file PWD (gof got)
 Plugin 'justinmk/vim-gtfo'
-
 " File/Buffer/Tag finder
 Plugin 'kien/ctrlp.vim'
-
 " Like f but multiline and faster 's'
 Plugin 'justinmk/vim-sneak'
-
-" Editing {
 " Align text :Tabularize
 Plugin 'godlygeek/tabular'
 " Change surrounding delimiters (cs"')
@@ -61,29 +56,21 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-abolish'
 " Autocomplete (autoclose) parens brackets, quotes, etc
 " Plugin 'kana/vim-smartinput'
-
 " Readline mappings
 Plugin 'tpope/vim-rsi'
-
 " Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-
 " Operator for exchanging text (cx)
 Plugin 'tommcdo/vim-exchange'
-
 " Auto completion popup
 " Plugin 'Shougo/neocomplete.vim'
-
 " Auto detect indent settings
 Plugin 'tpope/vim-sleuth'
-
 " Operator for aligning text (gl, gL)
 Plugin 'tommcdo/vim-lion'
-
 " Auto formatprg (gq)
 Plugin 'Chiel92/vim-autoformat'
-" }
 
 " Text Objects {
 " Custom text objects (kana dep)
@@ -880,11 +867,6 @@ autocmd BufNewFile,BufRead *.jsx let b:syntastic_checkers = ['jsxhint']
 
 " Emmet {
 let g:user_emmet_leader_key = '<F3>'
-" }
-
-" Neocomplete {
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#disable_auto_complete = 1
 " }
 
 " Better whitespace {
