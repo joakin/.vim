@@ -542,18 +542,14 @@ let g:netrw_liststyle = 1
 " }
 
 " Command line maps {
-
 cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>
-
 " }
 
 " Substitute shortcut {
-
 nnoremap <leader>r :%s/
 xnoremap <leader>r :s/
-
 " }
 
 " Colon and Semi-colon mappings {
