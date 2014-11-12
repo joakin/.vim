@@ -30,7 +30,6 @@ Plugin 'gmarik/Vundle.vim'
 " }
 
 " VimL libraries and deps {
-Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-repeat'
 " }
