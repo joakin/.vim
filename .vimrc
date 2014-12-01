@@ -284,8 +284,8 @@ set synmaxcol=800
 
 set mouse=a
 
-set cursorline
-set cursorcolumn
+set nocursorline
+set nocursorcolumn
 
 " Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
 set nrformats-=octal
@@ -357,7 +357,7 @@ if has("gui_running")
     set gfn=monoOne\ 14
     set linespace=2
   elseif isMac
-    set gfn=Consolas:h14
+    set gfn=Input\ Mono:h15
   endif
 
   " Gui options
@@ -521,6 +521,7 @@ set foldlevelstart=1
 set foldmarker={,}
 " Space to toggle folds.
 nnoremap z<space> za
+nnoremap zO zczO
 " }
 
 " "Focus" the current line {
@@ -531,8 +532,6 @@ nnoremap z<space> za
 " 4. Pulse the cursor line.  My eyes are bad.
 "
 " This mapping wipes out the z mark, which I never use.
-"
-" I use :sus for the rare times I want to actually background Vim.
 nnoremap z<cr> mzzMzvzz1<c-e>`z:Pulse<cr>
 " }
 
@@ -617,6 +616,9 @@ nnoremap ? ?\v
 nnoremap <leader>n <c-^>
 " }
 
+" Insert mode {
+" }
+
 " }
 
 " Commands {
@@ -671,7 +673,7 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 " Ag {
 nnoremap gS :Ag ""<left>
 nnoremap gs :Ag<cr>
-xnoremap gs :<C-u>call g:VSetSearch()<CR>:AgFromSearch<CR>
+xnoremap gs y:Ag -Q """<CR>
 command! TODO execute "Ag TODO"
 command! FIX execute "Ag \"FIX|XXX|HACK|OPTIMIZE\""
 " }
@@ -776,6 +778,11 @@ let g:rsi_no_meta = 1
 
 " gtfo {
 let g:gtfo#terminals = { 'mac' : 'iterm' }
+" }
+
+" jsx {
+let g:jsx_ext_required = 0
+let g:jsx_pragma_required = 1
 " }
 
 " }
