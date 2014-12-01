@@ -726,6 +726,8 @@ elseif isLinux
 endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
+
+command! -nargs=? -range=% GistAnon <line1>,<line2>Gist -a <f-args>
 " }
 
 " Fugitive {
