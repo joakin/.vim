@@ -58,8 +58,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Operator for exchanging text (cx)
 Plugin 'tommcdo/vim-exchange'
-" Auto completion popup
-" Plugin 'Shougo/neocomplete.vim'
 " Auto detect indent settings
 Plugin 'tpope/vim-sleuth'
 " Operator for aligning text (gl, gL)
