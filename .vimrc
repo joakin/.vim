@@ -689,7 +689,7 @@ noremap <leader>acss     :Tabularize inline_css<cr>
 " }
 
 " Ag {
-nnoremap gS :Ag ""<left>
+nnoremap gS :Ag -Q ""<left>
 nnoremap gs :Ag<cr>
 xnoremap gs y:Ag -Q """<CR>
 command! TODO execute "Ag TODO"
