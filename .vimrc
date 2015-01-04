@@ -145,6 +145,9 @@ Plugin 'StanAngeloff/php.vim'
 " Vim 7.4 yaml syntax is horrible slow
 Plugin 'stephpy/vim-yaml'
 " }
+" ELM {
+Bundle 'lambdatoast/elm.vim'
+" }
 " }
 
 " External tools {
