@@ -178,6 +178,8 @@ Plugin 'jonathanfilip/vim-lucius'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'noahfrederick/Hemisu'
 Plugin 'fxn/vim-monochrome'
+Plugin 'romainl/Apprentice'
+Plugin 'altercation/vim-colors-solarized'
 " }
 
 " After Vundle {
@@ -362,7 +364,8 @@ if has("gui_running")
     set gfn=monoOne\ 14
     set linespace=2
   elseif isMac
-    set gfn=Input\ Mono:h15
+    set gfn=monoOne:h17
+    " set gfn=InputMono\ Thin:h16
   endif
 
   " Gui options
@@ -378,10 +381,13 @@ else
   " colorscheme jkn-monochrome
   "
   " Dark bg: (slow)
-  colorscheme jellybeans
+  " colorscheme jellybeans
+  set background=dark
+  colorscheme solarized
   "
   " Light bg:
   " set background=light
+  " set background=dark
   " colorscheme hemisu
 endif
 
