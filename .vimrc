@@ -148,6 +148,9 @@ Plugin 'stephpy/vim-yaml'
 " ELM {
 Bundle 'lambdatoast/elm.vim'
 " }
+" Mediawiki {
+Plugin 'chikamichi/mediawiki.vim'
+" }
 " }
 
 " External tools {
