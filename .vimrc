@@ -263,7 +263,7 @@ set splitbelow
 set splitright
 
 set wildmenu
-set wildmode=longest,list:longest
+set wildmode=longest,list:list,full
 
 syntax enable "Enable syntax hl
 
