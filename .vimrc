@@ -384,9 +384,9 @@ else
   " colorscheme jkn-monochrome
   "
   " Dark bg: (slow)
-  " colorscheme jellybeans
-  set background=dark
-  colorscheme solarized
+  colorscheme jellybeans
+  " set background=dark
+  " colorscheme apprentice
   "
   " Light bg:
   " set background=light
