@@ -151,6 +151,9 @@ Bundle 'lambdatoast/elm.vim'
 " Mediawiki {
 Plugin 'chikamichi/mediawiki.vim'
 " }
+" GLSL {
+Plugin 'tikhomirov/vim-glsl'
+" }
 " }
 
 " External tools {
