@@ -655,6 +655,7 @@ command! SyntaxInfo :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") 
 if has('lua')
   let g:neocomplete#enable_at_startup = 1
   let g:neocomplete#enable_smart_case = 1
+  let g:neocomplcache_force_overwrite_completefunc = 1
 endif
 " }
 
