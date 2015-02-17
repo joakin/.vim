@@ -367,10 +367,10 @@ set clipboard=unnamed,unnamedplus
 
 if has("gui_running")
   if isLinux
-    set gfn=monoOne\ 14
+    set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=monoOne:h17
+    set gfn=PT\ Mono:h16
     " set gfn=InputMono\ Thin:h16
   endif
 
@@ -449,7 +449,7 @@ if has('autocmd')
   augroup END " }
 
   augroup checktime_on_focus " {
-    au FocusGained,BufEnter * :checktime
+    au WinEnter,FocusGained,BufEnter * :checktime
   augroup END " }
 endif
 " }
