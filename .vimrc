@@ -370,8 +370,7 @@ if has("gui_running")
     set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=PT\ Mono:h16
-    " set gfn=InputMono\ Thin:h16
+    set gfn=InputMono\ ExLight:h15
   endif
 
   " Gui options
