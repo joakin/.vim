@@ -69,6 +69,10 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'ntpeters/vim-better-whitespace'
 " Distraction free editing mode (:Goyo)
 Plugin 'junegunn/goyo.vim'
+" Auto autocomplete popup
+if has('lua')
+  Plugin 'Shougo/neocomplete.vim'
+endif
 
 " Text Objects {
 " Custom text objects (kana dep)
@@ -646,6 +650,14 @@ command! SyntaxInfo :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") 
 " }
 
 " Plugin settings & mappings {
+
+" Neocomplete {
+if has('lua')
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplcache_force_overwrite_completefunc = 1
+endif
+" }
 
 " Ultisnips {
 let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
