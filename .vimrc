@@ -669,7 +669,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.hg$\|\.svn$|^target$',
+\ 'dir':  '\.git$\|\.hg$\|\.svn$|^target$|^node_modules$',
 \ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
 \ 'link': '',
 \ }
@@ -727,9 +727,9 @@ let g:rbpt_colorpairs = [
 " }
 
 " Syntastic {
-" let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+let g:syntastic_check_on_open=1
 autocmd BufNewFile,BufRead *.jsx let b:syntastic_checkers = ['jsxhint']
+let g:syntastic_javascript_checkers = ['standard']
 " }
 
 " Emmet {
@@ -806,7 +806,7 @@ let g:gtfo#terminals = { 'mac' : 'iterm' }
 
 " jsx {
 let g:jsx_ext_required = 0
-let g:jsx_pragma_required = 1
+let g:jsx_pragma_required = 0
 " }
 
 " }
@@ -850,6 +850,7 @@ set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 
 set wildignore+=target/                          " Clojure
+set wildignore+=node_modules/                    " JS
 
 " }
 
@@ -880,6 +881,10 @@ if has('autocmd')
   "   au!
   "   au BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   " augroup END
+  augroup wikimedia_mediawiki_project_settings
+    au!
+    au BufNewFile,BufRead ~/dev/wikimedia/* let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+  augroup END
 endif
 " }
 
