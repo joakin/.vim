@@ -118,9 +118,6 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mintplant/vim-literate-coffeescript'
 " }
-" Livescript {
-Plugin 'gkz/vim-ls'
-" }
 " Clojure {
 " Language and repl integration
 Plugin 'tpope/vim-fireplace'
