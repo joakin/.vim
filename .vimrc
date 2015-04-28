@@ -1,249 +1,146 @@
-
 " OS detection vars {
-
 let g:isMac = 0
 if has('macunix')
   let g:isMac = 1
 endif
-
 let g:isLinux = !isMac
-
 " }
 
-set nocompatible
-set encoding=utf-8
+call plug#begin('~/.vim/plugged')
 
-" Vundle {
-"
-" Vundle init {
-filetype off   " required for vundle
-set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
-" }
-
-" VimL libraries and deps {
-Plugin 'tomtom/tlib_vim'
-Plugin 'tpope/vim-repeat'
-" }
-
-" Vim improvements {
-
+Plug 'tpope/vim-sensible'
+" Enable repeat for plugins
+Plug 'tpope/vim-repeat'
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
-Plugin 'tpope/vim-vinegar'
-" Open file manager or terminal with current file PWD (gof got)
-Plugin 'justinmk/vim-gtfo'
+Plug 'tpope/vim-vinegar'
 " File/Buffer/Tag finder
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " Like f but multiline and faster 's'
-Plugin 'justinmk/vim-sneak'
+Plug 'justinmk/vim-sneak'
 " Align text :Tabularize
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 " Change surrounding delimiters (cs"')
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " c-a c-x for dates
-Plugin 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating'
 " Tons of useful mappings
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 " Abbreviations, Substitutions, Coercion...
-Plugin 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
 " Autocomplete (autoclose) parens brackets, quotes, etc
-" Plugin 'kana/vim-smartinput'
+Plug 'kana/vim-smartinput'
 " Readline mappings
-Plugin 'tpope/vim-rsi'
-
-" Snippets
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-" Operator for exchanging text (cx)
-Plugin 'tommcdo/vim-exchange'
+Plug 'tpope/vim-rsi'
 " Auto detect indent settings
-Plugin 'tpope/vim-sleuth'
-" Operator for aligning text (gl, gL)
-Plugin 'tommcdo/vim-lion'
+Plug 'tpope/vim-sleuth'
 " Auto formatprg (gq)
-Plugin 'Chiel92/vim-autoformat'
-" Highlights extra whitespace and provides cmds (StripWhitespace, etc)
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'Chiel92/vim-autoformat'
+" Highlights extra whitespace and :StripWhitespace
+Plug 'ntpeters/vim-better-whitespace'
 " Distraction free editing mode (:Goyo)
-Plugin 'junegunn/goyo.vim'
-" Auto autocomplete popup
-if has('lua')
-  Plugin 'Shougo/neocomplete.vim'
-endif
+Plug 'junegunn/goyo.vim'
+" Comment and uncomment code with gc{motion} (gcc gcgc)
+Plug 'tpope/vim-commentary'
 
 " Text Objects {
 " Custom text objects (kana dep)
-Plugin 'kana/vim-textobj-user'
-" f{char}
-Plugin 'thinca/vim-textobj-between'
+Plug 'kana/vim-textobj-user'
 " il al
-Plugin 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-line'
 " iz az
-Plugin 'kana/vim-textobj-fold'
+Plug 'kana/vim-textobj-fold'
 " ie ae
-Plugin 'kana/vim-textobj-entire'
-" i/ a/ i? a?
-Plugin 'kana/vim-textobj-lastpat'
+Plug 'kana/vim-textobj-entire'
 " ai ii aI iI
-Plugin 'qstrahl/vim-dentures'
+Plug 'qstrahl/vim-dentures'
 " ic ac iC aC
-Plugin 'coderifous/textobj-word-column.vim'
+Plug 'coderifous/textobj-word-column.vim'
 " }
 
+" Syntax {
+Plug 'pangloss/vim-javascript'
+Plug 'leshill/vim-json'
+Plug 'digitaltoad/vim-jade'
+Plug 'nono/vim-handlebars'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mintplant/vim-literate-coffeescript'
+Plug 'tpope/vim-markdown'
+Plug 'StanAngeloff/php.vim'
+Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
+Plug 'lambdatoast/elm.vim'
+Plug 'chikamichi/mediawiki.vim'
+Plug 'tikhomirov/vim-glsl'
 " }
 
-" Coding {
-
-" Editing {
-" Comment and uncomment code with gc{motion} (gcc gcgc)
-Plugin 'tpope/vim-commentary'
-" }
-
-" Languages {
 " JS {
-Plugin 'pangloss/vim-javascript'
-Plugin 'leshill/vim-json'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'nono/vim-handlebars'
-Plugin 'moll/vim-node'
-Plugin 'mxw/vim-jsx'
-Plugin 'briancollins/vim-jst'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'mustache/vim-mustache-handlebars'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 " }
-" CoffeeScript {
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mintplant/vim-literate-coffeescript'
-" }
+
 " Clojure {
 " Language and repl integration
-Plugin 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace'
 " Clojure syntax files
-Plugin 'guns/vim-clojure-static'
-Plugin 'kien/rainbow_parentheses.vim'
-" Plugin 'tpope/vim-classpath'
+Plug 'guns/vim-clojure-static'
+Plug 'kien/rainbow_parentheses.vim'
 " }
-" HTML {}
+
 " CSS {
-Plugin '1995eaton/vim-better-css-completion'
-Plugin 'groenewege/vim-less'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'wavded/vim-stylus'
-" }
-" Markdown {
-Plugin 'tpope/vim-markdown'
-" }
-" PHP {
-Plugin 'StanAngeloff/php.vim'
-" }
-" YAML {
-" Vim 7.4 yaml syntax is horrible slow
-Plugin 'stephpy/vim-yaml'
-" }
-" ELM {
-Bundle 'lambdatoast/elm.vim'
-" }
-" Mediawiki {
-Plugin 'chikamichi/mediawiki.vim'
-" }
-" GLSL {
-Plugin 'tikhomirov/vim-glsl'
-" }
+Plug '1995eaton/vim-better-css-completion'
+Plug 'groenewege/vim-less'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'wavded/vim-stylus'
 " }
 
 " External tools {
 " Search with :Ag
-Plugin 'rking/ag.vim'
-" Send text to tmux/screen pane c-c
-Plugin 'jpalardy/vim-slime'
+Plug 'rking/ag.vim'
 " Syntax checking and linting
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Git commands
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Unix commands (Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
-Plugin 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 " }
 
 " Internets {
-
 " Dep for gist-vim
-Plugin 'mattn/webapi-vim'
+Plug 'mattn/webapi-vim'
 " Upload gists with :Gist
-Plugin 'mattn/gist-vim'
-" }
-
+Plug 'mattn/gist-vim'
 " }
 
 " Color schemes {
-Plugin 'jonathanfilip/vim-lucius'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'noahfrederick/Hemisu'
-Plugin 'fxn/vim-monochrome'
-Plugin 'romainl/Apprentice'
-Plugin 'altercation/vim-colors-solarized'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'nanotech/jellybeans.vim'
+Plug 'noahfrederick/Hemisu'
+Plug 'fxn/vim-monochrome'
+Plug 'sjl/badwolf'
 " }
 
-" After Vundle {
-" All Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" }
-
-" }
+call plug#end()
 
 " Vim general settings {
-
-" Key capture time on terminal. Else it takes a second to process Esc...
-if !has("gui_running")
-  set ttimeoutlen=100
-endif
-
 " Tab size
 set softtabstop=2
 set shiftwidth=2
 set shiftround
 set tabstop=2
 set expandtab
-
 " Create undo files with history
 set undofile
-
-set ttyfast
-
-" Wrap text when 80 cols
 set nowrap
-" set wrap
 set textwidth=79
 set colorcolumn=80
 set formatoptions=croqn1
-
-" Make vim think that dash is part of words. i want 'this-stuff' to be a word
-set iskeyword+=-
-
-set autoindent    " always set autoindenting on
-set copyindent    " copy the previous indentation on autoindenting
-
-set smarttab      " insert tabs on the start of a line according to
-                  "    shiftwidth, not tabstop
-
-" Allow modified/unsaved buffers in the background.
-set hidden
-
-set ignorecase    " Not case sensitive search
-set smartcase     " Unless the search contains caps letters
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
-set gdefault      " Default g flag on substitutions
-set showmatch     " Jump to bracket/parens briefly. Does not interrupt editing
-set matchtime=1   " Time of the jump of showmatch
-
-set magic "Set magic on, for regular expressions (default?)
-
-" set list
-
+set copyindent  " copy the previous indentation on autoindenting
+set hidden      " Allow modified/unsaved buffers in the background.
+set ignorecase  " Not case sensitive search
+set smartcase   " Unless the search contains caps letters
+set hlsearch    " highlight search terms
+set gdefault    " Default g flag on substitutions
+set showmatch   " Jump to bracket/parens briefly
+set matchtime=1 " Time of the jump of showmatch
 set directory=~/.vimswap//
 set undodir=~/.vimundo//
 " Make those folders automatically if they don't already exist.
@@ -253,63 +150,16 @@ endif
 if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
-
-" Set to auto read when a file is changed from the outside
-set autoread
-
-set autowrite
-
-" Set split directions to something normal
-set splitbelow
-set splitright
-
-set wildmenu
 set wildmode=longest,list:list,full
-
-syntax enable "Enable syntax hl
-
 set omnifunc=syntaxcomplete#Complete
-
-set completeopt=menu,preview
-
-set backspace=indent,eol,start
-
-" set number
-" set relativenumber
 set nonumber
 set norelativenumber
 set numberwidth=2
-
-set scrolloff=3
-
-set laststatus=2
-
-" Disable modeline
-set nomodeline
-
-" If run in a terminal, set the terminal title.
-set title
-
-" Don't try to highlight lines longer than 800 characters.
-set synmaxcol=800
-
+set synmaxcol=800 " Don't try to highlight lines longer than
 set mouse=a
-
-set nocursorline
-set nocursorcolumn
-
-" Fuck off Octal interfering with dates like 2001/05/02 when Ctrl+A/X
-set nrformats-=octal
-
 let mapleader=" "
-let g:mapleader = " "
 let maplocalleader= "\\"
-let g:maplocalleader= "\\"
-
-" When available switch to open buffers in current and different tabs
-set switchbuf=useopen,usetab
-
-set conceallevel=0
+set switchbuf=useopen,usetab " When available switch to open buffers in current and different tabs
 
 " FoldText {
 function! MyFoldText()
@@ -329,40 +179,24 @@ function! MyFoldText()
 endfunction
 set foldtext=MyFoldText()
 " }
-
-" Matchit (old) {
-" Load matchit.vim, but only if the user hasn't installed a newer version.
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
-endif
-" }
-
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
-
 " Make Y consistent with C and D. See :help Y.
 nnoremap Y y$
-
 " Make . work with a visual selection
 vnoremap . :normal .<cr>
-
 " Invisible char settings (list)
 set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
-
 " Spell stuff
-set spelllang=en
-set spellfile=$HOME/drive/data/vim/spell/custom.utf-8.add
+set spellfile=$HOME/.vim/spell/custom.utf-8.add
 
 " Separators and fillchar
 set fillchars=vert:│,fold:─,diff:━,stlnc:-
-
 " Use the system clipboard by default
 set clipboard=unnamed,unnamedplus
-
 " }
 
 " Font and colorscheme {
-
 if has("gui_running")
   if isLinux
     set gfn=monospace\ 14
@@ -377,45 +211,29 @@ if has("gui_running")
 
   colorscheme jellybeans
 else
-  " Black bg:
-  " colorscheme lucius
-  " LuciusBlackLowContrast
-  " colorscheme monochrome
+  colorscheme lucius
+  LuciusBlackLowContrast
   " colorscheme jkn-monochrome
-  "
-  " Dark bg: (slow)
-  colorscheme jellybeans
-  " set background=dark
-  " colorscheme apprentice
-  "
-  " Light bg:
-  " set background=light
-  " set background=dark
-  " colorscheme hemisu
+  " colorscheme jellybeans
 endif
 
 hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
-" XXX: JS Noise :O
-hi Noise guifg=#303030 ctermfg=240
-
+hi Noise guifg=#303030 ctermfg=236
 " }
 
 " Statusline {
-
 " set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 
-set statusline=
-set statusline +=%3*\ %n\ %*  " buffer number
-" set statusline +=%5*%{&ff}%*  " file format
-set statusline +=\ \ %<%f\ \ %* " full path
-set statusline +=%4*%m%*        " modified flag
-set statusline +=%3*\ %y\ %*    " file type
-set statusline +=%3*%=%*        " align right
-set statusline +=%5*%4c\ %*     " column number
-set statusline +=%2*%5l%*       " current line
-set statusline +=%2*/%L\ \ %*   " total lines
-set statusline +=%5*\ %P\       " percentage of file
-
+" set statusline=
+" set statusline +=%3*\ %n\ %*  " buffer number
+" set statusline +=\ \ %<%f\ \ %* " full path
+" set statusline +=%4*%m%*        " modified flag
+" set statusline +=%3*\ %y\ %*    " file type
+" set statusline +=%3*%=%*        " align right
+" set statusline +=%5*%4c\ %*     " column number
+" set statusline +=%2*%5l%*       " current line
+" set statusline +=%2*/%L\ \ %*   " total lines
+" set statusline +=%5*\ %P\       " percentage of file
 " }
 
 " Autocommands {
@@ -425,14 +243,8 @@ if has('autocmd')
     au!
     au BufWritePost $MYVIMRC :source $MYVIMRC
     au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
+    au BufWritePost ~/.nvim/.nvimrc :source $MYVIMRC
   augroup END " }
-
-  augroup writeonfocus " {
-    au!
-    " Autosave when focus is lost
-    au FocusLost * :silent! wall
-  augroup END " }
-
   augroup rememberlastcursorpos " {
     au!
     au BufReadPost *
@@ -440,11 +252,9 @@ if has('autocmd')
           \   exe "normal! g`\"zvzz"                        |
           \ endif
   augroup END " }
-
   augroup autoclose_popups " {
     au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
   augroup END " }
-
   augroup checktime_on_focus " {
     au WinEnter,FocusGained,BufEnter * :checktime
   augroup END " }
@@ -455,7 +265,7 @@ endif
 
 " Opening stuff (files, windows, etc) {
 " Files:
-nnoremap <leader>v :e ~/.vim/.vimrc<cr>
+nnoremap <leader>v :e $MYVIMRC<cr>:FollowSymlink<cr>
 " Windows/buffers:
 nnoremap <leader>ot :tabe<cr>
 nnoremap <leader>ov :vsp<cr>
@@ -511,6 +321,8 @@ nnoremap <c-i> <c-i>zzzv
 noremap H ^
 noremap L $
 vnoremap L g_
+noremap gH H
+noremap gL L
 " }
 
 " gI {
@@ -551,7 +363,6 @@ nnoremap z<cr> mzzMzvzz1<c-e>`z:Pulse<cr>
 
 " netrw {
 let g:netrw_liststyle = 1
-" vinegar has this mapped to -
 " }
 
 " Command line maps {
@@ -648,14 +459,6 @@ command! SyntaxInfo :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") 
 
 " Plugin settings & mappings {
 
-" Neocomplete {
-if has('lua')
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_smart_case = 1
-  let g:neocomplcache_force_overwrite_completefunc = 1
-endif
-" }
-
 " Ultisnips {
 let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
 let g:UltiSnipsListSnippets='<c-j>'
@@ -728,12 +531,7 @@ let g:rbpt_colorpairs = [
 
 " Syntastic {
 let g:syntastic_check_on_open=1
-autocmd BufNewFile,BufRead *.jsx let b:syntastic_checkers = ['jsxhint']
 let g:syntastic_javascript_checkers = ['standard']
-" }
-
-" Emmet {
-let g:user_emmet_leader_key = '<F3>'
 " }
 
 " Better whitespace {
@@ -801,19 +599,9 @@ map : <Plug>SneakPrevious
 let g:rsi_no_meta = 1
 " }
 
-" gtfo {
-let g:gtfo#terminals = { 'mac' : 'iterm' }
-" }
-
-" jsx {
-let g:jsx_ext_required = 0
-let g:jsx_pragma_required = 0
-" }
-
 " }
 
 " Abbreviations {
-
 iabbrev @@    joaquin@chimeces.com
 iabbrev wweb  http://chimeces.com
 iabbrev ssig  <cr>Joaquin Oltra<cr>joaquin@chimeces.com<cr>
@@ -825,7 +613,6 @@ iabbrev alice4 In another moment down went Alice after it, never once considerin
 iabbrev alice5 Either the well was very deep, or she fell very slowly, for she had plenty of time as she went down to look about her and to wonder what was going to happen next. First, she tried to look down and make out what she was coming to, but it was too dark to see anything; then she looked at the sides of the well, and noticed that they were filled with cupboards and book-shelves; here and there she saw maps and pictures hung upon pegs. She took down a jar from one of the shelves as she passed; it was labelled `ORANGE MARMALADE', but to her great disappointment it was empty: she did not like to drop the jar for fear of killing somebody, so managed to put it into one of the cupboards as she fell past it.<cr>
 iabbrev alice6 <cr>There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. `Very uncomfortable for the Dormouse,' thought Alice; `only, as it's asleep, I suppose it doesn't mind.'<cr><cr>The table was a large one, but the three were all crowded together at one corner of it: `No room! No room!' they cried out when they saw Alice coming. `There's plenty of room!' said Alice indignantly, and she sat down in a large arm-chair at one end of the table.<cr>
 iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of the month is it?' he said, turning to Alice: he had taken his watch out of his pocket, and was looking at it uneasily, shaking it every now and then, and holding it to his ear.<cr><cr>Alice considered a little, and then said `The fourth.'<cr><cr>`Two days wrong!' sighed the Hatter. `I told you butter wouldn't suit the works!' he added looking angrily at the March Hare.<cr><cr>`It was the best butter,' the March Hare meekly replied.<cr><cr>`Yes, but some crumbs must have got in as well,' the Hatter grumbled: `you shouldn't have put it in with the bread-knife.'<cr><cr>The March Hare took the watch and looked at it gloomily: then he dipped it into his cup of tea, and looked at it again: but he could think of nothing better to say than his first remark, `It was the best butter, you know.'<cr>
-
 " }
 
 " Language settings {
@@ -860,7 +647,7 @@ set suffixesadd+=.css,.styl,.less,.sass,.scss
 " }
 
 " Javascript {
-set suffixesadd+=.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
+set suffixesadd+=.jsx,.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
 " Plugin 'othree/javascript-libraries-syntax.vim'
 let g:javascript_conceal=1
