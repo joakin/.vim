@@ -73,10 +73,6 @@ Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
 " }
 
-" JS {
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-" }
-
 " Clojure {
 " Language and repl integration
 Plug 'tpope/vim-fireplace'
