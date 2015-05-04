@@ -28,7 +28,7 @@ Plug 'tpope/vim-unimpaired'
 " Abbreviations, Substitutions, Coercion...
 Plug 'tpope/vim-abolish'
 " Autocomplete (autoclose) parens brackets, quotes, etc
-Plug 'kana/vim-smartinput'
+" Plug 'kana/vim-smartinput'
 " Readline mappings
 Plug 'tpope/vim-rsi'
 " Auto detect indent settings
@@ -88,6 +88,10 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'wavded/vim-stylus'
 " }
 
+" PHP {
+Plug 'swekaj/php-foldexpr.vim'
+" }
+
 " External tools {
 " Search with :Ag
 Plug 'rking/ag.vim'
@@ -117,6 +121,12 @@ Plug 'sjl/badwolf'
 call plug#end()
 
 " Vim general settings {
+
+" Key capture time on terminal. Else it takes a second to process Esc...
+if !has("gui_running")
+  set ttimeoutlen=100
+endif
+
 " Tab size
 set softtabstop=2
 set shiftwidth=2
@@ -207,10 +217,11 @@ if has("gui_running")
 
   colorscheme jellybeans
 else
-  colorscheme lucius
-  LuciusBlackLowContrast
+  " colorscheme lucius
+  " LuciusBlackLowContrast
   " colorscheme jkn-monochrome
   " colorscheme jellybeans
+  colorscheme badwolf
 endif
 
 hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
