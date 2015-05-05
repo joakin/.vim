@@ -223,9 +223,9 @@ if has("gui_running")
 else
   " colorscheme lucius
   " LuciusBlackLowContrast
-  " colorscheme jkn-monochrome
+  colorscheme jkn-monochrome
   " colorscheme jellybeans
-  colorscheme badwolf
+  " colorscheme badwolf
 endif
 
 hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
