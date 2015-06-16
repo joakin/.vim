@@ -4,7 +4,7 @@
 if (has('conceal') && &enc=="utf-8")
 
   " Change pangloss return conceal sign, it only exists on a few fonts
-  syntax keyword jsReturn         return conceal cchar=«
+  " syntax keyword jsReturn         return conceal cchar=«
 
 
   "" NOT NEEDED ANYMORE SINCE PANGLOSS INCLUDES SOME CONCEALS NOW {{{
@@ -19,9 +19,9 @@ if (has('conceal') && &enc=="utf-8")
   " "" Replace this. with @ ala Ruby
   " "" We need to clear the original style to override it with a match instead of keyword
   " syntax clear   javaScriptThis
-  " syntax match   javaScriptThis  /\<this\>/ containedin=@javaScriptExpression2
-  " syntax match   jsConcealThis  /\<this\./ containedin=@javaScriptExpression2 conceal cchar=@
-  " hi def link jsConcealThis javaScriptThis
+  syntax match   javaScriptThis  /\<this\>/ containedin=@javaScriptExpression2
+  syntax match   jsConcealThis  /\<this\./ containedin=@javaScriptExpression2 conceal cchar=@
+  hi def link jsConcealThis javaScriptThis
 
   "" Replace .prototype. with →or ∷
   "" Use containedin=@jsAll to give it more priority
@@ -30,8 +30,6 @@ if (has('conceal') && &enc=="utf-8")
   " hi def link jsConcealProto Type
 
   "" ------------------------------------------------------------ }}}
-
-  hi Conceal guibg=black guifg=#ff8888 ctermbg=black ctermfg=white
 
 endif
 

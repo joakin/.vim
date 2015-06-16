@@ -120,6 +120,9 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'noahfrederick/Hemisu'
 Plug 'fxn/vim-monochrome'
 Plug 'sjl/badwolf'
+Plug 'reedes/vim-colors-pencil'
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-vividchalk'
 " }
 
 call plug#end()
@@ -212,24 +215,33 @@ if has("gui_running")
     set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=InputMono\ ExLight:h15
+    set gfn=Inconsolata-g:h16
   endif
 
   " Gui options
   set guioptions=c
   set guioptions-=T
 
-  colorscheme jellybeans
+  " colorscheme jellybeans
+  colorscheme hemisu
 else
   " colorscheme lucius
   " LuciusBlackLowContrast
-  colorscheme jkn-monochrome
+  " LuciusWhite
+  " colorscheme jkn-monochrome
+  " set background=dark
+  " colorscheme gruvbox
   " colorscheme jellybeans
   " colorscheme badwolf
+  " set background=light
+  colorscheme hemisu
 endif
 
-hi Conceal guibg=white guifg=#ff8888 ctermbg=white ctermfg=darkred
-hi Noise guifg=#303030 ctermfg=236
+hi clear Conceal
+hi link Conceal Comment
+" hi Noise guifg=#303030 ctermfg=238
+" hi Noise guifg=#303030 ctermfg=0
+hi link Noise Comment
 " }
 
 " Statusline {
