@@ -281,6 +281,9 @@ if has('autocmd')
   augroup checktime_on_focus " {
     au WinEnter,FocusGained,BufEnter * :checktime
   augroup END " }
+  augroup md_files_are_markdown " {
+    autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
+  augroup END " }
 endif
 " }
 
