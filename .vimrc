@@ -173,6 +173,8 @@ set mouse=a
 let mapleader=" "
 let maplocalleader= "\\"
 set switchbuf=useopen,usetab " When available switch to open buffers in current and different tabs
+set scrolloff=3
+set sidescrolloff=1
 
 " FoldText {
 function! MyFoldText()
