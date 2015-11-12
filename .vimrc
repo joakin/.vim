@@ -217,7 +217,8 @@ if has("gui_running")
     set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=Inconsolata-g:h16
+    set gfn=Courier\ Prime\ Source:h16
+    set linespace=6
   endif
 
   " Gui options
