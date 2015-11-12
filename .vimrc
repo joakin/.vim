@@ -72,7 +72,7 @@ Plug 'mintplant/vim-literate-coffeescript'
 Plug 'tpope/vim-markdown'
 Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
-Plug 'lambdatoast/elm.vim'
+Plug 'ElmCast/elm-vim'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
 " }
