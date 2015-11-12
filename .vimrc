@@ -233,10 +233,12 @@ else
   " LuciusWhite
   " colorscheme jkn-monochrome
   " set background=dark
+  " colorscheme solarized
   " colorscheme gruvbox
   " colorscheme jellybeans
   " colorscheme badwolf
   " set background=light
+  set background=dark
   colorscheme hemisu
 endif
 
