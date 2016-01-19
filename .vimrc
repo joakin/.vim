@@ -698,6 +698,8 @@ set suffixesadd+=.jsx,.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.ja
 let g:javascript_conceal=1
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
+command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
+command! -range=% StandardFormat <line1>,<line2>!standard --format --stdin
 " }
 
 " Clojure {
