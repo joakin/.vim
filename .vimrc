@@ -123,6 +123,8 @@ Plug 'sjl/badwolf'
 Plug 'reedes/vim-colors-pencil'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-vividchalk'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized'
 " }
 
 call plug#end()
@@ -226,7 +228,9 @@ if has("gui_running")
   set guioptions-=T
 
   " colorscheme jellybeans
-  colorscheme hemisu
+  " colorscheme hemisu
+  set background=light
+  colorscheme PaperColor
 else
   " colorscheme lucius
   " LuciusBlackLowContrast
@@ -239,7 +243,9 @@ else
   " colorscheme badwolf
   " set background=light
   set background=dark
-  colorscheme hemisu
+  " colorscheme hemisu
+  " colorscheme PaperColor
+  colorscheme solarized
 endif
 
 hi clear Conceal
