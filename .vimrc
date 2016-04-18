@@ -75,6 +75,8 @@ Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
 Plug 'ElmCast/elm-vim'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 " }
 
 " Clojure {
@@ -94,6 +96,10 @@ Plug 'wavded/vim-stylus'
 
 " PHP {
 Plug 'swekaj/php-foldexpr.vim'
+" }
+
+" Rust {
+Plug 'racer-rust/vim-racer'
 " }
 
 " External tools {
@@ -705,6 +711,11 @@ command! -range=% StandardFormat <line1>,<line2>!standard --format --stdin
 " Clojure {
 set wildignore+=.class,classes
 set suffixesadd+=.clj,.cljs
+" }
+
+" Rust {
+let g:racer_cmd = "~/.cargo/bin/racer"
+let $RUST_SRC_PATH=$HOME . "/.cargo/src/rustc-1.6.0/src"
 " }
 
 "}
