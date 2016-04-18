@@ -131,6 +131,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-vividchalk'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
+Plug 'robertmeta/nofrils'
 " }
 
 call plug#end()
@@ -248,10 +249,13 @@ else
   " colorscheme jellybeans
   " colorscheme badwolf
   " set background=light
-  set background=dark
+  " set background=dark
   " colorscheme hemisu
   " colorscheme PaperColor
-  colorscheme solarized
+  " colorscheme solarized
+  " colorscheme nofrils-dark
+  colorscheme nofrils-sepia
+  " colorscheme nofrils-light
 endif
 
 hi clear Conceal
