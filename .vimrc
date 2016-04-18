@@ -535,7 +535,7 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>t :CtrlPTag<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
 " }
 
 " Tabularize stuff {
