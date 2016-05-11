@@ -45,6 +45,8 @@ Plug 'tpope/vim-commentary'
 if has('lua')
   Plug 'Shougo/neocomplete.vim'
 endif
+" Highlight groups manipulation
+Plug 'wincent/pinnacle'
 
 " Text Objects {
 " Custom text objects (kana dep)
@@ -132,6 +134,7 @@ Plug 'tpope/vim-vividchalk'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'altercation/vim-colors-solarized'
 Plug 'robertmeta/nofrils'
+Plug 'chriskempson/base16-vim'
 " }
 
 call plug#end()
@@ -251,19 +254,19 @@ else
   " set background=light
   " set background=dark
   " colorscheme hemisu
-  set background=light
-  colorscheme PaperColor
+  " set background=light
+  " colorscheme PaperColor
   " colorscheme solarized
   " colorscheme nofrils-dark
   " colorscheme nofrils-sepia
   " colorscheme nofrils-light
+
+
+  " set background=dark
+  " let g:base16colorspace=256  " Access colors present in 256 colorspace
+  " colorscheme base16-default
 endif
 
-hi clear Conceal
-hi link Conceal Comment
-" hi Noise guifg=#303030 ctermfg=238
-" hi Noise guifg=#303030 ctermfg=0
-hi link Noise Comment
 " }
 
 " Statusline {
