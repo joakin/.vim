@@ -251,10 +251,11 @@ else
   " set background=light
   " set background=dark
   " colorscheme hemisu
-  " colorscheme PaperColor
+  set background=light
+  colorscheme PaperColor
   " colorscheme solarized
   " colorscheme nofrils-dark
-  colorscheme nofrils-sepia
+  " colorscheme nofrils-sepia
   " colorscheme nofrils-light
 endif
 
