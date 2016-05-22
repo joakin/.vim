@@ -43,7 +43,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
 " Auto autocomplete popup
 if has('lua')
-  Plug 'Shougo/neocomplete.vim'
+  " Plug 'Shougo/neocomplete.vim'
 endif
 " Highlight groups manipulation
 Plug 'wincent/pinnacle'
