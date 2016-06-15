@@ -75,6 +75,8 @@ Plug 'tpope/vim-markdown'
 Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
 Plug 'ElmCast/elm-vim'
+Plug 'raichoo/purescript-vim'
+Plug 'FrigoEU/psc-ide-vim/'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'rust-lang/rust.vim'
@@ -728,7 +730,21 @@ let $RUST_SRC_PATH=$HOME . "/.cargo/src/rustc-1.6.0/src"
 
 " Elm {
 let g:elm_setup_keybindings = 0
+let g:elm_format_autosave = 1
 "}
+
+" Purescript {
+let g:psc_ide_syntastic_mode = 1
+au FileType purescript nmap <localleader>t :PSCIDEtype<CR>
+au FileType purescript nmap <localleader>s :PSCIDEapplySuggestion<CR>
+au FileType purescript nmap <localleader>a :PSCIDEaddTypeAnnotation<CR>
+au FileType purescript nmap <localleader>i :PSCIDEimportIdentifier<CR>
+au FileType purescript nmap <localleader>r :PSCIDEload<CR>
+au FileType purescript nmap <localleader>p :PSCIDEpursuit<CR>
+au FileType purescript nmap <localleader>c :PSCIDEcaseSplit<CR>
+au FileType purescript nmap <localleader>qd :PSCIDEremoveImportQualifications<CR>
+au FileType purescript nmap <localleader>qa :PSCIDEaddImportQualifications<CR>
+" }
 
 "}
 
