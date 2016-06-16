@@ -53,13 +53,13 @@ function! s:update_statusline(default, action) abort
 endfunction
 
 function! s:get_custom_statusline(action) abort
-  if &ft == 'qf'
-    if a:action == 'blur'
-      return 'Quickfix'
-    else
-      return 0
-    endif
-  endif
+  " if &ft == 'qf'
+    " if a:action == 'blur'
+    "   return 'Quickfix'
+    " else
+      " return 'Quickfix\ %<%=\ ℓ\ %l/%L\ @\ %c%V\ %1*%p%%%*'
+    " endif
+  " endif
 
   return 1 " Use default.
 endfunction
