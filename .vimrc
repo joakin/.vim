@@ -115,6 +115,8 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 " Unix commands (Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
 Plug 'tpope/vim-eunuch'
+" Lisp stuff
+Plug 'jpalardy/vim-slime'
 " }
 
 " Internets {
