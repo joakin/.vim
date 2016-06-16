@@ -6,7 +6,7 @@ endif
 let g:isLinux = !isMac
 " }
 
-source ./packages.vim
+source ~/.vim/packages.vim
 
 let mapleader=" "
 let maplocalleader= "\\"
