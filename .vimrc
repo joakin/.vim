@@ -520,13 +520,6 @@ if has('lua')
 endif
 " }
 
-" Ultisnips {
-let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
-let g:UltiSnipsListSnippets='<c-j>'
-let g:UltiSnipsJumpForwardTrigger="<TAB>"
-let g:UltiSnipsJumpBackwardTrigger="<S-TAB>"
-" }
-
 " CtrlP {
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
