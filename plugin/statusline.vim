@@ -11,8 +11,11 @@ if has('statusline')
 
   set statusline+=%4*    " Switch to User4 highlight group.
   set statusline+=\      " Space
-  set statusline+=%<   " Truncation point, if not enough space
+  set statusline+=%<     " Truncation point, if not enough space
   set statusline+=%{statusline#fileprefix()} " File path
+  set statusline+=%*     " Reset highlight group.
+  set statusline+=%3*    " Switch to User3 highlight group (bold).
+  set statusline+=%t     " Filename.
   set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.
 
@@ -32,7 +35,7 @@ if has('statusline')
 
   set statusline+=%=     " Align right
 
-  set statusline+=%5*    " Switch to User5 highlight group.
+  set statusline+=%4*    " Switch to User4 highlight group.
   set statusline+=\      " Space
   set statusline+=%l:%c/%L " Current line:Column number/total lines
   set statusline+=\      " Space
