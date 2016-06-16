@@ -1,7 +1,12 @@
 
-" Pulse Line {
+function! commands#CopyMatches(reg) " {
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction " }
 
-function! s:Pulse() " {
+function! commands#Pulse() " {
   let current_window = winnr()
   windo set nocursorline
   execute current_window . 'wincmd w'
@@ -34,6 +39,12 @@ function! s:Pulse() " {
 
   setlocal nocursorline
 endfunction " }
-command! -nargs=0 Pulse call s:Pulse()
-"}
 
+function! commands#QuickfixFilenames() " {
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(values(buffer_numbers))
+endfunction " }
