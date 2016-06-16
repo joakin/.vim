@@ -10,16 +10,16 @@ if has('statusline')
   set statusline+=%*     " Reset highlight group.
 
   set statusline+=%4*    " Switch to User4 highlight group.
-  set statusline+=\      " Space
   set statusline+=%<     " Truncation point, if not enough space
   set statusline+=%{statusline#fileprefix()} " File path
   set statusline+=%*     " Reset highlight group.
   set statusline+=%3*    " Switch to User3 highlight group (bold).
+  set statusline+=\      " Space
   set statusline+=%t     " Filename.
   set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.
 
-  set statusline+=%1*    " Switch to User4 highlight group.
+  set statusline+=%4*    " Switch to User4 highlight group.
   set statusline+=\      " Space
   " Needs to be all on one line:
   "   %(                   Start item group.
@@ -30,7 +30,8 @@ if has('statusline')
   "   %{statusline#fenc()} File-encoding if not UTF-8.
   "   ]                    Right bracket (literal).
   "   %)                   End item group.
-  set statusline+=%([%M%R%{statusline#ft()}%{statusline#fenc()}]%)
+  set statusline+=%(%M%R%{statusline#ft()}%{statusline#fenc()}%)
+  set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.
 
   set statusline+=%=     " Align right
