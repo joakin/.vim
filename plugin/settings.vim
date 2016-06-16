@@ -66,6 +66,10 @@ function! MyFoldText()
 endfunction
 set foldtext=MyFoldText()
 " }
+"
+set foldenable
+set foldlevelstart=0
+set foldmarker={,}
 
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
@@ -101,3 +105,4 @@ if has("gui_running")
   set guioptions-=T
 endif
 
+let g:netrw_liststyle = 1
