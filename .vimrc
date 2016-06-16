@@ -146,34 +146,6 @@ call plug#end()
 let mapleader=" "
 let maplocalleader= "\\"
 
-" Autocommands {
-if has('autocmd')
-  " settings immediately take effect
-  augroup instantsettings " {
-    au!
-    au BufWritePost $MYVIMRC :source $MYVIMRC
-    au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
-    au BufWritePost ~/.nvim/.nvimrc :source $MYVIMRC
-  augroup END " }
-  augroup rememberlastcursorpos " {
-    au!
-    au BufReadPost *
-          \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-          \   exe "normal! g`\"zvzz"                        |
-          \ endif
-  augroup END " }
-  augroup autoclose_popups " {
-    au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-  augroup END " }
-  augroup checktime_on_focus " {
-    au WinEnter,FocusGained,BufEnter * :checktime
-  augroup END " }
-  augroup md_files_are_markdown " {
-    autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
-  augroup END " }
-endif
-" }
-
 " Vim mappings {
 
 " Opening stuff (files, windows, etc) {
