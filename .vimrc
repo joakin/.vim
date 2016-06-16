@@ -41,10 +41,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 " Comment and uncomment code with gc{motion} (gcc gcgc)
 Plug 'tpope/vim-commentary'
-" Auto autocomplete popup
-if has('lua')
-  " Plug 'Shougo/neocomplete.vim'
-endif
 " Highlight groups manipulation
 Plug 'wincent/pinnacle'
 
@@ -513,14 +509,6 @@ command! SyntaxInfo :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") 
 " }
 
 " Plugin settings & mappings {
-
-" Neocomplete {
-if has('lua')
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_smart_case = 1
-  let g:neocomplcache_force_overwrite_completefunc = 1
-endif
-" }
 
 " CtrlP {
 let g:ctrlp_map = '<leader>f'
