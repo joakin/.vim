@@ -33,6 +33,8 @@ if has('autocmd')
       autocmd FocusLost,WinLeave * call autocmds#blur_statusline()
     endif
 
+    autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocmds#split_resize()
+
   augroup END
 endif
 " }

@@ -60,3 +60,20 @@ function! s:get_custom_statusline(action) abort
 
   return 1 " Use default.
 endfunction
+
+function! autocmds#split_resize()
+  if &textwidth > winwidth(0)
+    exe "vertical resize" . &textwidth
+  endif
+  if winheight(0) < 12
+    exe "resize" . 12
+  endif
+  " Original implementation
+  " Resize the current split to at least (80,12) but no more than (140,60)
+  " or 2/3 of the available space otherwise.
+  " let hmax = max([winwidth(0), float2nr(&columns*0.66), 80])
+  " let vmax = max([winheight(0), float2nr(&lines*0.66), 12])
+  " exe "vertical resize" . (min([hmax, 140]))
+  " exe "resize" . (min([vmax, 60]))
+endfunction
+
