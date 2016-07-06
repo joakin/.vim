@@ -49,7 +49,7 @@ if has('statusline')
   set statusline+=%*     " Reset highlight group.
 
   if has('autocmd')
-    augroup WincentStatusline
+    augroup Statusline
       autocmd!
       autocmd ColorScheme * call statusline#update_highlight()
     augroup END
