@@ -110,15 +110,24 @@ onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 "onoremap <silent> <c-H> $:call     mappings#NextIndent(0, 1, -1)<CR>$
 
 " Highlight Word {
-hi! def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi! def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi! def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#00afff ctermbg=39
-hi! def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi! def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi! def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#df0000 ctermbg=160
-hi! def InterestingWord7 guifg=#000000 ctermfg=16 guibg=#df5fff ctermbg=171
-hi! def InterestingWord8 guifg=#000000 ctermfg=16 guibg=#c0c0c0 ctermbg=7
-hi! def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#00ffff ctermbg=14
+function! g:Interestingwords_update_highlight () " {
+  hi! def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+  hi! def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+  hi! def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#00afff ctermbg=39
+  hi! def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+  hi! def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+  hi! def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#df0000 ctermbg=160
+  hi! def InterestingWord7 guifg=#000000 ctermfg=16 guibg=#df5fff ctermbg=171
+  hi! def InterestingWord8 guifg=#000000 ctermfg=16 guibg=#c0c0c0 ctermbg=7
+  hi! def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#00ffff ctermbg=14
+endfunction " }
+call g:Interestingwords_update_highlight()
+if has('autocmd')
+  augroup InterestingWords
+    autocmd!
+    autocmd ColorScheme * call g:Interestingwords_update_highlight()
+  augroup END
+endif
 nnoremap <silent> <leader>1 :call mappings#HiInterestingWord(1)<cr>
 nnoremap <silent> <leader>2 :call mappings#HiInterestingWord(2)<cr>
 nnoremap <silent> <leader>3 :call mappings#HiInterestingWord(3)<cr>
