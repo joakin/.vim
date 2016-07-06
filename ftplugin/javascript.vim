@@ -10,7 +10,7 @@ set suffixesadd+=.jsx,.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.ja
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -
-command! -range=% StandardFormat <line1>,<line2>!standard --format --stdin
+command! -range=% StandardFormat <line1>,<line2>!standard-format --stdin
 
 let g:javascript_conceal=1
 let g:javascript_conceal_function   = "ƒ"
