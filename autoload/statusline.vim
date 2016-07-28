@@ -44,33 +44,16 @@ function! statusline#async_finish() abort
 endfunction
 
 function! statusline#update_highlight() abort
-  " Update StatusLine to use italics (used for filetype).
-  let l:highlight=pinnacle#italicize('StatusLine')
-  execute 'highlight User1 ' . l:highlight
+  " for filetype
+  hi! link User1 StatusLine
 
-  " Update MatchParen to use italics (used for blurred statuslines).
-  let l:highlight=pinnacle#italicize('MatchParen')
-  execute 'highlight User2 ' . l:highlight
+  " for blurred statuslines
+  hi! link User2 MatchParen
 
   " Normal + bold (used for file names).
-  let l:highlight=pinnacle#embolden('Normal')
-  execute 'highlight User3 ' . l:highlight
+  hi! link User3 Normal
 
   " StatusLineNC (used for path).
-  highlight! link User4 StatusLineNC
+  hi! link User4 StatusLineNC
 
-  let l:prefix=has('gui') || has('termguicolors') ? 'gui' : 'cterm'
-  let l:bg=synIDattr(synIDtrans(hlID('User2')), 'fg', l:prefix)
-  let l:fg=synIDattr(synIDtrans(hlID('User3')), 'fg', l:prefix)
-
-  " And opposite for the buffer number area.
-  execute 'highlight User7 cterm=bold gui=bold term=bold ' .
-        \ l:prefix . 'fg=' . synIDattr(synIDtrans(hlID('Normal')), 'fg', l:prefix) . ' ' .
-        \ l:prefix . 'bg=' . l:fg
-
-  " Right-hand side section + italic (used for %).
-  execute 'highlight User6 ' . l:prefix . '=bold,italic ' . l:prefix . 'fg=' . l:bg . ' ' . l:prefix . 'bg=' . l:fg
-
-  " highlight clear StatusLineNC
-  " highlight! link StatusLineNC User1
 endfunction

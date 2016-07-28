@@ -34,8 +34,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 " Comment and uncomment code with gc{motion} (gcc gcgc)
 Plug 'tpope/vim-commentary'
-" Highlight groups manipulation
-Plug 'wincent/pinnacle'
 " }
 
 " Text Objects {
