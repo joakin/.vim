@@ -72,6 +72,14 @@ Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 " }
 
+" Flow type {
+" Plug 'flowtype/vim-flow'
+" }
+
+" Typescript {
+Plug 'leafgarland/typescript-vim'
+" }
+
 " Clojure {
 " Language and repl integration
 Plug 'tpope/vim-fireplace'
