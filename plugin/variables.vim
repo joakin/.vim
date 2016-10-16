@@ -34,7 +34,7 @@ let g:rbpt_colorpairs = [
 
 " Syntastic {
 let g:syntastic_check_on_open=0
-let g:syntastic_javascript_checkers = ['standard']
+let g:syntastic_javascript_checkers = ['standard', 'eslint']
 " }
 
 " Gist {
