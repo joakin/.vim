@@ -24,3 +24,6 @@ let g:javascript_conceal_static     = "•"
 let g:javascript_conceal_super      = "Ω"
 
 let g:javascript_plugin_flow = 1
+
+" Allow jsx syntax on .js files
+let g:jsx_ext_required = 0

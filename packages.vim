@@ -53,6 +53,7 @@ Plug 'coderifous/textobj-word-column.vim'
 
 " Syntax {
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
 Plug 'digitaltoad/vim-jade'
 Plug 'nono/vim-handlebars'
