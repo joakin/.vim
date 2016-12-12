@@ -1,7 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
 " Basics {
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+  Plug 'tpope/vim-sensible'
+endif
 " Enable repeat for plugins
 Plug 'tpope/vim-repeat'
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
