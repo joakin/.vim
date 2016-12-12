@@ -18,11 +18,11 @@ function! commands#Pulse() " {
   let old_hi = split(old_hi, '\n')[0]
   let old_hi = substitute(old_hi, 'xxx', '', '')
 
-  let steps = 9
+  let steps = 4
   let width = 1
   let start = width
   let end = steps * width
-  let color = 233
+  let color = 226
 
   for i in range(start, end, width)
     execute "hi CursorLine ctermbg=" . (color + i)

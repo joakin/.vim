@@ -64,7 +64,7 @@ nnoremap zO zczO
 " 4. Pulse the cursor line.  My eyes are bad.
 "
 " This mapping wipes out the z mark, which I never use.
-nnoremap z<cr> mzzMzvzz1<c-e>`z:Pulse<cr>
+nnoremap z<cr> mzzMzvzczOzz1<c-e>`z:Pulse<cr>
 
 " Command line maps
 cnoremap <expr>%% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
