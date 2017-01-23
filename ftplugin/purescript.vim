@@ -1,4 +1,3 @@
-let g:psc_ide_syntastic_mode = 1
 nmap <buffer> <localleader>t :PSCIDEtype<CR>
 nmap <buffer> <localleader>s :PSCIDEapplySuggestion<CR>
 nmap <buffer> <localleader>a :PSCIDEaddTypeAnnotation<CR>
