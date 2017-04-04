@@ -34,8 +34,11 @@ let g:rbpt_colorpairs = [
 
 " Syntastic {
 let g:syntastic_check_on_open = 0
-let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 " }
 
 " Gist {
@@ -57,4 +60,9 @@ let g:goyo_margin_bottom=1
 " rsi {
 " Breaks macros on the terminal
 let g:rsi_no_meta = 1
+" }
+
+" tsuquyomi {
+" Disable quickfix in favor of syntastic
+let g:tsuquyomi_disable_quickfix = 1
 " }

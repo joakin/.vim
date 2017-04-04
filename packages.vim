@@ -75,12 +75,11 @@ Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 " }
 
-" Flow type {
-" Plug 'flowtype/vim-flow'
-" }
-
 " Typescript {
 Plug 'leafgarland/typescript-vim'
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Quramy/tsuquyomi'
 " }
 
 " Clojure {
