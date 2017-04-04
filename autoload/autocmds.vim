@@ -77,3 +77,8 @@ function! autocmds#split_resize()
   " exe "resize" . (min([vmax, 60]))
 endfunction
 
+function! autocmds#format_file()
+  if b:format_on_save
+    exe "normal! gggqG\<C-o>\<C-o>"
+  endif
+endfunction

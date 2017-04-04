@@ -27,3 +27,14 @@ let g:javascript_plugin_flow = 1
 
 " Allow jsx syntax on .js files
 let g:jsx_ext_required = 0
+
+" Set formatprg
+setlocal formatprg=prettier\ --stdin\ --single-quote
+
+" Format JS programs by default (can be disabled, see projects/)
+let b:format_on_save = 1
+
+" Enable formatting by default
+augroup js_autocommands
+  au! BufWritePre *.js call autocmds#format_file()
+augroup END
