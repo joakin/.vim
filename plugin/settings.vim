@@ -38,9 +38,9 @@ endif
 
 set wildmode=longest,list:list,full
 set omnifunc=syntaxcomplete#Complete
-set nonumber
+set number
 set norelativenumber
-set numberwidth=2
+set numberwidth=4
 set synmaxcol=800 " Don't try to highlight lines longer than
 set mouse=a
 
