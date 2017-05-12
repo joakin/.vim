@@ -109,7 +109,8 @@ Plug 'racer-rust/vim-racer'
 " Search with :Ag
 Plug 'rking/ag.vim'
 " Syntax checking and linting
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 " Git commands
 Plug 'tpope/vim-fugitive'
 " Unix commands (Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
