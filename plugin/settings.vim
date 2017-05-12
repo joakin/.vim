@@ -71,15 +71,6 @@ set foldenable
 set foldlevelstart=0
 set foldmarker={,}
 
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
-
-" Make Y consistent with C and D. See :help Y.
-nnoremap Y y$
-
-" Make . work with a visual selection
-vnoremap . :normal .<cr>
-
 " Invisible char settings (list)
 set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
 

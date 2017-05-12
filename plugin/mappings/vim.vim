@@ -1,3 +1,12 @@
+" TODO: ???
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+" Make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
+" Make . work with a visual selection
+vnoremap . :normal .<cr>
 
 " Easier omnicompletion
 inoremap <c-@> <C-X><C-O>
