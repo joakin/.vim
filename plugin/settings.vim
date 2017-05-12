@@ -96,8 +96,6 @@ if has("gui_running")
   set guioptions-=T
 endif
 
-let g:netrw_liststyle = 1
-
 set path=.
 set path+=**
 

@@ -1,3 +1,7 @@
+" netrw {
+let g:netrw_liststyle = 1
+" }
+
 " CtrlP {
 let g:ctrlp_map = '<leader>f'
 let g:ctrlp_cmd = 'CtrlP'
