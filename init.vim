@@ -321,6 +321,11 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 " }
 
+" Ale {
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_save = 1
+" }
+
 " Gist {
 if isMac
   let g:gist_clip_command = 'pbcopy'
