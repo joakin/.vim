@@ -257,8 +257,8 @@ if has("gui_running")
   set guioptions-=T
 endif
 
-set path=.
-set path+=**
+" set path=.
+" set path+=**
 
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
