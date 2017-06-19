@@ -149,6 +149,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'robertmeta/nofrils'
 Plug 'chriskempson/base16-vim'
 Plug 'ajh17/Spacegray.vim'
+Plug 'rakr/vim-one'
 " }
 
 call plug#end()
