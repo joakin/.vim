@@ -29,7 +29,7 @@ let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
 " Set formatprg
-setlocal formatprg=prettier\ --stdin\ --single-quote
+setlocal formatprg=prettier\ --stdin
 
 " Format JS programs by default (can be disabled, see projects/)
 let b:format_on_save = 1
