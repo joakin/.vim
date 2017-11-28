@@ -75,7 +75,6 @@ Plug 'nono/vim-handlebars'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'kchmck/vim-coffee-script'
 Plug 'leafgarland/typescript-vim'
-Plug 'mintplant/vim-literate-coffeescript'
 Plug 'tpope/vim-markdown'
 Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
