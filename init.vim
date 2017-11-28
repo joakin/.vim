@@ -188,6 +188,9 @@ set ignorecase  " Not case sensitive search
 set smartcase   " Unless the search contains caps letters
 set hlsearch    " highlight search terms
 set gdefault    " Default g flag on substitutions
+if has('nvim')
+  set inccommand=split
+endif
 
 set showmatch   " Jump to bracket/parens briefly
 set matchtime=1 " Time of the jump of showmatch
