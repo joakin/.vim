@@ -695,6 +695,10 @@ if has('autocmd')
 
     autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocmds#split_resize()
 
+    if has('nvim')
+      autocmd TermOpen * setlocal nonumber norelativenumber
+    endif
+
   augroup END
 
 endif
