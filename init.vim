@@ -45,6 +45,10 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 " Comment and uncomment code with gc{motion} (gcc gcgc)
 Plug 'tpope/vim-commentary'
+if has('nvim')
+  " Temporarily highlight yanks for visual feedback
+  Plug 'machakann/vim-highlightedyank'
+endif
 " }
 
 " Text Objects {
@@ -356,6 +360,8 @@ let g:rsi_no_meta = 1
 let g:tsuquyomi_disable_quickfix = 1
 " }
 
+" machakann/vim-highlightedyank
+let g:highlightedyank_highlight_duration = 200
 " }
 
 " Mappings {
