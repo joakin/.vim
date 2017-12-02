@@ -37,8 +37,6 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-rsi'
 " Auto detect indent settings
 Plug 'tpope/vim-sleuth'
-" Auto formatprg (gq)
-Plug 'Chiel92/vim-autoformat'
 " Highlights extra whitespace and :StripWhitespace
 Plug 'ntpeters/vim-better-whitespace'
 " Distraction free editing mode (:Goyo)
@@ -334,6 +332,14 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_error = '❗️ '
+let g:ale_sign_warning = '⚠️ '
 " }
 
 " Gist {
@@ -725,13 +731,13 @@ if has('autocmd')
   endif
 
   function! Setup_wikimedia_project()
-    let g:syntastic_javascript_checkers = ['eslint']
+    let g:ale_fixers = {
+    \   'javascript': ['eslint'],
+    \}
     if &ft =~ "^javascript"
       setlocal tabstop=3
       setlocal noexpandtab
       setlocal shiftwidth=0
-      " Disable autoformatting with formatprg
-      let b:format_on_save = 0
     endif
   endfunction
   " }
