@@ -43,10 +43,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/goyo.vim'
 " Comment and uncomment code with gc{motion} (gcc gcgc)
 Plug 'tpope/vim-commentary'
-if has('nvim')
-  " Temporarily highlight yanks for visual feedback
-  Plug 'machakann/vim-highlightedyank'
-endif
 " }
 
 " Text Objects {
