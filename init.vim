@@ -18,7 +18,7 @@ Plug 'tpope/vim-repeat'
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
 Plug 'tpope/vim-vinegar'
 " File/Buffer/Tag finder
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Like f but multiline and faster 's'
 Plug 'justinmk/vim-sneak'
 " Align text :Tabularize
@@ -281,8 +281,7 @@ let g:netrw_liststyle = 1
 
 " CtrlP {
 let g:ctrlp_map = '<leader>f'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 0
+" let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\.git$\|\.hg$\|\.svn$|^target$|^node_modules$',
