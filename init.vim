@@ -697,7 +697,8 @@ if has('autocmd')
     autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocmds#split_resize()
 
     if has('nvim')
-      autocmd TermOpen * setlocal nonumber norelativenumber
+      autocmd TermOpen * setlocal nonumber norelativenumber | startinsert
+      " autocmd TermOpen * echom expand('<amatch>') | if expand('<amatch>') =~ "term://.*git add --patch.*" | startinsert | endif
     endif
 
   augroup END
