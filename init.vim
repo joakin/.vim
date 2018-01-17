@@ -662,24 +662,24 @@ if has('autocmd')
 
   augroup joakin_autocommands
 
-    au!
+    autocmd!
 
     " Instant settings
-    au BufWritePost $MYVIMRC :source $MYVIMRC
-    au BufWritePost ~/.vim/.vimrc :source $MYVIMRC
-    au BufWritePost ~/.nvim/.nvimrc :source $MYVIMRC
+    autocmd BufWritePost $MYVIMRC :source $MYVIMRC
+    autocmd BufWritePost ~/.vim/.vimrc :source $MYVIMRC
+    autocmd BufWritePost ~/.nvim/.nvimrc :source $MYVIMRC
 
     " Remember last cursor position
-    au BufReadPost *
+    autocmd BufReadPost *
           \ if line("'\"") > 0 && line ("'\"") <= line("$") |
           \   exe "normal! g`\"zvzz"                        |
           \ endif
 
     " Autoclose popups
-    au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+    autocmd CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
     " Checktime on focus
-    au WinEnter,FocusGained,BufEnter * :checktime
+    autocmd WinEnter,FocusGained,BufEnter * :checktime
 
     " Make current window more obvious by turning off/adjusting some features
     " in non-current windows.
@@ -711,16 +711,16 @@ if has('autocmd')
 
   " Example of project settings {
   " augroup project_settings
-  "   au!
-  "   au BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
+  "   autocmd!
+  "   autocmd BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   " augroup END
   " }
 
   " Wikimedia projects {
   if has('autocmd')
     augroup wikimedia_mediawiki_project_settings
-      au!
-      au BufNewFile,BufRead ~/dev/wikimedia/* call Setup_wikimedia_project()
+      autocmd!
+      autocmd BufNewFile,BufRead ~/dev/wikimedia/* call Setup_wikimedia_project()
       " */wikimedia/*
       " autocmd FileType javascript if stridx(expand('%:p'), $HOME . '/dev/wikimedia/') == 0 |
       "     \ let b:syntastic_checkers = ['jshint', 'jscs'] | endif
