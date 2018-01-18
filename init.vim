@@ -64,26 +64,19 @@ Plug 'coderifous/textobj-word-column.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
-Plug 'digitaltoad/vim-jade'
-Plug 'nono/vim-handlebars'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'kchmck/vim-coffee-script'
-Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-markdown'
-Plug 'StanAngeloff/php.vim'
 Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
 Plug 'ElmCast/elm-vim'
-Plug 'raichoo/purescript-vim'
-Plug 'FrigoEU/psc-ide-vim/'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
-Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 " }
 
 " Typescript {
+" Syntax
 Plug 'leafgarland/typescript-vim'
-
+" Completion
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Quramy/tsuquyomi'
 " }
@@ -104,10 +97,16 @@ Plug 'wavded/vim-stylus'
 " }
 
 " PHP {
+" Syntax
+Plug 'StanAngeloff/php.vim'
+" Better fold expressions
 Plug 'swekaj/php-foldexpr.vim'
 " }
 
 " Rust {
+" Language files
+Plug 'rust-lang/rust.vim'
+" Completion
 Plug 'racer-rust/vim-racer'
 " }
 
@@ -115,7 +114,6 @@ Plug 'racer-rust/vim-racer'
 " Search with :Ack (using ag)
 Plug 'mileszs/ack.vim'
 " Syntax checking and linting
-" Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
 " Git commands
 Plug 'tpope/vim-fugitive'
@@ -354,12 +352,13 @@ let g:rsi_no_meta = 1
 " }
 
 " tsuquyomi {
-" Disable quickfix in favor of syntastic
+" Disable quickfix in favor of ale
 let g:tsuquyomi_disable_quickfix = 1
 " }
 
-" machakann/vim-highlightedyank
-let g:highlightedyank_highlight_duration = 200
+" mustache-handlebars {
+" don't enable the ie/ae text objects as we have the entire file ones
+let g:mustache_operators = 0
 " }
 
 " Mappings {
@@ -717,7 +716,7 @@ if has('autocmd')
       autocmd BufNewFile,BufRead ~/dev/wikimedia/* call Setup_wikimedia_project()
       " */wikimedia/*
       " autocmd FileType javascript if stridx(expand('%:p'), $HOME . '/dev/wikimedia/') == 0 |
-      "     \ let b:syntastic_checkers = ['jshint', 'jscs'] | endif
+      "     \ let b:example = ['jshint', 'jscs'] | endif
     augroup END
   endif
 
