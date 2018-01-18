@@ -112,8 +112,8 @@ Plug 'racer-rust/vim-racer'
 " }
 
 " External tools {
-" Search with :Ag
-Plug 'rking/ag.vim'
+" Search with :Ack (using ag)
+Plug 'mileszs/ack.vim'
 " Syntax checking and linting
 " Plug 'scrooloose/syntastic'
 Plug 'w0rp/ale'
@@ -312,13 +312,8 @@ let g:rbpt_colorpairs = [
   \ ]
 " }
 
-" Syntastic {
-let g:syntastic_check_on_open = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_typescript_checkers = ['tsuquyomi']
+" Ack (Ag) {
+let g:ackprg = "ag --vimgrep"
 " }
 
 " Ale {
