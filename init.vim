@@ -323,7 +323,12 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
+\   'json': ['prettier'],
+\   'css': ['prettier'],
+\   'markdown': ['prettier'],
 \}
+
+let g:ale_javascript_prettier_options = '--prose-wrap always'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
 " let g:ale_sign_error = '❗️ '
