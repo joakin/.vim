@@ -548,6 +548,7 @@ nnoremap <leader>v :e $MYVIMRC<cr>:FollowSymlink<cr>
 nnoremap <leader>ot :tabe<cr>
 nnoremap <leader>ov :vsp<cr>
 nnoremap <leader>os :sp<cr>
+nnoremap <leader>oc :term<cr>
 nnoremap <leader>oq :copen<cr>
 nnoremap <leader>ol :lopen<cr>
 nnoremap <leader>on :enew<cr>
