@@ -169,8 +169,8 @@ set expandtab
 
 set undofile    " Create undo files with history
 set nowrap
-set textwidth=79
-set colorcolumn=80
+set textwidth=80
+set colorcolumn=81
 set formatoptions=croqn1
 set copyindent  " copy the previous indentation on autoindenting
 set hidden      " Allow modified/unsaved buffers in the background.
