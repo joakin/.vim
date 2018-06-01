@@ -311,7 +311,11 @@ let g:rbpt_colorpairs = [
 " }
 
 " Ack (Ag) {
-let g:ackprg = "ag --vimgrep"
+if executable('ag')
+  let g:ackprg = "ag --vimgrep"
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 " }
 
 " Ale {
