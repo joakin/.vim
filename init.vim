@@ -252,7 +252,7 @@ if has("gui_running")
     set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=Courier\ Prime\ Source:h16
+    set gfn=Edlo:h14
     set linespace=6
   endif
 
