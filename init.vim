@@ -74,6 +74,7 @@ Plug 'ElmCast/elm-vim'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'cespare/vim-toml'
+Plug 'briancollins/vim-jst'
 " }
 
 " Typescript {
