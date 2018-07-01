@@ -537,7 +537,7 @@ nnoremap ? ?\v
 " CTRL+SHIFT+6 to something easier
 nnoremap <leader>n <c-^>
 
-if has('nvim')
+if has('nvim') || has('terminal')
   " Terminal settings {
   tnoremap <ESC> <C-\><C-n>
   " }
