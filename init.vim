@@ -335,6 +335,7 @@ let g:ale_fixers = {
 \   'json': ['prettier'],
 \   'css': ['prettier'],
 \   'markdown': ['prettier'],
+\   'php': [],
 \}
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
