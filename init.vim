@@ -391,7 +391,7 @@ nnoremap Y y$
 vnoremap . :normal .<cr>
 
 " Easier omnicompletion
-inoremap <c-@> <C-X><C-O>
+inoremap <c-space> <C-X><C-O>
 
 " Manipulate windows
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
