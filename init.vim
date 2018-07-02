@@ -80,9 +80,6 @@ Plug 'briancollins/vim-jst'
 " Typescript {
 " Syntax
 Plug 'leafgarland/typescript-vim'
-" Completion
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Quramy/tsuquyomi'
 " }
 
 " Clojure {
@@ -364,11 +361,6 @@ let g:goyo_margin_bottom=1
 " rsi {
 " Breaks macros on the terminal
 let g:rsi_no_meta = 1
-" }
-
-" tsuquyomi {
-" Disable quickfix in favor of ale
-let g:tsuquyomi_disable_quickfix = 1
 " }
 
 " mustache-handlebars {
