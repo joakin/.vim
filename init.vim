@@ -44,7 +44,7 @@ Plug 'junegunn/goyo.vim'
 " Comment and uncomment code with gc{motion} (gcc gcgc)
 Plug 'tpope/vim-commentary'
 " Put the results of "include-search" and "definition-search" in the quickfix
-" list instead of the default list-like interface ([I, [D, ...)
+" List instead of the default list-like interface ([I, [D, ...)
 Plug 'romainl/vim-qlist'
 " }
 
