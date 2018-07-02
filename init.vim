@@ -382,8 +382,22 @@ nnoremap Y y$
 " Make . work with a visual selection
 vnoremap . :normal .<cr>
 
-" Easier omnicompletion
-inoremap <c-space> <C-X><C-O>
+" Easier omnicompletion {
+imap <c-space> <C-X><C-O>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ "\<C-n>"
+" }
 
 " Manipulate windows
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
