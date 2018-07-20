@@ -121,7 +121,7 @@ Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 " Git commands
 Plug 'tpope/vim-fugitive'
-" Unix commands (Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
+" Unix commands (Delete, Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
 Plug 'tpope/vim-eunuch'
 " Lisp stuff
 Plug 'jpalardy/vim-slime'
@@ -205,7 +205,7 @@ set omnifunc=syntaxcomplete#Complete
 set number
 set norelativenumber
 set numberwidth=4
-set synmaxcol=800 " Don't try to highlight lines longer than
+set synmaxcol=300 " Don't try to highlight lines longer than
 set mouse=a
 
 set switchbuf=useopen,usetab " When available switch to open buffers in current and different tabs
@@ -255,16 +255,13 @@ if has("gui_running")
     set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=Edlo:h14
+    set gfn=Source\ Code\ Pro:h16
     set linespace=6
   endif
 
   set guioptions=c
   set guioptions-=T
 endif
-
-" set path=.
-" set path+=**
 
 set wildignore+=.hg,.git,.svn                    " Version control
 set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
@@ -279,9 +276,12 @@ set wildignore+=elm-stuff/                       " Elm
 
 " }
 
-" Variables {
+" Configuration {
+
+" Plugins {
 
 " netrw {
+" Use single column with details (1). (3) is the tree view
 let g:netrw_liststyle = 1
 " }
 
@@ -358,9 +358,8 @@ let g:ale_completion_enabled = 1
 " let g:ale_sign_error = '❗️ '
 " let g:ale_sign_warning = '⚠️ '
 
-" Maps
+" Mappings
 nnoremap <leader>d :ALEDetail<cr>
-
 " }
 
 " Gist {
@@ -389,6 +388,8 @@ let g:rsi_no_meta = 1
 let g:mustache_operators = 0
 " }
 
+" }
+
 " Mappings {
 
 " Vim {
@@ -403,7 +404,7 @@ nnoremap Y y$
 " Make . work with a visual selection
 vnoremap . :normal .<cr>
 
-" Easier omnicompletion {
+" Easier omnicompletion with Tab {
 imap <c-space> <C-X><C-O>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -420,18 +421,13 @@ inoremap <silent><expr> <TAB>
   \ "\<C-n>"
 " }
 
-" Manipulate windows
+" Manipulate windows (shortcuts)
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
 nnoremap <C-W><C-E> <C-W>=
 nnoremap <C-W>+     <C-W>10+
 nnoremap <C-W>-     <C-W>10-
 nnoremap <C-W><     <C-W>20<
 nnoremap <C-W>>     <C-W>20>
-
-" Toggling settings (to complete unimpaired)
-nnoremap yoC :call mappings#ToggleConceal(1)<cr>
-" Toggle "keep current line in the center of the screen" mode
-nnoremap yoS :let &scrolloff=999-&scrolloff<cr>
 
 " Formatting
 nnoremap Q gqip
@@ -495,7 +491,7 @@ xnoremap , :
 nnoremap : ,
 xnoremap : ,
 
-" Easy filetype changing
+" Easy filetype changing {
 nnoremap yoft :set filetype=txt<cr>
 nnoremap yofj :set filetype=javascript<cr>
 nnoremap yofm :set filetype=markdown<cr>
@@ -503,8 +499,9 @@ nnoremap yofv :set filetype=vim<cr>
 nnoremap yofc :set filetype=clojure<cr>
 nnoremap yoff :set filetype=
 nnoremap yof :set filetype=
+" }
 
-" Moving back and forth between lines of same or lower indentation
+" Moving back and forth between lines of same or lower indentation {
 nnoremap  <silent> <c-k> :call      mappings#NextIndent(0, 0, 0 )<CR>_
 nnoremap  <silent> <c-j> :call      mappings#NextIndent(0, 1, 0 )<CR>_
 nnoremap  <silent> <c-h> :call      mappings#NextIndent(0, 0, -1)<CR>_
@@ -523,6 +520,7 @@ onoremap <silent> <c-h> :<c-u>normal V<c-v><c-h>j<cr>
 onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 "onoremap <silent> <c-L> _:call     mappings#NextIndent(0, 0, 1 )<CR>_
 "onoremap <silent> <c-H> $:call     mappings#NextIndent(0, 1, -1)<CR>$
+" }
 
 " Highlight Word {
 function! g:Interestingwords_update_highlight () " {
@@ -561,11 +559,12 @@ nnoremap ? ?\v
 " CTRL+SHIFT+6 to something easier
 nnoremap <leader>n <c-^>
 
+" Terminal settings {
 if has('nvim') || has('terminal')
-  " Terminal settings {
+  " Default <ESC> to exiting term mode
   tnoremap <ESC> <C-\><C-n>
-  " }
 endif
+" }
 
 " }
 
@@ -611,6 +610,11 @@ command! FollowSymlink :exec "file ". resolve(expand('%:p')) | e
 command! SyntaxInfo :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+command! -nargs=0 ToggleConceal call mappings#ToggleConceal(1)
+
+" Toggle "keep current line in the center of the screen" mode
+command! -nargs=0 LockCursorInCenterOfScreen let &scrolloff=999-&scrolloff
 
 " }
 
