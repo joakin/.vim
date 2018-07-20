@@ -413,12 +413,12 @@ nnoremap <C-W><     <C-W>20<
 nnoremap <C-W>>     <C-W>20>
 
 " Toggling settings (to complete unimpaired)
-nnoremap cop :lcd %:p:h<CR>:pwd<CR>
-nnoremap coN :call mappings#ToggleNuMode()<cr>
-nnoremap con :call mappings#ToggleNuMode()<cr>
-nnoremap coC :call mappings#ToggleConceal(1)<cr>
+nnoremap yoP :lcd %:p:h<CR>:pwd<CR>
+nnoremap yoN :call mappings#ToggleNuMode()<cr>
+nnoremap yon :call mappings#ToggleNuMode()<cr>
+nnoremap yoC :call mappings#ToggleConceal(1)<cr>
 " Toggle "keep current line in the center of the screen" mode
-nnoremap coS :let &scrolloff=999-&scrolloff<cr>
+nnoremap yoS :let &scrolloff=999-&scrolloff<cr>
 
 " Formatting
 nnoremap Q gqip
@@ -483,13 +483,13 @@ nnoremap : ,
 xnoremap : ,
 
 " Easy filetype changing
-nnoremap coft :set filetype=txt<cr>
-nnoremap cofj :set filetype=javascript<cr>
-nnoremap cofm :set filetype=markdown<cr>
-nnoremap cofv :set filetype=vim<cr>
-nnoremap cofc :set filetype=clojure<cr>
-nnoremap coff :set filetype=
-nnoremap cof :set filetype=
+nnoremap yoft :set filetype=txt<cr>
+nnoremap yofj :set filetype=javascript<cr>
+nnoremap yofm :set filetype=markdown<cr>
+nnoremap yofv :set filetype=vim<cr>
+nnoremap yofc :set filetype=clojure<cr>
+nnoremap yoff :set filetype=
+nnoremap yof :set filetype=
 
 " Moving back and forth between lines of same or lower indentation
 nnoremap  <silent> <c-k> :call      mappings#NextIndent(0, 0, 0 )<CR>_
