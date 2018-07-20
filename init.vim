@@ -413,8 +413,6 @@ nnoremap <C-W><     <C-W>20<
 nnoremap <C-W>>     <C-W>20>
 
 " Toggling settings (to complete unimpaired)
-nnoremap yoN :call mappings#ToggleNuMode()<cr>
-nnoremap yon :call mappings#ToggleNuMode()<cr>
 nnoremap yoC :call mappings#ToggleConceal(1)<cr>
 " Toggle "keep current line in the center of the screen" mode
 nnoremap yoS :let &scrolloff=999-&scrolloff<cr>

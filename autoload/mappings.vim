@@ -121,17 +121,3 @@ function! mappings#ToggleConceal(globally) " {
       endif
     endif
 endfunc " }
-
-function! mappings#ToggleNuMode() " {
-
-  if(&nu ==? 0 && &rnu ==? 0)
-    setlocal nu rnu
-  elseif(&nu ==? 1 && &rnu ==? 1)
-    setlocal nu nornu
-  elseif(&nu ==? 1 && &rnu ==? 0)
-    setlocal nonu nornu
-  else
-    setlocal nonu nornu
-  endif
-
-endfunc " }
