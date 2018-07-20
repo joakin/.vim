@@ -7,26 +7,26 @@
 " a number from 1-6 to highlight the current word in a specific color.
 
 function! mappings#HiInterestingWord(n)
-    " Save our location.
-    normal! mz
+  " Save our location.
+  normal! mz
 
-    " Yank the current word into the z register.
-    normal! "zyiw
+  " Yank the current word into the z register.
+  normal! "zyiw
 
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
+  " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+  let mid = 86750 + a:n
 
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
+  " Clear existing matches, but don't worry if they don't exist.
+  silent! call matchdelete(mid)
 
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
+  " Construct a literal pattern that has to match at boundaries.
+  let pat = '\V\<' . escape(@z, '\') . '\>'
 
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+  " Actually match the words.
+  call matchadd("InterestingWord" . a:n, pat, 1, mid)
 
-    " Move back to our original location.
-    normal! `z
+  " Move back to our original location.
+  normal! `z
 endfunction
 " }
 
