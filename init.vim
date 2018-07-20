@@ -413,7 +413,6 @@ nnoremap <C-W><     <C-W>20<
 nnoremap <C-W>>     <C-W>20>
 
 " Toggling settings (to complete unimpaired)
-nnoremap yoP :lcd %:p:h<CR>:pwd<CR>
 nnoremap yoN :call mappings#ToggleNuMode()<cr>
 nnoremap yon :call mappings#ToggleNuMode()<cr>
 nnoremap yoC :call mappings#ToggleConceal(1)<cr>
@@ -579,6 +578,8 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>u :bd<cr>
 
+" Set local path
+nnoremap <leader>p :lcd %:p:h<CR>:pwd<CR>
 " }
 
 " }
