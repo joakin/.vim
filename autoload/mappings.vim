@@ -125,11 +125,13 @@ endfunc " }
 function! mappings#ToggleNuMode() " {
 
   if(&nu ==? 0 && &rnu ==? 0)
-    set nu rnu
-  " elseif(&nu ==? 1 && &rnu ==? 0)
-  "   set nonu nornu
+    setlocal nu rnu
+  elseif(&nu ==? 1 && &rnu ==? 1)
+    setlocal nu nornu
+  elseif(&nu ==? 1 && &rnu ==? 0)
+    setlocal nonu nornu
   else
-    set nonu nornu
+    setlocal nonu nornu
   endif
 
 endfunc " }
