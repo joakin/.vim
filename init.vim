@@ -32,14 +32,10 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
 " Abbreviations, Substitutions, Coercion...
 Plug 'tpope/vim-abolish'
-" Autocomplete (autoclose) parens brackets, quotes, etc
-" Plug 'kana/vim-smartinput'
 " Readline mappings
 Plug 'tpope/vim-rsi'
 " Auto detect indent settings
 Plug 'tpope/vim-sleuth'
-" Highlights extra whitespace and :StripWhitespace
-Plug 'ntpeters/vim-better-whitespace'
 " Distraction free editing mode (:Goyo)
 Plug 'junegunn/goyo.vim'
 " Comment and uncomment code with gc{motion} (gcc gcgc)
