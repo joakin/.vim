@@ -269,6 +269,7 @@ set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
 set wildignore+=target/                          " Clojure
 set wildignore+=node_modules/                    " JS
+set wildignore+=elm-stuff/                       " Elm
 
 " }
 
@@ -283,8 +284,8 @@ let g:ctrlp_map = '<leader>f'
 " let g:ctrlp_working_path_mode = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.hg$\|\.svn$|^target$|^node_modules$',
-\ 'file': '\.exe$\|\.so$\|\.dll|\.swp$',
+\ 'dir':  '\v\.git$|\.hg$|\.svn$|^target$|node_modules$|elm-stuff$',
+\ 'file': '\v\.exe$|\.so$|\.dll|\.swp$',
 \ 'link': '',
 \ }
 if executable('ag')
