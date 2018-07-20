@@ -13,12 +13,13 @@ call plug#begin('~/.vim/plugged')
 if !has('nvim')
   Plug 'tpope/vim-sensible'
 endif
-" Enable repeat for plugins
+" Enable repeat for plugins that support it
 Plug 'tpope/vim-repeat'
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
 Plug 'tpope/vim-vinegar'
 " File/Buffer/Tag finder
-Plug 'ctrlpvim/ctrlp.vim'
+Plug '/usr/local/opt/fzf' " Homebrew OSX install
+Plug 'junegunn/fzf.vim'
 " Like f but multiline and faster 's'
 Plug 'justinmk/vim-sneak'
 " Align text :Tabularize
@@ -288,18 +289,28 @@ set wildignore+=elm-stuff/                       " Elm
 let g:netrw_liststyle = 1
 " }
 
-" CtrlP {
-let g:ctrlp_map = '<leader>f'
-" let g:ctrlp_working_path_mode = 0
-let g:ctrlp_by_filename = 1
-let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v\.git$|\.hg$|\.svn$|^target$|node_modules$|elm-stuff$',
-\ 'file': '\v\.exe$|\.so$|\.dll|\.swp$',
-\ 'link': '',
-\ }
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+" FZF {
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>l :Lines<CR>
+nnoremap <leader>g :BLines<CR>
+nnoremap <leader>c :Commands<CR>
+nnoremap <leader>h :Helptags<CR>
+nnoremap <leader>/ :History/<CR>
+nnoremap <leader>; :History:<CR>
+nnoremap <leader>: :History:<CR>
+
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+augroup FZF
+  autocmd! FileType fzf
+  autocmd FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  autocmd FileType fzf tnoremap <Esc> <c-d>
+augroup END
 " }
 
 " Slime {
