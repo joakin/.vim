@@ -250,6 +250,9 @@ set fillchars=vert:│,fold:─,diff:━,stlnc:-
 " Use the system clipboard by default
 set clipboard=unnamed,unnamedplus
 
+" Split panels to the right and below
+set splitbelow splitright
+
 if has("gui_running")
   if isLinux
     set gfn=monospace\ 14
