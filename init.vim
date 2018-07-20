@@ -46,6 +46,8 @@ Plug 'tpope/vim-commentary'
 " Put the results of "include-search" and "definition-search" in the quickfix
 " List instead of the default list-like interface ([I, [D, ...)
 Plug 'romainl/vim-qlist'
+" Local .vimrc sourcing on folders
+Plug 'MarcWeber/vim-addon-local-vimrc'
 " }
 
 " Text Objects {
@@ -76,6 +78,8 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'cespare/vim-toml'
 Plug 'briancollins/vim-jst'
 " }
+
+" Languages {
 
 " Typescript {
 " Syntax
@@ -109,6 +113,8 @@ Plug 'swekaj/php-foldexpr.vim'
 Plug 'rust-lang/rust.vim'
 " Completion
 Plug 'racer-rust/vim-racer'
+" }
+
 " }
 
 " External tools {
@@ -733,29 +739,22 @@ if has('autocmd')
   "   autocmd!
   "   autocmd BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   " augroup END
-  " }
+  "
+  " Use .vimrc in the folder of the project (or parent folders) with autocmds
+  " too instead of settings here, like this:
+  " project/.vimrc
+  " augroup LOCAL_SETUP
+    " " using vim-addon-sql providing alias aware SQL completion for .sql files and PHP:
+    " autocmd BufRead,BufNewFile *.sql,*.php call vim_addon_sql#Connect('mysql',{'database':'DATABASE', 'user':'USER', 'password' : 'PASSWORD'})
 
-  " Wikimedia projects {
-  if has('autocmd')
-    augroup wikimedia_mediawiki_project_settings
-      autocmd!
-      autocmd BufNewFile,BufRead ~/dev/wikimedia/* call Setup_wikimedia_project()
-      " */wikimedia/*
-      " autocmd FileType javascript if stridx(expand('%:p'), $HOME . '/dev/wikimedia/') == 0 |
-      "     \ let b:example = ['jshint', 'jscs'] | endif
-    augroup END
-  endif
+    " " for php use tab as indentation character. Display a tab as 4 spaces:
+    " " autocmd BufRead,BufNewFile *.php set noexpandtab| set tabstop=4 | set sw=4
+    " autocmd FileType php setlocal noexpandtab| setlocal tabstop=4 | setlocal sw=4
 
-  function! Setup_wikimedia_project()
-    let g:ale_fixers = {
-    \   'javascript': ['eslint'],
-    \}
-    if &ft =~ "^javascript"
-      setlocal tabstop=3
-      setlocal noexpandtab
-      setlocal shiftwidth=0
-    endif
-  endfunction
+    " " hint: for indentation settings modelines can be an alternative as well as
+    " " various plugins trying to set vim's indentation based on file contents.
+  " augroup end
+  "
   " }
 
 endif
