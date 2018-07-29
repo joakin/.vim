@@ -659,6 +659,8 @@ if has('statusline')
 
   set statusline+=%4*    " Switch to User4 highlight group.
   set statusline+=\      " Space
+  set statusline+=%{SleuthIndicator()}     " Space settings
+  set statusline+=\      " Space
   set statusline+=%l:%c/%L " Current line:Column number/total lines
   set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.

@@ -7,3 +7,8 @@ let g:elm_make_output_file = "/dev/null"
 augroup elm_autocommands
   au! BufWritePost *.elm ElmMake
 augroup END
+
+" Don't autodetect indent settings for elm files
+let b:sleuth_automatic = 0
+setlocal expandtab
+set shiftwidth=4
