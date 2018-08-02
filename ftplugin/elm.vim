@@ -5,7 +5,8 @@ let g:elm_format_fail_silently = 1
 let g:elm_make_output_file = "/dev/null"
 
 augroup elm_autocommands
-  au! BufWritePost *.elm ElmMake
+  " Disabled in favor of ALE errors for now
+  " au! BufWritePost *.elm ElmMake
 augroup END
 
 " Don't autodetect indent settings for elm files
