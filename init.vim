@@ -296,16 +296,11 @@ nnoremap <leader>/ :History/<CR>
 nnoremap <leader>; :History:<CR>
 nnoremap <leader>: :History:<CR>
 
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
 augroup FZF
   autocmd! FileType fzf
   autocmd FileType fzf set laststatus=0 noshowmode noruler
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-  " autocmd FileType fzf tnoremap <Esc> <c-q>
+  autocmd FileType fzf tnoremap <buffer> <Esc> <c-q>
 augroup END
 " }
 
