@@ -206,8 +206,9 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
+set completeopt=menu,menuone,preview,noinsert,noselect
+
 set wildmode=longest,list:list,full
-set omnifunc=syntaxcomplete#Complete
 set number
 set norelativenumber
 set numberwidth=4
@@ -352,13 +353,15 @@ let g:ale_fixers = {
 \   'html': ['prettier'],
 \   'markdown': ['prettier'],
 \   'php': [],
+\   'reason': ['refmt'],
 \}
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
-" let g:ale_sign_error = '❗️ '
-" let g:ale_sign_warning = '⚠️ '
+let g:ale_completion_delay = 1500
+let g:ale_sign_error = '❗️ '
+let g:ale_sign_warning = '⚠️ '
 
 " Mappings
 nnoremap <leader>d :ALEDetail<cr>
@@ -747,6 +750,9 @@ if has('autocmd')
       autocmd TermOpen * setlocal nonumber norelativenumber | startinsert
       " autocmd TermOpen * echom expand('<amatch>') | if expand('<amatch>') =~ "term://.*git add --patch.*" | startinsert | endif
     endif
+
+    " Make sure text soft wraps in the preview window, and don't show numbers
+    autocmd WinEnter * if &previewwindow | setlocal wrap nonu nornu | endif
 
   augroup END
 
