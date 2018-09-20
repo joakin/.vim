@@ -78,6 +78,12 @@ Plug 'briancollins/vim-jst'
 
 " Languages {
 
+" ReasonML {
+" - `npm view reason-cli versions` and pick the latest version for your platform
+" - `npm install -g bs-platform reason-cli@<version> ocaml-language-server`
+Plug 'reasonml-editor/vim-reason-plus'
+" }
+
 " Typescript {
 " Syntax
 Plug 'leafgarland/typescript-vim'
