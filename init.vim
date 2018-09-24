@@ -114,8 +114,6 @@ Plug 'swekaj/php-foldexpr.vim'
 " Rust {
 " Language files
 Plug 'rust-lang/rust.vim'
-" Completion
-Plug 'racer-rust/vim-racer'
 " }
 
 " }
@@ -354,6 +352,7 @@ let g:ale_fixers = {
 \   'markdown': ['prettier'],
 \   'php': [],
 \   'reason': ['refmt'],
+\   'rust': ['rustfmt'],
 \}
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
