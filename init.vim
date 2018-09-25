@@ -78,9 +78,16 @@ Plug 'briancollins/vim-jst'
 
 " Languages {
 
+" Ocaml / Merlin {
+" Include the merlin provided vim plugin
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "Plug '" . g:opamshare . "/merlin/vim'"
+" }
+
 " ReasonML {
 " - `npm view reason-cli versions` and pick the latest version for your platform
 " - `npm install -g bs-platform reason-cli@<version> ocaml-language-server`
+" reason-cli can conflict with ocaml/opam
 Plug 'reasonml-editor/vim-reason-plus'
 " }
 
