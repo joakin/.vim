@@ -78,10 +78,11 @@ Plug 'briancollins/vim-jst'
 
 " Languages {
 
-" Ocaml / Merlin {
+" Ocaml {
 " Include the merlin provided vim plugin
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "Plug '" . g:opamshare . "/merlin/vim'"
+" Problems with python version, doesn't seem to work
+" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+" execute "Plug '" . g:opamshare . "/merlin/vim'"
 " }
 
 " ReasonML {
@@ -214,7 +215,7 @@ endif
 set completeopt=menu,menuone,preview,noinsert,noselect
 
 set wildmode=longest,list:list,full
-set number
+set nonumber
 set norelativenumber
 set numberwidth=4
 set synmaxcol=300 " Don't try to highlight lines longer than
@@ -360,6 +361,7 @@ let g:ale_fixers = {
 \   'php': [],
 \   'reason': ['refmt'],
 \   'rust': ['rustfmt'],
+\   'ocaml': ['ocamlformat'],
 \}
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
