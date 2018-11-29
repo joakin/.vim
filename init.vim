@@ -391,8 +391,6 @@ let g:gist_open_browser_after_post = 1
 
 " Goyo {
 let g:goyo_width=90
-let g:goyo_margin_top=1
-let g:goyo_margin_bottom=1
 " }
 
 " rsi {
