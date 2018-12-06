@@ -643,6 +643,12 @@ command! -nargs=0 LockCursorInCenterOfScreen let &scrolloff=999-&scrolloff
 
 " Statusline {{{
 
+" Change Git[(master)] to (master) from vim-fugitive/autoload/fugitive.vim
+function! MyFugitiveStatusline()
+  let s = FugitiveStatusline()
+  return substitute(s, '\[Git\(.*\)\]', '\1', '')
+endfunction
+
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 if has('statusline')
   set statusline=
@@ -679,6 +685,12 @@ if has('statusline')
   set statusline+=%*     " Reset highlight group.
 
   set statusline+=%=     " Align right
+
+  set statusline+=%3*    " Switch to User3 highlight group.
+  set statusline+=\      " Space
+  set statusline+=%{MyFugitiveStatusline()}
+  set statusline+=\      " Space
+  set statusline+=%*     " Reset highlight group.
 
   set statusline+=%4*    " Switch to User4 highlight group.
   set statusline+=\      " Space
