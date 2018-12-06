@@ -137,7 +137,9 @@ Plug 'mileszs/ack.vim'
 " Syntax checking and linting
 Plug 'w0rp/ale'
 " Git commands
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " Gcommit, Gstatus, Gdiff, etc.
+Plug 'junegunn/gv.vim' " GV(!?)
+Plug 'tpope/vim-rhubarb' " Support github for Gbrowse
 " Unix commands (Delete, Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
 Plug 'tpope/vim-eunuch'
 " Lisp stuff
