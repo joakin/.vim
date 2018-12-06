@@ -287,6 +287,9 @@ set wildignore+=target/                          " Clojure
 set wildignore+=node_modules/                    " JS
 set wildignore+=elm-stuff/                       " Elm
 
+" Highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " }
 
 " Configuration {
