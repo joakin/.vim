@@ -1,15 +1,17 @@
-" OS detection vars {
+" Init {{{
+
+" OS detection vars
 let g:isMac = 0
 if has('macunix')
   let g:isMac = 1
 endif
 let g:isLinux = !isMac
-" }
+" }}}
 
-" Plugins/Packages {
+" Plugins/Packages {{{
 call plug#begin('~/.vim/plugged')
 
-" Basics {
+" Basics {{{
 if !has('nvim')
   Plug 'tpope/vim-sensible'
 endif
@@ -45,9 +47,9 @@ Plug 'tpope/vim-commentary'
 Plug 'romainl/vim-qlist'
 " Local .vimrc sourcing on folders
 Plug 'MarcWeber/vim-addon-local-vimrc'
-" }
+" }}}
 
-" Text Objects {
+" Text Objects {{{
 " Custom text objects (kana dep)
 Plug 'kana/vim-textobj-user'
 " il al
@@ -60,9 +62,9 @@ Plug 'kana/vim-textobj-entire'
 Plug 'qstrahl/vim-dentures'
 " ic ac iC aC
 Plug 'coderifous/textobj-word-column.vim'
-" }
+" }}}
 
-" Syntax {
+" Syntax {{{
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'leshill/vim-json'
@@ -74,59 +76,59 @@ Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'cespare/vim-toml'
 Plug 'briancollins/vim-jst'
-" }
+" }}}
 
-" Languages {
+" Languages {{{
 
-" Ocaml {
+" Ocaml {{{
 " Include the merlin provided vim plugin
 " Problems with python version, doesn't seem to work
 " let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 " execute "Plug '" . g:opamshare . "/merlin/vim'"
-" }
+" }}}
 
-" ReasonML {
+" ReasonML {{{
 " - `npm view reason-cli versions` and pick the latest version for your platform
 " - `npm install -g bs-platform reason-cli@<version> ocaml-language-server`
 " reason-cli can conflict with ocaml/opam
 Plug 'reasonml-editor/vim-reason-plus'
-" }
+" }}}
 
-" Typescript {
+" Typescript {{{
 " Syntax
 Plug 'leafgarland/typescript-vim'
-" }
+" }}}
 
-" Clojure {
+" Clojure {{{
 " Language and repl integration
 Plug 'tpope/vim-fireplace'
 " Clojure syntax files
 Plug 'guns/vim-clojure-static'
 Plug 'kien/rainbow_parentheses.vim'
-" }
+" }}}
 
-" CSS {
+" CSS {{{
 Plug '1995eaton/vim-better-css-completion'
 Plug 'groenewege/vim-less'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'wavded/vim-stylus'
-" }
+" }}}
 
-" PHP {
+" PHP {{{
 " Syntax
 Plug 'StanAngeloff/php.vim'
 " Better fold expressions
 Plug 'swekaj/php-foldexpr.vim'
-" }
+" }}}
 
-" Rust {
+" Rust {{{
 " Language files
 Plug 'rust-lang/rust.vim'
-" }
+" }}}
 
-" }
+" }}}
 
-" External tools {
+" External tools {{{
 " Search with :Ack (using ag)
 Plug 'mileszs/ack.vim'
 " Syntax checking and linting
@@ -137,16 +139,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 " Lisp stuff
 Plug 'jpalardy/vim-slime'
-" }
+" }}}
 
-" Internets {
+" Internets {{{
 " Dep for gist-vim
 Plug 'mattn/webapi-vim'
 " Upload gists with :Gist
 Plug 'mattn/gist-vim'
-" }
+" }}}
 
-" Color schemes {
+" Color schemes {{{
 Plug 'jonathanfilip/vim-lucius'
 Plug 'nanotech/jellybeans.vim'
 Plug 'noahfrederick/Hemisu'
@@ -161,15 +163,15 @@ Plug 'robertmeta/nofrils'
 Plug 'chriskempson/base16-vim'
 Plug 'ajh17/Spacegray.vim'
 Plug 'rakr/vim-one'
-" }
+" }}}
 
 call plug#end()
-" }
+" }}}
 
 let mapleader=" "
 let maplocalleader= "\\"
 
-" Settings {
+" Settings {{{
 
 " Set a short key capture time on terminal. Else it takes a second to process " Esc...
 if !has("gui_running")
@@ -225,7 +227,7 @@ set switchbuf=useopen,usetab " When available switch to open buffers in current 
 set scrolloff=3
 set sidescrolloff=1
 
-" FoldText {
+" FoldText {{{
 function! MyFoldText()
     let line = getline(v:foldstart)
 
@@ -242,7 +244,7 @@ function! MyFoldText()
     return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction
 set foldtext=MyFoldText()
-" }
+" }}}
 "
 set foldenable
 set foldlevelstart=0
@@ -287,21 +289,21 @@ set wildignore+=target/                          " Clojure
 set wildignore+=node_modules/                    " JS
 set wildignore+=elm-stuff/                       " Elm
 
-" Highlight conflict markers
+" Highlight git conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" }
+" }}}
 
-" Configuration {
+" Configuration {{{
 
-" Plugins {
+" Plugins {{{
 
-" netrw {
+" netrw {{{
 " Use single column with details (1). (3) is the tree view
 let g:netrw_liststyle = 1
-" }
+" }}}
 
-" FZF {
+" FZF {{{
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>l :Lines<CR>
@@ -318,15 +320,15 @@ augroup FZF
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
   autocmd FileType fzf tnoremap <buffer> <Esc> <c-q>
 augroup END
-" }
+" }}}
 
-" Slime {
+" Slime {{{
 let g:slime_target = "tmux"
 " let g:slime_no_mappings = 1
 let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
-" }
+" }}}
 
-" Rainbow parenthesis {
+" Rainbow parenthesis {{{
 let g:rbpt_colorpairs = [
   \ [ '13', '#6c71c4'],
   \ [ '5',  '#d33682'],
@@ -337,17 +339,17 @@ let g:rbpt_colorpairs = [
   \ [ '4',  '#268bd2'],
   \ [ '6',  '#2aa198'],
   \ ]
-" }
+" }}}
 
-" Ack (Ag) {
+" Ack (Ag) {{{
 if executable('ag')
   let g:ackprg = "ag --vimgrep"
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
-" }
+" }}}
 
-" Ale {
+" Ale {{{
 " let g:ale_lint_on_text_changed = 'never'
 " let g:ale_lint_on_save = 1
 let g:ale_linters = {
@@ -380,9 +382,9 @@ nmap [W <Plug>(ale_first)
 nmap [w <Plug>(ale_previous_wrap)
 nmap ]w <Plug>(ale_next_wrap)
 nmap ]W <Plug>(ale_last)
-" }
+" }}}
 
-" Gist {
+" Gist {{{
 if isMac
   let g:gist_clip_command = 'pbcopy'
 elseif isLinux
@@ -390,27 +392,27 @@ elseif isLinux
 endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
-" }
+" }}}
 
-" Goyo {
+" Goyo {{{
 let g:goyo_width=90
-" }
+" }}}
 
-" rsi {
+" rsi {{{
 " Breaks macros on the terminal
 let g:rsi_no_meta = 1
-" }
+" }}}
 
-" mustache-handlebars {
+" mustache-handlebars {{{
 " don't enable the ie/ae text objects as we have the entire file ones
 let g:mustache_operators = 0
-" }
+" }}}
 
-" }
+" }}}
 
-" Mappings {
+" Mappings {{{
 
-" Vim {
+" Vim {{{
 
 " TODO: ???
 nnoremap & :&&<CR>
@@ -422,7 +424,7 @@ nnoremap Y y$
 " Make . work with a visual selection
 vnoremap . :normal .<cr>
 
-" Easier omnicompletion with Tab {
+" Easier omnicompletion with Tab {{{
 imap <c-space> <C-X><C-O>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -509,7 +511,7 @@ xnoremap , :
 nnoremap : ,
 xnoremap : ,
 
-" Easy filetype changing {
+" Easy filetype changing {{{
 nnoremap yoft :set filetype=txt<cr>
 nnoremap yofj :set filetype=javascript<cr>
 nnoremap yofm :set filetype=markdown<cr>
@@ -517,9 +519,9 @@ nnoremap yofv :set filetype=vim<cr>
 nnoremap yofc :set filetype=clojure<cr>
 nnoremap yoff :set filetype=
 nnoremap yof :set filetype=
-" }
+" }}}
 
-" Moving back and forth between lines of same or lower indentation {
+" Moving back and forth between lines of same or lower indentation {{{
 nnoremap  <silent> <c-k> :call      mappings#NextIndent(0, 0, 0 )<CR>_
 nnoremap  <silent> <c-j> :call      mappings#NextIndent(0, 1, 0 )<CR>_
 nnoremap  <silent> <c-h> :call      mappings#NextIndent(0, 0, -1)<CR>_
@@ -538,10 +540,10 @@ onoremap <silent> <c-h> :<c-u>normal V<c-v><c-h>j<cr>
 onoremap <silent> <c-l> :<c-u>normal V<c-v><c-l>k<cr>
 "onoremap <silent> <c-L> _:call     mappings#NextIndent(0, 0, 1 )<CR>_
 "onoremap <silent> <c-H> $:call     mappings#NextIndent(0, 1, -1)<CR>$
-" }
+" }}}
 
-" Highlight Word {
-function! g:Interestingwords_update_highlight () " {
+" Highlight Word {{{
+function! g:Interestingwords_update_highlight () " {{{
   hi! def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
   hi! def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
   hi! def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#00afff ctermbg=39
@@ -551,7 +553,7 @@ function! g:Interestingwords_update_highlight () " {
   hi! def InterestingWord7 guifg=#000000 ctermfg=16 guibg=#df5fff ctermbg=171
   hi! def InterestingWord8 guifg=#000000 ctermfg=16 guibg=#c0c0c0 ctermbg=7
   hi! def InterestingWord9 guifg=#000000 ctermfg=16 guibg=#00ffff ctermbg=14
-endfunction " }
+endfunction " }}}
 call g:Interestingwords_update_highlight()
 if has('autocmd')
   augroup InterestingWords
@@ -568,7 +570,7 @@ nnoremap <silent> <leader>6 :call mappings#HiInterestingWord(6)<cr>
 nnoremap <silent> <leader>7 :call mappings#HiInterestingWord(7)<cr>
 nnoremap <silent> <leader>8 :call mappings#HiInterestingWord(8)<cr>
 nnoremap <silent> <leader>9 :call mappings#HiInterestingWord(9)<cr>
-" }
+" }}}
 
 " Map search to very magic by default
 nnoremap / /\v
@@ -577,16 +579,16 @@ nnoremap ? ?\v
 " CTRL+SHIFT+6 to something easier
 nnoremap <leader>n <c-^>
 
-" Terminal settings {
+" Terminal settings {{{
 if has('nvim') || has('terminal')
   " Default <ESC> to exiting term mode
   tnoremap <ESC> <C-\><C-n>
 endif
-" }
+" }}}
 
-" }
+" }}}
 
-" Leader {
+" Leader {{{
 
 " Substitute shortcut
 nnoremap <leader>r :%s/
@@ -611,11 +613,11 @@ nnoremap <leader>u :bd<cr>
 
 " Set local path
 nnoremap <leader>p :lcd %:p:h<CR>:pwd<CR>
-" }
+" }}}
 
-" }
+" }}}
 
-" Commands {
+" Commands {{{
 
 command! -register CopyMatches call commands#CopyMatches(<q-reg>)
 
@@ -634,9 +636,9 @@ command! -nargs=0 ToggleConceal call mappings#ToggleConceal(1)
 " Toggle "keep current line in the center of the screen" mode
 command! -nargs=0 LockCursorInCenterOfScreen let &scrolloff=999-&scrolloff
 
-" }
+" }}}
 
-" Statusline {
+" Statusline {{{
 
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 if has('statusline')
@@ -697,9 +699,9 @@ if has('statusline')
   endif
 endif
 
-" }
+" }}}
 
-" Abbreviations {
+" Abbreviations {{{
 iabbrev @@    joaquin@chimeces.com
 iabbrev wweb  http://chimeces.com
 iabbrev ssig  <cr>Joaquin Oltra<cr>joaquin@chimeces.com<cr>
@@ -714,9 +716,9 @@ iabbrev alice7 <cr>The Hatter was the first to break the silence. `What day of t
 
 iabbrev funciton function
 iabbrev funcitons functions
-" }
+" }}}
 
-" Autocommands {
+" Autocommands {{{
 if has('autocmd')
 
   augroup joakin_autocommands
@@ -766,12 +768,12 @@ if has('autocmd')
   augroup END
 
 endif
-" }
+" }}}
 
-" Project settings {
+" Project settings {{{
 if has('autocmd')
 
-  " Example of project settings {
+  " Example of project settings {{{
   " augroup project_settings
   "   autocmd!
   "   autocmd BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
@@ -792,7 +794,7 @@ if has('autocmd')
     " " various plugins trying to set vim's indentation based on file contents.
   " augroup end
   "
-  " }
+  " }}}
 
 endif
-" }
+" }}}
