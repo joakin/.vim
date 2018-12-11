@@ -252,8 +252,8 @@ set foldtext=MyFoldText()
 " }}}
 "
 set foldenable
-set foldlevelstart=0
-set foldmarker={,}
+set foldlevelstart=1
+set foldmarker={{{,}}}
 
 " Invisible char settings (list)
 set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
