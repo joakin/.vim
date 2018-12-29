@@ -142,8 +142,6 @@ Plug 'junegunn/gv.vim' " GV(!?)
 Plug 'tpope/vim-rhubarb' " Support github for Gbrowse
 " Unix commands (Delete, Remove, Move, Chmod, Mkdir, Find, Locate, Wall, SudoWrite, SudoEdit)
 Plug 'tpope/vim-eunuch'
-" Lisp stuff
-Plug 'jpalardy/vim-slime'
 " }}}
 
 " Internets {{{
@@ -325,12 +323,6 @@ augroup FZF
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
   autocmd FileType fzf tnoremap <buffer> <Esc> <c-q>
 augroup END
-" }}}
-
-" Slime {{{
-let g:slime_target = "tmux"
-" let g:slime_no_mappings = 1
-let g:slime_default_config = {"socket_name": "default", "target_pane": "2"}
 " }}}
 
 " Rainbow parenthesis {{{
