@@ -5,7 +5,7 @@ setlocal tabstop=2
 setlocal concealcursor=nc
 setlocal foldmethod=syntax
 
-set suffixesadd+=.jsx,.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
+setlocal suffixesadd+=.jsx,.js,.json,.coffee,.litcoffee,.ls,.hbs,.jst,.underscore,.jade,.hbs
 
 command! -range=% JSBeautifyJSON <line1>,<line2>!js-beautify -f - -b expand
 command! -range=% JSBeautify <line1>,<line2>!js-beautify -f -

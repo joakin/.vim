@@ -319,8 +319,8 @@ nnoremap <leader>: :History:<CR>
 
 augroup FZF
   autocmd! FileType fzf
-  autocmd FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  autocmd FileType fzf setlocal laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> setlocal laststatus=2 showmode ruler
   autocmd FileType fzf tnoremap <buffer> <Esc> <c-q>
 augroup END
 " }}}
@@ -772,7 +772,6 @@ if has('autocmd')
 
     if has('nvim')
       autocmd TermOpen * setlocal nonumber norelativenumber | startinsert
-      " autocmd TermOpen * echom expand('<amatch>') | if expand('<amatch>') =~ "term://.*git add --patch.*" | startinsert | endif
     endif
 
     " Make sure text soft wraps in the preview window, and don't show numbers
@@ -800,7 +799,7 @@ if has('autocmd')
     " autocmd BufRead,BufNewFile *.sql,*.php call vim_addon_sql#Connect('mysql',{'database':'DATABASE', 'user':'USER', 'password' : 'PASSWORD'})
 
     " " for php use tab as indentation character. Display a tab as 4 spaces:
-    " " autocmd BufRead,BufNewFile *.php set noexpandtab| set tabstop=4 | set sw=4
+    " " autocmd BufRead,BufNewFile *.php setlocal noexpandtab| setlocal tabstop=4 | setlocal sw=4
     " autocmd FileType php setlocal noexpandtab| setlocal tabstop=4 | setlocal sw=4
 
     " " hint: for indentation settings modelines can be an alternative as well as
