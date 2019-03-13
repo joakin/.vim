@@ -372,7 +372,7 @@ let g:ale_rust_rls_toolchain='stable'
 let g:ale_javascript_prettier_options = '--prose-wrap always'
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
-let g:ale_completion_delay = 1500
+let g:ale_completion_delay = 500
 let g:ale_sign_error = '❗️ '
 let g:ale_sign_warning = '⚠️ '
 
@@ -426,9 +426,7 @@ nnoremap Y y$
 vnoremap . :normal .<cr>
 
 " Easier omnicompletion with Tab {{{
-imap <c-space> <C-X><C-O>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <c-space> <C-X><C-O>
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 
 function! s:check_back_space() abort
@@ -440,7 +438,13 @@ inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
   \ <SID>check_back_space() ? "\<TAB>" :
   \ "\<C-n>"
-" }
+
+inoremap <silent><expr> <S-Tab>
+  \ pumvisible() ? "\<C-p>" :
+  \ <SID>check_back_space() ? "\<S-Tab>" :
+  \ "\<C-p>"
+
+" }}}
 
 " Manipulate windows (shortcuts)
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
