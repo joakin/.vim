@@ -217,7 +217,7 @@ if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
 
-set completeopt=menu,menuone,preview,noinsert,noselect
+set completeopt=menu,menuone,preview " ,noinsert,noselect
 
 set wildmode=longest,list:list,full
 set nonumber
@@ -273,7 +273,7 @@ if has("gui_running")
     set gfn=monospace\ 14
     set linespace=2
   elseif isMac
-    set gfn=Source\ Code\ Pro:h16
+    set gfn=Courier\ Prime:h16
     set linespace=6
   endif
 
@@ -351,7 +351,7 @@ endif
 " let g:ale_lint_on_save = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
-\   'rust': ['rls'],
+\   'rust': ['cargo', 'rls'],
 \}
 
 let g:ale_fixers = {
@@ -378,6 +378,7 @@ let g:ale_sign_warning = '⚠️ '
 
 " Mappings
 nnoremap <leader>d :ALEDetail<cr>
+nnoremap gh :ALEHover<cr>
 nmap [W <Plug>(ale_first)
 nmap [w <Plug>(ale_previous_wrap)
 nmap ]w <Plug>(ale_next_wrap)
