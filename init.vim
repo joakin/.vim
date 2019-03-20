@@ -347,8 +347,6 @@ endif
 " }}}
 
 " Ale {{{
-" let g:ale_lint_on_text_changed = 'never'
-" let g:ale_lint_on_save = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'rust': ['cargo', 'rls'],
@@ -370,8 +368,12 @@ let g:ale_fixers = {
 let g:ale_rust_rls_toolchain='stable'
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
+
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
+" Use this, or delay more with ale_lint_delay
+" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_delay = 1000
 let g:ale_completion_delay = 500
 let g:ale_sign_error = '❗️'
 let g:ale_sign_warning = '⚠️ '
