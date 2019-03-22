@@ -50,6 +50,8 @@ Plug 'tpope/vim-commentary'
 Plug 'romainl/vim-qlist'
 " Local .vimrc sourcing on folders
 Plug 'MarcWeber/vim-addon-local-vimrc'
+" Fast folds - Recompute folds only on certain actions
+Plug 'Konfekt/FastFold'
 " }}}
 
 " Text Objects {{{
@@ -252,6 +254,7 @@ set foldtext=MyFoldText()
 set foldenable
 set foldlevelstart=1
 set foldmarker={{{,}}}
+set foldmethod=indent
 
 " Invisible char settings (list)
 set listchars=tab:»\ ,trail:·,extends:…,precedes:…,nbsp:&,eol:¬
