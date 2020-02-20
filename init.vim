@@ -76,7 +76,6 @@ Plug 'leshill/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-markdown'
 Plug 'stephpy/vim-yaml' " Vim 7.4 yaml syntax is horrible slow
-Plug 'ElmCast/elm-vim'
 Plug 'chikamichi/mediawiki.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'cespare/vim-toml'
@@ -84,6 +83,11 @@ Plug 'briancollins/vim-jst'
 " }}}
 
 " Languages {{{
+
+" Elm {{{
+Plug 'andys8/vim-elm-syntax'
+" Plug 'antew/vim-elm-language-server'
+" }}}
 
 " Ocaml {{{
 " Include the merlin provided vim plugin
@@ -93,9 +97,6 @@ Plug 'briancollins/vim-jst'
 " }}}
 
 " ReasonML {{{
-" - `npm view reason-cli versions` and pick the latest version for your platform
-" - `npm install -g bs-platform reason-cli@<version> ocaml-language-server`
-" reason-cli can conflict with ocaml/opam
 Plug 'reasonml-editor/vim-reason-plus'
 " }}}
 
@@ -353,6 +354,7 @@ endif
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'rust': ['cargo', 'rls'],
+\   'elm': ['make']
 \}
 
 let g:ale_fixers = {
@@ -363,9 +365,10 @@ let g:ale_fixers = {
 \   'html': ['prettier'],
 \   'markdown': ['prettier'],
 \   'php': [],
-\   'reason': ['refmt'],
+\   'reason': ['bsrefmt'],
 \   'rust': ['rustfmt'],
 \   'ocaml': ['ocamlformat'],
+\   'elm': ['elm-format'],
 \}
 
 let g:ale_rust_rls_toolchain='stable'
@@ -430,6 +433,9 @@ nnoremap Y y$
 
 " Make . work with a visual selection
 vnoremap . :normal .<cr>
+
+" Easy one hand Esc
+inoremap ii <Esc>
 
 " Easier omnicompletion with Tab {{{
 inoremap <c-space> <C-X><C-O>
