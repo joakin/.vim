@@ -800,7 +800,8 @@ if has('autocmd')
   "   autocmd BufNewFile,BufRead ~/dev/projects/wikimedia/* setlocal softtabstop=4 shiftwidth=4 tabstop=4
   " augroup END
   "
-  " Use .vimrc in the folder of the project (or parent folders) with autocmds
+  " Can also use (thanks to 'MarcWeber/vim-addon-local-vimrc'):
+  " Put .vimrc in the folder of the project (or parent folders) with autocmds
   " too instead of settings here, like this:
   " project/.vimrc
   " augroup LOCAL_SETUP
