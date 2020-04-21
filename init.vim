@@ -349,15 +349,15 @@ let g:ale_linters = {
 \   'elm': ['make']
 \}
 
+" \   'markdown': ['prettier'],
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'json': ['prettier'],
 \   'css': ['prettier'],
 \   'html': ['prettier'],
-\   'markdown': ['prettier'],
 \   'php': [],
-\   'reason': ['bsrefmt'],
+\   'reason': ['refmt'],
 \   'rust': ['rustfmt'],
 \   'ocaml': ['ocamlformat'],
 \   'elm': ['elm-format'],
