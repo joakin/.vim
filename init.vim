@@ -570,15 +570,24 @@ if has('autocmd')
     autocmd ColorScheme * call g:Interestingwords_update_highlight()
   augroup END
 endif
-nnoremap <silent> <leader>1 :call mappings#HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call mappings#HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call mappings#HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call mappings#HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call mappings#HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call mappings#HiInterestingWord(6)<cr>
-nnoremap <silent> <leader>7 :call mappings#HiInterestingWord(7)<cr>
-nnoremap <silent> <leader>8 :call mappings#HiInterestingWord(8)<cr>
-nnoremap <silent> <leader>9 :call mappings#HiInterestingWord(9)<cr>
+nnoremap <leader>1 :call mappings#HiInterestingWord(0, 1)<cr>
+nnoremap <leader>2 :call mappings#HiInterestingWord(0, 2)<cr>
+nnoremap <leader>3 :call mappings#HiInterestingWord(0, 3)<cr>
+nnoremap <leader>4 :call mappings#HiInterestingWord(0, 4)<cr>
+nnoremap <leader>5 :call mappings#HiInterestingWord(0, 5)<cr>
+nnoremap <leader>6 :call mappings#HiInterestingWord(0, 6)<cr>
+nnoremap <leader>7 :call mappings#HiInterestingWord(0, 7)<cr>
+nnoremap <leader>8 :call mappings#HiInterestingWord(0, 8)<cr>
+nnoremap <leader>9 :call mappings#HiInterestingWord(0, 9)<cr>
+xnoremap <leader>1 :call mappings#HiInterestingWord(1, 1)<cr>
+xnoremap <leader>2 :call mappings#HiInterestingWord(1, 2)<cr>
+xnoremap <leader>3 :call mappings#HiInterestingWord(1, 3)<cr>
+xnoremap <leader>4 :call mappings#HiInterestingWord(1, 4)<cr>
+xnoremap <leader>5 :call mappings#HiInterestingWord(1, 5)<cr>
+xnoremap <leader>6 :call mappings#HiInterestingWord(1, 6)<cr>
+xnoremap <leader>7 :call mappings#HiInterestingWord(1, 7)<cr>
+xnoremap <leader>8 :call mappings#HiInterestingWord(1, 8)<cr>
+xnoremap <leader>9 :call mappings#HiInterestingWord(1, 9)<cr>
 " }}}
 
 " Map search to very magic by default

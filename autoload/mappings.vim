@@ -5,13 +5,19 @@
 " word or two to stand out temporarily.  You can search for it, but that only
 " gives you one color of highlighting.  Now you can use <leader>N where N is
 " a number from 1-6 to highlight the current word in a specific color.
-
-function! mappings#HiInterestingWord(n)
+function! mappings#HiInterestingWord(visual, n)
+  if a:visual
+    normal! gv
+  endif
   " Save our location.
   normal! mz
 
   " Yank the current word into the z register.
-  normal! "zyiw
+  if a:visual
+    normal! "zy
+  else
+    normal! "zyiw
+  endif
 
   " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
   let mid = 86750 + a:n
@@ -20,7 +26,7 @@ function! mappings#HiInterestingWord(n)
   silent! call matchdelete(mid)
 
   " Construct a literal pattern that has to match at boundaries.
-  let pat = '\V\<' . escape(@z, '\') . '\>'
+  let pat = (!a:visual ? '\V\<' . escape(@z, '\') . '\>' : '\V' . escape(@z, '\'))
 
   " Actually match the words.
   call matchadd("InterestingWord" . a:n, pat, 1, mid)
