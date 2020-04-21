@@ -311,16 +311,6 @@ let g:netrw_liststyle = 1
 " }}}
 
 " FZF {{{
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>l :Lines<CR>
-nnoremap <leader>t :BLines<CR>
-nnoremap <leader>c :Commands<CR>
-nnoremap <leader>h :Helptags<CR>
-nnoremap <leader>/ :History/<CR>
-nnoremap <leader>; :History:<CR>
-nnoremap <leader>: :History:<CR>
-
 augroup FZF
   autocmd! FileType fzf
   autocmd FileType fzf setlocal laststatus=0 noshowmode noruler
