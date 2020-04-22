@@ -646,6 +646,9 @@ command! -nargs=0 ToggleConceal call mappings#ToggleConceal(1)
 " Toggle "keep current line in the center of the screen" mode
 command! -nargs=0 LockCursorInCenterOfScreen let &scrolloff=999-&scrolloff
 
+" Markdown preview
+command! -nargs=0 MarkdownPreview !vmd % &
+
 " }}}
 
 " Statusline {{{
