@@ -96,8 +96,8 @@ Plug 'andys8/vim-elm-syntax'
 " execute "Plug '" . g:opamshare . "/merlin/vim'"
 " }}}
 
-" ReasonML {{{
-Plug 'reasonml-editor/vim-reason-plus'
+" Rescript {{{
+Plug 'amiralies/vim-rescript'
 " }}}
 
 " Typescript {{{
@@ -279,8 +279,10 @@ if has("gui_running")
   elseif isMac
     set macligatures
     " set gfn=Courier\ Prime:h16
-    set gfn=LigaSrc\ Pro:h16
-    set linespace=6
+    " set gfn=LigaSrc\ Pro:h16
+    " set gfn=Liga\ O2\ Mono:h16
+    set gfn=LigaLex\ Mono:h16
+    set linespace=8
   endif
 
   set guioptions=c
@@ -301,11 +303,17 @@ set wildignore+=elm-stuff/                       " Elm
 " Highlight git conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" Default to conceal enabled
+set conceallevel=2
 " }}}
 
 " Configuration {{{
 
 " Plugins {{{
+
+" vim-markdown {{{
+let g:markdown_syntax_conceal = 1
+" }}}
 
 " netrw {{{
 " Use single column with details (1). (3) is the tree view
@@ -344,28 +352,33 @@ endif
 
 " Ale {{{
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'tsserver'],
 \   'rust': ['cargo', 'rls'],
 \   'elm': ['make']
 \}
 
-" \   'markdown': ['prettier'],
 let g:ale_fixers = {
+\   'markdown': ['prettier'],
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'json': ['prettier'],
 \   'css': ['prettier'],
 \   'html': ['prettier'],
 \   'php': [],
-\   'reason': ['refmt'],
 \   'rust': ['rustfmt'],
 \   'ocaml': ['ocamlformat'],
 \   'elm': ['elm-format'],
+\   'rescript': [
+\     {buffers -> {
+\       'command': 'bsc -color never -format %t'
+\     }},
+\   ],
 \}
 
 let g:ale_rust_rls_toolchain='stable'
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
+let g:ale_markdown_prettier_options = '--prose-wrap always'
 
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 1
