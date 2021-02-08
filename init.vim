@@ -8,7 +8,14 @@ let g:isMac = 0
 if has('macunix')
   let g:isMac = 1
 endif
-let g:isLinux = !isMac
+let g:isWindows = 0
+if has('win32')
+  let g:isWindows = 1
+endif
+let g:isLinux = 0
+if has('unix')
+  let g:isLinux = 1
+endif
 " }}}
 
 " Plugins/Packages {{{
@@ -25,7 +32,7 @@ Plug 'tpope/vim-vinegar'
 " File/Buffer/Tag finder
 if isMac
   Plug '/usr/local/opt/fzf' " Homebrew OSX install
-elseif isLinux
+elseif isLinux || isWindows
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 endif
 Plug 'junegunn/fzf.vim'
@@ -277,9 +284,11 @@ set clipboard=unnamed,unnamedplus
 set splitbelow splitright
 
 if has("gui_running")
-  if isLinux
-    set gfn=monospace\ 14
-    set linespace=2
+  if isLinux || isWindows
+    " set gfn=monospace\ 14
+    " set linespace=2
+    set gfn=LigaLex\ Mono:h16
+    set linespace=8
   elseif isMac
     set macligatures
     " set gfn=Courier\ Prime:h16
@@ -400,6 +409,8 @@ if isMac
   let g:gist_clip_command = 'pbcopy'
 elseif isLinux
   let g:gist_clip_command = 'xclip -selection clipboard'
+elseif isWindows
+  let g:gist_clip_command = 'clip.exe'
 endif
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
