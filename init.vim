@@ -284,11 +284,12 @@ set clipboard=unnamed,unnamedplus
 set splitbelow splitright
 
 if has("gui_running")
-  if isLinux || isWindows
-    " set gfn=monospace\ 14
-    " set linespace=2
-    set gfn=LigaLex\ Mono:h16
-    set linespace=8
+  if isWindows
+    GuiFont! LigaLex Mono:h12
+    set linespace=6
+  elseif isLinux
+    set gfn=monospace\ 14
+    set linespace=2
   elseif isMac
     set macligatures
     " set gfn=Courier\ Prime:h16
