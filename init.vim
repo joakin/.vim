@@ -825,7 +825,12 @@ if has('autocmd')
     autocmd BufEnter,FocusGained,VimEnter,WinEnter * call autocmds#split_resize()
 
     if has('nvim')
-      autocmd TermOpen * setlocal nonumber norelativenumber | startinsert
+      function! TerminalOptions()
+        setlocal nonumber norelativenumber | startinsert
+        silent au BufEnter <buffer> startinsert!
+        silent au BufLeave <buffer> stopinsert!
+      endfunction
+      autocmd TermOpen * call TerminalOptions()
     endif
 
     " Make sure text soft wraps in the preview window, and don't show numbers
