@@ -16,6 +16,10 @@ let g:isLinux = 0
 if has('unix')
   let g:isLinux = 1
 endif
+let g:isWSL = 0
+if g:isLinux && executable('wslview')
+  let g:isWSL = 1
+endif
 " }}}
 
 " Plugins/Packages {{{
@@ -94,6 +98,10 @@ Plug 'briancollins/vim-jst'
 " }}}
 
 " Languages {{{
+
+" Go {{{
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" }}}
 
 " Elm {{{
 Plug 'andys8/vim-elm-syntax'
@@ -332,6 +340,9 @@ let g:markdown_syntax_conceal = 1
 " netrw {{{
 " Use single column with details (1). (3) is the tree view
 let g:netrw_liststyle = 1
+if isWSL
+  let g:netrw_browsex_viewer = 'wslview'
+endif
 " }}}
 
 " FZF {{{
