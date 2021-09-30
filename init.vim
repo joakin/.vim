@@ -836,6 +836,9 @@ if has('autocmd')
     " Make sure text soft wraps in the preview window, and don't show numbers
     autocmd WinEnter * if &previewwindow | setlocal wrap nonu nornu | endif
 
+    if exists('##TextYankPost')
+      autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+    endif
   augroup END
 
 endif
