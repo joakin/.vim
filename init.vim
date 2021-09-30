@@ -116,7 +116,7 @@ Plug 'andys8/vim-elm-syntax'
 " }}}
 
 " Rescript {{{
-Plug 'amiralies/vim-rescript'
+Plug 'rescript-lang/vim-rescript'
 " }}}
 
 " Typescript {{{
@@ -376,10 +376,15 @@ endif
 " }}}
 
 " Ale {{{
+" This allows you to debug interactions with language servers. Disable after
+" debugging
+" let g:ale_command_wrapper = '~/bin/ale-command-wrapper'
+
 let g:ale_linters = {
 \   'javascript': ['eslint', 'tsserver'],
 \   'rust': ['cargo', 'rls'],
-\   'elm': ['make']
+\   'elm': ['make'],
+\   'rescript': ['rescript'],
 \}
 
 let g:ale_fixers = {
@@ -393,16 +398,13 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \   'ocaml': ['ocamlformat'],
 \   'elm': ['elm-format'],
-\   'rescript': [
-\     {buffers -> {
-\       'command': 'bsc -color never -format %t'
-\     }},
-\   ],
+\   'rescript': ['rescript'],
 \}
 
 let g:ale_rust_rls_toolchain='stable'
 
 let g:ale_javascript_prettier_options = '--prose-wrap always'
+
 let g:ale_markdown_prettier_options = '--prose-wrap always'
 
 let g:ale_fix_on_save = 1
