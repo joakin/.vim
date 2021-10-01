@@ -385,6 +385,7 @@ let g:ale_linters = {
 \   'rust': ['cargo', 'rls'],
 \   'elm': ['make'],
 \   'rescript': ['rescript'],
+\   'php': ['php'],
 \}
 
 let g:ale_fixers = {
@@ -870,6 +871,15 @@ if has('autocmd')
   " augroup end
   "
   " }}}
+
+  autocmd BufRead,BufNewFile *.js,*.php,*.css call s:SetupWikimedia()
+  function s:SetupWikimedia()
+    setlocal noexpandtab tabstop=4 sw=0
+    let g:ale_linters['javascript'] = ['eslint']
+    let g:ale_fixers['javascript'] = ['eslint']
+    let g:ale_fixers['css'] = []
+  endfunction
+
 
 endif
 " }}}
