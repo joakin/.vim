@@ -25,6 +25,15 @@ endif
 " Plugins/Packages {{{
 call plug#begin('~/.vim/plugged')
 
+" Neovim {{{
+" LSP servers
+Plug 'neovim/nvim-lspconfig'
+" Autocompletion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+" }}}
+
 " Basics {{{
 if !has('nvim')
   Plug 'tpope/vim-sensible'
@@ -156,8 +165,6 @@ Plug 'rust-lang/rust.vim'
 " External tools {{{
 " Search with :Ack (using ag)
 Plug 'mileszs/ack.vim'
-" Syntax checking and linting
-Plug 'w0rp/ale'
 " Git commands
 Plug 'tpope/vim-fugitive' " Gcommit, Gstatus, Gdiff, etc.
 Plug 'junegunn/gv.vim' " GV(!?)
@@ -375,48 +382,86 @@ if executable('ag')
 endif
 " }}}
 
-" Ale {{{
-" This allows you to debug interactions with language servers. Disable after
-" debugging
-" let g:ale_command_wrapper = '~/bin/ale-command-wrapper'
+" NVIM LSP {{{
+if has('nvim')
 
-let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver'],
-\   'rust': ['cargo', 'rls'],
-\   'elm': ['make'],
-\   'rescript': ['rescript'],
-\   'php': ['php'],
-\}
 
-let g:ale_fixers = {
-\   'markdown': ['prettier'],
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
-\   'json': ['prettier'],
-\   'css': ['prettier'],
-\   'html': ['prettier'],
-\   'php': [],
-\   'rust': ['rustfmt'],
-\   'ocaml': ['ocamlformat'],
-\   'elm': ['elm-format'],
-\   'rescript': ['rescript'],
-\}
+lua << EOF
 
-let g:ale_rust_rls_toolchain='stable'
+local cmp = require('cmp')
 
-let g:ale_javascript_prettier_options = '--prose-wrap always'
+cmp.setup({
+  mapping = {
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+  }, {
+    { name = 'buffer' },
+  })
+})
 
-let g:ale_markdown_prettier_options = '--prose-wrap always'
 
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-" Use this, or delay more with ale_lint_delay
-" let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_delay = 1000
-let g:ale_completion_delay = 500
-let g:ale_sign_error = '❗️'
-let g:ale_sign_warning = '⚠️ '
-let g:ale_sign_column_always = 1
+local nvim_lsp = require('lspconfig')
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>vd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>vt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>vD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', '<leader>vi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<leader>vs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<leader>vwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>vwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<leader>vwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<leader>vR', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>va', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>vr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[w', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', '<leader>vp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']w', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>vn', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>vq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>vf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+end
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local servers = { 'rust_analyzer', 'tsserver', 'cssls', 'elmls', 'html' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 500,
+    }
+  }
+end
+
+vim.cmd('autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.elm lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.css lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)')
+vim.cmd('autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)')
+
+EOF
+
+endif
 " }}}
 
 " Gist {{{
@@ -649,7 +694,7 @@ xnoremap <leader>r :s/
 
 " Opening stuff (files, windows, etc)
 " Files:
-nnoremap <leader>v :e $MYVIMRC<cr>:FollowSymlink<cr>
+" ...
 " Windows/buffers:
 nnoremap <leader>ot :tabe<cr>
 nnoremap <leader>ov :vsp<cr>
@@ -875,9 +920,6 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.js,*.php,*.css call s:SetupWikimedia()
   function s:SetupWikimedia()
     setlocal noexpandtab tabstop=4 sw=0
-    let g:ale_linters['javascript'] = ['eslint']
-    let g:ale_fixers['javascript'] = ['eslint']
-    let g:ale_fixers['css'] = []
   endfunction
 
 
