@@ -872,7 +872,7 @@ if has('autocmd')
   "
   " }}}
 
-  autocmd BufRead,BufNewFile *.js,*.php,*.css call s:SetupWikimedia()
+  autocmd BufRead,BufNewFile */wikimedia/*.{js,php,css} call s:SetupWikimedia()
   function s:SetupWikimedia()
     setlocal noexpandtab tabstop=4 sw=0
     let g:ale_linters['javascript'] = ['eslint']
