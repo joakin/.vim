@@ -100,7 +100,7 @@ Plug 'coderifous/textobj-word-column.vim'
 
 " Syntax {{{
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leshill/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-markdown'
