@@ -101,11 +101,6 @@ local flags = {
   debounce_text_changes = 500,
 }
 
-local sumneko_root_path = '/home/joakin/dev/forks/lua-language-server/bin/Linux/'
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 local servers = {
   rust_analyzer = {},
   tsserver = {
@@ -128,14 +123,27 @@ local servers = {
     end
   },
   sumneko_lua = {
-    cmd = {sumneko_root_path..'lua-language-server', "-E", sumneko_root_path .. "main.lua"};
+    cmd = (function()
+      local sumneko_root_path
+      if system_name == 'Linux' then
+        sumneko_root_path = '/home/joakin/dev/forks/lua-language-server/bin/Linux/'
+      else
+        error('Unimplemented')
+      end
+      return {sumneko_root_path..'lua-language-server', "-E", sumneko_root_path .. "main.lua"}
+    end)(),
     settings = {
       Lua = {
         runtime = {
           -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
           -- Setup your lua path
-          path = runtime_path,
+          path = (function()
+            local runtime_path = vim.split(package.path, ';')
+            table.insert(runtime_path, "lua/?.lua")
+            table.insert(runtime_path, "lua/?/init.lua")
+            return runtime_path
+          end)(),
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
