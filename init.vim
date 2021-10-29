@@ -667,6 +667,8 @@ command! -nargs=0 LockCursorInCenterOfScreen let &scrolloff=999-&scrolloff
 " Markdown preview
 command! -nargs=0 MarkdownPreview !vmd % &
 
+command! SyntaxSyncFromStart :syntax sync fromstart
+
 " }}}
 
 " Statusline {{{
