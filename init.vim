@@ -25,6 +25,20 @@ endif
 " Plugins/Packages {{{
 call plug#begin('~/.vim/plugged')
 
+" Neovim {{{
+Plug 'nvim-lua/plenary.nvim'
+" LSP servers
+Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+" Snippets
+Plug 'L3MON4D3/LuaSnip' " Need a snippet engine for nvim-cmp
+Plug 'saadparwaiz1/cmp_luasnip'
+" Autocompletion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+" }}}
+
 " Basics {{{
 if !has('nvim')
   Plug 'tpope/vim-sensible'
@@ -86,7 +100,7 @@ Plug 'coderifous/textobj-word-column.vim'
 
 " Syntax {{{
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'leshill/vim-json'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-markdown'
@@ -160,8 +174,6 @@ Plug 'rust-lang/rust.vim'
 " External tools {{{
 " Search with :Ack (using ag)
 Plug 'mileszs/ack.vim'
-" Syntax checking and linting
-Plug 'w0rp/ale'
 " Git commands
 Plug 'tpope/vim-fugitive' " Gcommit, Gstatus, Gdiff, etc.
 Plug 'junegunn/gv.vim' " GV(!?)
@@ -379,48 +391,29 @@ if executable('ag')
 endif
 " }}}
 
-" Ale {{{
-" This allows you to debug interactions with language servers. Disable after
-" debugging
-" let g:ale_command_wrapper = '~/bin/ale-command-wrapper'
+" NVIM LSP {{{
+if has('nvim')
 
-let g:ale_linters = {
-\   'javascript': ['eslint', 'tsserver'],
-\   'rust': ['cargo', 'rls'],
-\   'elm': ['make'],
-\   'rescript': ['rescript'],
-\   'php': ['php'],
-\}
+lua require('plugins/cmp')
+lua require('config/lsp')
 
-let g:ale_fixers = {
-\   'markdown': ['prettier'],
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
-\   'json': ['prettier'],
-\   'css': ['prettier'],
-\   'html': ['prettier'],
-\   'php': [],
-\   'rust': ['rustfmt'],
-\   'ocaml': ['ocamlformat'],
-\   'elm': ['elm-format'],
-\   'rescript': ['rescript'],
-\}
+let g:format_on_save = 1
+function s:lsp_format()
+  if !g:format_on_save
+    return
+  endif
 
-let g:ale_rust_rls_toolchain='stable'
+  let path = expand('%:p')
+  if path =~ '/wikimedia/'
+    if &filetype =~ 'javascript'
+      " return
+    endif
+  endif
 
-let g:ale_javascript_prettier_options = '--prose-wrap always'
+  lua vim.lsp.buf.formatting_seq_sync(null, 1000)
+endfunction
 
-let g:ale_markdown_prettier_options = '--prose-wrap always'
-
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
-" Use this, or delay more with ale_lint_delay
-" let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_delay = 1000
-let g:ale_completion_delay = 500
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'W'
-let g:ale_sign_column_always = 1
+endif
 " }}}
 
 " Gist {{{
@@ -468,26 +461,8 @@ vnoremap . :normal .<cr>
 " Easy one hand Esc
 inoremap ii <Esc>
 
-" Easier omnicompletion with Tab {{{
+" Easier omnicompletion
 inoremap <c-space> <C-X><C-O>
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ "\<C-n>"
-
-inoremap <silent><expr> <S-Tab>
-  \ pumvisible() ? "\<C-p>" :
-  \ <SID>check_back_space() ? "\<S-Tab>" :
-  \ "\<C-p>"
-
-" }}}
 
 " Manipulate windows (shortcuts)
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
@@ -653,7 +628,7 @@ xnoremap <leader>r :s/
 
 " Opening stuff (files, windows, etc)
 " Files:
-nnoremap <leader>v :e $MYVIMRC<cr>:FollowSymlink<cr>
+" ...
 " Windows/buffers:
 nnoremap <leader>ot :tabe<cr>
 nnoremap <leader>ov :vsp<cr>
@@ -695,6 +670,8 @@ command! -nargs=0 LockCursorInCenterOfScreen let &scrolloff=999-&scrolloff
 
 " Markdown preview
 command! -nargs=0 MarkdownPreview !vmd % &
+
+command! SyntaxSyncFromStart :syntax sync fromstart
 
 " }}}
 
@@ -879,9 +856,6 @@ if has('autocmd')
   autocmd BufRead,BufNewFile */wikimedia/*.{js,php,css} call s:SetupWikimedia()
   function s:SetupWikimedia()
     setlocal noexpandtab tabstop=4 sw=0
-    let g:ale_linters['javascript'] = ['eslint']
-    let g:ale_fixers['javascript'] = ['eslint']
-    let g:ale_fixers['css'] = []
   endfunction
 
 
