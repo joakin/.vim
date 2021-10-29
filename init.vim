@@ -26,8 +26,10 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Neovim {{{
+Plug 'nvim-lua/plenary.nvim'
 " LSP servers
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 " Snippets
 Plug 'L3MON4D3/LuaSnip' " Need a snippet engine for nvim-cmp
 Plug 'saadparwaiz1/cmp_luasnip'
@@ -388,14 +390,8 @@ endif
 " NVIM LSP {{{
 if has('nvim')
 
-lua require('language-server-settings')
-
-autocmd BufWritePre *.rs call s:lsp_format()
-autocmd BufWritePre *.elm call s:lsp_format()
-autocmd BufWritePre *.html call s:lsp_format()
-autocmd BufWritePre *.css call s:lsp_format()
-autocmd BufWritePre *.js call s:lsp_format()
-autocmd BufWritePre *.ts call s:lsp_format()
+lua require('plugins/cmp')
+lua require('config/lsp')
 
 let g:format_on_save = 1
 function s:lsp_format()
