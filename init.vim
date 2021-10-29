@@ -28,6 +28,9 @@ call plug#begin('~/.vim/plugged')
 " Neovim {{{
 " LSP servers
 Plug 'neovim/nvim-lspconfig'
+" Snippets
+Plug 'L3MON4D3/LuaSnip' " Need a snippet engine for nvim-cmp
+Plug 'saadparwaiz1/cmp_luasnip'
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -458,26 +461,8 @@ vnoremap . :normal .<cr>
 " Easy one hand Esc
 inoremap ii <Esc>
 
-" Easier omnicompletion with Tab {{{
+" Easier omnicompletion
 inoremap <c-space> <C-X><C-O>
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ "\<C-n>"
-
-inoremap <silent><expr> <S-Tab>
-  \ pumvisible() ? "\<C-p>" :
-  \ <SID>check_back_space() ? "\<S-Tab>" :
-  \ "\<C-p>"
-
-" }}}
 
 " Manipulate windows (shortcuts)
 nnoremap <C-W><C-F> <C-W>_:vertical resize<cr>
