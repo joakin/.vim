@@ -148,6 +148,8 @@ local servers = {
             return utils.root_has_file("stylua.toml")
           end,
         }),
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.shellcheck,
       },
     })
     return {}
