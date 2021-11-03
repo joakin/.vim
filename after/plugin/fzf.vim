@@ -1,11 +1,11 @@
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>s :Ag<cr>
+nnoremap <leader>ss :Ag<cr>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>l :Lines<CR>
-nnoremap <leader>t :BLines<CR>
-nnoremap <leader>c :Commands<CR>
-nnoremap <leader>h :Helptags<CR>
-nnoremap <leader>/ :History/<CR>
-nnoremap <leader>; :History:<CR>
-nnoremap <leader>: :History:<CR>
+nnoremap <leader>sl :Lines<CR>
+nnoremap <leader>sb :BLines<CR>
+nnoremap <leader>sc :Commands<CR>
+nnoremap <leader>sh :Helptags<CR>
+nnoremap <leader>s/ :History/<CR>
+nnoremap <leader>s; :History:<CR>
+nnoremap <leader>s: :History:<CR>
 
