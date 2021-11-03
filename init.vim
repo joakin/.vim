@@ -343,6 +343,9 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Default to conceal enabled
 set conceallevel=2
+
+" Popup menu
+set pumheight=5
 " }}}
 
 " Configuration {{{
