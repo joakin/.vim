@@ -13,6 +13,31 @@ local flags = {
   debounce_text_changes = 500,
 }
 
+local setup_code_formatting = function(client, bufnr)
+  local format_on_save = true
+
+  -- Local project autosave settings
+  local path = vim.fn.expand("#" .. bufnr .. ":p")
+  local ft = vim.opt.filetype:get()
+  if string.find(path, "/wikimedia/") then
+    if ft == "vue" or ft == "javascript" then
+      format_on_save = client.name == "eslint"
+    end
+  end
+
+  if format_on_save then
+    vim.cmd([[
+      augroup LspFormatOnSave
+        autocmd!
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)
+      augroup END
+    ]])
+  else
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+end
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -26,25 +51,7 @@ local on_attach = function(client, bufnr)
 
   -- Enable format on save if the language server supports it
   if client.resolved_capabilities.document_formatting then
-    local format_on_save = true
-
-    -- Local project autosave settings
-    local path = vim.fn.expand("#" .. bufnr .. ":p")
-    if string.find(path, "/wikimedia/") then
-      if vim.opt.filetype:get() == "lua" then
-        print("format_on_save false")
-        format_on_save = false
-      end
-    end
-
-    if format_on_save then
-      vim.cmd([[
-        augroup LspFormatOnSave
-          autocmd!
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)
-        augroup END
-      ]])
-    end
+    setup_code_formatting(client, bufnr)
   end
 
   -- Mappings.
@@ -79,7 +86,7 @@ local servers = {
   rust_analyzer = {},
   tsserver = {
     on_attach = function(client, bufnr)
-      -- Don't use tsserver to format, prefer prettier
+      -- Don't use tsserver to format
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
       on_attach(client, bufnr)
