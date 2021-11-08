@@ -22,6 +22,8 @@ local setup_code_formatting = function(client, bufnr)
   if string.find(path, "/wikimedia/") then
     if ft == "vue" or ft == "javascript" then
       format_on_save = client.name == "eslint"
+    elseif ft == "json" then
+      format_on_save = false
     end
   end
 
