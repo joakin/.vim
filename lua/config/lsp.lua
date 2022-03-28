@@ -116,10 +116,12 @@ local servers = {
       local sumneko_root_path
       if system_name == "Linux" then
         sumneko_root_path = "/home/joakin/dev/forks/lua-language-server/bin/Linux/"
+        return { sumneko_root_path .. "lua-language-server", "-E", sumneko_root_path .. "main.lua" }
+      elseif system_name == "macOS" then
+        return { "/usr/local/bin/lua-language-server" }
       else
         error("Unimplemented")
       end
-      return { sumneko_root_path .. "lua-language-server", "-E", sumneko_root_path .. "main.lua" }
     end)(),
     settings = {
       Lua = {
@@ -144,23 +146,6 @@ local servers = {
       },
     },
   },
-  ["null-ls"] = (function()
-    null_ls.config({
-      diagnostics_format = "#{m} [#{c} #{s}]",
-      debounce = 500,
-      -- you must define at least one source for the plugin to work
-      sources = {
-        null_ls.builtins.formatting.stylua.with({
-          condition = function(utils)
-            return utils.root_has_file("stylua.toml")
-          end,
-        }),
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.shellcheck,
-      },
-    })
-    return {}
-  end)(),
 }
 
 for lsp, options in pairs(servers) do
@@ -170,3 +155,18 @@ for lsp, options in pairs(servers) do
     flags = flags,
   }, options))
 end
+
+null_ls.setup({
+  diagnostics_format = "#{m} [#{c} #{s}]",
+  debounce = 500,
+  on_attach = on_attach,
+  sources = {
+    null_ls.builtins.formatting.stylua.with({
+      condition = function(utils)
+        return utils.root_has_file("stylua.toml")
+      end,
+    }),
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.diagnostics.shellcheck,
+  },
+})
