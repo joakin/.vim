@@ -29,10 +29,7 @@ local setup_code_formatting = function(client, bufnr)
 
   if format_on_save then
     vim.cmd([[
-      augroup LspFormatOnSave
-        autocmd!
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)
-      augroup END
+      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)
     ]])
   else
     client.resolved_capabilities.document_formatting = false
