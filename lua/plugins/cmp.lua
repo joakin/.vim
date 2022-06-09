@@ -1,5 +1,9 @@
 local cmp = require("cmp")
+
 local luasnip = require("luasnip")
+luasnip.config.setup({
+  history = false,
+})
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -19,6 +23,8 @@ cmp.setup({
     }),
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -46,8 +52,8 @@ cmp.setup({
     }),
   },
   sources = cmp.config.sources({
-    { name = "luasnip" },
     { name = "nvim_lsp" },
+    { name = "luasnip" },
   }, {
     { name = "buffer" },
   }),

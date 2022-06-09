@@ -28,9 +28,12 @@ local setup_code_formatting = function(client, bufnr)
   end
 
   if format_on_save then
-    vim.cmd([[
-      autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, 1000)
-    ]])
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "<buffer>",
+      callback = function()
+        vim.lsp.buf.formatting_seq_sync(nil, 1000)
+      end,
+    })
   else
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
@@ -38,9 +41,6 @@ local setup_code_formatting = function(client, bufnr)
 end
 
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
@@ -56,29 +56,32 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap = true, silent = true }
 
-  buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  buf_set_keymap("n", "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  buf_set_keymap("n", "<leader>lD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  buf_set_keymap("n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap("n", "<leader>lwa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  buf_set_keymap("n", "<leader>lwr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  buf_set_keymap("n", "<leader>lwl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
-  buf_set_keymap("n", "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  buf_set_keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  buf_set_keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-  buf_set_keymap("n", "[w", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<leader>lp", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "]w", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<leader>ln", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<leader>lq", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  buf_set_keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  buf_set_keymap("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "<leader>ld", vim.lsp.buf.definition, opts)
+  vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, opts)
+  vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
+  vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, opts)
+  vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts)
+  vim.keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, opts)
+  vim.keymap.set("n", "<leader>lwl", function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, opts)
+  vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<leader>lf", vim.lsp.buf.formatting, opts)
+  vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+
+  vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, opts)
+  vim.keymap.set("n", "[w", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]w", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 end
 
 local servers = {
