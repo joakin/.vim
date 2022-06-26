@@ -397,6 +397,7 @@ endif
 " NVIM LSP {{{
 if has('nvim')
 
+lua require('plugins/luasnip')
 lua require('plugins/cmp')
 lua require('config/lsp')
 
