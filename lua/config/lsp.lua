@@ -48,9 +48,18 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
+  -- print(vim.inspect(vim.lsp.get_active_clients()[1].resolved_capabilities))
+
   -- Enable format on save if the language server supports it
   if client.resolved_capabilities.document_formatting then
     setup_code_formatting(client, bufnr)
+  end
+
+  if client.resolved_capabilities.code_lens then
+    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+      buffer = bufnr,
+      callback = vim.lsp.codelens.refresh,
+    })
   end
 
   -- Mappings.
@@ -61,18 +70,31 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gD", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "<leader>lt", vim.lsp.buf.type_definition, opts)
   vim.keymap.set("n", "<leader>lD", vim.lsp.buf.declaration, opts)
+
   vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
   vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, opts)
-  vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("n", "<leader>lh", vim.lsp.buf.signature_help, opts)
+
   vim.keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts)
   vim.keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, opts)
   vim.keymap.set("n", "<leader>lwl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
+
+  vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol, opts)
+  vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, opts)
+  vim.keymap.set("n", "<leader>lws", vim.lsp.buf.workspace_symbol, opts)
+
   vim.keymap.set("n", "<leader>lR", vim.lsp.buf.rename, opts)
+  vim.keymap.set("n", "gR", vim.lsp.buf.rename, opts)
+
   vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, opts)
+
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts)
+
   vim.keymap.set("n", "<leader>lf", vim.lsp.buf.formatting, opts)
   vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 
@@ -116,14 +138,14 @@ local servers = {
         system_name = "Windows"
       end
 
-      local sumneko_root_path
       if system_name == "Linux" then
-        sumneko_root_path = "/home/joakin/dev/forks/lua-language-server/bin/Linux/"
-        return { sumneko_root_path .. "lua-language-server", "-E", sumneko_root_path .. "main.lua" }
+        -- local sumneko_root_path = "/home/joakin/dev/forks/lua-language-server/bin/Linux/"
+        -- return { sumneko_root_path .. "lua-language-server", "-E", sumneko_root_path .. "main.lua" }
+        return { "/home/linuxbrew/.linuxbrew/bin/lua-language-server" }
       elseif system_name == "macOS" then
         return { "/usr/local/bin/lua-language-server" }
       else
-        error("Unimplemented")
+        error("Unimplemented lua-language-server on Windows")
       end
     end)(),
     settings = {
