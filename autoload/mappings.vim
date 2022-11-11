@@ -103,15 +103,6 @@ function! mappings#NextIndent(exclusive, fwd, difflevel)
 endfunction
 " }
 
-" Visual search function */# {
-function! mappings#VSetSearch()
-  let temp = @@
-  norm! gvy
-  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-  let @@ = temp
-endfunction
-" }
-
 function! mappings#ToggleConceal(globally) " {
     if(&conceallevel)
       if(a:globally)
