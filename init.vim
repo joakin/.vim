@@ -401,22 +401,6 @@ lua require('plugins/luasnip')
 lua require('plugins/cmp')
 lua require('config/lsp')
 
-let g:format_on_save = 1
-function s:lsp_format()
-  if !g:format_on_save
-    return
-  endif
-
-  let path = expand('%:p')
-  if path =~ '/wikimedia/'
-    if &filetype =~ 'javascript'
-      " return
-    endif
-  endif
-
-  lua vim.lsp.buf.formatting_seq_sync(null, 1000)
-endfunction
-
 endif
 " }}}
 
@@ -500,14 +484,6 @@ noremap gL L
 " gi already moves to "last place you exited insert mode", so we'll map gI to
 " something similar: move to last change
 nnoremap gI `.
-
-" Normal mode */# remap
-nnoremap * *Nzzzv
-nnoremap # #Nzzzv
-
-" Visual Mode */# from Scrooloose
-vnoremap * :<C-u>call mappings#VSetSearch()<CR>//<CR><c-o>
-vnoremap # :<C-u>call mappings#VSetSearch()<CR>??<CR><c-o>
 
 " Folds
 " Space to toggle folds.
