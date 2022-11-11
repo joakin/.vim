@@ -123,7 +123,6 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Elm {{{
 Plug 'andys8/vim-elm-syntax'
-" Plug 'antew/vim-elm-language-server'
 " }}}
 
 " Ocaml {{{
@@ -346,6 +345,7 @@ set conceallevel=2
 
 " Popup menu
 set pumheight=5
+" set pumblend=30
 " }}}
 
 " Configuration {{{
