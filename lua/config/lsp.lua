@@ -2,42 +2,43 @@ local null_ls = require("null-ls")
 local nvim_lsp = require("lspconfig")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  -- Disable signs
-  signs = false,
-})
-
-local capabilities = cmp_nvim_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 local flags = {
   debounce_text_changes = 500,
 }
 
-local setup_code_formatting = function(client, bufnr)
-  local format_on_save = true
+local lsp_formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local setup_code_formatting = function(bufnr)
+  vim.api.nvim_clear_autocmds({ group = lsp_formatting_augroup, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = lsp_formatting_augroup,
+    buffer = bufnr,
+    callback = function()
+      vim.lsp.buf.format({
+        timeout_ms = 1000,
+        filter = function(client)
+          if client.name == "tsserver" then
+            return false
+          end
+          -- Local project autosave settings
+          local path = vim.fn.expand("#" .. bufnr .. ":p")
+          local ft = vim.opt.filetype:get()
 
-  -- Local project autosave settings
-  local path = vim.fn.expand("#" .. bufnr .. ":p")
-  local ft = vim.opt.filetype:get()
-  if string.find(path, "/wikimedia/") then
-    if ft == "vue" or ft == "javascript" then
-      format_on_save = client.name == "eslint"
-    elseif ft == "json" then
-      format_on_save = false
-    end
-  end
+          if ft == "jst" and client.name == "html" then
+            return false
+          end
 
-  if format_on_save then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "<buffer>",
-      callback = function()
-        vim.lsp.buf.formatting_seq_sync(nil, 1000)
-      end,
-    })
-  else
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
+          if string.find(path, "/wikimedia/") then
+            if ft == "json" then
+              return false
+            elseif ft == "vue" or ft == "javascript" then
+              return client.name == "eslint"
+            end
+          end
+          return true
+        end,
+      })
+    end,
+  })
 end
 
 local on_attach = function(client, bufnr)
@@ -51,15 +52,8 @@ local on_attach = function(client, bufnr)
   -- print(vim.inspect(vim.lsp.get_active_clients()[1].resolved_capabilities))
 
   -- Enable format on save if the language server supports it
-  if client.resolved_capabilities.document_formatting then
-    setup_code_formatting(client, bufnr)
-  end
-
-  if client.resolved_capabilities.code_lens then
-    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-      buffer = bufnr,
-      callback = vim.lsp.codelens.refresh,
-    })
+  if client.server_capabilities.documentFormattingProvider then
+    setup_code_formatting(bufnr)
   end
 
   -- Mappings.
@@ -83,7 +77,6 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts)
 
-  vim.keymap.set("n", "gs", vim.lsp.buf.document_symbol, opts)
   vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, opts)
   vim.keymap.set("n", "<leader>lws", vim.lsp.buf.workspace_symbol, opts)
 
@@ -95,7 +88,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>lr", vim.lsp.buf.references, opts)
 
-  vim.keymap.set("n", "<leader>lf", vim.lsp.buf.formatting, opts)
+  vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, opts)
   vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
 
   vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, opts)
@@ -110,9 +103,6 @@ local servers = {
   rust_analyzer = {},
   tsserver = {
     on_attach = function(client, bufnr)
-      -- Don't use tsserver to format
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
       on_attach(client, bufnr)
     end,
   },
@@ -123,7 +113,7 @@ local servers = {
   eslint = {
     on_attach = function(client, bufnr)
       -- https://github.com/neovim/nvim-lspconfig/pull/1299#issuecomment-942214556
-      client.resolved_capabilities.document_formatting = true
+      client.server_capabilities.documentFormattingProvider = true
       on_attach(client, bufnr)
     end,
   },
@@ -175,7 +165,6 @@ local servers = {
 
 for lsp, options in pairs(servers) do
   nvim_lsp[lsp].setup(vim.tbl_deep_extend("force", {
-    capabilities = capabilities,
     on_attach = on_attach,
     flags = flags,
   }, options))
