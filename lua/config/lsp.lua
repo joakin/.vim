@@ -93,18 +93,28 @@ local on_attach = function(client, bufnr)
 
   vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[w", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "[@", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "]w", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "]@", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>ln", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 end
 
 local servers = {
+  ocamllsp = {},
   rust_analyzer = {},
   tsserver = {
+    root_dir = nvim_lsp.util.root_pattern("package.json", "tsconfig.json", "node_modules"),
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
     end,
+  },
+  denols = {
+    root_dir = nvim_lsp.util.root_pattern("deno.json", "import_map.json"),
+    init_options = {
+      lint = true,
+    },
   },
   cssls = {},
   elmls = {},
