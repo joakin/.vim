@@ -48,11 +48,7 @@ Plug 'tpope/vim-repeat'
 " Fix some netrw ( - for up dir, . or ! for cmd with file, cg/cl to cd/lcd, ~ )
 Plug 'tpope/vim-vinegar'
 " File/Buffer/Tag finder
-if isMac
-  Plug '/usr/local/opt/fzf' " Homebrew OSX install
-elseif isLinux || isWindows
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-endif
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Like f but multiline and faster 's'
 Plug 'justinmk/vim-sneak'
