@@ -656,7 +656,7 @@ command! SyntaxSyncFromStart :syntax sync fromstart
 " Change Git[(master)] to (master) from vim-fugitive/autoload/fugitive.vim
 function! MyFugitiveStatusline()
   let s = FugitiveStatusline()
-  return substitute(s, '\[Git\(.*\)\]', '\1', '')
+  return substitute(s, '\[Git(\(.*\))\]', '\1', '')
 endfunction
 
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -670,12 +670,10 @@ if has('statusline')
 
   set statusline+=%4*    " Switch to User4 highlight group.
   set statusline+=\      " Space
-  set statusline+=%<     " Truncation point, if not enough space
   set statusline+=%{statusline#fileprefix()} " File path
   set statusline+=%*     " Reset highlight group.
   set statusline+=%3*    " Switch to User3 highlight group (bold).
-  set statusline+=\      " Space
-  set statusline+=%t     " Filename.
+  set statusline+=%{statusline#filename()} " File path
   set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.
 
@@ -693,11 +691,13 @@ if has('statusline')
   set statusline+=%(%M%R%{statusline#ft()}%{statusline#fenc()}%)
   set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.
+  set statusline+=%<     " Truncation point, if not enough space
 
   set statusline+=%=     " Align right
 
   set statusline+=%3*    " Switch to User3 highlight group.
   set statusline+=\      " Space
+  set statusline+=%<     " Truncation point, if not enough space
   set statusline+=%{MyFugitiveStatusline()}
   set statusline+=\      " Space
   set statusline+=%*     " Reset highlight group.

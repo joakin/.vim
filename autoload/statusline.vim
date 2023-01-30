@@ -15,6 +15,17 @@ function! statusline#fileprefix() abort
   endif
 endfunction
 
+function! statusline#filename() abort
+  " set statusline+=\      " Space
+  " set statusline+=%t     " Filename.
+  let l:basename=expand('%:h')
+  let l:space=''
+  if l:basename == '' || l:basename == '.'
+    let l:space = ' '
+  endif
+  return l:space . expand('%:t')
+endfunction
+
 function! statusline#ft() abort
   if strlen(&ft)
     return ',' . &ft
