@@ -164,6 +164,9 @@ Plug 'swekaj/php-foldexpr.vim'
 Plug 'rust-lang/rust.vim'
 " }}}
 
+" GraphQL {{{
+Plug 'jparise/vim-graphql'
+" }}}
 " }}}
 
 " External tools {{{
