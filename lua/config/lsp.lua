@@ -1,6 +1,6 @@
 local null_ls = require("null-ls")
 local nvim_lsp = require("lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local _ = require("cmp_nvim_lsp")
 
 local flags = {
   debounce_text_changes = 500,
@@ -127,43 +127,19 @@ local servers = {
       on_attach(client, bufnr)
     end,
   },
-  sumneko_lua = {
-    cmd = (function()
-      local system_name
-      if vim.fn.has("mac") == 1 then
-        system_name = "macOS"
-      elseif vim.fn.has("unix") == 1 then
-        system_name = "Linux"
-      elseif vim.fn.has("win32") == 1 then
-        system_name = "Windows"
-      end
-
-      if system_name == "Linux" then
-        -- local sumneko_root_path = "/home/joakin/dev/forks/lua-language-server/bin/Linux/"
-        -- return { sumneko_root_path .. "lua-language-server", "-E", sumneko_root_path .. "main.lua" }
-        return { "/home/linuxbrew/.linuxbrew/bin/lua-language-server" }
-      elseif system_name == "macOS" then
-        return { "/usr/local/bin/lua-language-server" }
-      else
-        error("Unimplemented lua-language-server on Windows")
-      end
-    end)(),
+  lua_ls = {
     settings = {
       Lua = {
         runtime = {
+          -- LuaJIT in the case of Neovim
           version = "LuaJIT",
-          path = (function()
-            local runtime_path = vim.split(package.path, ";")
-            table.insert(runtime_path, "lua/?.lua")
-            table.insert(runtime_path, "lua/?/init.lua")
-            return runtime_path
-          end)(),
         },
         diagnostics = {
           globals = { "vim" },
         },
         workspace = {
-          library = vim.api.nvim_get_runtime_file("*.lua", true),
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
         },
         telemetry = {
           enable = false,
