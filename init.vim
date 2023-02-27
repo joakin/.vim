@@ -286,7 +286,7 @@ set foldtext=MyFoldText()
 " }}}
 "
 set foldenable
-set foldlevelstart=1
+set foldlevelstart=0
 set foldmarker={{{,}}}
 set foldmethod=indent
 
